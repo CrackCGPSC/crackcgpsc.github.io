@@ -1,0 +1,300 @@
+{
+  "brandTitle": "CRACK CGPSC",
+  "brandSub": "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
+  "articlesHeading": "Latest Study Notes & Reviews",
+  "hubTag": "● OFFICIAL PORTAL HUB",
+  "hubHeading": "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
+  "hubDesc": "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
+  "footerText": "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
+  "welcomeCard": {
+    "enabled": true,
+    "badge": "👋 WELCOME ASPIRANTS",
+    "title": "Welcome to Crack CGPSC -- Your Smart Exam Companion",
+    "note": "Yahan aapko CGPSC aur CGVYAPAM exams ke liye crisp topic-wise notes, previous year question papers, daily practice quizzes, aur CBT mock tests ek hi jagah par milte hain taaki aap apni preparation ko structured aur exam-oriented bana sakein.",
+    "imageUrl": "",
+    "youtubeUrl": ""
+  },
+  "noticeTitle": "📌 Notice Board",
+  "noticeBody": "<p><strong>10 Articles Per Page</strong> -- Use <strong>Next →</strong> or open Menu to filter by Subject/Category.</p><table><thead><tr><th>Exam</th><th>Focus Area</th></tr></thead><tbody><tr><td>CGPSC Prelims</td><td>Ancient, Medieval &amp; Modern</td></tr><tr><td>Vyapam Exams</td><td>Chronology, Facts &amp; Tables</td></tr></tbody></table>",
+  "reviewConfig": {
+    "movieNameLabel": "Movie Name",
+    "movieNameIcon": "",
+    "releaseYearLabel": "Release Year",
+    "releaseYearIcon": "",
+    "imdbRatingLabel": "IMDb Rating",
+    "imdbRatingIcon": "",
+    "buffRatingLabel": "Movies Buff Rating",
+    "buffRatingIcon": "",
+    "categoryLabel": "Category",
+    "categoryIcon": "",
+    "languagesLabel": "Languages",
+    "languagesIcon": "",
+    "parentalLabel": "Parental Guidance",
+    "parentalIcon": "",
+    "youtubeCtaLabel": "Watch Detailed Review on YouTube"
+  },
+  "categorySuggestions": [
+    "Action",
+    "Drama",
+    "Thriller",
+    "Comedy",
+    "Sci-Fi",
+    "Romance",
+    "Crime",
+    "Horror",
+    "Documentary",
+    "Animation"
+  ],
+  "sectionOrder": [
+    "portalCardsGrid",
+    "mainNeonBanner",
+    "quickPillButtons",
+    "portalHubCard",
+    "welcomeCardSection",
+    "articlesSection"
+  ],
+  "menuItems": [
+    {
+      "id": "menu-subjects",
+      "label": "Subjects",
+      "mode": "dropdown",
+      "dropdownSource": "folders",
+      "actionType": "folder",
+      "target": "",
+      "customOptions": []
+    },
+    {
+      "id": "menu-test-series",
+      "label": "Free Test Series",
+      "mode": "direct",
+      "dropdownSource": "custom",
+      "actionType": "link",
+      "target": "https://crackcgpsc.github.io/FreeTestSeries/",
+      "customOptions": []
+    },
+    {
+      "id": "menu-pyq",
+      "label": "PYQ Papers",
+      "mode": "direct",
+      "dropdownSource": "custom",
+      "actionType": "link",
+      "target": "https://crackcgpsc.github.io/PYQPapers/",
+      "customOptions": []
+    }
+  ],
+  "banner": {
+    "title": "CRACK CGPSC PORTAL",
+    "sub": "Mock Tests, PYQs & CBT Practice",
+    "cta": "Open Now →",
+    "url": "https://crackcgpsc.github.io/FreeTestSeries/"
+  },
+  "navButtons": [
+    {
+      "label": "Free Test Series",
+      "actionType": "link",
+      "target": "https://crackcgpsc.github.io/FreeTestSeries/"
+    },
+    {
+      "label": "PYQ Papers",
+      "actionType": "link",
+      "target": "https://crackcgpsc.github.io/PYQPapers/"
+    },
+    {
+      "label": "History Folder",
+      "actionType": "folder",
+      "target": "fld-history"
+    },
+    {
+      "label": "Official Hub",
+      "actionType": "anchor",
+      "target": "dest-portal-hub"
+    }
+  ],
+  "portalCards": [
+    {
+      "title": "Free Test Series",
+      "sub": "FULL LENGTH & MOCKS",
+      "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=120&q=70",
+      "url": "https://crackcgpsc.github.io/FreeTestSeries/"
+    },
+    {
+      "title": "PYQ Papers",
+      "sub": "CGPSC & VYAPAM ARCHIVE",
+      "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=120&q=70",
+      "url": "https://crackcgpsc.github.io/PYQPapers/"
+    },
+    {
+      "title": "Topic Quiz",
+      "sub": "CHAPTER PRACTICE BANK",
+      "image": "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=120&q=70",
+      "url": "https://crackcgpsc.github.io/FreeTestSeries/"
+    },
+    {
+      "title": "CBT Portal",
+      "sub": "EXAM INTERFACE MODE",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=120&q=70",
+      "url": "https://crackcgpsc.github.io/FreeTestSeries/"
+    }
+  ],
+  "folders": [
+    {
+      "id": "fld-history",
+      "name": "History",
+      "parentId": ""
+    },
+    {
+      "id": "fld-ancient-history",
+      "name": "Ancient India",
+      "parentId": "fld-history"
+    },
+    {
+      "id": "fld-medieval-history",
+      "name": "Medieval India",
+      "parentId": "fld-history"
+    },
+    {
+      "id": "fld-modern-history",
+      "name": "Modern India",
+      "parentId": "fld-history"
+    }
+  ],
+  "articles": [
+    {
+      "id": "hist-1-indus-valley",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "1. Indus Valley Civilization (Harappan Culture)",
+      "coverImage": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Urban town planning, Great Bath, Harappa, Mohenjodaro, Lothal dockyard, script & key exam facts.",
+      "body": "<h2>Overview & Chronology</h2><p><strong>Indus Valley Civilization (c. 2600–1900 BCE)</strong> was India's earliest bronze-age urban civilization across the Indus and Ghaggar-Hakra basins.</p><ul><li><strong>Town Planning:</strong> Grid system, burnt bricks, covered drainage, fortified citadel & lower town</li><li><strong>Key Sites:</strong> Harappa (Ravi -- R-37 cemetery), Mohenjodaro (Indus -- Great Bath, dancing girl), Lothal (Bhogava -- dockyard), Kalibangan (ploughed field)</li><li><strong>Trade & Economy:</strong> Pashupati seal, steatite seals, Mesopotamian trade links (Meluhha)</li></ul><table><thead><tr><th>Site</th><th>River / Location</th><th>Notable Discovery</th></tr></thead><tbody><tr><td>Harappa</td><td>Ravi (Montgomery)</td><td>Granaries, coffin burial</td></tr><tr><td>Mohenjodaro</td><td>Indus (Larkana)</td><td>Great Bath, bronze dancer</td></tr><tr><td>Dholavira</td><td>Rann of Kutch</td><td>Water reservoirs, sign board</td></tr></tbody></table>",
+      "relatedLinks": "2. Vedic Age (Early & Later Vedic Period) | #article-hist-2-vedic-age"
+    },
+    {
+      "id": "hist-2-vedic-age",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "2. Vedic Age: Early & Later Vedic Period",
+      "coverImage": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Rigvedic vs Later Vedic polity, sabha-samiti, four ashramas, varna system & sacred rivers.",
+      "body": "<h2>Rigvedic vs Later Vedic Shift</h2><p><strong>Early Vedic (Rigvedic)</strong> society was pastoral and tribal, while <strong>Later Vedic</strong> age saw iron use, territorial kingdoms (Janapadas), and ritual complexity.</p><ul><li><strong>Rivers:</strong> Sindhu (most mentioned), Saraswati (most sacred), Ganga & Yamuna mentioned in Rigveda</li><li><strong>Assemblies:</strong> Sabha, Samiti, Vidatha; king assisted by Purohita and Senani</li><li><strong>Four Vedas:</strong> Rigveda (hymns), Samaveda (music), Yajurveda (sacrifices), Atharvaveda (charms & medicine)</li></ul><table><thead><tr><th>Aspect</th><th>Early Vedic</th><th>Later Vedic</th></tr></thead><tbody><tr><td>Main Occupation</td><td>Cattle rearing & pastoral</td><td>Agriculture & iron tools</td></tr><tr><td>Polity</td><td>Tribal Rajan, Sabha/Samiti</td><td>Territorial Janapadas, Bali tax</td></tr><tr><td>Deities</td><td>Indra, Agni, Varuna</td><td>Prajapati, Vishnu, Rudra</td></tr></tbody></table>",
+      "relatedLinks": "3. Rise of Second Urbanisation & 16 Mahajanapadas | #article-hist-3-civilisation-mahajanapadas"
+    },
+    {
+      "id": "hist-3-civilisation-mahajanapadas",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "3. Rise of Second Urbanisation & 16 Mahajanapadas",
+      "coverImage": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Second urbanisation, NBPW pottery, punch-marked coins, 16 Mahajanapadas & Magadha ascendancy.",
+      "body": "<h2>Second Urbanisation & Mahajanapadas</h2><p>Around <strong>6th century BCE</strong>, widespread iron technology, surplus farming, and coinage triggered <strong>Second Urbanisation</strong> and <strong>16 Mahajanapadas</strong> listed in Anguttara Nikaya.</p><ul><li><strong>Southernmost Mahajanapada:</strong> Assaka / Ashmaka (Godavari region)</li><li><strong>Republics (Gana-Sanghas):</strong> Vajji (Licchavis) and Malla</li><li><strong>Magadha Rise:</strong> Haryanka, Shishunaga, and Nanda dynasties; strategic capitals Rajgir & Pataliputra</li></ul><table><thead><tr><th>Mahajanapada</th><th>Capital</th><th>Key Fact</th></tr></thead><tbody><tr><td>Magadha</td><td>Rajgir / Pataliputra</td><td>Bimbisara, Ajatashatru, Mahapadma Nanda</td></tr><tr><td>Avanti</td><td>Ujjayini / Mahishmati</td><td>Pradyota dynasty</td></tr><tr><td>Kosala</td><td>Shravasti / Ayodhya</td><td>Prasenajit</td></tr></tbody></table>",
+      "relatedLinks": "4. Buddhism: Life, Teachings & Councils | #article-hist-4-buddhism"
+    },
+    {
+      "id": "hist-4-buddhism",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "4. Buddhism: Life, Teachings & Councils",
+      "coverImage": "https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Gautama Buddha milestones, Four Noble Truths, Ashtangika Marga, Tripitakas & four councils.",
+      "body": "<h2>Core Doctrines & Councils</h2><p><strong>Siddhartha Gautama (Buddha)</strong> preached middle path, <strong>Four Noble Truths (Arya Satyas)</strong>, and <strong>Eightfold Path (Ashtangika Marga)</strong> in Pali.</p><ul><li><strong>Key Events:</strong> Birth (Lumbini), Enlightenment (Bodh Gaya under Bodhi tree), First Sermon (Sarnath -- Dharmachakra Pravartana), Mahaparinirvana (Kushinagar)</li><li><strong>Tripitaka:</strong> Sutta Pitaka, Vinaya Pitaka, Abhidhamma Pitaka</li><li><strong>Fourth Council:</strong> Under Kanishka in Kashmir -- split into Hinayana & Mahayana</li></ul><table><thead><tr><th>Council</th><th>Venue / Patron</th><th>Main Outcome</th></tr></thead><tbody><tr><td>1st</td><td>Rajagriha (Ajatashatru)</td><td>Sutta & Vinaya compiled</td></tr><tr><td>2nd</td><td>Vaishali (Kalashoka)</td><td>Sthaviravadins vs Mahasanghikas</td></tr><tr><td>3rd</td><td>Pataliputra (Ashoka)</td><td>Abhidhamma Pitaka, Mogalliputta Tissa</td></tr><tr><td>4th</td><td>Kashmir (Kanishka)</td><td>Hinayana & Mahayana division</td></tr></tbody></table>",
+      "relatedLinks": "5. Jainism: Tirthankaras, Triratna & Councils | #article-hist-5-jainism"
+    },
+    {
+      "id": "hist-5-jainism",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "5. Jainism: Tirthankaras, Triratna & Councils",
+      "coverImage": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Rishabhadeva, Mahavira, Panch Mahavrata, Triratna, Anekantavada & Shwetambara-Digambara.",
+      "body": "<h2>Jain Philosophy & Sects</h2><p><strong>Vardhamana Mahavira</strong> was the <strong>24th Tirthankara</strong> (1st: Rishabhadeva; 23rd: Parshvanatha), emphasizing <strong>Ahimsa</strong>, <strong>Syadvada</strong>, and <strong>Anekantavada</strong>.</p><ul><li><strong>Triratna:</strong> Right Faith (Samyak Darshana), Right Knowledge (Samyak Jnana), Right Conduct (Samyak Charitra)</li><li><strong>Five Vows:</strong> Satya, Ahimsa, Asteya, Aparigraha (added by Parshvanatha) + Brahmacharya (added by Mahavira)</li><li><strong>Sects:</strong> Shwetambara (white-clad, Sthulabhadra) & Digambara (sky-clad, Bhadrabahu)</li></ul>",
+      "relatedLinks": "6. Mauryan Empire: Administration & Ashoka's Dhamma | #article-hist-6-mauryan-empire"
+    },
+    {
+      "id": "hist-6-mauryan-empire",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "6. Mauryan Empire: Administration & Ashoka's Dhamma",
+      "coverImage": "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Chandragupta Maurya, Arthashastra, Megasthenes Indica, Ashokan edicts, Kalinga war & Dhamma.",
+      "body": "<h2>Imperial Mauryan State</h2><p>Founded by <strong>Chandragupta Maurya</strong> with <strong>Chanakya (Kautilya)</strong>, the Mauryan Empire reached its zenith under <strong>Ashoka</strong>.</p><ul><li><strong>Sources:</strong> Kautilya's <em>Arthashastra</em>, Megasthenes' <em>Indica</em>, Mudrarakshasa, and Ashokan rock/pillar edicts</li><li><strong>Kalinga War (261 BCE):</strong> Described in Major Rock Edict XIII; led to policy of <em>Dhammaghosha</em></li><li><strong>Officers:</strong> Dhamma Mahamattas (appointed by Ashoka), Rajukas, Pradeshikas, Samaharta (revenue)</li></ul>",
+      "relatedLinks": "7. Gupta Empire: Rulers, Art, Literature & Science | #article-hist-7-gupta-empire"
+    },
+    {
+      "id": "hist-7-gupta-empire",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "7. Gupta Empire: Rulers, Art, Literature & Science",
+      "coverImage": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Samudragupta, Chandragupta II (Vikramaditya), Fahien, Navaratnas, Aryabhata, Kalidasa & temples.",
+      "body": "<h2>Classical Gupta Era</h2><p>Often termed a classical cultural peak in art, Sanskrit literature, and mathematics/astronomy.</p><ul><li><strong>Samudragupta:</strong> <em>Napoleon of India</em> (V.A. Smith), Prayag Prashasti by Harishena, Ashvamedha coins</li><li><strong>Chandragupta II:</strong> Title <em>Vikramaditya</em>, silver coins, Fa-Hien's visit, Navaratnas (Kalidasa, Varahamihira, Amarasimha)</li><li><strong>Science & Art:</strong> Aryabhata (zero, rotation of Earth, trigonometry), Dashavatara temple (Deogarh), Ajanta & Bagh murals</li></ul>",
+      "relatedLinks": "8. Chola Empire: Naval Power & Village Administration | #article-hist-8-chola-empire"
+    },
+    {
+      "id": "hist-8-chola-empire",
+      "postType": "article",
+      "folderId": "fld-ancient-history",
+      "category": "ANCIENT HISTORY",
+      "title": "8. Chola Empire: Naval Power & Village Administration",
+      "coverImage": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Rajaraja I, Rajendra I, Gangaikonda Cholapuram, Brihadeeswarar temple, Nataraja bronze & Sabha.",
+      "body": "<h2>Imperial Cholas of Thanjavur</h2><p>Renowned for <strong>strong naval expeditions</strong>, <strong>Dravidian temple architecture</strong>, and <strong>autonomous village assemblies (Sabha & Ur)</strong>.</p><ul><li><strong>Rajaraja I (985–1014 CE):</strong> Built Brihadeeswarar Temple at Thanjavur; naval strike on Sri Lanka & Srivijaya</li><li><strong>Rajendra I:</strong> Expedition to Ganga, assumed title <em>Gangaikondachola</em>, built Gangaikonda Cholapuram</li><li><strong>Local Governance:</strong> Uttaramerur inscriptions detail <em>Kudavolai</em> election system for village committees</li></ul>",
+      "relatedLinks": "9. Delhi Sultanate (1206–1526): Dynasties & Policies | #article-hist-9-delhi-sultanate"
+    },
+    {
+      "id": "hist-9-delhi-sultanate",
+      "postType": "article",
+      "folderId": "fld-medieval-history",
+      "category": "MEDIEVAL HISTORY",
+      "title": "9. Delhi Sultanate (1206–1526): Dynasties & Policies",
+      "coverImage": "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Mamluk, Khilji, Tughlaq, Sayyid & Lodi dynasties, market control, Iqta system & administrative terms.",
+      "body": "<h2>Five Sultanate Dynasties</h2><p>Ruled from Delhi across <strong>five successive dynasties</strong> with distinct revenue and military systems.</p><ul><li><strong>Iltutmish:</strong> Organised <em>Iqta</em> system and <em>Turkan-i-Chahalgani</em>; silver <em>Tanka</em> and copper <em>Jital</em></li><li><strong>Alauddin Khilji:</strong> Market price control (<em>Shahna-i-Mandi</em>), <em>Dagh</em> (branding horses) & <em>Huliya</em> (descriptive roll)</li><li><strong>Muhammad bin Tughlaq:</strong> Token currency experiment, transfer of capital to Daulatabad, <em>Diwan-i-Kohi</em> (agriculture)</li></ul>",
+      "relatedLinks": "10. Mughal Empire: Rulers, Mansabdari & Revenue | #article-hist-10-mughal-empire"
+    },
+    {
+      "id": "hist-10-mughal-empire",
+      "postType": "article",
+      "folderId": "fld-medieval-history",
+      "category": "MEDIEVAL HISTORY",
+      "title": "10. Mughal Empire: Rulers, Mansabdari & Revenue",
+      "coverImage": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "Babur, Humayun, Sher Shah, Akbar, Jahangir, Shah Jahan, Aurangzeb, Mansabdari & Zabti/Dahsala.",
+      "body": "<h2>Mughal Polity & Economy</h2><p>Established after <strong>First Battle of Panipat (1526)</strong> by <strong>Babur</strong>, consolidated by <strong>Akbar</strong> and <strong>Sher Shah Suri</strong>.</p><ul><li><strong>Sher Shah Suri:</strong> Grand Trunk Road, <em>Rupiya</em>, Patta & Qabuliyat system</li><li><strong>Akbar:</strong> <em>Mansabdari</em> (Zat & Sawar), <em>Dahsala</em> / Todar Mal bandobast, <em>Din-i-Ilahi</em> (1582), Ibadat Khana</li><li><strong>Culture:</strong> Mughal miniature painting (peak under Jahangir), Taj Mahal & Red Fort (Shah Jahan)</li></ul>",
+      "relatedLinks": "11. Modern History: 1857 Revolt & Freedom Struggle | #article-hist-11-modern-freedom"
+    },
+    {
+      "id": "hist-11-modern-freedom",
+      "postType": "article",
+      "folderId": "fld-modern-history",
+      "category": "MODERN HISTORY",
+      "title": "11. Modern History: 1857 Revolt & Indian Freedom Movement (Page 2)",
+      "coverImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=75",
+      "excerpt": "1857 Uprising, INC 1885, Swadeshi, Non-Cooperation, Civil Disobedience, Quit India & 1947.",
+      "body": "<h2>Freedom Movement Milestones (Page 2 Demo)</h2><p>Ek page mein <strong>10 articles</strong> ke baad yeh <strong>11th article</strong> Page 2 / Next par open hota hai.</p><ul><li><strong>Revolt of 1857:</strong> Began at Meerut (10 May 1857); Rani Lakshmibai (Jhansi), Kunwar Singh (Bihar), Begum Hazrat Mahal (Lucknow)</li><li><strong>Gandhian Era:</strong> Champaran (1917), Non-Cooperation (1920), Dandi March (1930), Quit India (1942 -- 'Do or Die')</li><li><strong>Independence:</strong> Cabinet Mission (1946), Mountbatten Plan & Indian Independence Act (1947)</li></ul>",
+      "relatedLinks": "1. Indus Valley Civilization (Harappan Culture) | #article-hist-1-indus-valley"
+    }
+  ],
+  "customElements": [],
+  "elementStyles": {},
+  "socialLinks": {
+    "youtube": "https://youtube.com/@crackcgpsc",
+    "telegram": "https://t.me/crackcgpsc",
+    "instagram": "https://instagram.com/crackcgpsc",
+    "facebook": "https://facebook.com/crackcgpsc",
+    "whatsapp": "https://whatsapp.com/channel/"
+  },
+  "github": {
+    "owner": "crackcgpsc",
+    "repo": "crackcgpsc.github.io",
+    "branch": "main",
+    "path": "site-data.json",
+    "token": ""
+  }
+}
