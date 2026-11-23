@@ -7,7 +7,7 @@
   "hubDesc": "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
   "footerText": "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
   "welcomeCard": {
-    "enabled": true,
+    "enabled": false,
     "badge": "👋 WELCOME ASPIRANTS",
     "title": "Welcome to Crack CGPSC -- Your Smart Exam Companion",
     "note": "Yahan aapko CGPSC aur CGVYAPAM exams ke liye crisp topic-wise notes, previous year question papers, daily practice quizzes, aur CBT mock tests ek hi jagah par milte hain taaki aap apni preparation ko structured aur exam-oriented bana sakein.",
