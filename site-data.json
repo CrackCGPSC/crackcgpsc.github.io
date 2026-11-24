@@ -10,6 +10,8 @@
   "hubDesc": "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
   "footerText": "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
   "articleSortOrder": "newest",
+  "menuDrawerMode": "standard",
+  "movieMenuHeading": "Browse Reviews",
   "sectionVisibility": {
     "portalCardsGrid": true,
     "mainNeonBanner": true,
@@ -167,7 +169,8 @@
     "title": "CRACK CGPSC PORTAL",
     "sub": "Mock Tests, PYQs & CBT Practice",
     "cta": "Open Now →",
-    "url": "https://crackcgpsc.github.io/FreeTestSeries/"
+    "actionType": "contentExplorer",
+    "url": ""
   },
   "navButtons": [
     {
