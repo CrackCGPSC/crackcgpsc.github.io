@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="./favicon.png" />
-<link rel="apple-touch-icon" href="./favicon.png" />
   <title>CRACK CGPSC - Test Series • Topic Quiz • PYQ Papers • CBT Portal</title>
   <meta name="description" content="Crack CGPSC - Free Test Series, Topic Quiz, Previous Year Question Papers, CBT Portal, and Study Articles for CGPSC and CGVYAPAM aspirants." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,9 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-main: #06080c;
-      --text-primary: #f4f6fb;
-      --text-secondary: #98a2b8;
+      --bg-main: #05070b;
+      --text-primary: #f5f7fc;
+      --text-secondary: #9ca7be;
       --neon-pink: #ff2a85;
       --neon-cyan: #22d3ee;
     }
@@ -28,8 +26,8 @@
 
     body {
       background:
-        radial-gradient(circle at 50% 0%, rgba(255, 42, 133, 0.16), transparent 40%),
-        radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.08), transparent 34%),
+        radial-gradient(circle at 50% 0%, rgba(255, 42, 133, 0.16), transparent 42%),
+        radial-gradient(circle at 80% 12%, rgba(34, 211, 238, 0.1), transparent 36%),
         var(--bg-main);
       color: var(--text-primary);
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
@@ -44,87 +42,98 @@
       text-decoration: none;
     }
 
-    body.preview-desktop-mode .site-viewport-shell {
-      max-width: 1180px;
-      margin: 0 auto;
+    .site-viewport-shell {
       width: 100%;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     body.preview-desktop-mode .neon-cards-grid {
       grid-template-columns: repeat(4, 1fr);
     }
 
-    body.preview-desktop-mode .articles-notice-split {
-      grid-template-columns: 2fr 1fr;
+    body.preview-desktop-mode .search-shell {
+      max-width: 360px;
+      margin: 8px auto 12px;
     }
 
-    /* Header + Single-Line Subtitle */
+    /* Top Header + Search + Flare */
     .top-bar-wrap {
       position: relative;
-      max-width: 1040px;
       width: 100%;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 14px 12px 4px;
+      padding: 14px 16px 4px;
     }
 
     .menu-float-btn {
       position: absolute;
       top: 16px;
-      right: 12px;
-      width: 34px;
-      height: 32px;
-      border-radius: 7px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(18, 22, 32, 0.82);
+      right: 16px;
+      width: 36px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(20, 26, 38, 0.85);
       backdrop-filter: blur(12px);
       color: #fff;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 25;
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.18);
     }
 
     .hero-brand-center {
       text-align: center;
-      padding: 2px 42px 2px;
+      padding: 2px 48px 2px;
       cursor: pointer;
     }
 
     .neon-brand-title {
       display: inline-block;
       font-family: "Montserrat", sans-serif;
-      font-size: clamp(1.48rem, 5.2vw, 2.65rem);
+      font-size: clamp(1.5rem, 4.6vw, 2.75rem);
       font-weight: 900;
-      letter-spacing: 1.8px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: #ffffff;
       text-shadow:
-        0 0 6px rgba(255, 42, 133, 0.9),
-        0 0 16px rgba(255, 42, 133, 0.55),
-        0 0 28px rgba(34, 211, 238, 0.35);
+        0 0 7px rgba(255, 42, 133, 0.92),
+        0 0 18px rgba(255, 42, 133, 0.58),
+        0 0 32px rgba(34, 211, 238, 0.42);
     }
 
     .neon-brand-sub {
       margin-top: 4px;
       font-family: "Montserrat", sans-serif;
-      font-size: clamp(0.45rem, 1.48vw, 0.72rem);
+      font-size: clamp(0.48rem, 1.3vw, 0.76rem);
       font-weight: 700;
-      letter-spacing: clamp(0.2px, 0.16vw, 1.4px);
+      letter-spacing: clamp(0.3px, 0.2vw, 2px);
       text-transform: uppercase;
-      color: #d2d9e8;
+      color: #dce3f2;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* Search + Flare Strip */
+    /* Search Bar + Bright Light Flare Line Below */
     .search-shell {
-      max-width: 1000px;
+      width: 100%;
+      max-width: 980px;
       margin: 10px auto 14px;
-      padding: 0 12px;
+      padding: 0 16px;
       position: relative;
+    }
+
+    @media (min-width: 900px) {
+      .search-shell {
+        max-width: 380px;
+      }
     }
 
     .search-glass-box {
@@ -132,12 +141,12 @@
       z-index: 2;
       display: flex;
       align-items: center;
-      background: rgba(16, 20, 30, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.13);
+      background: rgba(18, 23, 35, 0.88);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 999px;
       padding: 3px 3px 3px 14px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 6px 18px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 22px rgba(0, 0, 0, 0.55);
     }
 
     .search-glass-box input {
@@ -146,44 +155,45 @@
       border: none !important;
       outline: none;
       color: #fff;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       padding: 5px 8px;
+      min-width: 0;
     }
 
     .search-neon-btn {
-      background: linear-gradient(135deg, #c9185b, #ff2a85);
+      background: linear-gradient(135deg, #d81b60, #ff2a85);
       color: #fff;
-      border: 1px solid rgba(255, 140, 190, 0.4);
+      border: 1px solid rgba(255, 150, 195, 0.45);
       border-radius: 999px;
-      padding: 6px 15px;
+      padding: 6px 14px;
       font-family: "Montserrat", sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
       letter-spacing: 0.8px;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(255, 42, 133, 0.42);
+      box-shadow: 0 0 14px rgba(255, 42, 133, 0.5);
       flex-shrink: 0;
     }
 
     .neon-flare-strip {
       position: relative;
       z-index: 1;
-      height: 16px;
-      margin: -4px auto 0;
-      width: 92%;
+      height: 18px;
+      margin: -5px auto 0;
+      width: 96%;
       border-radius: 999px;
-      background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.36) 0%, rgba(255, 42, 133, 0.24) 45%, transparent 78%);
-      filter: blur(6px);
+      background: linear-gradient(90deg, transparent 0%, rgba(34, 211, 238, 0.45) 28%, rgba(255, 42, 133, 0.55) 52%, rgba(34, 211, 238, 0.45) 76%, transparent 100%);
+      filter: blur(5px);
       pointer-events: none;
     }
 
-    /* Container */
+    /* Full-Spread Container */
     .container {
       width: 100%;
-      max-width: 1040px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 2px 12px 24px;
+      padding: 2px 16px 24px;
       flex: 1;
     }
 
@@ -193,15 +203,16 @@
       gap: 14px;
     }
 
-    /* Compact 2x2 Glass Neon Portal Buttons */
+    /* Compact 4-Column on Desktop / 2-Column on Mobile Glass Neon Portal Buttons */
     .neon-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 860px) {
       .neon-cards-grid {
+        grid-template-columns: repeat(4, 1fr);
         gap: 10px;
       }
     }
@@ -210,40 +221,47 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 7px;
-      min-height: 44px;
-      padding: 6px 9px;
-      border-radius: 8px;
+      gap: 9px;
+      min-height: 46px;
+      padding: 6px 11px;
+      border-radius: 10px;
       text-decoration: none !important;
       overflow: hidden;
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      transition: transform 0.14s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      transition: transform 0.15s ease, box-shadow 0.16s ease, border-color 0.16s ease;
     }
 
     .glass-portal-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.22));
+      background: linear-gradient(125deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 55%, rgba(0, 0, 0, 0.25) 100%);
       pointer-events: none;
     }
 
-    .card-theme-0 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.42), rgba(6, 78, 59, 0.72)); box-shadow: 0 0 10px rgba(16, 185, 129, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
-    .card-theme-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.45), rgba(30, 58, 138, 0.75)); box-shadow: 0 0 10px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
-    .card-theme-2 { background: linear-gradient(135deg, rgba(217, 119, 6, 0.5), rgba(120, 53, 15, 0.78)); box-shadow: 0 0 10px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
-    .card-theme-3 { background: linear-gradient(135deg, rgba(2, 132, 199, 0.46), rgba(12, 74, 110, 0.76)); box-shadow: 0 0 10px rgba(34, 211, 238, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+    .card-theme-0 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.46), rgba(6, 78, 59, 0.76)); box-shadow: 0 0 12px rgba(16, 185, 129, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+    .card-theme-0:hover, .card-theme-0:active, .card-theme-0:focus-visible { border-color: rgba(167, 243, 208, 0.95); box-shadow: 0 0 22px rgba(16, 185, 129, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+
+    .card-theme-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.48), rgba(30, 58, 138, 0.78)); box-shadow: 0 0 12px rgba(59, 130, 246, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+    .card-theme-1:hover, .card-theme-1:active, .card-theme-1:focus-visible { border-color: rgba(191, 219, 254, 0.95); box-shadow: 0 0 22px rgba(59, 130, 246, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+
+    .card-theme-2 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.54), rgba(120, 53, 15, 0.8)); box-shadow: 0 0 12px rgba(245, 158, 11, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+    .card-theme-2:hover, .card-theme-2:active, .card-theme-2:focus-visible { border-color: rgba(254, 240, 138, 0.95); box-shadow: 0 0 22px rgba(245, 158, 11, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+
+    .card-theme-3 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(12, 74, 110, 0.78)); box-shadow: 0 0 12px rgba(34, 211, 238, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+    .card-theme-3:hover, .card-theme-3:active, .card-theme-3:focus-visible { border-color: rgba(165, 243, 252, 0.95); box-shadow: 0 0 22px rgba(34, 211, 238, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
 
     .glass-icon-img {
       position: relative;
       z-index: 1;
-      width: 20px;
-      height: 20px;
-      min-width: 20px;
-      min-height: 20px;
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      min-height: 24px;
       object-fit: contain;
       flex-shrink: 0;
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.35));
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.42));
       display: block;
     }
 
@@ -255,7 +273,7 @@
     }
 
     .glass-card-title {
-      font-size: clamp(0.76rem, 2.05vw, 0.9rem);
+      font-size: clamp(0.76rem, 1.5vw, 0.92rem);
       font-weight: 800;
       color: #ffffff;
       line-height: 1.15;
@@ -266,11 +284,11 @@
 
     .glass-card-sub {
       margin-top: 2px;
-      font-size: clamp(0.49rem, 1.3vw, 0.58rem);
+      font-size: clamp(0.48rem, 1vw, 0.6rem);
       font-weight: 700;
-      letter-spacing: 0.25px;
+      letter-spacing: 0.3px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.82);
+      color: rgba(255, 255, 255, 0.85);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -281,15 +299,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 8px;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 10px;
       text-decoration: none !important;
       color: #fff;
-      background: linear-gradient(90deg, rgba(190, 24, 93, 0.82), rgba(225, 29, 72, 0.75), rgba(136, 19, 55, 0.88));
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 125, 180, 0.35);
-      box-shadow: 0 0 14px rgba(255, 42, 133, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      background: linear-gradient(90deg, rgba(190, 24, 93, 0.85), rgba(225, 29, 72, 0.78), rgba(136, 19, 55, 0.9));
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 135, 185, 0.4);
+      box-shadow: 0 0 18px rgba(255, 42, 133, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);
       overflow: hidden;
     }
 
@@ -303,9 +321,9 @@
 
     .banner-title {
       font-family: "Montserrat", sans-serif;
-      font-size: clamp(0.68rem, 1.9vw, 0.92rem);
+      font-size: clamp(0.72rem, 1.8vw, 0.95rem);
       font-weight: 800;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.4px;
       line-height: 1.12;
       white-space: nowrap;
       overflow: hidden;
@@ -313,8 +331,8 @@
     }
 
     .banner-sub {
-      font-size: clamp(0.52rem, 1.35vw, 0.68rem);
-      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(0.54rem, 1.3vw, 0.7rem);
+      color: rgba(255, 255, 255, 0.88);
       margin-top: 1px;
       white-space: nowrap;
       overflow: hidden;
@@ -322,7 +340,7 @@
     }
 
     .banner-right-cta {
-      font-size: clamp(0.62rem, 1.6vw, 0.78rem);
+      font-size: clamp(0.66rem, 1.5vw, 0.82rem);
       font-weight: 800;
       white-space: nowrap;
       flex-shrink: 0;
@@ -333,29 +351,37 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 6px;
+      gap: 7px;
     }
 
     .glass-pill-btn {
-      padding: 5px 10px;
-      border-radius: 7px;
-      background: rgba(18, 23, 34, 0.84);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: #e4eaf6;
-      font-size: 0.72rem;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(20, 26, 39, 0.86);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #e8eef9;
+      font-size: 0.74rem;
       font-weight: 700;
       cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .glass-pill-btn:hover, .glass-pill-btn:active {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.5);
     }
 
     /* Official Portal Hub */
     .portal-hub-card {
-      background: linear-gradient(160deg, rgba(34, 14, 27, 0.72) 0%, rgba(11, 15, 24, 0.92) 68%);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 42, 133, 0.22);
-      border-radius: 12px;
-      padding: 14px;
+      background: linear-gradient(160deg, rgba(42, 16, 32, 0.76) 0%, rgba(12, 17, 28, 0.94) 68%);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 42, 133, 0.28);
+      border-radius: 13px;
+      padding: 15px;
       overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .hub-tag {
@@ -363,8 +389,8 @@
       align-items: center;
       padding: 3px 9px;
       border-radius: 999px;
-      background: rgba(255, 42, 133, 0.15);
-      border: 1px solid rgba(255, 42, 133, 0.32);
+      background: rgba(255, 42, 133, 0.16);
+      border: 1px solid rgba(255, 42, 133, 0.35);
       color: #ff6aa8;
       font-size: 0.62rem;
       font-weight: 800;
@@ -374,78 +400,117 @@
     }
 
     .hub-heading {
-      font-size: clamp(0.84rem, 2.2vw, 1.12rem);
+      font-size: clamp(0.88rem, 2.2vw, 1.18rem);
       font-weight: 800;
       color: #fff;
       margin-bottom: 4px;
     }
 
     .hub-copy {
-      font-size: clamp(0.68rem, 1.8vw, 0.8rem);
+      font-size: clamp(0.7rem, 1.7vw, 0.84rem);
       color: var(--text-secondary);
     }
 
-    /* Stylish Welcome Card Above Articles */
-    .welcome-aspirant-card {
+    /* Auto-Sliding Featured Showcase Carousel (Like Video 3) */
+    .showcase-carousel-box {
       position: relative;
+      width: 100%;
       border-radius: 14px;
-      padding: 16px;
-      background:
-        radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 45%),
-        radial-gradient(circle at bottom left, rgba(255, 42, 133, 0.18), transparent 48%),
-        linear-gradient(145deg, rgba(16, 23, 38, 0.95), rgba(10, 14, 23, 0.98));
-      border: 1px solid rgba(34, 211, 238, 0.35);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      border: 1px solid rgba(34, 211, 238, 0.32);
+      background: #0b0f18;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+    }
+
+    .showcase-slide-item {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .showcase-slide-item {
+        height: 310px;
+      }
+    }
+
+    .showcase-slide-item.active {
+      display: block;
+    }
+
+    .showcase-slide-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .showcase-overlay-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(6, 8, 12, 0.92) 0%, rgba(6, 8, 12, 0.65) 52%, rgba(6, 8, 12, 0.18) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px 20px;
+      max-width: 640px;
+      gap: 7px;
+    }
+
+    .showcase-pill-tag {
+      display: inline-block;
+      width: fit-content;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: rgba(255, 42, 133, 0.88);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .showcase-slide-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.05rem, 3vw, 1.75rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+    }
+
+    .showcase-slide-desc {
+      font-size: clamp(0.72rem, 1.8vw, 0.88rem);
+      color: #dbe3f4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    .welcome-badge {
-      display: inline-flex;
-      align-items: center;
+    .showcase-dots-row {
+      position: absolute;
+      bottom: 9px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
       gap: 6px;
-      padding: 3px 10px;
+      z-index: 6;
+    }
+
+    .showcase-dot {
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
-      background: rgba(34, 211, 238, 0.14);
-      border: 1px solid rgba(34, 211, 238, 0.4);
-      color: var(--neon-cyan);
-      font-size: 0.64rem;
-      font-weight: 800;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.35);
+      border: none;
+      cursor: pointer;
     }
 
-    .welcome-title {
-      font-family: "Montserrat", sans-serif;
-      font-size: clamp(1rem, 2.8vw, 1.35rem);
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 6px;
-      line-height: 1.25;
-    }
-
-    .welcome-note-text {
-      font-size: clamp(0.78rem, 2vw, 0.88rem);
-      color: #dbe3f4;
-      line-height: 1.55;
-      margin-bottom: 10px;
-    }
-
-    .welcome-media-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .welcome-media-grid.two-media {
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 720px) {
-      .welcome-media-grid.two-media {
-        grid-template-columns: 1fr 1fr;
-      }
+    .showcase-dot.active {
+      width: 20px;
+      background: var(--neon-pink);
     }
 
     /* Articles + Right-Side Notice Board Layout */
@@ -458,7 +523,7 @@
 
     @media (min-width: 820px) {
       .articles-notice-split {
-        grid-template-columns: 1.75fr 1fr;
+        grid-template-columns: 2fr 1fr;
       }
     }
 
@@ -659,10 +724,10 @@
 
     /* Bottom Folders Explorer */
     .bottom-folders-section {
-      max-width: 1040px;
       width: 100%;
+      max-width: 1440px;
       margin: 0 auto 18px;
-      padding: 0 12px;
+      padding: 0 16px;
       overflow: hidden;
     }
 
@@ -687,7 +752,7 @@
 
     @media (min-width: 700px) {
       .folders-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
@@ -711,24 +776,6 @@
       border: 1px solid rgba(255, 255, 255, 0.16);
       min-height: 44px;
       overflow: hidden;
-    }
-
-    .inner-sub-box {
-      position: relative;
-      margin-top: 6px;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .inner-sub-box.outlined {
-      border: 1px dashed rgba(34, 211, 238, 0.55);
-    }
-
-    .inner-sub-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
 
     /* Full Article & Movie Review Reader */
@@ -949,12 +996,12 @@
     .site-footer {
       background: rgba(9, 12, 18, 0.94);
       border-top: 1px solid rgba(255, 255, 255, 0.09);
-      padding: 18px 12px;
+      padding: 18px 16px;
       margin-top: auto;
     }
 
     .footer-inner {
-      max-width: 1040px;
+      max-width: 1440px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -1124,7 +1171,7 @@
     }
 
     .android-studio-wrap {
-      max-width: 880px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 12px 12px 24px;
     }
@@ -1147,7 +1194,7 @@
       margin-bottom: 10px;
     }
 
-    /* TRUE GOOGLE DOCS STYLE WYSIWYG VISUAL EDITOR (No Raw Symbols) */
+    /* Google Docs Style WYSIWYG Editor + Table Controls */
     .wysiwyg-shell {
       border: 1px solid rgba(34, 211, 238, 0.35);
       border-radius: 10px;
@@ -1165,13 +1212,23 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .wysiwyg-table-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 6px;
+      background: #0e1420;
+      border-bottom: 1px solid rgba(255, 42, 133, 0.28);
+    }
+
     .wysiwyg-btn {
       padding: 4px 8px;
       border-radius: 6px;
       background: #1c253a;
       border: 1px solid rgba(255, 255, 255, 0.12);
       color: #fff;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 800;
       cursor: pointer;
     }
@@ -1179,17 +1236,23 @@
       border-color: var(--neon-cyan);
     }
 
+    .wysiwyg-btn.tbl-del {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+
     .wysiwyg-select {
       width: auto !important;
       padding: 4px 6px !important;
-      font-size: 0.74rem !important;
+      font-size: 0.72rem !important;
       background: #1c253a !important;
       border-radius: 6px !important;
     }
 
     .wysiwyg-canvas {
       min-height: 175px;
-      max-height: 420px;
+      max-height: 440px;
       overflow-y: auto;
       padding: 12px;
       color: #f3f6fc;
@@ -1560,7 +1623,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Google Docs Editor • Folder Edit • Welcome Card • Designer</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Google Docs Editor • Table Tools • Showcase Slides • GitHub Sync</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1575,7 +1638,7 @@
         <button class="btn" data-tab="tab-menu" onclick="switchAdminTab('tab-menu', this)">2. Menu Builder</button>
         <button class="btn" data-tab="tab-cards" onclick="switchAdminTab('tab-cards', this)">3. Cards & Banner</button>
         <button class="btn" data-tab="tab-post-composer" onclick="switchAdminTab('tab-post-composer', this)">4. New / Edit Post</button>
-        <button class="btn" data-tab="tab-welcome" onclick="switchAdminTab('tab-welcome', this)">5. Welcome Card</button>
+        <button class="btn" data-tab="tab-welcome" onclick="switchAdminTab('tab-welcome', this)">5. Showcase Slides</button>
         <button class="btn" data-tab="tab-folders" onclick="switchAdminTab('tab-folders', this)">6. File Folders</button>
         <button class="btn" data-tab="tab-notice" onclick="switchAdminTab('tab-notice', this)">7. Notice Board</button>
         <button class="btn" data-tab="tab-sequence" onclick="switchAdminTab('tab-sequence', this)">8. Sequence & Sync</button>
@@ -1634,7 +1697,7 @@
         </div>
       </div>
 
-      <!-- Tab 4: Single Clean Post Composer (No Long List Scroll! Existing Posts Edited from File Folders) -->
+      <!-- Tab 4: Single Post Composer -->
       <div id="tab-post-composer" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
           <details>
@@ -1656,34 +1719,25 @@
         <div id="singlePostComposerHost"></div>
       </div>
 
-      <!-- Tab 5: Stylish Welcome Card Editor -->
+      <!-- Tab 5: Auto-Sliding Featured Showcase Slides (Above Articles) -->
       <div id="tab-welcome" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-            <strong style="font-size:0.9rem; color:var(--neon-cyan);">🌟 Home Page Welcome Card (Page 1 Above Articles)</strong>
+            <strong style="font-size:0.9rem; color:var(--neon-cyan);">🎞️ Auto-Sliding Featured Showcase (Above Articles)</strong>
             <label style="display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; font-weight:800; cursor:pointer;">
-              <input type="checkbox" id="cfgWelcomeEnabled" style="width:auto;" /> Show Welcome Card on Home Page
+              <input type="checkbox" id="cfgShowcaseEnabled" style="width:auto;" /> Show Showcase Carousel
             </label>
           </div>
 
-          <div class="form-grid two-col">
-            <div class="field-group"><label>Top Tag Badge</label><input type="text" id="cfgWelcomeBadge" /></div>
-            <div class="field-group"><label>Welcome Card Heading</label><input type="text" id="cfgWelcomeTitle" /></div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.74rem; color:var(--text-secondary);">Slides auto-rotate smoothly and adapt to Mobile & Desktop.</span>
+            <button type="button" class="btn btn-cyan" onclick="addShowcaseSlideRow()">+ Add Slide</button>
           </div>
-
-          <div class="field-group">
-            <label>Welcome Note (How this portal helps Government Job Aspirants)</label>
-            <textarea id="cfgWelcomeNote" style="min-height:95px;"></textarea>
-          </div>
-
-          <div class="form-grid two-col">
-            <div class="field-group"><label>Welcome Image / Drive GIF Link (Optional)</label><input type="text" id="cfgWelcomeImg" placeholder="https://drive.google.com/file/d/..." /></div>
-            <div class="field-group"><label>Welcome YouTube Video / Shorts Link (Optional)</label><input type="text" id="cfgWelcomeYt" placeholder="https://youtube.com/watch?v=..." /></div>
-          </div>
+          <div id="showcaseSlidesEditorList"></div>
         </div>
       </div>
 
-      <!-- Tab 6: Android File Manager (Browse Folders + Edit/Delete/Reorder Articles) -->
+      <!-- Tab 6: Android File Manager -->
       <div id="tab-folders" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
           <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
@@ -1706,7 +1760,7 @@
             <input type="text" id="cfgNoticeTitle" />
           </div>
           <div class="field-group">
-            <label>Notice Board Content (Google Docs Visual Editor)</label>
+            <label>Notice Board Content (Google Docs Visual Editor + Table Controls)</label>
             <div id="noticeWysiwygHost"></div>
           </div>
         </div>
@@ -1715,7 +1769,7 @@
       <!-- Tab 8: Sequence, Socials & GitHub Sync -->
       <div id="tab-sequence" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
-          <strong style="font-size:0.86rem; display:block; margin-bottom:4px;">Body Sections Sequence (Including Welcome Card)</strong>
+          <strong style="font-size:0.86rem; display:block; margin-bottom:4px;">Body Sections Sequence</strong>
           <div style="font-size:0.72rem; color:var(--text-secondary); margin-bottom:10px;">Move sections up/down to set exact order on the home page.</div>
           <div id="sequenceListContainer"></div>
         </div>
@@ -1765,7 +1819,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V13";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V14";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1843,7 +1897,7 @@
           title: "2. Vedic Age: Early & Later Vedic Period",
           img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=75",
           excerpt: "Rigvedic vs Later Vedic polity, sabha-samiti, four ashramas, varna system & sacred rivers.",
-          bodyHtml: `<h2>Rigvedic vs Later Vedic Shift</h2><p><strong>Early Vedic (Rigvedic)</strong> society was pastoral and tribal, while <strong>Later Vedic</strong> age saw iron use, territorial kingdoms (Janapadas), and ritual complexity.</p><ul><li><strong>Rivers:</strong> Sindhu (most mentioned), Saraswati (most sacred), Ganga & Yamuna mentioned in Rigveda</li><li><strong>Assemblies:</strong> Sabha, Samiti, Vidatha; king assisted by Purohita and Senani</li><li><strong>Four Vedas:</strong> Rigveda (hymns), Samaveda (music), Yajurveda (sacrifices), Atharvaveda (charms & medicine)</li></ul><table><thead><tr><th>Aspect</th><th>Early Vedic</th><th>Later Vedic</th></tr></thead><tbody><tr><td>Main Occupation</td><td>Cattle rearing & pastoral</td><td>Agriculture & iron tools</td></tr><tr><td>Polity</td><td>Tribal Rajan, Sabha/Samiti</td><td>Territorial Janapadas, Bali tax</td></tr><tr><td>Deities</td><td>Indra, Agni, Varuna</td><td>Prajapati, Vishnu, Rudra</td></tr></tbody></table>`,
+          bodyHtml: `<h2>Rigvedic vs Later Vedic Shift</h2><p><strong>Early Vedic (Rigvedic)</strong> society was pastoral and tribal, while <strong>Later Vedic</strong> age saw iron use, territorial kingdoms (Janapadas), and ritual complexity.</p><ul><li><strong>Rivers:</strong> Sindhu (most mentioned), Saraswati (most sacred), Ganga & Yamuna mentioned in Rigveda</li><li><strong>Assemblies:</strong> Sabha, Samiti, Vidatha; king assisted by Purohita and Senani</li><li><strong>Four Vedas:</strong> Rigveda (hymns), Samaveda (music), Yajurveda (sacrifices), Atharvaveda (charms & medicine)</li></ul>`,
           related: "3. Rise of Second Urbanisation & 16 Mahajanapadas | #article-hist-3-civilisation-mahajanapadas"
         },
         {
@@ -1853,7 +1907,7 @@
           title: "3. Rise of Second Urbanisation & 16 Mahajanapadas",
           img: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=75",
           excerpt: "Second urbanisation, NBPW pottery, punch-marked coins, 16 Mahajanapadas & Magadha ascendancy.",
-          bodyHtml: `<h2>Second Urbanisation & Mahajanapadas</h2><p>Around <strong>6th century BCE</strong>, widespread iron technology, surplus farming, and coinage triggered <strong>Second Urbanisation</strong> and <strong>16 Mahajanapadas</strong> listed in Anguttara Nikaya.</p><ul><li><strong>Southernmost Mahajanapada:</strong> Assaka / Ashmaka (Godavari region)</li><li><strong>Republics (Gana-Sanghas):</strong> Vajji (Licchavis) and Malla</li><li><strong>Magadha Rise:</strong> Haryanka, Shishunaga, and Nanda dynasties; strategic capitals Rajgir & Pataliputra</li></ul><table><thead><tr><th>Mahajanapada</th><th>Capital</th><th>Key Fact</th></tr></thead><tbody><tr><td>Magadha</td><td>Rajgir / Pataliputra</td><td>Bimbisara, Ajatashatru, Mahapadma Nanda</td></tr><tr><td>Avanti</td><td>Ujjayini / Mahishmati</td><td>Pradyota dynasty</td></tr><tr><td>Kosala</td><td>Shravasti / Ayodhya</td><td>Prasenajit</td></tr></tbody></table>`,
+          bodyHtml: `<h2>Second Urbanisation & Mahajanapadas</h2><p>Around <strong>6th century BCE</strong>, widespread iron technology, surplus farming, and coinage triggered <strong>Second Urbanisation</strong> and <strong>16 Mahajanapadas</strong> listed in Anguttara Nikaya.</p><ul><li><strong>Southernmost Mahajanapada:</strong> Assaka / Ashmaka (Godavari region)</li><li><strong>Republics (Gana-Sanghas):</strong> Vajji (Licchavis) and Malla</li><li><strong>Magadha Rise:</strong> Haryanka, Shishunaga, and Nanda dynasties; strategic capitals Rajgir & Pataliputra</li></ul>`,
           related: "4. Buddhism: Life, Teachings & Councils | #article-hist-4-buddhism"
         },
         {
@@ -1863,7 +1917,7 @@
           title: "4. Buddhism: Life, Teachings & Councils",
           img: "https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=800&q=75",
           excerpt: "Gautama Buddha milestones, Four Noble Truths, Ashtangika Marga, Tripitakas & four councils.",
-          bodyHtml: `<h2>Core Doctrines & Councils</h2><p><strong>Siddhartha Gautama (Buddha)</strong> preached middle path, <strong>Four Noble Truths (Arya Satyas)</strong>, and <strong>Eightfold Path (Ashtangika Marga)</strong> in Pali.</p><ul><li><strong>Key Events:</strong> Birth (Lumbini), Enlightenment (Bodh Gaya under Bodhi tree), First Sermon (Sarnath -- Dharmachakra Pravartana), Mahaparinirvana (Kushinagar)</li><li><strong>Tripitaka:</strong> Sutta Pitaka, Vinaya Pitaka, Abhidhamma Pitaka</li><li><strong>Fourth Council:</strong> Under Kanishka in Kashmir -- split into Hinayana & Mahayana</li></ul><table><thead><tr><th>Council</th><th>Venue / Patron</th><th>Main Outcome</th></tr></thead><tbody><tr><td>1st</td><td>Rajagriha (Ajatashatru)</td><td>Sutta & Vinaya compiled</td></tr><tr><td>2nd</td><td>Vaishali (Kalashoka)</td><td>Sthaviravadins vs Mahasanghikas</td></tr><tr><td>3rd</td><td>Pataliputra (Ashoka)</td><td>Abhidhamma Pitaka, Mogalliputta Tissa</td></tr><tr><td>4th</td><td>Kashmir (Kanishka)</td><td>Hinayana & Mahayana division</td></tr></tbody></table>`,
+          bodyHtml: `<h2>Core Doctrines & Councils</h2><p><strong>Siddhartha Gautama (Buddha)</strong> preached middle path, <strong>Four Noble Truths (Arya Satyas)</strong>, and <strong>Eightfold Path (Ashtangika Marga)</strong> in Pali.</p><ul><li><strong>Key Events:</strong> Birth (Lumbini), Enlightenment (Bodh Gaya under Bodhi tree), First Sermon (Sarnath -- Dharmachakra Pravartana), Mahaparinirvana (Kushinagar)</li><li><strong>Tripitaka:</strong> Sutta Pitaka, Vinaya Pitaka, Abhidhamma Pitaka</li><li><strong>Fourth Council:</strong> Under Kanishka in Kashmir -- split into Hinayana & Mahayana</li></ul>`,
           related: "5. Jainism: Tirthankaras, Triratna & Councils | #article-hist-5-jainism"
         },
         {
@@ -1959,13 +2013,26 @@
       hubHeading: "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
       hubDesc: "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
       footerText: "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
-      welcomeCard: {
+      showcaseCarousel: {
         enabled: true,
-        badge: "👋 WELCOME ASPIRANTS",
-        title: "Welcome to Crack CGPSC -- Your Smart Exam Companion",
-        note: "Yahan aapko CGPSC aur CGVYAPAM exams ke liye crisp topic-wise notes, previous year question papers, daily practice quizzes, aur CBT mock tests ek hi jagah par milte hain taaki aap apni preparation ko structured aur exam-oriented bana sakein.",
-        imageUrl: "",
-        youtubeUrl: ""
+        slides: [
+          {
+            tag: "FEATURED GUIDE",
+            title: "CGPSC & CGVYAPAM Complete History Notes",
+            desc: "Structured topic-wise notes, exam tables, and key facts covering Ancient, Medieval, and Modern Indian History.",
+            imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=1200&q=80",
+            btnText: "Open Portal →",
+            btnUrl: "https://crackcgpsc.github.io/PYQPapers/"
+          },
+          {
+            tag: "MOCK & CBT SERIES",
+            title: "Practice Timed Mock Tests & PYQ Papers",
+            desc: "Boost accuracy and exam speed with full-length practice sets and previous year question papers.",
+            imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
+            btnText: "Start Test →",
+            btnUrl: "https://crackcgpsc.github.io/FreeTestSeries/"
+          }
+        ]
       },
       noticeTitle: "📌 Notice Board",
       noticeBody: `<p><strong>10 Articles Per Page</strong> -- Use <strong>Next →</strong> or open Menu to filter by Subject/Category.</p><table><thead><tr><th>Exam</th><th>Focus Area</th></tr></thead><tbody><tr><td>CGPSC Prelims</td><td>Ancient, Medieval & Modern</td></tr><tr><td>Vyapam Exams</td><td>Chronology, Facts & Tables</td></tr></tbody></table>`,
@@ -2070,8 +2137,11 @@
     let selectedSubjectFolderId = "";
     let currentFolderId = "";
     let managerFolderId = "";
-    let editingPostId = ""; // Empty = creating new post; set = editing existing post from File Manager
+    let editingPostId = "";
     let currentArticlePage = 1;
+    let activeSlideIndex = 0;
+    let slideTimerId = null;
+    let activeTableCell = null;
     let isDesignerBarOpen = false;
     let isMoveEditEnabled = false;
     let selectedVeId = "";
@@ -2229,7 +2299,6 @@
         .replace(/"/g, "&quot;");
     }
 
-    // Renders WYSIWYG HTML directly (or converts legacy markdown if present)
     function renderRichHtmlBody(rawBody = "") {
       if (!rawBody) return "";
       const trimmed = rawBody.trim();
@@ -2239,7 +2308,7 @@
       return trimmed.split(/\n\s*\n/).map(block => `<p>${escapeHtml(block).replace(/\n/g, "<br>")}</p>`).join("");
     }
 
-    // TRUE GOOGLE DOCS STYLE WYSIWYG COMPONENT BUILDER
+    // GOOGLE DOCS WYSIWYG EDITOR + TABLE ROW/COL/SUBTABLE/DELETE CONTROLS
     function createGoogleDocsEditor(initialHtml = "", placeholder = "Write here...") {
       const wrap = document.createElement("div");
       wrap.className = "wysiwyg-shell";
@@ -2265,22 +2334,147 @@
           <input type="color" title="Highlight Colour" value="#ff2a85" style="width:28px; height:26px; padding:1px;" onchange="execWysiwygColor(this, 'hiliteColor')" />
           <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'insertUnorderedList')">• List</button>
           <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'insertOrderedList')">1. List</button>
-          <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'justifyLeft')">⬅</button>
-          <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'justifyCenter')">⬌</button>
           <button type="button" class="wysiwyg-btn" onclick="insertWysiwygLink(this)">+ Link</button>
           <button type="button" class="wysiwyg-btn" onclick="insertWysiwygImage(this)">+ Image/GIF</button>
           <button type="button" class="wysiwyg-btn" onclick="insertWysiwygTable(this)">+ Table</button>
           <button type="button" class="wysiwyg-btn" onclick="insertWysiwygVideo(this)">+ Video</button>
           <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'insertHorizontalRule')">― Line</button>
         </div>
+        <div class="wysiwyg-table-bar">
+          <span style="font-size:0.66rem; font-weight:800; color:var(--neon-cyan); padding:0 4px;">Table:</span>
+          <button type="button" class="wysiwyg-btn" onclick="tableAddRow(this)">+ Row</button>
+          <button type="button" class="wysiwyg-btn" onclick="tableAddCol(this)">+ Col</button>
+          <button type="button" class="wysiwyg-btn tbl-del" onclick="tableRemoveRow(this)">- Row</button>
+          <button type="button" class="wysiwyg-btn tbl-del" onclick="tableRemoveCol(this)">- Col</button>
+          <button type="button" class="wysiwyg-btn" onclick="tableInsertSubTable(this)">+ Sub-Table</button>
+          <button type="button" class="wysiwyg-btn tbl-del" onclick="tableDeleteWhole(this)">🗑️ Remove Table</button>
+        </div>
         <div class="wysiwyg-canvas" contenteditable="true" data-placeholder="${escapeHtml(placeholder)}">${renderRichHtmlBody(initialHtml)}</div>
       `;
+
+      const canvas = wrap.querySelector(".wysiwyg-canvas");
+      canvas.addEventListener("click", (e) => {
+        const cell = e.target.closest("td, th");
+        if (cell) activeTableCell = cell;
+      });
+      canvas.addEventListener("focusin", (e) => {
+        const cell = e.target.closest("td, th");
+        if (cell) activeTableCell = cell;
+      });
+
       return wrap;
     }
 
     function getCanvasFromTool(el) {
       const shell = el.closest(".wysiwyg-shell");
       return shell ? shell.querySelector(".wysiwyg-canvas") : null;
+    }
+
+    function getTargetTableAndCell(btn) {
+      const canvas = getCanvasFromTool(btn);
+      if (!canvas) return { table: null, cell: null };
+      let cell = activeTableCell && canvas.contains(activeTableCell) ? activeTableCell : null;
+      if (!cell && window.getSelection && window.getSelection().rangeCount > 0) {
+        let node = window.getSelection().getRangeAt(0).startContainer;
+        if (node.nodeType === 3) node = node.parentElement;
+        cell = node ? node.closest("td, th") : null;
+      }
+      let table = cell ? cell.closest("table") : canvas.querySelector("table");
+      return { table, cell };
+    }
+
+    function tableAddRow(btn) {
+      const { table, cell } = getTargetTableAndCell(btn);
+      if (!table) {
+        showToast("Pehle table add karo ya kisi cell par tap karo");
+        return;
+      }
+      const colsCount = Math.max(1, (table.rows[0]?.cells.length || 2));
+      const newTr = document.createElement("tr");
+      for (let i = 0; i < colsCount; i++) {
+        const td = document.createElement("td");
+        td.textContent = "Text";
+        newTr.appendChild(td);
+      }
+      const refRow = cell ? cell.closest("tr") : null;
+      const tbody = table.tBodies[0] || table;
+      if (refRow && refRow.parentNode === tbody) {
+        refRow.after(newTr);
+      } else {
+        tbody.appendChild(newTr);
+      }
+      showToast("Row added");
+    }
+
+    function tableAddCol(btn) {
+      const { table } = getTargetTableAndCell(btn);
+      if (!table) {
+        showToast("Pehle table add karo");
+        return;
+      }
+      Array.from(table.rows).forEach((row, rIdx) => {
+        const isHeaderRow = row.parentElement.tagName === "THEAD" || (rIdx === 0 && row.querySelector("th"));
+        const cEl = document.createElement(isHeaderRow ? "th" : "td");
+        cEl.textContent = isHeaderRow ? `Col ${row.cells.length + 1}` : "Text";
+        row.appendChild(cEl);
+      });
+      showToast("Column added");
+    }
+
+    function tableRemoveRow(btn) {
+      const { table, cell } = getTargetTableAndCell(btn);
+      if (!table || table.rows.length <= 1) {
+        showToast("Kam se kam ek row baaki hai (poora table hatane ke liye Remove Table dabao)");
+        return;
+      }
+      const targetRow = cell ? cell.closest("tr") : table.rows[table.rows.length - 1];
+      if (targetRow && targetRow.parentElement) {
+        targetRow.remove();
+        activeTableCell = null;
+        showToast("Row removed");
+      }
+    }
+
+    function tableRemoveCol(btn) {
+      const { table, cell } = getTargetTableAndCell(btn);
+      if (!table) return;
+      const colIdx = cell ? cell.cellIndex : (table.rows[0]?.cells.length - 1);
+      if (colIdx === undefined || colIdx < 0) return;
+      Array.from(table.rows).forEach(row => {
+        if (row.cells.length > 1 && row.cells[colIdx]) {
+          row.deleteCell(colIdx);
+        }
+      });
+      activeTableCell = null;
+      showToast("Column removed");
+    }
+
+    function tableInsertSubTable(btn) {
+      const { table, cell } = getTargetTableAndCell(btn);
+      if (!table) {
+        showToast("Pehle table ke andar kisi cell par tap karo");
+        return;
+      }
+      const hostCell = cell || table.querySelector("td");
+      if (!hostCell) {
+        showToast("Data cell (td) par tap karke Sub-Table add karo");
+        return;
+      }
+      const sub = document.createElement("table");
+      sub.innerHTML = `<thead><tr><th>Sub Col 1</th><th>Sub Col 2</th></tr></thead><tbody><tr><td>Value</td><td>Value</td></tr></tbody>`;
+      hostCell.appendChild(sub);
+      showToast("Sub-table added inside cell");
+    }
+
+    function tableDeleteWhole(btn) {
+      const { table } = getTargetTableAndCell(btn);
+      if (!table) {
+        showToast("Koi table nahi mila");
+        return;
+      }
+      table.remove();
+      activeTableCell = null;
+      showToast("Table removed");
     }
 
     function execWysiwygCmd(btn, cmd) {
@@ -2518,6 +2712,28 @@
       return siteData.sectionOrder;
     }
 
+    function setCarouselSlide(idx) {
+      const slides = siteData.showcaseCarousel?.slides || [];
+      if (slides.length === 0) return;
+      activeSlideIndex = ((idx % slides.length) + slides.length) % slides.length;
+      document.querySelectorAll(".showcase-slide-item").forEach((el, i) => {
+        el.classList.toggle("active", i === activeSlideIndex);
+      });
+      document.querySelectorAll(".showcase-dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === activeSlideIndex);
+      });
+    }
+
+    function startCarouselAutoPlay() {
+      if (slideTimerId) clearInterval(slideTimerId);
+      const slides = siteData.showcaseCarousel?.slides || [];
+      if (slides.length > 1) {
+        slideTimerId = setInterval(() => {
+          if (!isMoveEditEnabled) setCarouselSlide(activeSlideIndex + 1);
+        }, 4200);
+      }
+    }
+
     function renderHomeStack() {
       const stack = document.getElementById("homeSectionsStack");
       stack.innerHTML = "";
@@ -2598,36 +2814,39 @@
           `;
           stack.appendChild(hub);
         } else if (secId === "welcomeCardSection") {
-          const wc = siteData.welcomeCard || DEFAULT_DATA.welcomeCard;
-          if (wc && wc.enabled !== false && currentArticlePage === 1 && !searchQuery && !selectedSubjectFolderId) {
-            const wCard = document.createElement("section");
-            wCard.className = "welcome-aspirant-card";
-            wCard.id = "dest-welcome-card";
-            wCard.dataset.veId = "welcomeCardSection";
+          const sc = siteData.showcaseCarousel || DEFAULT_DATA.showcaseCarousel;
+          const slides = (sc.slides || []).filter(s => s.title || s.imageUrl);
+          if (sc.enabled !== false && slides.length > 0 && currentArticlePage === 1 && !searchQuery && !selectedSubjectFolderId) {
+            if (activeSlideIndex >= slides.length) activeSlideIndex = 0;
+            const box = document.createElement("section");
+            box.className = "showcase-carousel-box";
+            box.id = "dest-welcome-card";
+            box.dataset.veId = "welcomeCardSection";
 
-            const imgSrc = convertDriveUrl(wc.imageUrl || "");
-            const ytObj = parseYouTubeEmbed(wc.youtubeUrl || "");
-            const hasBothMedia = Boolean(imgSrc && ytObj);
+            const slidesHtml = slides.map((s, i) => {
+              const imgSrc = convertDriveUrl(s.imageUrl || "");
+              return `
+                <div class="showcase-slide-item ${i === activeSlideIndex ? "active" : ""}">
+                  ${imgSrc ? `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(s.title)}" loading="lazy" />` : ""}
+                  <div class="showcase-overlay-scrim">
+                    ${s.tag ? `<span class="showcase-pill-tag">${escapeHtml(s.tag)}</span>` : ""}
+                    <div class="showcase-slide-title">${escapeHtml(s.title)}</div>
+                    ${s.desc ? `<div class="showcase-slide-desc">${escapeHtml(s.desc)}</div>` : ""}
+                    ${s.btnText && s.btnUrl ? `<a class="btn btn-primary" style="width:fit-content; margin-top:4px;" href="${isMoveEditEnabled ? "javascript:void(0)" : escapeHtml(s.btnUrl)}" ${!isMoveEditEnabled ? 'target="_blank" rel="noopener noreferrer"' : ""}>${escapeHtml(s.btnText)}</a>` : ""}
+                  </div>
+                </div>
+              `;
+            }).join("");
 
-            let mediaHtml = "";
-            if (imgSrc || ytObj) {
-              mediaHtml = `<div class="welcome-media-grid ${hasBothMedia ? "two-media" : ""}">`;
-              if (imgSrc) {
-                mediaHtml += `<div class="article-media-embed" style="margin-top:0;"><img src="${escapeHtml(imgSrc)}" alt="Welcome Visual" loading="lazy" /></div>`;
-              }
-              if (ytObj) {
-                mediaHtml += `<div class="${ytObj.isShorts ? "article-media-embed shorts-frame" : "article-media-embed"}" style="margin-top:0;"><iframe src="${ytObj.embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
-              }
-              mediaHtml += `</div>`;
-            }
+            const dotsHtml = slides.length > 1 ? `
+              <div class="showcase-dots-row">
+                ${slides.map((_, i) => `<button type="button" class="showcase-dot ${i === activeSlideIndex ? "active" : ""}" onclick="setCarouselSlide(${i})" aria-label="Slide ${i + 1}"></button>`).join("")}
+              </div>
+            ` : "";
 
-            wCard.innerHTML = `
-              ${wc.badge ? `<div class="welcome-badge">${escapeHtml(wc.badge)}</div>` : ""}
-              <h2 class="welcome-title">${escapeHtml(wc.title || "Welcome Aspirants")}</h2>
-              <p class="welcome-note-text">${escapeHtml(wc.note || "").replace(/\n/g, "<br>")}</p>
-              ${mediaHtml}
-            `;
-            stack.appendChild(wCard);
+            box.innerHTML = slidesHtml + dotsHtml;
+            stack.appendChild(box);
+            startCarouselAutoPlay();
           }
         } else if (secId === "articlesSection") {
           const splitWrap = document.createElement("section");
@@ -2785,11 +3004,10 @@
           if (el.innerImageUrl) {
             const imgSrc = convertDriveUrl(el.innerImageUrl);
             const imgH = el.innerImageHeight ? `height:${Number(el.innerImageHeight)}px;` : "height:110px;";
-            innerHtml += `<div class="inner-sub-box ${showOutline ? "outlined" : ""}" style="width:100%; ${imgH}"><img src="${escapeHtml(imgSrc)}" alt="Box Image" loading="lazy" /></div>`;
+            innerHtml += `<div style="margin-top:6px; border-radius:8px; overflow:hidden; ${showOutline ? "border:1px dashed rgba(34,211,238,0.55);" : ""} width:100%; ${imgH}"><img src="${escapeHtml(imgSrc)}" alt="Box Image" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" /></div>`;
           }
           if (el.innerText) {
-            const txtStyle = `padding:6px 9px; font-family:${el.innerFontFamily || "inherit"}; font-size:${el.innerFontSize || 14}px; font-weight:${el.innerBold ? "800" : "600"}; color:${el.innerTextColor || "#ffffff"}; background:${el.innerBgColor || "transparent"}; border-radius:${el.innerRadius ?? 6}px;`;
-            innerHtml += `<div class="inner-sub-box ${showOutline ? "outlined" : ""}" style="${txtStyle}">${escapeHtml(el.innerText)}</div>`;
+            innerHtml += `<div style="margin-top:6px; padding:6px 9px; border-radius:6px; ${showOutline ? "border:1px dashed rgba(34,211,238,0.55);" : ""}">${escapeHtml(el.innerText)}</div>`;
           }
           if (!innerHtml) {
             innerHtml = `<div style="font-size:0.76rem; color:var(--text-secondary);">Box • Tap & press Edit to add Text / Image</div>`;
@@ -2910,6 +3128,7 @@
       });
 
       el.querySelectorAll("img").forEach(img => {
+        if (img.closest(".showcase-slide-item") || img.closest(".poster-thumb-box")) return;
         if (h > 0) {
           img.style.maxHeight = `${Math.max(24, h - 14)}px`;
           img.style.width = "auto";
@@ -3144,6 +3363,26 @@
       if (tabId === "tab-sequence") renderSequenceManager();
     }
 
+    // SHOWCASE CAROUSEL EDITOR ROWS
+    function addShowcaseSlideRow(slide = { tag: "FEATURED", title: "", desc: "", imageUrl: "", btnText: "Explore →", btnUrl: "" }) {
+      const box = document.createElement("div");
+      box.className = "android-tile-card form-grid two-col";
+      box.innerHTML = `
+        <div class="field-group"><label>Badge Tag</label><input type="text" class="sc-tag" value="${escapeHtml(slide.tag || "")}" /></div>
+        <div class="field-group"><label>Slide Title</label><input type="text" class="sc-title" value="${escapeHtml(slide.title || "")}" /></div>
+        <div class="field-group"><label>Image / Drive GIF Link</label><input type="text" class="sc-img" value="${escapeHtml(slide.imageUrl || "")}" placeholder="https://drive.google.com/file/d/..." /></div>
+        <div class="field-group"><label>Button Text & Link (Text | URL)</label><input type="text" class="sc-btn" value="${escapeHtml(`${slide.btnText || ""} | ${slide.btnUrl || ""}`)}" placeholder="Open → | https://..." /></div>
+        <div class="field-group" style="grid-column:1 / -1;">
+          <label>Short Description</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" class="sc-desc" value="${escapeHtml(slide.desc || "")}" />
+            <button type="button" class="btn btn-danger" onclick="this.closest('.android-tile-card').remove()">✕</button>
+          </div>
+        </div>
+      `;
+      document.getElementById("showcaseSlidesEditorList").appendChild(box);
+    }
+
     // MENU BUILDER EDITOR
     function addMenuBuilderRow(data = { id: "", label: "", mode: "direct", dropdownSource: "folders", actionType: "link", target: "", customOptions: [] }) {
       const mId = data.id || `menu-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
@@ -3219,7 +3458,6 @@
       card.querySelector(".mb-custom-opts-wrap").style.display = sel.value === "custom" ? "flex" : "none";
     }
 
-    // GLOBAL MOVIE REVIEW CONFIG EDITOR
     function renderGlobalReviewMetaEditor() {
       const cfg = { ...DEFAULT_REVIEW_TEMPLATE_CONFIG, ...(siteData.reviewConfig || {}) };
       const fields = [
@@ -3250,7 +3488,6 @@
       `;
     }
 
-    // SINGLE CLEAN POST COMPOSER (Used for Creating New Post OR Editing Existing Post from File Manager)
     function resetPostComposerToNew() {
       editingPostId = "";
       document.getElementById("composerModeHeading").textContent = "✨ Create New Article / Movie Review";
@@ -3340,13 +3577,11 @@
             <div class="field-group"><label>Folder / Subject Location</label><select class="art-folder-sel">${folderOptions}</select></div>
           </div>
 
-          <!-- STANDARD ARTICLE FIELDS -->
           <div class="standard-article-fields form-grid two-col" style="display:${!isReview ? "grid" : "none"};">
             <div class="field-group"><label>Top Badge / Category</label><input type="text" class="art-cat-inp" value="${escapeHtml(data.category || "")}" /></div>
             <div class="field-group"><label>Preview Thumbnail Link (Drive GIF / Image)</label><input type="text" class="art-cover-inp" value="${escapeHtml(data.coverImage || "")}" /></div>
           </div>
 
-          <!-- MOVIE REVIEW TEMPLATE FIELDS -->
           <div class="movie-review-fields form-grid" style="display:${isReview ? "grid" : "none"};">
             <div class="form-grid two-col">
               <div class="field-group"><label>Movie Poster Image Link (Drive / URL)</label><input type="text" class="rev-poster-inp" value="${escapeHtml(rev.posterUrl || data.coverImage || "")}" /></div>
@@ -3407,7 +3642,7 @@
           </div>
 
           <div style="display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;">
-            <button type="button" class="btn btn-success" onclick="saveComposerPostToSite()">✅ ${editingPostId ? "Update Post" : "Publish Post to Website"}</button>
+            <button type="button" class="btn btn-success" onclick="saveComposerPostToSite()">✅ ${editingPostId ? "Update Post" : "Save Post Locally"}</button>
           </div>
         </div>
       `;
@@ -3457,8 +3692,7 @@
       const artId = editingPostId || titleInp.dataset.artId;
       const postType = card.querySelector(".art-post-type").value;
       const cats = Array.from(card.querySelectorAll(".rev-cat-chk:checked")).map(c => c.value.trim()).filter(Boolean);
-      const collectedCats = new Set([...getAllKnownCategories(), ...cats]);
-      siteData.categorySuggestions = Array.from(collectedCats);
+      siteData.categorySuggestions = Array.from(new Set([...getAllKnownCategories(), ...cats]));
 
       const parental = Array.from(card.querySelectorAll(".pg-editor-row")).map(row => ({
         name: row.dataset.pgName,
@@ -3501,10 +3735,10 @@
       const existingIdx = siteData.articles.findIndex(a => a.id === artId);
       if (existingIdx > -1) {
         siteData.articles[existingIdx] = postObj;
-        showToast("Post updated!");
+        showToast("Post updated locally (press Save to GitHub to publish)");
       } else {
         siteData.articles.unshift(postObj);
-        showToast("New post added!");
+        showToast("New post added locally (press Save to GitHub to publish)");
       }
 
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
@@ -3513,7 +3747,6 @@
       resetPostComposerToNew();
     }
 
-    // ANDROID FILE MANAGER (Folders, Subfolders + Edit / Delete / Sequence for Articles)
     function renderAdminFileManager() {
       const folders = siteData.folders || [];
       const articles = siteData.articles || [];
@@ -3659,15 +3892,14 @@
       showToast("Folder deleted");
     }
 
-    // SEQUENCE MANAGER (Includes Welcome Card)
     function renderSequenceManager() {
       const order = ensureSectionOrder();
       const labels = {
-        portalCardsGrid: "2x2 Glass Portal Cards",
+        portalCardsGrid: "2x2 / 4-Col Glass Portal Cards",
         mainNeonBanner: "Full-Width Neon Banner",
         quickPillButtons: "Quick Pill Buttons",
         portalHubCard: "Official Portal Hub Box",
-        welcomeCardSection: "🌟 Welcome Card (Page 1)",
+        welcomeCardSection: "🎞️ Auto-Sliding Showcase Carousel",
         articlesSection: "Articles + Notice Board Section"
       };
       const container = document.getElementById("sequenceListContainer");
@@ -3712,13 +3944,11 @@
       document.getElementById("cfgHubDesc").value = siteData.hubDesc || "";
       document.getElementById("cfgArticlesHeading").value = siteData.articlesHeading || "";
 
-      const wc = siteData.welcomeCard || DEFAULT_DATA.welcomeCard;
-      document.getElementById("cfgWelcomeEnabled").checked = wc.enabled !== false;
-      document.getElementById("cfgWelcomeBadge").value = wc.badge || "";
-      document.getElementById("cfgWelcomeTitle").value = wc.title || "";
-      document.getElementById("cfgWelcomeNote").value = wc.note || "";
-      document.getElementById("cfgWelcomeImg").value = wc.imageUrl || "";
-      document.getElementById("cfgWelcomeYt").value = wc.youtubeUrl || "";
+      const sc = siteData.showcaseCarousel || DEFAULT_DATA.showcaseCarousel;
+      document.getElementById("cfgShowcaseEnabled").checked = sc.enabled !== false;
+      const slideList = document.getElementById("showcaseSlidesEditorList");
+      slideList.innerHTML = "";
+      (sc.slides || []).forEach(sl => addShowcaseSlideRow(sl));
 
       document.getElementById("cfgNoticeTitle").value = siteData.noticeTitle || "📌 Notice Board";
       const noticeHost = document.getElementById("noticeWysiwygHost");
@@ -3836,6 +4066,18 @@
         url: el.querySelector(".card-url-inp").value.trim()
       })).filter(x => x.title && x.url);
 
+      const slides = Array.from(document.querySelectorAll("#showcaseSlidesEditorList .android-tile-card")).map(el => {
+        const btnPair = (el.querySelector(".sc-btn").value || "").split("|");
+        return {
+          tag: el.querySelector(".sc-tag").value.trim(),
+          title: el.querySelector(".sc-title").value.trim(),
+          desc: el.querySelector(".sc-desc").value.trim(),
+          imageUrl: el.querySelector(".sc-img").value.trim(),
+          btnText: (btnPair[0] || "").trim(),
+          btnUrl: (btnPair[1] || "").trim()
+        };
+      }).filter(s => s.title || s.imageUrl);
+
       const reviewConfig = { ...DEFAULT_REVIEW_TEMPLATE_CONFIG };
       document.querySelectorAll("[data-rev-cfg]").forEach(inp => {
         reviewConfig[inp.dataset.revCfg] = inp.value.trim();
@@ -3857,13 +4099,9 @@
         hubHeading: document.getElementById("cfgHubHeading").value.trim() || "Crack CGPSC",
         hubDesc: document.getElementById("cfgHubDesc").value.trim() || "",
         footerText: siteData.footerText,
-        welcomeCard: {
-          enabled: document.getElementById("cfgWelcomeEnabled").checked,
-          badge: document.getElementById("cfgWelcomeBadge").value.trim(),
-          title: document.getElementById("cfgWelcomeTitle").value.trim(),
-          note: document.getElementById("cfgWelcomeNote").value,
-          imageUrl: document.getElementById("cfgWelcomeImg").value.trim(),
-          youtubeUrl: document.getElementById("cfgWelcomeYt").value.trim()
+        showcaseCarousel: {
+          enabled: document.getElementById("cfgShowcaseEnabled").checked,
+          slides
         },
         noticeTitle: document.getElementById("cfgNoticeTitle").value.trim() || "📌 Notice Board",
         noticeBody: noticeHtml,
@@ -3901,7 +4139,6 @@
       showToast("Preview updated");
     }
 
-    // DESIGNER MODE CONTROLS
     function enterDesignerMode() {
       if (document.getElementById("adminStudio").classList.contains("open")) {
         siteData = collectAdminFormData();
@@ -3928,7 +4165,7 @@
       const preservedSocial = siteData.socialLinks;
       const preservedMenu = siteData.menuItems;
       const preservedReviewCfg = siteData.reviewConfig;
-      const preservedWelcome = siteData.welcomeCard;
+      const preservedShowcase = siteData.showcaseCarousel;
       const fresh = structuredClone(DEFAULT_DATA);
       fresh.articles = preservedArticles || fresh.articles;
       fresh.folders = preservedFolders || fresh.folders;
@@ -3936,7 +4173,7 @@
       fresh.socialLinks = preservedSocial || fresh.socialLinks;
       fresh.menuItems = preservedMenu || fresh.menuItems;
       fresh.reviewConfig = preservedReviewCfg || fresh.reviewConfig;
-      fresh.welcomeCard = preservedWelcome || fresh.welcomeCard;
+      fresh.showcaseCarousel = preservedShowcase || fresh.showcaseCarousel;
       siteData = fresh;
       selectedVeId = "";
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
@@ -4208,7 +4445,6 @@
       if (id === "brandTitle") textVal = siteData.brandTitle;
       else if (id === "brandSub") textVal = siteData.brandSub;
       else if (id === "portalHubCard") textVal = siteData.hubDesc;
-      else if (id === "welcomeCardSection") textVal = siteData.welcomeCard?.title || "";
       else if (id === "mainNeonBanner") {
         textVal = siteData.banner?.title || "";
         linkVal = siteData.banner?.url || "";
@@ -4219,7 +4455,7 @@
       document.getElementById("inspectorSheetTitle").textContent = `Edit: ${id}`;
       document.getElementById("inspectorSheetBody").innerHTML = `
         <div class="form-grid two-col">
-          <div class="field-group"><label>Width (px)</label><input type="number" id="insWidth" value="${escapeHtml(cur.width || Math.round(rect.width))}" min="40" max="1200" /></div>
+          <div class="field-group"><label>Width (px)</label><input type="number" id="insWidth" value="${escapeHtml(cur.width || Math.round(rect.width))}" min="40" max="1440" /></div>
           <div class="field-group"><label>Height (px)</label><input type="number" id="insHeight" value="${escapeHtml(cur.height || "")}" placeholder="Auto" min="20" max="1200" /></div>
           <div class="field-group"><label>Position X (px)</label><input type="number" id="insPosX" value="${escapeHtml(cur.posX || 0)}" /></div>
           <div class="field-group"><label>Position Y (px)</label><input type="number" id="insPosY" value="${escapeHtml(cur.posY || 0)}" /></div>
@@ -4290,7 +4526,6 @@
         if (id === "brandTitle") siteData.brandTitle = val;
         else if (id === "brandSub") siteData.brandSub = val;
         else if (id === "portalHubCard") siteData.hubDesc = val;
-        else if (id === "welcomeCardSection") siteData.welcomeCard = { ...(siteData.welcomeCard || {}), title: val };
         else if (id === "mainNeonBanner") siteData.banner = { ...(siteData.banner || {}), title: val };
         else if (customIdx > -1 && siteData.customElements[customIdx]) siteData.customElements[customIdx].text = val;
       }
@@ -4368,6 +4603,7 @@
       showToast("Downloaded index.html");
     }
 
+    // VERIFIED GITHUB LIVE SAVE (Reports exact commit SHA & status)
     async function saveToGitHub() {
       if (!isDesignerBarOpen && document.getElementById("adminStudio").classList.contains("open")) {
         siteData = collectAdminFormData();
@@ -4378,7 +4614,7 @@
 
       const { owner, repo, branch, path, token } = siteData.github || {};
       if (!owner || !repo || !path || !token) {
-        showToast("Saved locally. Add GitHub Token for live sync.");
+        showToast("⚠️ Local preview saved only (GitHub Token/Repo missing for live publish)");
         return;
       }
 
@@ -4393,17 +4629,23 @@
       };
 
       try {
+        showToast("Publishing to GitHub...");
         let sha;
-        const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers });
+        const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, {
+          headers,
+          cache: "no-store"
+        });
         if (getRes.ok) {
           const existing = await getRes.json();
           sha = existing.sha;
+        } else if (getRes.status === 401 || getRes.status === 403) {
+          throw new Error("Token permission/auth error (" + getRes.status + ")");
         }
 
         const jsonStr = JSON.stringify(payloadToStore, null, 2);
         const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
         const putBody = {
-          message: "Update Crack CGPSC portal via Admin Studio",
+          message: "Update portal data via Admin Studio",
           content: base64Content,
           branch
         };
@@ -4417,11 +4659,14 @@
 
         if (!putRes.ok) {
           const err = await putRes.json().catch(() => ({}));
-          throw new Error(err.message || `GitHub error (${putRes.status})`);
+          throw new Error(err.message || `GitHub commit failed (${putRes.status})`);
         }
-        showToast("Published live to GitHub!");
+
+        const putJson = await putRes.json();
+        const shortSha = (putJson.commit?.sha || "").slice(0, 7);
+        showToast(`✅ Confirmed on GitHub (${shortSha || "saved"})! Pages cache may take ~1m.`);
       } catch (err) {
-        showToast(`Save failed: ${err.message}`);
+        showToast(`❌ Not saved to GitHub: ${err.message}`);
       }
     }
 
@@ -4430,7 +4675,7 @@
       el.textContent = msg;
       el.classList.add("show");
       clearTimeout(window._toastT);
-      window._toastT = setTimeout(() => el.classList.remove("show"), 3200);
+      window._toastT = setTimeout(() => el.classList.remove("show"), 3600);
     }
 
     renderAll();
