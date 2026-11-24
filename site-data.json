@@ -1,6 +1,8 @@
 {
   "brandTitle": "CRACK CGPSC",
+  "brandLogoUrl": "",
   "brandSub": "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
+  "searchPlaceholder": "Search History, Topics, Reviews or Articles...",
   "faviconUrl": "https://drive.google.com/file/d/1s9FfwRpIO5UlNuXLfnKtM7Qt507hzSNX/view?usp=drivesdk",
   "articlesHeading": "Latest Study Notes & Reviews",
   "hubTag": "● OFFICIAL PORTAL HUB",
@@ -129,8 +131,8 @@
     "quickPillButtons",
     "portalHubCard",
     "welcomeCardSection",
-    "reelsFeedSection",
-    "articlesSection"
+    "articlesSection",
+    "reelsFeedSection"
   ],
   "menuItems": [
     {
