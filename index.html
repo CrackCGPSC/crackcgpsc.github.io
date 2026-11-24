@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CRACK CGPSC - Test Series • Topic Quiz • PYQ Papers • CBT Portal</title>
   <meta name="description" content="Crack CGPSC - Free Test Series, Topic Quiz, Previous Year Question Papers, CBT Portal, and Study Articles for CGPSC and CGVYAPAM aspirants." />
+  <link id="dynamicFavicon" rel="icon" href="data:," />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -387,7 +388,7 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: Single-Active Video + Single-Line Folder & Title Header */
+    /* Shorts / Reels Feed: Glitch-Free Scroll + Single-Active Player */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -460,7 +461,6 @@
       gap: 5px;
     }
 
-    /* Single-Line Header Row: Folder Left + Title Right */
     .reel-single-meta-line {
       display: flex;
       align-items: center;
@@ -521,7 +521,7 @@
       margin: 0 auto;
     }
 
-    /* Articles + Notice Board Split (Collapses cleanly to 1fr when Notice Board is hidden) */
+    /* Articles + Notice Board Split */
     .articles-notice-split {
       display: grid;
       grid-template-columns: 1fr;
@@ -568,7 +568,6 @@
       cursor: pointer;
     }
 
-    /* Articles Grid: 2 on Mobile, 4 on Desktop */
     .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     @media (min-width: 960px) { .articles-grid { grid-template-columns: repeat(4, 1fr); } }
 
@@ -605,12 +604,10 @@
     .poster-card-title { font-size: clamp(0.76rem, 1.4vw, 0.88rem); font-weight: 800; color: #fff; line-height: 1.24; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .poster-card-desc { font-size: clamp(0.64rem, 1.15vw, 0.74rem); color: var(--text-secondary); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    /* Pagination Bar */
     .pagination-bar { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
     .page-num-btn { min-width: 30px; height: 30px; padding: 0 9px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.16); background: #121826; color: #fff; font-size: 0.74rem; font-weight: 800; cursor: pointer; }
     .page-num-btn.active { background: linear-gradient(135deg, #c9185b, #ff2a85); border-color: transparent; box-shadow: 0 0 12px rgba(255, 42, 133, 0.55); }
 
-    /* Right-Side Notice Board */
     .notice-board-panel {
       background: linear-gradient(165deg, rgba(18, 24, 38, 0.94), rgba(10, 14, 22, 0.96));
       border: 1px solid rgba(34, 211, 238, 0.32);
@@ -644,7 +641,6 @@
     .notice-content-flow th,
     .article-body-content th { background: rgba(255, 42, 133, 0.22); color: #fff; }
 
-    /* Bottom Folders Explorer */
     .bottom-folders-section { width: 100%; max-width: 1440px; margin: 0 auto 18px; padding: 0 16px; overflow: hidden; }
     .folder-path-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; background: rgba(15, 20, 31, 0.88); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 6px 9px; margin-bottom: 8px; font-size: 0.74rem; }
     .folders-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -664,7 +660,6 @@
 
     .custom-canvas-element { position: relative; padding: 8px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18); min-height: 44px; overflow: hidden; }
 
-    /* Full Article & Movie Review Reader */
     .article-reader { background: rgba(14, 18, 27, 0.94); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 16px; padding: 16px; }
     .article-hero-img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 12px 0 16px; }
     .review-meta-list { display: flex; flex-direction: column; gap: 9px; margin: 14px 0 18px; background: #0b0f18; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px; }
@@ -694,7 +689,6 @@
     .related-links-list { margin-top: 8px; display: flex; flex-direction: column; gap: 7px; }
     .related-embedded-link { font-size: 0.86rem; font-weight: 700; color: var(--neon-cyan); text-decoration: underline !important; display: inline-block; }
 
-    /* Footer */
     .site-footer { background: rgba(9, 12, 18, 0.94); border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
     .footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
     .social-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
@@ -702,7 +696,6 @@
     .social-chip svg { width: 14px; height: 14px; fill: currentColor; }
     .footer-copy { font-size: 0.74rem; color: var(--text-secondary); }
 
-    /* Drawer & Dropdowns */
     .drawer-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.68); z-index: 60; display: none; }
     .drawer-backdrop.open { display: block; }
     .drawer-panel { position: fixed; top: 0; right: -310px; width: min(290px, 84vw); height: 100vh; background: #0d121c; border-left: 1px solid rgba(255, 255, 255, 0.14); z-index: 70; padding: 16px; display: flex; flex-direction: column; gap: 8px; transition: right 0.2s ease; overflow-y: auto; }
@@ -724,7 +717,6 @@
     .modal-backdrop.open { display: flex; }
     .modal-box { width: 100%; max-width: 460px; max-height: 85vh; overflow-y: auto; background: #0e131d; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 14px; padding: 18px; }
 
-    /* Full-Page Android Admin Studio */
     .fullpage-admin-screen { display: none; position: fixed; inset: 0; z-index: 95; background: #07090e; overflow-y: auto; padding-bottom: 84px; }
     .fullpage-admin-screen.open { display: block; }
     .android-top-appbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; background: rgba(13, 17, 26, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
@@ -904,7 +896,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Single-Active Shorts/Video • Single-Line Header • Homepage Control</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Favicon • Streaming Platform • Custom Guidance • Smooth Shorts</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -930,6 +922,7 @@
         <div class="android-tile-card form-grid two-col">
           <div class="field-group"><label>Brand Title</label><input type="text" id="cfgBrandTitle" /></div>
           <div class="field-group"><label>Single-Line Subtitle</label><input type="text" id="cfgBrandSub" /></div>
+          <div class="field-group"><label>Website Favicon Link (Google Drive / Image URL)</label><input type="text" id="cfgFaviconUrl" placeholder="https://drive.google.com/file/d/..." /></div>
           <div class="field-group"><label>Articles Section Title</label><input type="text" id="cfgArticlesHeading" /></div>
           <div class="field-group"><label>Hub Tag</label><input type="text" id="cfgHubTag" /></div>
           <div class="field-group"><label>Hub Heading</label><input type="text" id="cfgHubHeading" /></div>
@@ -1134,7 +1127,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V22";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V23";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1154,6 +1147,7 @@
     const DEFAULT_REVIEW_TEMPLATE_CONFIG = {
       movieNameLabel: "Movie Name", movieNameIcon: "",
       releaseYearLabel: "Release Year", releaseYearIcon: "",
+      streamingPlatformLabel: "Streaming Platform", streamingPlatformIcon: "",
       imdbRatingLabel: "IMDb Rating", imdbRatingIcon: "",
       buffRatingLabel: "Movies Buff Rating", buffRatingIcon: "",
       categoryLabel: "Category", categoryIcon: "",
@@ -1302,6 +1296,7 @@
     const DEFAULT_DATA = {
       brandTitle: "CRACK CGPSC",
       brandSub: "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
+      faviconUrl: "",
       articlesHeading: "Latest Study Notes & Reviews",
       hubTag: "● OFFICIAL PORTAL HUB",
       hubHeading: "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
@@ -1565,6 +1560,7 @@
     function closeReelsTabToHome(popHist = true) {
       isFullReelsTabOpen = false;
       document.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
+      document.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => { f.src = ""; });
       renderAll();
       if (popHist && activeStack[activeStack.length - 1] === "reelsTab") activeStack.pop();
     }
@@ -1625,6 +1621,13 @@
       return t;
     }
 
+    function applySiteFavicon() {
+      const linkEl = document.getElementById("dynamicFavicon");
+      if (!linkEl) return;
+      const fav = convertDriveUrl(siteData.faviconUrl || "");
+      linkEl.href = fav || "data:,";
+    }
+
     function parseYouTubeEmbed(url) {
       if (!url) return null;
       const clean = url.trim();
@@ -1634,78 +1637,83 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Renders active media ONLY for activeReelSlotIndex so background iframes/videos never stay active on scroll
-    function renderActiveOnlyReelMedia(rawUrl, caption, isCurrentActive) {
+    // Pre-mounts iframe in DOM without causing scroll re-renders; toggles active playback smoothly
+    function buildReelMediaSlotHtml(rawUrl, caption) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
 
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
-        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" src="${escapeHtml(clean)}" ${isCurrentActive ? "autoplay" : ""} loop playsinline controls></video></div>`;
+        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" src="${escapeHtml(clean)}" loop playsinline controls></video></div>`;
       }
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        if (!isCurrentActive) {
-          const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
-          return `<div class="reel-media-frame"><img src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="lazy" /></div>`;
-        }
-        const src = `${yt.embedUrl}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
-        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" src="${src}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+        const autoSrc = `${yt.embedUrl}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
+        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" data-yt-src="${escapeHtml(autoSrc)}" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
       }
 
       const imgSrc = convertDriveUrl(clean);
       return `<div class="reel-media-frame"><img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    function bindSingleActiveSlotController(scrollerEl, onIndexChange) {
+    function activateSingleReelCardByIndex(scrollerEl, idx) {
+      activeReelSlotIndex = idx;
+      const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
+      cards.forEach((card, i) => {
+        const isTarget = i === idx;
+        const vid = card.querySelector("video.auto-scroll-reel-video");
+        if (vid) {
+          if (isTarget) {
+            vid.muted = false;
+            vid.volume = 1;
+            vid.play().catch(() => {});
+          } else {
+            vid.pause();
+          }
+        }
+        const ifr = card.querySelector("iframe.inpage-shorts-iframe");
+        if (ifr) {
+          const targetSrc = ifr.dataset.ytSrc || "";
+          if (isTarget) {
+            if (ifr.src !== targetSrc) ifr.src = targetSrc;
+          } else {
+            if (ifr.src !== "") ifr.src = "";
+          }
+        }
+      });
+    }
+
+    function bindGlitchFreeSlotController(scrollerEl) {
       const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
-      const pauseAllVideos = () => {
-        scrollerEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
-      };
-
-      const handleScrollSnap = () => {
-        const scrollerRect = scrollerEl.getBoundingClientRect();
-        let bestIdx = activeReelSlotIndex;
-        let bestOverlap = 0;
-
+      let scrollTimer = null;
+      const detectActiveCard = () => {
+        const rScroll = scrollerEl.getBoundingClientRect();
+        let bestIdx = 0;
+        let bestOverlap = -1;
         cards.forEach((card, idx) => {
           const r = card.getBoundingClientRect();
-          const overlap = Math.max(0, Math.min(r.bottom, scrollerRect.bottom) - Math.max(r.top, scrollerRect.top));
+          const overlap = Math.max(0, Math.min(r.bottom, rScroll.bottom) - Math.max(r.top, rScroll.top));
           if (overlap > bestOverlap) {
             bestOverlap = overlap;
             bestIdx = idx;
           }
         });
-
-        pauseAllVideos();
-        if (bestIdx !== activeReelSlotIndex && bestOverlap > 120) {
-          activeReelSlotIndex = bestIdx;
-          onIndexChange(bestIdx);
-        } else {
-          const curVid = cards[activeReelSlotIndex]?.querySelector("video.auto-scroll-reel-video");
-          if (curVid) {
-            curVid.muted = false;
-            curVid.volume = 1;
-            curVid.play().catch(() => {});
-          }
-        }
+        activateSingleReelCardByIndex(scrollerEl, bestIdx);
       };
 
-      let scrollDebounce = null;
       scrollerEl.addEventListener("scroll", () => {
-        pauseAllVideos();
-        clearTimeout(scrollDebounce);
-        scrollDebounce = setTimeout(handleScrollSnap, 110);
+        // Stop old video immediately while user scrolls
+        cards.forEach(c => {
+          const v = c.querySelector("video.auto-scroll-reel-video");
+          if (v) v.pause();
+        });
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(detectActiveCard, 120);
       }, { passive: true });
 
-      const activeVid = cards[activeReelSlotIndex]?.querySelector("video.auto-scroll-reel-video");
-      if (activeVid) {
-        activeVid.muted = false;
-        activeVid.volume = 1;
-        activeVid.play().catch(() => {});
-      }
+      detectActiveCard();
     }
 
     function parseRelatedLinks(rawText = "") {
@@ -2372,9 +2380,8 @@
 
             const scroller = document.createElement("div");
             scroller.className = "reels-vertical-scroller";
-            filteredReels.forEach((item, idx) => {
+            filteredReels.forEach((item) => {
               const pathLabel = item.folderPath || getReelFolderPathString(item.folderId) || "Root";
-              const isCur = idx === activeReelSlotIndex;
               const card = document.createElement("div");
               card.className = "reel-feed-card";
 
@@ -2392,21 +2399,18 @@
               }
 
               card.appendChild(metaLine);
-              card.insertAdjacentHTML("beforeend", renderActiveOnlyReelMedia(item.url, item.caption, isCur));
+              card.insertAdjacentHTML("beforeend", buildReelMediaSlotHtml(item.url, item.caption));
               scroller.appendChild(card);
             });
 
             sec.appendChild(scroller);
             stack.appendChild(sec);
 
-            // Scroll to keep activeReelSlotIndex aligned and activate ONLY that card
             if (activeReelSlotIndex > 0 && scroller.children[activeReelSlotIndex]) {
               scroller.scrollTop = scroller.children[activeReelSlotIndex].offsetTop - scroller.offsetTop;
             }
 
-            bindSingleActiveSlotController(scroller, () => {
-              renderAll();
-            });
+            bindGlitchFreeSlotController(scroller);
           }
         } else if (secId === "articlesSection" && !isFullReelsTabOpen) {
           const showNotice = isSectionVisible("noticeBoardPanel");
@@ -2628,6 +2632,7 @@
     }
 
     function renderAll() {
+      applySiteFavicon();
       document.title = `${siteData.brandTitle} - ${siteData.brandSub}`;
       document.getElementById("headerBrandTitle").textContent = siteData.brandTitle;
       document.getElementById("headerBrandSub").textContent = siteData.brandSub;
@@ -2761,6 +2766,7 @@
         const rows = [
           { icon: cfg.movieNameIcon, label: cfg.movieNameLabel, val: rev.movieName || art.title },
           { icon: cfg.releaseYearIcon, label: cfg.releaseYearLabel, val: rev.releaseYear },
+          { icon: cfg.streamingPlatformIcon, label: cfg.streamingPlatformLabel, val: rev.streamingPlatform },
           { icon: cfg.imdbRatingIcon, label: cfg.imdbRatingLabel, val: rev.imdbRating },
           { icon: cfg.buffRatingIcon, label: cfg.buffRatingLabel, val: rev.buffRating },
           { icon: cfg.categoryIcon, label: cfg.categoryLabel, val: (rev.categories || []).join(", ") },
@@ -2912,7 +2918,7 @@
         b.type = "button";
         b.className = "btn";
         b.style.padding = "5px 9px";
-        b.style.fontSize = "0.72rem";
+        b.style.fontSize: "0.72rem";
         b.textContent = `📁 ${f.name} →`;
         b.onclick = () => { activeReelFolderId = f.id; renderReelFolderManagerUI(); };
         listEl.appendChild(b);
@@ -3072,11 +3078,12 @@
       const fields = [
         { kLabel: "movieNameLabel", kIcon: "movieNameIcon", title: "1. Movie Name Sub-Heading" },
         { kLabel: "releaseYearLabel", kIcon: "releaseYearIcon", title: "2. Release Year Sub-Heading" },
-        { kLabel: "imdbRatingLabel", kIcon: "imdbRatingIcon", title: "3. IMDb Rating Sub-Heading" },
-        { kLabel: "buffRatingLabel", kIcon: "buffRatingIcon", title: "4. Movies Buff Rating Sub-Heading" },
-        { kLabel: "categoryLabel", kIcon: "categoryIcon", title: "5. Category Sub-Heading" },
-        { kLabel: "languagesLabel", kIcon: "languagesIcon", title: "6. Languages Sub-Heading" },
-        { kLabel: "parentalLabel", kIcon: "parentalIcon", title: "7. Parental Guidance Sub-Heading" }
+        { kLabel: "streamingPlatformLabel", kIcon: "streamingPlatformIcon", title: "3. Streaming Platform Sub-Heading" },
+        { kLabel: "imdbRatingLabel", kIcon: "imdbRatingIcon", title: "4. IMDb Rating Sub-Heading" },
+        { kLabel: "buffRatingLabel", kIcon: "buffRatingIcon", title: "5. Movies Buff Rating Sub-Heading" },
+        { kLabel: "categoryLabel", kIcon: "categoryIcon", title: "6. Category Sub-Heading" },
+        { kLabel: "languagesLabel", kIcon: "languagesIcon", title: "7. Languages Sub-Heading" },
+        { kLabel: "parentalLabel", kIcon: "parentalIcon", title: "8. Parental Guidance Sub-Heading" }
       ];
       document.getElementById("globalReviewMetaEditor").innerHTML = fields.map(f => `
         <div class="field-group"><label>${f.title} Text</label><input type="text" data-rev-cfg="${f.kLabel}" value="${escapeHtml(cfg[f.kLabel] || "")}" /></div>
@@ -3124,8 +3131,14 @@
         </label>
       `).join("");
 
-      const pgMap = new Map((rev.parental || []).map(p => [p.name, p]));
-      const pgRowsHtml = PARENTAL_ITEMS_LIST.map(item => {
+      const savedPgList = Array.isArray(rev.parental) && rev.parental.length > 0 ? rev.parental : [];
+      const mergedPgNames = Array.from(new Set([
+        ...PARENTAL_ITEMS_LIST,
+        ...savedPgList.map(p => p.name).filter(Boolean)
+      ]));
+      const pgMap = new Map(savedPgList.map(p => [p.name, p]));
+
+      const pgRowsHtml = mergedPgNames.map(item => {
         const saved = pgMap.get(item) || { checked: false, count: "", timestamp: "" };
         return `
           <div class="pg-editor-row" data-pg-name="${escapeHtml(item)}">
@@ -3164,10 +3177,11 @@
             <div class="form-grid two-col">
               <div class="field-group"><label>Movie Poster Image Link (Drive / URL)</label><input type="text" class="rev-poster-inp" value="${escapeHtml(rev.posterUrl || data.coverImage || "")}" /></div>
               <div class="field-group"><label>Movie Name</label><input type="text" class="rev-movie-name" value="${escapeHtml(rev.movieName || "")}" /></div>
-              <div class="field-group"><label>Release Year</label><input type="text" class="rev-release-year" value="${escapeHtml(rev.releaseYear || "")}" /></div>
+              <div class="field-group"><label>Release Year / Date</label><input type="text" class="rev-release-year" value="${escapeHtml(rev.releaseYear || "")}" placeholder="e.g. 2026 or 15 Nov 2026" /></div>
+              <div class="field-group"><label>Streaming Platform</label><input type="text" class="rev-streaming-platform" value="${escapeHtml(rev.streamingPlatform || "")}" placeholder="e.g. Netflix, Prime Video, JioCinema" /></div>
               <div class="field-group"><label>IMDb Rating</label><input type="text" class="rev-imdb-rating" value="${escapeHtml(rev.imdbRating || "")}" /></div>
               <div class="field-group"><label>Movies Buff Rating</label><input type="text" class="rev-buff-rating" value="${escapeHtml(rev.buffRating || "")}" /></div>
-              <div class="field-group"><label>Languages</label><input type="text" class="rev-languages" value="${escapeHtml(rev.languages || "")}" /></div>
+              <div class="field-group" style="grid-column:1 / -1;"><label>Languages</label><input type="text" class="rev-languages" value="${escapeHtml(rev.languages || "")}" /></div>
             </div>
             <div class="field-group">
               <label>Category (Select multiple or add new suggestion)</label>
@@ -3179,7 +3193,11 @@
             </div>
             <div class="field-group">
               <label>Parental Guidance (Check items + Optional Count & Timestamp)</label>
-              <div>${pgRowsHtml}</div>
+              <div class="pg-rows-container">${pgRowsHtml}</div>
+              <div style="display:flex; gap:6px; margin-top:6px;">
+                <input type="text" class="rev-custom-pg-inp" placeholder="Add custom guidance (e.g. Mild Violence)..." />
+                <button type="button" class="btn btn-cyan" onclick="addCustomParentalGuidanceRow(this)">+ Add Guidance</button>
+              </div>
             </div>
             <div class="form-grid two-col">
               <div class="field-group">
@@ -3214,6 +3232,28 @@
       `;
 
       document.getElementById("composerWysiwygMount").appendChild(createGoogleDocsEditor(data.body || "", "Start writing here..."));
+    }
+
+    function addCustomParentalGuidanceRow(btnEl) {
+      const card = btnEl.closest("#activeComposerCard");
+      const inp = card.querySelector(".rev-custom-pg-inp");
+      const name = (inp.value || "").trim();
+      if (!name) return;
+      const container = card.querySelector(".pg-rows-container");
+      const row = document.createElement("div");
+      row.className = "pg-editor-row";
+      row.dataset.pgName = name;
+      row.innerHTML = `
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.74rem; color:#fff; cursor:pointer;">
+          <input type="checkbox" class="pg-chk" style="width:auto;" checked />
+          <span>${escapeHtml(name)}</span>
+        </label>
+        <input type="text" class="pg-count" placeholder="Count (e.g. 2)" style="padding:5px 7px; font-size:0.75rem;" />
+        <input type="text" class="pg-time" placeholder="Time (00:14:20)" style="padding:5px 7px; font-size:0.75rem;" />
+      `;
+      container.appendChild(row);
+      inp.value = "";
+      showToast("Custom guidance added");
     }
 
     function switchPostTemplateMode(btnEl, mode) {
@@ -3279,6 +3319,7 @@
           posterUrl,
           movieName: card.querySelector(".rev-movie-name").value.trim(),
           releaseYear: card.querySelector(".rev-release-year").value.trim(),
+          streamingPlatform: card.querySelector(".rev-streaming-platform").value.trim(),
           imdbRating: card.querySelector(".rev-imdb-rating").value.trim(),
           buffRating: card.querySelector(".rev-buff-rating").value.trim(),
           categories: cats,
@@ -3501,6 +3542,7 @@
     function populateAdminEditors() {
       document.getElementById("cfgBrandTitle").value = siteData.brandTitle || "";
       document.getElementById("cfgBrandSub").value = siteData.brandSub || "";
+      document.getElementById("cfgFaviconUrl").value = siteData.faviconUrl || "";
       document.getElementById("cfgHubTag").value = siteData.hubTag || "";
       document.getElementById("cfgHubHeading").value = siteData.hubHeading || "";
       document.getElementById("cfgHubDesc").value = siteData.hubDesc || "";
@@ -3688,6 +3730,7 @@
       return {
         brandTitle: document.getElementById("cfgBrandTitle").value.trim() || "CRACK CGPSC",
         brandSub: document.getElementById("cfgBrandSub").value.trim() || "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
+        faviconUrl: document.getElementById("cfgFaviconUrl").value.trim(),
         articlesHeading: document.getElementById("cfgArticlesHeading").value.trim() || "Latest Study Notes & Reviews",
         hubTag: document.getElementById("cfgHubTag").value.trim() || "● OFFICIAL PORTAL HUB",
         hubHeading: document.getElementById("cfgHubHeading").value.trim() || "Crack CGPSC",
@@ -3771,6 +3814,7 @@
       const preservedShowcase = siteData.showcaseCarousel;
       const preservedReels = siteData.reelsFeed;
       const preservedReelsFolders = siteData.reelsFolders;
+      const preservedFavicon = siteData.faviconUrl;
       const fresh = structuredClone(DEFAULT_DATA);
       fresh.articles = preservedArticles || fresh.articles;
       fresh.folders = preservedFolders || fresh.folders;
@@ -3781,6 +3825,7 @@
       fresh.showcaseCarousel = preservedShowcase || fresh.showcaseCarousel;
       fresh.reelsFeed = preservedReels || fresh.reelsFeed;
       fresh.reelsFolders = preservedReelsFolders || fresh.reelsFolders;
+      fresh.faviconUrl = preservedFavicon || "";
       siteData = fresh;
       selectedVeId = "";
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
