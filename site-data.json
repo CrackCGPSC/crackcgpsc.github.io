@@ -6,13 +6,88 @@
   "hubHeading": "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
   "hubDesc": "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
   "footerText": "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
-  "welcomeCard": {
-    "enabled": false,
-    "badge": "👋 WELCOME ASPIRANTS",
-    "title": "Welcome to Crack CGPSC -- Your Smart Exam Companion",
-    "note": "Yahan aapko CGPSC aur CGVYAPAM exams ke liye crisp topic-wise notes, previous year question papers, daily practice quizzes, aur CBT mock tests ek hi jagah par milte hain taaki aap apni preparation ko structured aur exam-oriented bana sakein.",
-    "imageUrl": "",
-    "youtubeUrl": ""
+  "articleSortOrder": "newest",
+  "sectionVisibility": {
+    "portalCardsGrid": true,
+    "mainNeonBanner": true,
+    "quickPillButtons": true,
+    "portalHubCard": true,
+    "welcomeCardSection": true,
+    "reelsFeedSection": true,
+    "articlesSection": true,
+    "noticeBoardPanel": true,
+    "bottomFoldersSection": true,
+    "siteFooter": true
+  },
+  "showcaseCarousel": {
+    "enabled": true,
+    "slides": [
+      {
+        "tag": "FEATURED GUIDE",
+        "title": "CGPSC & CGVYAPAM Complete History Notes",
+        "desc": "Structured topic-wise notes, exam tables, and key facts covering Ancient, Medieval, and Modern Indian History.",
+        "imageUrl": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=1200&q=80",
+        "btnText": "Open Portal →",
+        "btnUrl": "https://crackcgpsc.github.io/PYQPapers/"
+      },
+      {
+        "tag": "MOCK & CBT SERIES",
+        "title": "Practice Timed Mock Tests & PYQ Papers",
+        "desc": "Boost accuracy and exam speed with full-length practice sets and previous year question papers.",
+        "imageUrl": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
+        "btnText": "Start Test →",
+        "btnUrl": "https://crackcgpsc.github.io/FreeTestSeries/"
+      }
+    ]
+  },
+  "reelsFolders": [
+    {
+      "id": "rf-history",
+      "name": "History",
+      "parentId": ""
+    },
+    {
+      "id": "rf-topic",
+      "name": "Topic",
+      "parentId": "rf-history"
+    },
+    {
+      "id": "rf-ivc",
+      "name": "Indus Valley Civilisation",
+      "parentId": "rf-topic"
+    },
+    {
+      "id": "rf-1795498505804-294",
+      "name": "Geography",
+      "parentId": ""
+    }
+  ],
+  "reelsFeed": {
+    "enabled": true,
+    "sectionTitle": "🎬 Shorts & Reels Scroll Feed",
+    "items": [
+      {
+        "id": "reel-1795498453632",
+        "folderId": "",
+        "folderPath": "Root",
+        "url": "https://youtube.com/shorts/ZjMfYVzVfV8?si=uJEX76zHX16UKGiH",
+        "caption": "History Of India In Map"
+      },
+      {
+        "id": "reel-1795498545468",
+        "folderId": "rf-1795498505804-294",
+        "folderPath": "Geography",
+        "url": "https://youtube.com/shorts/bgrfl1WSqjY?si=ay2Zd20DRuhNhNn1",
+        "caption": "Length & Width Of India Map"
+      },
+      {
+        "id": "reel-1795498647832",
+        "folderId": "rf-1795498505804-294",
+        "folderPath": "Geography",
+        "url": "https://www.instagram.com/reel/Dfr4Dtutfhr/?bqrl=c3dsOWd2YjUxczly",
+        "caption": "Indian Tribes"
+      }
+    ]
   },
   "noticeTitle": "📌 Notice Board",
   "noticeBody": "<p><strong>10 Articles Per Page</strong> -- Use <strong>Next →</strong> or open Menu to filter by Subject/Category.</p><table><thead><tr><th>Exam</th><th>Focus Area</th></tr></thead><tbody><tr><td>CGPSC Prelims</td><td>Ancient, Medieval &amp; Modern</td></tr><tr><td>Vyapam Exams</td><td>Chronology, Facts &amp; Tables</td></tr></tbody></table>",
@@ -51,7 +126,8 @@
     "quickPillButtons",
     "portalHubCard",
     "welcomeCardSection",
-    "articlesSection"
+    "articlesSection",
+    "reelsFeedSection"
   ],
   "menuItems": [
     {
@@ -115,24 +191,28 @@
       "title": "Free Test Series",
       "sub": "FULL LENGTH & MOCKS",
       "image": "https://drive.google.com/file/d/1fLDzRW8tJ4ROZ05IQGNVVecjpupAVLqG/view?usp=drivesdk",
+      "actionType": "link",
       "url": "https://crackcgpsc.github.io/Testseries/"
     },
     {
       "title": "PYQ Papers",
       "sub": "CGPSC & VYAPAM ARCHIVE",
       "image": "https://drive.google.com/file/d/17KeAV0GSb1unvhNGfathB8_1OtDrHvjN/view?usp=drivesdk",
+      "actionType": "link",
       "url": "https://crackcgpsc.github.io/PYQPapers/"
     },
     {
-      "title": "Topic Quiz",
-      "sub": "CHAPTER PRACTICE BANK",
+      "title": "Short Video Tab",
+      "sub": "Watch Short Topic Videos",
       "image": "https://drive.google.com/file/d/1oCCk3p111FgkhDskuXo8jtOcTjmM4FqK/view?usp=drivesdk",
-      "url": "https://crackcgpsc.github.io/FreeTestSeries/"
+      "actionType": "reelsTab",
+      "url": ""
     },
     {
       "title": "CBT Portal",
       "sub": "EXAM INTERFACE MODE",
       "image": "https://drive.google.com/file/d/1Uko8w_Y83r85gyQmzKWuCJNFUGz8zO6m/view?usp=drivesdk",
+      "actionType": "link",
       "url": "https://crackcgpsc.github.io/CBTPlayer/"
     }
   ],
