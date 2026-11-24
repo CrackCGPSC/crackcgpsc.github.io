@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CRACK CGPSC - Test Series • Topic Quiz • PYQ Papers • CBT Portal</title>
   <meta name="description" content="Crack CGPSC - Free Test Series, Topic Quiz, Previous Year Question Papers, CBT Portal, and Study Articles for CGPSC and CGVYAPAM aspirants." />
-  <link id="dynamicFavicon" rel="icon" href="data:," />
+  <link id="dynamicSiteFavicon" rel="icon" href="" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -388,7 +388,7 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: Glitch-Free Scroll + Single-Active Player */
+    /* Shorts / Reels Feed: Smooth Snap Without DOM Rebuild Glitch */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -427,7 +427,6 @@
       height: 540px;
       overflow-y: auto;
       scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
       border-radius: 14px;
     }
 
@@ -896,7 +895,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Favicon • Streaming Platform • Custom Guidance • Smooth Shorts</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Favicon • Streaming Platform • Custom PG • Smooth Shorts</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1560,7 +1559,6 @@
     function closeReelsTabToHome(popHist = true) {
       isFullReelsTabOpen = false;
       document.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
-      document.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => { f.src = ""; });
       renderAll();
       if (popHist && activeStack[activeStack.length - 1] === "reelsTab") activeStack.pop();
     }
@@ -1621,11 +1619,11 @@
       return t;
     }
 
-    function applySiteFavicon() {
-      const linkEl = document.getElementById("dynamicFavicon");
-      if (!linkEl) return;
-      const fav = convertDriveUrl(siteData.faviconUrl || "");
-      linkEl.href = fav || "data:,";
+    function applyFaviconLink() {
+      const favEl = document.getElementById("dynamicSiteFavicon");
+      if (!favEl) return;
+      const src = convertDriveUrl(siteData.faviconUrl || "");
+      favEl.href = src || "";
     }
 
     function parseYouTubeEmbed(url) {
@@ -1637,83 +1635,80 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Pre-mounts iframe in DOM without causing scroll re-renders; toggles active playback smoothly
-    function buildReelMediaSlotHtml(rawUrl, caption) {
+    // Pre-renders all cards cleanly once without re-creating DOM during scroll
+    function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
 
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
-        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" src="${escapeHtml(clean)}" loop playsinline controls></video></div>`;
+        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" loop playsinline controls></video></div>`;
       }
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        const autoSrc = `${yt.embedUrl}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
-        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" data-yt-src="${escapeHtml(autoSrc)}" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+        const src = `${yt.embedUrl}?autoplay=0&mute=0&loop=1&playsinline=1&rel=0`;
+        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" data-reel-idx="${index}" data-yt-src="${escapeHtml(src)}" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
       }
 
       const imgSrc = convertDriveUrl(clean);
       return `<div class="reel-media-frame"><img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    function activateSingleReelCardByIndex(scrollerEl, idx) {
-      activeReelSlotIndex = idx;
-      const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
-      cards.forEach((card, i) => {
-        const isTarget = i === idx;
-        const vid = card.querySelector("video.auto-scroll-reel-video");
-        if (vid) {
-          if (isTarget) {
-            vid.muted = false;
-            vid.volume = 1;
-            vid.play().catch(() => {});
-          } else {
-            vid.pause();
-          }
-        }
-        const ifr = card.querySelector("iframe.inpage-shorts-iframe");
-        if (ifr) {
-          const targetSrc = ifr.dataset.ytSrc || "";
-          if (isTarget) {
-            if (ifr.src !== targetSrc) ifr.src = targetSrc;
-          } else {
-            if (ifr.src !== "") ifr.src = "";
-          }
-        }
-      });
-    }
-
-    function bindGlitchFreeSlotController(scrollerEl) {
+    // Smoothly activates ONLY the centered card without rebuilding DOM or jumping scrollTop
+    function bindSmoothSingleReelController(scrollerEl) {
       const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
-      let scrollTimer = null;
-      const detectActiveCard = () => {
-        const rScroll = scrollerEl.getBoundingClientRect();
-        let bestIdx = 0;
-        let bestOverlap = -1;
+      const activateCardAt = (targetIdx) => {
         cards.forEach((card, idx) => {
-          const r = card.getBoundingClientRect();
-          const overlap = Math.max(0, Math.min(r.bottom, rScroll.bottom) - Math.max(r.top, rScroll.top));
-          if (overlap > bestOverlap) {
-            bestOverlap = overlap;
-            bestIdx = idx;
+          const isTarget = idx === targetIdx;
+          const vid = card.querySelector("video.auto-scroll-reel-video");
+          if (vid) {
+            if (isTarget) {
+              vid.muted = false;
+              vid.volume = 1;
+              vid.play().catch(() => {});
+            } else {
+              vid.pause();
+            }
+          }
+          const iframe = card.querySelector("iframe.inpage-shorts-iframe");
+          if (iframe) {
+            const baseSrc = iframe.dataset.ytSrc || "";
+            if (isTarget) {
+              const autoSrc = baseSrc.replace("autoplay=0", "autoplay=1");
+              if (iframe.src !== autoSrc) iframe.src = autoSrc;
+            } else if (iframe.src) {
+              iframe.src = "";
+            }
           }
         });
-        activateSingleReelCardByIndex(scrollerEl, bestIdx);
       };
 
-      scrollerEl.addEventListener("scroll", () => {
-        // Stop old video immediately while user scrolls
-        cards.forEach(c => {
-          const v = c.querySelector("video.auto-scroll-reel-video");
-          if (v) v.pause();
+      const detectCenteredCard = () => {
+        const rect = scrollerEl.getBoundingClientRect();
+        const centerY = rect.top + rect.height / 2;
+        let closestIdx = 0;
+        let bestDist = Infinity;
+        cards.forEach((c, idx) => {
+          const cr = c.getBoundingClientRect();
+          const cCenter = cr.top + cr.height / 2;
+          const dist = Math.abs(cCenter - centerY);
+          if (dist < bestDist) {
+            bestDist = dist;
+            closestIdx = idx;
+          }
         });
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(detectActiveCard, 120);
+        activateCardAt(closestIdx);
+      };
+
+      let tId = null;
+      scrollerEl.addEventListener("scroll", () => {
+        clearTimeout(tId);
+        tId = setTimeout(detectCenteredCard, 90);
       }, { passive: true });
 
-      detectActiveCard();
+      activateCardAt(0);
     }
 
     function parseRelatedLinks(rawText = "") {
@@ -2358,8 +2353,6 @@
               return `${pStr} ${r.caption || ""}`.toLowerCase().includes(searchQuery);
             });
 
-            if (activeReelSlotIndex >= filteredReels.length) activeReelSlotIndex = 0;
-
             const sec = document.createElement("section");
             sec.className = `reels-feed-section ${isFullReelsTabOpen ? "full-tab-reels-mode" : ""}`;
             sec.id = "dest-reels-feed";
@@ -2380,7 +2373,7 @@
 
             const scroller = document.createElement("div");
             scroller.className = "reels-vertical-scroller";
-            filteredReels.forEach((item) => {
+            filteredReels.forEach((item, idx) => {
               const pathLabel = item.folderPath || getReelFolderPathString(item.folderId) || "Root";
               const card = document.createElement("div");
               card.className = "reel-feed-card";
@@ -2399,18 +2392,13 @@
               }
 
               card.appendChild(metaLine);
-              card.insertAdjacentHTML("beforeend", buildReelMediaSlotHtml(item.url, item.caption));
+              card.insertAdjacentHTML("beforeend", renderReelMediaSlot(item.url, item.caption, idx));
               scroller.appendChild(card);
             });
 
             sec.appendChild(scroller);
             stack.appendChild(sec);
-
-            if (activeReelSlotIndex > 0 && scroller.children[activeReelSlotIndex]) {
-              scroller.scrollTop = scroller.children[activeReelSlotIndex].offsetTop - scroller.offsetTop;
-            }
-
-            bindGlitchFreeSlotController(scroller);
+            bindSmoothSingleReelController(scroller);
           }
         } else if (secId === "articlesSection" && !isFullReelsTabOpen) {
           const showNotice = isSectionVisible("noticeBoardPanel");
@@ -2448,7 +2436,7 @@
             if (allowedFolderSet && !allowedFolderSet.has(art.folderId || "")) return false;
             if (!searchQuery) return true;
             const rev = art.reviewData || {};
-            return `${art.title} ${art.excerpt} ${art.category || ""} ${rev.movieName || ""} ${(rev.categories || []).join(" ")}`.toLowerCase().includes(searchQuery);
+            return `${art.title} ${art.excerpt} ${art.category || ""} ${rev.movieName || ""} ${rev.streamingPlatform || ""} ${(rev.categories || []).join(" ")}`.toLowerCase().includes(searchQuery);
           });
 
           const totalPages = Math.max(1, Math.ceil(matchedArticles.length / ARTICLES_PER_PAGE));
@@ -2468,7 +2456,7 @@
               ? (art.reviewData?.buffRating ? `⭐ ${art.reviewData.buffRating}` : (art.category || "MOVIE REVIEW"))
               : (art.category || "");
             const cardTitle = isReview ? (art.title || art.reviewData?.movieName || "Movie Review") : art.title;
-            const cardDesc = art.excerpt || (isReview ? `${art.reviewData?.releaseYear || ""} • ${(art.reviewData?.categories || []).join(", ")}` : "");
+            const cardDesc = art.excerpt || (isReview ? `${art.reviewData?.releaseYear || ""} • ${art.reviewData?.streamingPlatform || (art.reviewData?.categories || []).join(", ")}` : "");
 
             const card = document.createElement("div");
             card.className = "poster-article-card";
@@ -2632,8 +2620,8 @@
     }
 
     function renderAll() {
-      applySiteFavicon();
       document.title = `${siteData.brandTitle} - ${siteData.brandSub}`;
+      applyFaviconLink();
       document.getElementById("headerBrandTitle").textContent = siteData.brandTitle;
       document.getElementById("headerBrandSub").textContent = siteData.brandSub;
       document.getElementById("footerCopyText").textContent = siteData.footerText;
@@ -2918,7 +2906,7 @@
         b.type = "button";
         b.className = "btn";
         b.style.padding = "5px 9px";
-        b.style.fontSize: "0.72rem";
+        b.style.fontSize = "0.72rem";
         b.textContent = `📁 ${f.name} →`;
         b.onclick = () => { activeReelFolderId = f.id; renderReelFolderManagerUI(); };
         listEl.appendChild(b);
@@ -3113,6 +3101,32 @@
       return Array.from(set);
     }
 
+    function buildPgRowHtml(pgItem) {
+      return `
+        <div class="pg-editor-row" data-pg-name="${escapeHtml(pgItem.name)}">
+          <label style="display:flex; align-items:center; gap:6px; font-size:0.74rem; color:#fff; cursor:pointer;">
+            <input type="checkbox" class="pg-chk" style="width:auto;" ${pgItem.checked ? "checked" : ""} />
+            <span>${escapeHtml(pgItem.name)}</span>
+          </label>
+          <input type="text" class="pg-count" value="${escapeHtml(pgItem.count || "")}" placeholder="Count (e.g. 2)" style="padding:5px 7px; font-size:0.75rem;" />
+          <input type="text" class="pg-time" value="${escapeHtml(pgItem.timestamp || "")}" placeholder="Time (00:14:20)" style="padding:5px 7px; font-size:0.75rem;" />
+        </div>
+      `;
+    }
+
+    function addCustomParentalGuidanceRow(btnEl) {
+      const card = btnEl.closest("#activeComposerCard");
+      const inp = card.querySelector(".pg-custom-name-inp");
+      const name = (inp.value || "").trim();
+      if (!name) { showToast("Custom guidance name daalein"); return; }
+      const list = card.querySelector(".pg-rows-container");
+      const div = document.createElement("div");
+      div.innerHTML = buildPgRowHtml({ name, checked: true, count: "", timestamp: "" });
+      list.appendChild(div.firstElementChild);
+      inp.value = "";
+      showToast("Custom guidance added");
+    }
+
     function renderSinglePostComposer(data) {
       const host = document.getElementById("singlePostComposerHost");
       const artId = data.id || `art-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
@@ -3131,25 +3145,16 @@
         </label>
       `).join("");
 
-      const savedPgList = Array.isArray(rev.parental) && rev.parental.length > 0 ? rev.parental : [];
-      const mergedPgNames = Array.from(new Set([
-        ...PARENTAL_ITEMS_LIST,
-        ...savedPgList.map(p => p.name).filter(Boolean)
-      ]));
-      const pgMap = new Map(savedPgList.map(p => [p.name, p]));
+      const savedPgList = rev.parental || [];
+      const savedPgMap = new Map(savedPgList.map(p => [p.name, p]));
+      const combinedPgItems = [...PARENTAL_ITEMS_LIST];
+      savedPgList.forEach(p => {
+        if (p.name && !combinedPgItems.includes(p.name)) combinedPgItems.push(p.name);
+      });
 
-      const pgRowsHtml = mergedPgNames.map(item => {
-        const saved = pgMap.get(item) || { checked: false, count: "", timestamp: "" };
-        return `
-          <div class="pg-editor-row" data-pg-name="${escapeHtml(item)}">
-            <label style="display:flex; align-items:center; gap:6px; font-size:0.74rem; color:#fff; cursor:pointer;">
-              <input type="checkbox" class="pg-chk" style="width:auto;" ${saved.checked ? "checked" : ""} />
-              <span>${escapeHtml(item)}</span>
-            </label>
-            <input type="text" class="pg-count" value="${escapeHtml(saved.count || "")}" placeholder="Count (e.g. 2)" style="padding:5px 7px; font-size:0.75rem;" />
-            <input type="text" class="pg-time" value="${escapeHtml(saved.timestamp || "")}" placeholder="Time (00:14:20)" style="padding:5px 7px; font-size:0.75rem;" />
-          </div>
-        `;
+      const pgRowsHtml = combinedPgItems.map(item => {
+        const saved = savedPgMap.get(item) || { name: item, checked: false, count: "", timestamp: "" };
+        return buildPgRowHtml(saved);
       }).join("");
 
       host.innerHTML = `
@@ -3177,11 +3182,11 @@
             <div class="form-grid two-col">
               <div class="field-group"><label>Movie Poster Image Link (Drive / URL)</label><input type="text" class="rev-poster-inp" value="${escapeHtml(rev.posterUrl || data.coverImage || "")}" /></div>
               <div class="field-group"><label>Movie Name</label><input type="text" class="rev-movie-name" value="${escapeHtml(rev.movieName || "")}" /></div>
-              <div class="field-group"><label>Release Year / Date</label><input type="text" class="rev-release-year" value="${escapeHtml(rev.releaseYear || "")}" placeholder="e.g. 2026 or 15 Nov 2026" /></div>
-              <div class="field-group"><label>Streaming Platform</label><input type="text" class="rev-streaming-platform" value="${escapeHtml(rev.streamingPlatform || "")}" placeholder="e.g. Netflix, Prime Video, JioCinema" /></div>
+              <div class="field-group"><label>Release Year</label><input type="text" class="rev-release-year" value="${escapeHtml(rev.releaseYear || "")}" /></div>
+              <div class="field-group"><label>Streaming Platform</label><input type="text" class="rev-streaming-platform" value="${escapeHtml(rev.streamingPlatform || "")}" placeholder="e.g. Netflix, JioCinema, Prime Video" /></div>
               <div class="field-group"><label>IMDb Rating</label><input type="text" class="rev-imdb-rating" value="${escapeHtml(rev.imdbRating || "")}" /></div>
               <div class="field-group"><label>Movies Buff Rating</label><input type="text" class="rev-buff-rating" value="${escapeHtml(rev.buffRating || "")}" /></div>
-              <div class="field-group" style="grid-column:1 / -1;"><label>Languages</label><input type="text" class="rev-languages" value="${escapeHtml(rev.languages || "")}" /></div>
+              <div class="field-group"><label>Languages</label><input type="text" class="rev-languages" value="${escapeHtml(rev.languages || "")}" /></div>
             </div>
             <div class="field-group">
               <label>Category (Select multiple or add new suggestion)</label>
@@ -3195,8 +3200,8 @@
               <label>Parental Guidance (Check items + Optional Count & Timestamp)</label>
               <div class="pg-rows-container">${pgRowsHtml}</div>
               <div style="display:flex; gap:6px; margin-top:6px;">
-                <input type="text" class="rev-custom-pg-inp" placeholder="Add custom guidance (e.g. Mild Violence)..." />
-                <button type="button" class="btn btn-cyan" onclick="addCustomParentalGuidanceRow(this)">+ Add Guidance</button>
+                <input type="text" class="pg-custom-name-inp" placeholder="Add custom new guidance (e.g. Smoking / Horror Jump)" />
+                <button type="button" class="btn btn-cyan" onclick="addCustomParentalGuidanceRow(this)">+ Guidance</button>
               </div>
             </div>
             <div class="form-grid two-col">
@@ -3232,28 +3237,6 @@
       `;
 
       document.getElementById("composerWysiwygMount").appendChild(createGoogleDocsEditor(data.body || "", "Start writing here..."));
-    }
-
-    function addCustomParentalGuidanceRow(btnEl) {
-      const card = btnEl.closest("#activeComposerCard");
-      const inp = card.querySelector(".rev-custom-pg-inp");
-      const name = (inp.value || "").trim();
-      if (!name) return;
-      const container = card.querySelector(".pg-rows-container");
-      const row = document.createElement("div");
-      row.className = "pg-editor-row";
-      row.dataset.pgName = name;
-      row.innerHTML = `
-        <label style="display:flex; align-items:center; gap:6px; font-size:0.74rem; color:#fff; cursor:pointer;">
-          <input type="checkbox" class="pg-chk" style="width:auto;" checked />
-          <span>${escapeHtml(name)}</span>
-        </label>
-        <input type="text" class="pg-count" placeholder="Count (e.g. 2)" style="padding:5px 7px; font-size:0.75rem;" />
-        <input type="text" class="pg-time" placeholder="Time (00:14:20)" style="padding:5px 7px; font-size:0.75rem;" />
-      `;
-      container.appendChild(row);
-      inp.value = "";
-      showToast("Custom guidance added");
     }
 
     function switchPostTemplateMode(btnEl, mode) {
