@@ -387,12 +387,12 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts & Reels Feed: One Item Per Snap View (Full Reels Tab & Home Window) */
+    /* Shorts / Reels Feed: One Item Per Snap View (No Extra Top Filter Pills Taking Space) */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
       border-radius: 16px;
-      padding: 12px;
+      padding: 10px 12px;
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
       display: flex;
       flex-direction: column;
@@ -407,7 +407,7 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      padding: 10px 12px;
+      padding: 8px 10px;
       background: #04060a;
     }
 
@@ -419,13 +419,11 @@
       display: inline-flex !important;
     }
 
-    .reels-filter-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
-
     .reels-vertical-scroller {
       display: flex;
       flex-direction: column;
       gap: 0;
-      height: 450px;
+      height: 520px;
       overflow-y: auto;
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
@@ -434,7 +432,7 @@
 
     @media (min-width: 768px) {
       .reels-vertical-scroller {
-        height: 540px;
+        height: 620px;
       }
     }
 
@@ -455,11 +453,11 @@
       background: rgba(11, 15, 25, 0.98);
       border: 1px solid rgba(34, 211, 238, 0.25);
       border-radius: 14px;
-      padding: 9px 10px;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 6px;
+      gap: 5px;
     }
 
     .reel-card-top {
@@ -467,11 +465,10 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
     }
 
     .reel-folder-path-link {
-      font-size: 0.66rem;
+      font-size: 0.64rem;
       font-weight: 800;
       color: var(--neon-cyan);
       cursor: pointer;
@@ -480,11 +477,10 @@
 
     /* Compact Small Caption on Top */
     .reel-top-caption {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 700;
       color: #f1f5f9;
-      line-height: 1.25;
-      padding: 2px 2px 4px;
+      line-height: 1.2;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -493,7 +489,7 @@
     .reel-media-frame {
       position: relative;
       width: 100%;
-      max-width: 410px;
+      max-width: 420px;
       margin: 0 auto;
       border-radius: 12px;
       overflow: hidden;
@@ -532,10 +528,10 @@
       }
     }
 
-    .section-header-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .section-header-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
 
     .section-title {
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       font-weight: 800;
       display: flex;
       align-items: center;
@@ -901,7 +897,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">In-Page Shorts/Video • Single-Snap Feed • Homepage Control</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Single-Active Shorts/Video • Snap Feed • Homepage Control</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1131,7 +1127,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V20";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V21";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1472,6 +1468,7 @@
     let slideTimerId = null;
     let activeTableCell = null;
     let isFullReelsTabOpen = false;
+    let userPreferredSoundOn = false;
     let isDesignerBarOpen = false;
     let isMoveEditEnabled = false;
     let selectedVeId = "";
@@ -1558,6 +1555,7 @@
 
     function closeReelsTabToHome(popHist = true) {
       isFullReelsTabOpen = false;
+      document.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
       renderAll();
       if (popHist && activeStack[activeStack.length - 1] === "reelsTab") activeStack.pop();
     }
@@ -1627,18 +1625,18 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Plays video directly in-page via HTML5 video or YouTube embed without external redirect
     function renderReelMediaElement(rawUrl, caption) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
 
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
-        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" src="${escapeHtml(clean)}" autoplay loop muted playsinline controls></video></div>`;
+        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" src="${escapeHtml(clean)}" loop playsinline controls></video></div>`;
       }
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        const src = `${yt.embedUrl}?autoplay=1&mute=1&loop=1&playsinline=1&rel=0`;
+        const muteFlag = userPreferredSoundOn ? "0" : "1";
+        const src = `${yt.embedUrl}?autoplay=1&mute=${muteFlag}&loop=1&playsinline=1&rel=0`;
         return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" src="${src}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
       }
 
@@ -1646,20 +1644,48 @@
       return `<div class="reel-media-frame"><img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    function bindScrollAutoPlayVideos() {
-      const videos = document.querySelectorAll("video.auto-scroll-reel-video");
-      if (!videos.length || typeof IntersectionObserver === "undefined") return;
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const vid = entry.target;
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            vid.play().catch(() => {});
+    // Ensures ONLY the single most visible video plays, pauses all others, and enables sound
+    function bindSingleActiveVideoController(scrollerEl) {
+      const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
+      if (!cards.length) return;
+
+      const syncActiveVideo = () => {
+        const scrollerRect = scrollerEl.getBoundingClientRect();
+        let bestCard = null;
+        let bestOverlap = 0;
+
+        cards.forEach(card => {
+          const r = card.getBoundingClientRect();
+          const overlap = Math.max(0, Math.min(r.bottom, scrollerRect.bottom) - Math.max(r.top, scrollerRect.top));
+          if (overlap > bestOverlap) {
+            bestOverlap = overlap;
+            bestCard = card;
+          }
+        });
+
+        cards.forEach(card => {
+          const vid = card.querySelector("video.auto-scroll-reel-video");
+          if (!vid) return;
+          if (card === bestCard && bestOverlap > 60) {
+            vid.muted = !userPreferredSoundOn;
+            vid.volume = 1;
+            vid.play().catch(() => {
+              vid.muted = true;
+              vid.play().catch(() => {});
+            });
           } else {
             vid.pause();
           }
         });
-      }, { threshold: [0.5] });
-      videos.forEach(v => obs.observe(v));
+      };
+
+      scrollerEl.addEventListener("scroll", syncActiveVideo, { passive: true });
+      document.addEventListener("pointerdown", () => {
+        userPreferredSoundOn = true;
+        syncActiveVideo();
+      }, { once: true });
+
+      setTimeout(syncActiveVideo, 120);
     }
 
     function parseRelatedLinks(rawText = "") {
@@ -2297,7 +2323,6 @@
           const rf = siteData.reelsFeed || DEFAULT_DATA.reelsFeed;
           const rawReels = [...(rf.items || [])].reverse();
           if (rf.enabled !== false && rawReels.length > 0) {
-            const paths = Array.from(new Set(rawReels.map(r => (r.folderPath || getReelFolderPathString(r.folderId) || "").trim()).filter(Boolean)));
             const filteredReels = rawReels.filter(r => {
               const pStr = (r.folderPath || getReelFolderPathString(r.folderId) || "").trim();
               if (selectedReelFolderPath && pStr !== selectedReelFolderPath && !pStr.startsWith(selectedReelFolderPath + " >")) return false;
@@ -2322,27 +2347,6 @@
             headRow.appendChild(homeTabBtn);
 
             sec.appendChild(headRow);
-
-            const pillsBar = document.createElement("div");
-            pillsBar.className = "reels-filter-pills";
-            const allP = document.createElement("button");
-            allP.type = "button";
-            allP.className = `glass-pill-btn ${selectedReelFolderPath === "" ? "active" : ""}`;
-            allP.style.borderColor = selectedReelFolderPath === "" ? "var(--neon-pink)" : "";
-            allP.textContent = "All Feed";
-            allP.onclick = () => { selectedReelFolderPath = ""; renderAll(); };
-            pillsBar.appendChild(allP);
-
-            paths.forEach(p => {
-              const pb = document.createElement("button");
-              pb.type = "button";
-              pb.className = "glass-pill-btn";
-              pb.style.borderColor = selectedReelFolderPath === p ? "var(--neon-cyan)" : "";
-              pb.textContent = `📁 ${p}`;
-              pb.onclick = () => { selectedReelFolderPath = selectedReelFolderPath === p ? "" : p; renderAll(); };
-              pillsBar.appendChild(pb);
-            });
-            sec.appendChild(pillsBar);
 
             const scroller = document.createElement("div");
             scroller.className = "reels-vertical-scroller";
@@ -2371,7 +2375,7 @@
             });
             sec.appendChild(scroller);
             stack.appendChild(sec);
-            bindScrollAutoPlayVideos();
+            bindSingleActiveVideoController(scroller);
           }
         } else if (secId === "articlesSection" && !isFullReelsTabOpen) {
           const showNotice = isSectionVisible("noticeBoardPanel");
