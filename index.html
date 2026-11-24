@@ -406,7 +406,7 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: Instant Poster + Active-Only Playback */
+    /* Shorts / Reels Feed: Smooth Touch Swipe Over Media */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -440,6 +440,7 @@
       height: 540px;
       overflow-y: auto;
       scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
       border-radius: 14px;
     }
 
@@ -541,6 +542,14 @@
       object-fit: contain;
       display: block;
       margin: 0 auto;
+    }
+
+    .reel-swipe-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: transparent;
+      touch-action: pan-y;
     }
 
     /* Live Image/GIF Preview Box in Admin Studio */
@@ -942,7 +951,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Dynamic Actions • Movie Review Menu • Reels File Manager • GitHub Tab</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Banner Action Picker • Auto Movie Filters • Swipe Shorts</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -995,14 +1004,14 @@
         </div>
       </div>
 
-      <!-- Tab 2: Menu Drawer Builder + Movie Review Menu Mode Toggle -->
+      <!-- Tab 2: Menu Drawer Builder + Auto Movie Filter Menu -->
       <div id="tab-menu" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid two-col">
           <div class="field-group">
             <label>Menu Drawer Mode</label>
             <select id="cfgMenuDrawerMode" onchange="toggleMenuModePanels()">
               <option value="standard">Standard Study / Custom Menu</option>
-              <option value="movieReview">Movie Review Menu (OTT • By Genres • By Year)</option>
+              <option value="movieReview">Movie Review Filter Menu (OTT • By Genres • By Year)</option>
             </select>
           </div>
           <div class="field-group">
@@ -1012,19 +1021,8 @@
         </div>
 
         <div id="movieReviewMenuBuilderCard" class="android-tile-card form-grid" style="display:none;">
-          <strong style="font-size:0.86rem; color:var(--neon-cyan);">🎬 Movie Review Menu Sections (No Download Quality • By Genres)</strong>
-          <div class="field-group">
-            <label>OTT Platforms (One per line: Name | URL or Filter Keyword)</label>
-            <textarea id="cfgMrOttItems" style="min-height:64px;"></textarea>
-          </div>
-          <div class="field-group">
-            <label>By Genres (One per line: Genre Name)</label>
-            <textarea id="cfgMrGenreItems" style="min-height:64px;"></textarea>
-          </div>
-          <div class="field-group">
-            <label>By Year (One per line: Year, e.g. 2026)</label>
-            <textarea id="cfgMrYearItems" style="min-height:54px;"></textarea>
-          </div>
+          <strong style="font-size:0.86rem; color:var(--neon-cyan);">🎬 Auto-Synced from Saved Movie Reviews</strong>
+          <div style="font-size:0.74rem; color:var(--text-secondary);">OTT platforms, Genres, and Release Years from your saved Movie Review posts automatically appear in the Menu dropdowns and filter matching movies on click.</div>
         </div>
 
         <div id="standardMenuBuilderCard" class="android-tile-card">
@@ -1039,14 +1037,29 @@
         </div>
       </div>
 
-      <!-- Tab 3 -->
+      <!-- Tab 3: Cards & Banner (With Button Action + Dynamic Target Picker) -->
       <div id="tab-cards" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;"><strong style="font-size:0.86rem;">Education Content Folder Banner</strong></div>
           <div class="field-group"><label>Banner Title</label><input type="text" id="cfgBannerTitle" /></div>
           <div class="field-group"><label>Banner Subtitle</label><input type="text" id="cfgBannerSub" /></div>
           <div class="field-group"><label>Banner Right CTA</label><input type="text" id="cfgBannerCta" /></div>
-          <div class="field-group"><label>Banner Link (Optional; click opens Content Folder Explorer)</label><input type="text" id="cfgBannerUrl" /></div>
+          <div class="field-group">
+            <label>Banner Action</label>
+            <select id="cfgBannerActionType" onchange="renderDynamicTargetForRow(this, document.getElementById('cfgBannerTargetWrap'), 'cfg-banner-target')">
+              <option value="contentExplorer">Content Folder Explorer (Default)</option>
+              <option value="link">External Link (New Tab)</option>
+              <option value="reelsFolder">Open Reels Folder</option>
+              <option value="folder">Open Article Folder</option>
+              <option value="article">Open Article</option>
+              <option value="reelsTab">Open Reels Tab</option>
+              <option value="anchor">Destination Point</option>
+            </select>
+          </div>
+          <div class="field-group" style="grid-column:1 / -1;">
+            <label>Banner Target</label>
+            <div id="cfgBannerTargetWrap"></div>
+          </div>
         </div>
 
         <div class="android-tile-card">
@@ -1217,7 +1230,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V25";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V26";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1237,10 +1250,10 @@
     const DEFAULT_REVIEW_TEMPLATE_CONFIG = {
       movieNameLabel: "Movie Name", movieNameIcon: "",
       releaseYearLabel: "Release Year", releaseYearIcon: "",
-      streamingPlatformLabel: "Streaming Platform", streamingPlatformIcon: "",
+      streamingPlatformLabel: "OTT", streamingPlatformIcon: "",
       imdbRatingLabel: "IMDb Rating", imdbRatingIcon: "",
       buffRatingLabel: "Movies Buff Rating", buffRatingIcon: "",
-      categoryLabel: "Category", categoryIcon: "",
+      categoryLabel: "Genres", categoryIcon: "",
       languagesLabel: "Languages", languagesIcon: "",
       parentalLabel: "Parental Guidance", parentalIcon: "",
       youtubeCtaLabel: "Watch Detailed Review on YouTube"
@@ -1397,16 +1410,6 @@
       articleSortOrder: "newest",
       menuDrawerMode: "standard",
       movieMenuHeading: "Browse Reviews",
-      movieReviewMenu: {
-        ottItems: [
-          { label: "Netflix", target: "Netflix" },
-          { label: "Prime Video", target: "Prime Video" },
-          { label: "JioCinema", target: "JioCinema" },
-          { label: "Disney+ Hotstar", target: "Hotstar" }
-        ],
-        genreItems: ["Action", "Drama", "Thriller", "Comedy", "Sci-Fi", "Crime", "Romance", "Horror"],
-        yearItems: ["2026", "2025", "2024", "2023", "2022", "2021"]
-      },
       sectionVisibility: {
         portalCardsGrid: true,
         mainNeonBanner: true,
@@ -1496,6 +1499,7 @@
         title: "Education Content Folder",
         sub: "Browse Folders & Scroll Content by Topic",
         cta: "Open Folder →",
+        actionType: "contentExplorer",
         url: ""
       },
       navButtons: [
@@ -1562,6 +1566,7 @@
     let siteData = loadInitialData();
     let designerSnapshotBeforeEdit = null;
     let searchQuery = "";
+    let movieFilterTag = "";
     let selectedSubjectFolderId = "";
     let selectedReelFolderPath = "";
     let activeReelFolderId = "";
@@ -1644,6 +1649,7 @@
       isFullReelsTabOpen = false;
       currentFolderId = "";
       selectedSubjectFolderId = "";
+      movieFilterTag = "";
       selectedReelFolderPath = "";
       currentArticlePage = 1;
       showHomeUI();
@@ -1770,13 +1776,18 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Instant thumbnail layer + active-only playback when visible on screen
+    // Smooth vertical touch swipe over video/iframe so scrolling works anywhere on the card
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
 
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
-        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="metadata" loop playsinline controls></video></div>`;
+        return `
+          <div class="reel-media-frame">
+            <video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="metadata" loop playsinline controls></video>
+            <div class="reel-swipe-layer" data-swipe-idx="${index}"></div>
+          </div>
+        `;
       }
 
       const yt = parseYouTubeEmbed(clean);
@@ -1786,6 +1797,7 @@
           <div class="reel-media-frame">
             <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="lazy" />
             <iframe class="inpage-shorts-iframe" data-reel-idx="${index}" data-yt-embed="${escapeHtml(yt.embedUrl)}" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <div class="reel-swipe-layer" data-swipe-idx="${index}"></div>
           </div>
         `;
       }
@@ -1860,11 +1872,50 @@
       }, { threshold: [0.35] });
       secObs.observe(secEl);
 
+      // Enable smooth vertical touch swiping on top of video frames
+      scrollerEl.querySelectorAll(".reel-swipe-layer").forEach((layer) => {
+        const idx = Number(layer.dataset.swipeIdx || 0);
+        let startY = 0;
+        let moved = false;
+
+        layer.addEventListener("touchstart", (ev) => {
+          if (!ev.touches.length) return;
+          startY = ev.touches[0].clientY;
+          moved = false;
+        }, { passive: true });
+
+        layer.addEventListener("touchmove", (ev) => {
+          if (!ev.touches.length) return;
+          const dy = ev.touches[0].clientY - startY;
+          if (Math.abs(dy) > 10) {
+            moved = true;
+            scrollerEl.scrollTop -= dy * 0.65;
+            startY = ev.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        layer.addEventListener("touchend", () => {
+          if (!moved) {
+            layer.style.pointerEvents = "none";
+            const card = cards[idx];
+            const vid = card?.querySelector("video.auto-scroll-reel-video");
+            if (vid) {
+              vid.muted = false;
+              vid.play().catch(() => {});
+            }
+            setTimeout(() => { layer.style.pointerEvents = "auto"; }, 2200);
+          } else {
+            const cardH = cards[0]?.clientHeight || scrollerEl.clientHeight;
+            const snappedIdx = Math.max(0, Math.min(cards.length - 1, Math.round(scrollerEl.scrollTop / Math.max(1, cardH))));
+            scrollerEl.scrollTo({ top: snappedIdx * cardH, behavior: "smooth" });
+          }
+        });
+      });
+
       let tId = null;
       scrollerEl.addEventListener("scroll", () => {
-        stopAll();
         clearTimeout(tId);
-        tId = setTimeout(syncCenteredCard, 75);
+        tId = setTimeout(syncCenteredCard, 80);
       }, { passive: true });
     }
 
@@ -2123,8 +2174,49 @@
       document.execCommand("insertHTML", false, `<div class="${cls}" contenteditable="false"><iframe src="${yt.embedUrl}" allowfullscreen></iframe></div><p><br></p>`);
     }
 
+    // COLLECTS OTT, GENRES & YEARS AUTOMATICALLY FROM SAVED MOVIE REVIEW POSTS
+    function extractMovieFilterOptionsFromPosts() {
+      const ottSet = new Set();
+      const genreSet = new Set();
+      const yearSet = new Set();
+
+      (siteData.articles || []).forEach(art => {
+        if (art.postType !== "review") return;
+        const rev = art.reviewData || {};
+        if (rev.streamingPlatform && rev.streamingPlatform.trim()) {
+          rev.streamingPlatform.split(",").forEach(part => {
+            const p = part.trim();
+            if (p) ottSet.add(p);
+          });
+        }
+        (rev.categories || []).forEach(g => {
+          if (g && g.trim()) genreSet.add(g.trim());
+        });
+        if (rev.releaseYear && rev.releaseYear.trim()) {
+          yearSet.add(rev.releaseYear.trim());
+        }
+      });
+
+      return {
+        ott: Array.from(ottSet),
+        genres: Array.from(genreSet),
+        years: Array.from(yearSet)
+      };
+    }
+
+    function getAllFilterableMovieTags() {
+      const ext = extractMovieFilterOptionsFromPosts();
+      return Array.from(new Set([...ext.ott, ...ext.genres, ...ext.years]));
+    }
+
     // DYNAMIC ACTION TARGET PICKER (Adapts dynamically to chosen actionType)
     function buildActionTargetPickerHtml(actionType, currentVal, targetInputClass) {
+      if (actionType === "movieFilter") {
+        const tags = getAllFilterableMovieTags();
+        const opts = tags.map(t => `<option value="${escapeHtml(t)}" ${currentVal === t ? "selected" : ""}>🎬 ${escapeHtml(t)}</option>`).join("");
+        return `<select class="${targetInputClass}">${opts || `<option value="">No movie tags found</option>`}</select>`;
+      }
+
       if (actionType === "reelsFolder") {
         const paths = ["Root"];
         (siteData.reelsFolders || []).forEach(f => {
@@ -2160,8 +2252,8 @@
         return `<select class="${targetInputClass}">${opts}</select>`;
       }
 
-      if (actionType === "reelsTab") {
-        return `<input type="text" class="${targetInputClass}" value="" placeholder="Opens Full-Screen Reels Tab automatically" readonly />`;
+      if (actionType === "reelsTab" || actionType === "contentExplorer") {
+        return `<input type="text" class="${targetInputClass}" value="" placeholder="Opens view automatically" readonly />`;
       }
 
       return `<input type="text" class="${targetInputClass}" value="${escapeHtml(currentVal || "")}" placeholder="https://..." />`;
@@ -2263,6 +2355,7 @@
 
     function selectSubjectFilter(folderId) {
       selectedSubjectFolderId = folderId || "";
+      movieFilterTag = "";
       currentArticlePage = 1;
       showHomeUI();
       handleBackAction();
@@ -2273,9 +2366,9 @@
       if (sec) sec.scrollIntoView({ behavior: "smooth" });
     }
 
-    function applyMovieMenuFilter(keyword) {
-      searchQuery = (keyword || "").trim().toLowerCase();
-      document.getElementById("quickSearchInput").value = keyword || "";
+    function applyMovieMenuFilter(tagVal) {
+      movieFilterTag = (tagVal || "").trim();
+      selectedSubjectFolderId = "";
       currentArticlePage = 1;
       showHomeUI();
       handleBackAction();
@@ -2290,44 +2383,20 @@
       host.innerHTML = "";
 
       if ((siteData.menuDrawerMode || "standard") === "movieReview") {
-        const mr = siteData.movieReviewMenu || DEFAULT_DATA.movieReviewMenu;
+        const ext = extractMovieFilterOptionsFromPosts();
         const headLbl = document.createElement("div");
         headLbl.style.cssText = "font-size:0.72rem; font-weight:800; color:var(--neon-cyan); padding:2px 4px;";
         headLbl.textContent = siteData.movieMenuHeading || "Browse Reviews";
         host.appendChild(headLbl);
 
         const groups = [
-          {
-            title: "OTT",
-            items: (mr.ottItems || []).map(o => ({
-              label: o.label,
-              onClick: () => {
-                if (/^https?:\/\//i.test(o.target || "")) {
-                  handleBackAction();
-                  window.open(o.target, "_blank", "noopener,noreferrer");
-                } else {
-                  applyMovieMenuFilter(o.target || o.label);
-                }
-              }
-            }))
-          },
-          {
-            title: "By Genres",
-            items: (mr.genreItems || []).map(g => ({
-              label: g,
-              onClick: () => applyMovieMenuFilter(g)
-            }))
-          },
-          {
-            title: "By Year",
-            items: (mr.yearItems || []).map(yr => ({
-              label: yr,
-              onClick: () => applyMovieMenuFilter(yr)
-            }))
-          }
+          { title: "OTT", values: ext.ott },
+          { title: "By Genres", values: ext.genres },
+          { title: "By Year", values: ext.years }
         ];
 
         groups.forEach(grp => {
+          if (!grp.values.length) return;
           const tBtn = document.createElement("button");
           tBtn.type = "button";
           tBtn.className = "btn btn-cyan";
@@ -2337,13 +2406,12 @@
           dd.className = "subject-dropdown-list";
           tBtn.onclick = () => dd.classList.toggle("open");
 
-          grp.items.forEach(sub => {
-            if (!sub.label) return;
+          grp.values.forEach(val => {
             const b = document.createElement("button");
             b.type = "button";
-            b.className = "subject-filter-item";
-            b.innerHTML = `<span>${escapeHtml(sub.label)}</span><span>→</span>`;
-            b.onclick = sub.onClick;
+            b.className = `subject-filter-item ${movieFilterTag.toLowerCase() === val.toLowerCase() ? "active" : ""}`;
+            b.innerHTML = `<span>${escapeHtml(val)}</span><span>→</span>`;
+            b.onclick = () => applyMovieMenuFilter(val);
             dd.appendChild(b);
           });
 
@@ -2435,8 +2503,17 @@
       if (isMoveEditEnabled) return;
       const type = btn.actionType || "link";
       const target = (btn.target || "").trim();
+
+      if (type === "contentExplorer") {
+        openEducationContentFolder("");
+        return;
+      }
       if (type === "reelsTab") {
         openFullReelsTab();
+        return;
+      }
+      if (type === "movieFilter") {
+        applyMovieMenuFilter(target);
         return;
       }
       if (type === "reelsFolder") {
@@ -2556,12 +2633,14 @@
           stack.appendChild(grid);
         } else if (secId === "mainNeonBanner") {
           const b = siteData.banner || DEFAULT_DATA.banner;
+          const bAct = b.actionType || "contentExplorer";
           const div = document.createElement("div");
           div.className = "neon-banner-bar";
           div.id = "mainNeonBanner";
           div.dataset.veId = "mainNeonBanner";
           div.onclick = () => {
-            if (!isMoveEditEnabled) openEducationContentFolder("");
+            if (isMoveEditEnabled) return;
+            executePillAction({ actionType: bAct, target: b.url || "" });
           };
           div.innerHTML = `
             <div class="banner-left">
@@ -2603,7 +2682,7 @@
         } else if (secId === "welcomeCardSection") {
           const sc = siteData.showcaseCarousel || DEFAULT_DATA.showcaseCarousel;
           const slides = (sc.slides || []).filter(s => s.title || s.imageUrl);
-          if (sc.enabled !== false && slides.length > 0 && currentArticlePage === 1 && !searchQuery && !selectedSubjectFolderId && !isFullReelsTabOpen) {
+          if (sc.enabled !== false && slides.length > 0 && currentArticlePage === 1 && !searchQuery && !selectedSubjectFolderId && !movieFilterTag && !isFullReelsTabOpen) {
             if (activeSlideIndex >= slides.length) activeSlideIndex = 0;
             const box = document.createElement("section");
             box.className = "showcase-carousel-box";
@@ -2720,15 +2799,29 @@
             headRow.appendChild(chip);
           }
 
+          if (movieFilterTag) {
+            const mChip = document.createElement("button");
+            mChip.type = "button";
+            mChip.className = "active-filter-chip";
+            mChip.textContent = `🎬 ${movieFilterTag} ✕`;
+            mChip.onclick = () => applyMovieMenuFilter("");
+            headRow.appendChild(mChip);
+          }
+
           leftCol.appendChild(headRow);
 
           const orderedArticles = getOrderedArticlesForDisplay();
           const allowedFolderSet = selectedSubjectFolderId ? getDescendantFolderIds(selectedSubjectFolderId) : null;
+          const mTagLower = movieFilterTag.toLowerCase();
 
           const matchedArticles = orderedArticles.filter(art => {
             if (allowedFolderSet && !allowedFolderSet.has(art.folderId || "")) return false;
-            if (!searchQuery) return true;
             const rev = art.reviewData || {};
+            if (mTagLower) {
+              const haystack = `${rev.streamingPlatform || ""} ${(rev.categories || []).join(",")} ${rev.releaseYear || ""} ${art.category || ""}`.toLowerCase();
+              if (!haystack.includes(mTagLower)) return false;
+            }
+            if (!searchQuery) return true;
             return `${art.title} ${art.excerpt} ${art.category || ""} ${rev.movieName || ""} ${rev.releaseYear || ""} ${rev.streamingPlatform || ""} ${(rev.categories || []).join(" ")}`.toLowerCase().includes(searchQuery);
           });
 
@@ -3359,6 +3452,7 @@
               <option value="reelsFolder" ${actType === "reelsFolder" ? "selected" : ""}>Open Reels Folder</option>
               <option value="folder" ${actType === "folder" ? "selected" : ""}>Open Article Folder</option>
               <option value="article" ${actType === "article" ? "selected" : ""}>Open Article</option>
+              <option value="movieFilter" ${actType === "movieFilter" ? "selected" : ""}>Movie Filter (OTT / Genre / Year)</option>
               <option value="reelsTab" ${actType === "reelsTab" ? "selected" : ""}>Open Reels Tab</option>
               <option value="anchor" ${actType === "anchor" ? "selected" : ""}>Destination Point</option>
             </select>
@@ -3403,10 +3497,10 @@
       const fields = [
         { kLabel: "movieNameLabel", kIcon: "movieNameIcon", title: "1. Movie Name Sub-Heading" },
         { kLabel: "releaseYearLabel", kIcon: "releaseYearIcon", title: "2. Release Year Sub-Heading" },
-        { kLabel: "streamingPlatformLabel", kIcon: "streamingPlatformIcon", title: "3. Streaming Platform Sub-Heading" },
+        { kLabel: "streamingPlatformLabel", kIcon: "streamingPlatformIcon", title: "3. OTT Sub-Heading" },
         { kLabel: "imdbRatingLabel", kIcon: "imdbRatingIcon", title: "4. IMDb Rating Sub-Heading" },
         { kLabel: "buffRatingLabel", kIcon: "buffRatingIcon", title: "5. Movies Buff Rating Sub-Heading" },
-        { kLabel: "categoryLabel", kIcon: "categoryIcon", title: "6. Category Sub-Heading" },
+        { kLabel: "categoryLabel", kIcon: "categoryIcon", title: "6. Genres Sub-Heading" },
         { kLabel: "languagesLabel", kIcon: "languagesIcon", title: "7. Languages Sub-Heading" },
         { kLabel: "parentalLabel", kIcon: "parentalIcon", title: "8. Parental Guidance Sub-Heading" }
       ];
@@ -3533,16 +3627,16 @@
               </div>
               <div class="field-group"><label>Movie Name</label><input type="text" class="rev-movie-name" value="${escapeHtml(rev.movieName || "")}" /></div>
               <div class="field-group"><label>Release Year</label><input type="text" class="rev-release-year" value="${escapeHtml(rev.releaseYear || "")}" /></div>
-              <div class="field-group"><label>Streaming Platform</label><input type="text" class="rev-streaming-platform" value="${escapeHtml(rev.streamingPlatform || "")}" placeholder="e.g. Netflix, JioCinema, Prime Video" /></div>
+              <div class="field-group"><label>OTT</label><input type="text" class="rev-streaming-platform" value="${escapeHtml(rev.streamingPlatform || "")}" placeholder="e.g. Netflix, JioCinema, Prime Video" /></div>
               <div class="field-group"><label>IMDb Rating</label><input type="text" class="rev-imdb-rating" value="${escapeHtml(rev.imdbRating || "")}" /></div>
               <div class="field-group"><label>Movies Buff Rating</label><input type="text" class="rev-buff-rating" value="${escapeHtml(rev.buffRating || "")}" /></div>
               <div class="field-group"><label>Languages</label><input type="text" class="rev-languages" value="${escapeHtml(rev.languages || "")}" /></div>
             </div>
             <div class="field-group">
-              <label>Category (Select multiple or add new suggestion)</label>
+              <label>Genres (Select multiple or add new suggestion)</label>
               <div class="rev-cat-list" style="display:flex; flex-wrap:wrap; gap:6px;">${catCheckboxesHtml}</div>
               <div style="display:flex; gap:6px; margin-top:6px;">
-                <input type="text" class="rev-new-cat-inp" placeholder="Add new category suggestion..." />
+                <input type="text" class="rev-new-cat-inp" placeholder="Add new genre suggestion..." />
                 <button type="button" class="btn btn-cyan" onclick="addNewCategoryCheckbox(this)">+ Add</button>
               </div>
             </div>
@@ -3887,10 +3981,6 @@
 
       document.getElementById("cfgMenuDrawerMode").value = siteData.menuDrawerMode || "standard";
       document.getElementById("cfgMovieMenuHeading").value = siteData.movieMenuHeading || "Browse Reviews";
-      const mr = siteData.movieReviewMenu || DEFAULT_DATA.movieReviewMenu;
-      document.getElementById("cfgMrOttItems").value = (mr.ottItems || []).map(o => `${o.label} | ${o.target}`).join("\n");
-      document.getElementById("cfgMrGenreItems").value = (mr.genreItems || []).join("\n");
-      document.getElementById("cfgMrYearItems").value = (mr.yearItems || []).join("\n");
       toggleMenuModePanels();
 
       const sc = siteData.showcaseCarousel || DEFAULT_DATA.showcaseCarousel;
@@ -3910,10 +4000,17 @@
       noticeHost.appendChild(createGoogleDocsEditor(siteData.noticeBody || "", "Write notice board updates, tables, links..."));
 
       const b = siteData.banner || DEFAULT_DATA.banner;
+      const bAct = b.actionType || "contentExplorer";
       document.getElementById("cfgBannerTitle").value = b.title || "";
       document.getElementById("cfgBannerSub").value = b.sub || "";
       document.getElementById("cfgBannerCta").value = b.cta || "";
-      document.getElementById("cfgBannerUrl").value = b.url || "";
+      document.getElementById("cfgBannerActionType").value = bAct;
+      renderDynamicTargetForRow(
+        document.getElementById("cfgBannerActionType"),
+        document.getElementById("cfgBannerTargetWrap"),
+        "cfg-banner-target",
+        b.url || ""
+      );
 
       const navList = document.getElementById("navEditorList");
       navList.innerHTML = "";
@@ -3963,6 +4060,7 @@
             <option value="reelsFolder" ${type === "reelsFolder" ? "selected" : ""}>Open Reels Folder</option>
             <option value="folder" ${type === "folder" ? "selected" : ""}>Open Article Folder</option>
             <option value="article" ${type === "article" ? "selected" : ""}>Open Article</option>
+            <option value="movieFilter" ${type === "movieFilter" ? "selected" : ""}>Movie Filter (OTT / Genre / Year)</option>
             <option value="reelsTab" ${type === "reelsTab" ? "selected" : ""}>Open Reels Tab</option>
             <option value="anchor" ${type === "anchor" ? "selected" : ""}>Destination Point</option>
           </select>
@@ -3997,6 +4095,7 @@
             <option value="reelsFolder" ${act === "reelsFolder" ? "selected" : ""}>Open Reels Folder</option>
             <option value="folder" ${act === "folder" ? "selected" : ""}>Open Article Folder</option>
             <option value="article" ${act === "article" ? "selected" : ""}>Open Article</option>
+            <option value="movieFilter" ${act === "movieFilter" ? "selected" : ""}>Movie Filter (OTT / Genre / Year)</option>
             <option value="reelsTab" ${act === "reelsTab" ? "selected" : ""}>Open Reels Tab</option>
             <option value="anchor" ${act === "anchor" ? "selected" : ""}>Destination Point</option>
           </select>
@@ -4022,7 +4121,7 @@
           actionType,
           target
         };
-      }).filter(x => x.label && (x.actionType === "reelsTab" || x.target !== undefined));
+      }).filter(x => x.label);
 
       const menuItems = Array.from(document.querySelectorAll("#menuBuilderEditorList .android-tile-card")).map(el => {
         const customRaw = el.querySelector(".mb-custom-opts").value || "";
@@ -4067,14 +4166,6 @@
         };
       }).filter(s => s.title || s.imageUrl);
 
-      const ottItems = (document.getElementById("cfgMrOttItems").value || "").split("\n").map(l => l.trim()).filter(Boolean).map(line => {
-        const p = line.indexOf("|");
-        if (p === -1) return { label: line, target: line };
-        return { label: line.slice(0, p).trim(), target: line.slice(p + 1).trim() };
-      });
-      const genreItems = (document.getElementById("cfgMrGenreItems").value || "").split("\n").map(l => l.trim()).filter(Boolean);
-      const yearItems = (document.getElementById("cfgMrYearItems").value || "").split("\n").map(l => l.trim()).filter(Boolean);
-
       const reviewConfig = { ...DEFAULT_REVIEW_TEMPLATE_CONFIG };
       document.querySelectorAll("[data-rev-cfg]").forEach(inp => {
         reviewConfig[inp.dataset.revCfg] = inp.value.trim();
@@ -4102,7 +4193,6 @@
         articleSortOrder: siteData.articleSortOrder || "newest",
         menuDrawerMode: document.getElementById("cfgMenuDrawerMode").value || "standard",
         movieMenuHeading: document.getElementById("cfgMovieMenuHeading").value.trim() || "Browse Reviews",
-        movieReviewMenu: { ottItems, genreItems, yearItems },
         sectionVisibility: siteData.sectionVisibility || DEFAULT_DATA.sectionVisibility,
         showcaseCarousel: {
           enabled: document.getElementById("cfgShowcaseEnabled").checked,
@@ -4124,7 +4214,8 @@
           title: document.getElementById("cfgBannerTitle").value.trim() || "Education Content Folder",
           sub: document.getElementById("cfgBannerSub").value.trim() || "",
           cta: document.getElementById("cfgBannerCta").value.trim() || "Open Folder →",
-          url: document.getElementById("cfgBannerUrl").value.trim() || ""
+          actionType: document.getElementById("cfgBannerActionType").value || "contentExplorer",
+          url: (document.querySelector(".cfg-banner-target")?.value || "").trim()
         },
         navButtons,
         portalCards,
