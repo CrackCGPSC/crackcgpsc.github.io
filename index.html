@@ -406,7 +406,7 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: Preloaded Adjacent Slides for Instant Start */
+    /* Shorts / Reels Feed: Instant Poster + Active-Only Playback */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -430,13 +430,8 @@
       background: #04060a;
     }
 
-    .reels-top-home-btn {
-      display: none !important;
-    }
-
-    .reels-feed-section.full-tab-reels-mode .reels-top-home-btn {
-      display: inline-flex !important;
-    }
+    .reels-top-home-btn { display: none !important; }
+    .reels-feed-section.full-tab-reels-mode .reels-top-home-btn { display: inline-flex !important; }
 
     .reels-vertical-scroller {
       display: flex;
@@ -449,9 +444,7 @@
     }
 
     @media (min-width: 768px) {
-      .reels-vertical-scroller {
-        height: 640px;
-      }
+      .reels-vertical-scroller { height: 640px; }
     }
 
     .reels-feed-section.full-tab-reels-mode .reels-vertical-scroller {
@@ -526,9 +519,21 @@
       justify-content: center;
     }
 
+    .reel-poster-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+    }
+
     .reel-media-frame video,
-    .reel-media-frame img,
+    .reel-media-frame img.static-reel-img,
     .reel-media-frame iframe.inpage-shorts-iframe {
+      position: relative;
+      z-index: 2;
       width: 100%;
       height: 100%;
       max-height: 100%;
@@ -536,6 +541,30 @@
       object-fit: contain;
       display: block;
       margin: 0 auto;
+    }
+
+    /* Live Image/GIF Preview Box in Admin Studio */
+    .live-media-preview-box {
+      margin-top: 6px;
+      padding: 6px;
+      border-radius: 9px;
+      background: #060911;
+      border: 1px dashed rgba(34, 211, 238, 0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      max-height: 130px;
+      overflow: hidden;
+    }
+    .live-media-preview-box.has-img { display: flex; }
+    .live-media-preview-box img {
+      max-height: 114px;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      display: block;
     }
 
     /* Articles + Notice Board Split */
@@ -739,7 +768,7 @@
     .android-top-appbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; background: rgba(13, 17, 26, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
     .android-studio-wrap { max-width: 900px; margin: 0 auto; padding: 12px 12px 24px; }
     .android-segment-bar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 14px; }
-    @media (min-width: 680px) { .android-segment-bar { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 680px) { .android-segment-bar { grid-template-columns: repeat(3, 1fr); } }
     .android-tile-card { background: #111622; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 11px; margin-bottom: 10px; }
 
     .wysiwyg-shell { border: 1px solid rgba(34, 211, 238, 0.35); border-radius: 10px; background: #090d16; overflow: hidden; }
@@ -913,7 +942,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Instant Shorts Preload • Logo Image/GIF • Search Hint</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Dynamic Actions • Movie Review Menu • Reels File Manager • GitHub Tab</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -929,19 +958,28 @@
         <button class="btn" data-tab="tab-cards" onclick="switchAdminTab('tab-cards', this)">3. Cards & Banner</button>
         <button class="btn" data-tab="tab-post-composer" onclick="switchAdminTab('tab-post-composer', this)">4. New / Edit Post</button>
         <button class="btn" data-tab="tab-welcome" onclick="switchAdminTab('tab-welcome', this)">5. Showcase Slides</button>
-        <button class="btn" data-tab="tab-reels" onclick="switchAdminTab('tab-reels', this)">6. Reels & Folders</button>
+        <button class="btn" data-tab="tab-reels" onclick="switchAdminTab('tab-reels', this)">6. Reels File Manager</button>
         <button class="btn" data-tab="tab-folders" onclick="switchAdminTab('tab-folders', this)">7. Article Folders</button>
         <button class="btn" data-tab="tab-sequence" onclick="switchAdminTab('tab-sequence', this)">8. Homepage</button>
+        <button class="btn" data-tab="tab-github" onclick="switchAdminTab('tab-github', this)">9. GitHub Sync</button>
       </div>
 
       <!-- Tab 1 -->
       <div id="tab-general" class="admin-tab-content">
         <div class="android-tile-card form-grid two-col">
           <div class="field-group"><label>Brand Logo Text</label><input type="text" id="cfgBrandTitle" /></div>
-          <div class="field-group"><label>Brand Logo Image / GIF URL (Replaces Text When Set)</label><input type="text" id="cfgBrandLogoUrl" placeholder="https://drive.google.com/file/d/..." /></div>
+          <div class="field-group">
+            <label>Brand Logo Image / GIF URL (Fits Box Without Cropping)</label>
+            <input type="text" id="cfgBrandLogoUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
+            <div class="live-media-preview-box"></div>
+          </div>
           <div class="field-group"><label>Single-Line Subtitle</label><input type="text" id="cfgBrandSub" /></div>
           <div class="field-group"><label>Search Box Suggestion Text</label><input type="text" id="cfgSearchPlaceholder" placeholder="Search History, Topics, Reviews or Articles..." /></div>
-          <div class="field-group"><label>Website Favicon Link (Google Drive / Image URL)</label><input type="text" id="cfgFaviconUrl" placeholder="https://drive.google.com/file/d/..." /></div>
+          <div class="field-group">
+            <label>Website Favicon Link (Google Drive / Image URL)</label>
+            <input type="text" id="cfgFaviconUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
+            <div class="live-media-preview-box"></div>
+          </div>
           <div class="field-group"><label>Articles Section Title</label><input type="text" id="cfgArticlesHeading" /></div>
           <div class="field-group"><label>Hub Tag</label><input type="text" id="cfgHubTag" /></div>
           <div class="field-group"><label>Hub Heading</label><input type="text" id="cfgHubHeading" /></div>
@@ -950,16 +988,46 @@
 
         <div class="android-tile-card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <strong style="font-size:0.86rem;">Quick Pill Buttons (Link / Folder / Reels Folder / Article / Anchor)</strong>
+            <strong style="font-size:0.86rem;">Quick Pill Buttons</strong>
             <button class="btn" onclick="addNavButtonRow()">+ Add Pill</button>
           </div>
           <div id="navEditorList"></div>
         </div>
       </div>
 
-      <!-- Tab 2 -->
+      <!-- Tab 2: Menu Drawer Builder + Movie Review Menu Mode Toggle -->
       <div id="tab-menu" class="admin-tab-content" style="display:none;">
-        <div class="android-tile-card">
+        <div class="android-tile-card form-grid two-col">
+          <div class="field-group">
+            <label>Menu Drawer Mode</label>
+            <select id="cfgMenuDrawerMode" onchange="toggleMenuModePanels()">
+              <option value="standard">Standard Study / Custom Menu</option>
+              <option value="movieReview">Movie Review Menu (OTT • By Genres • By Year)</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Movie Review Menu Header Title</label>
+            <input type="text" id="cfgMovieMenuHeading" placeholder="Browse Reviews" />
+          </div>
+        </div>
+
+        <div id="movieReviewMenuBuilderCard" class="android-tile-card form-grid" style="display:none;">
+          <strong style="font-size:0.86rem; color:var(--neon-cyan);">🎬 Movie Review Menu Sections (No Download Quality • By Genres)</strong>
+          <div class="field-group">
+            <label>OTT Platforms (One per line: Name | URL or Filter Keyword)</label>
+            <textarea id="cfgMrOttItems" style="min-height:64px;"></textarea>
+          </div>
+          <div class="field-group">
+            <label>By Genres (One per line: Genre Name)</label>
+            <textarea id="cfgMrGenreItems" style="min-height:64px;"></textarea>
+          </div>
+          <div class="field-group">
+            <label>By Year (One per line: Year, e.g. 2026)</label>
+            <textarea id="cfgMrYearItems" style="min-height:54px;"></textarea>
+          </div>
+        </div>
+
+        <div id="standardMenuBuilderCard" class="android-tile-card">
           <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
             <div>
               <strong style="font-size:0.86rem;">☰ Top-Right Menu Drawer Builder</strong>
@@ -983,7 +1051,7 @@
 
         <div class="android-tile-card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <strong style="font-size:0.86rem;">Portal Card Buttons (Assign Link or Full-Screen Reels Tab)</strong>
+            <strong style="font-size:0.86rem;">Portal Card Buttons</strong>
             <button class="btn" onclick="addPortalCardRow()">+ Add Card</button>
           </div>
           <div id="cardsEditorList"></div>
@@ -1030,13 +1098,13 @@
         </div>
       </div>
 
-      <!-- Tab 6: Android File Manager Reels & Shorts Feed -->
+      <!-- Tab 6: Dedicated Reels Android File Manager -->
       <div id="tab-reels" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <div>
-              <strong style="font-size:0.9rem; color:var(--neon-cyan);">📱 Android File Manager -- Shorts & Reels Feed</strong>
-              <div style="font-size:0.7rem; color:var(--text-secondary);">Paste direct .mp4 / Drive video/image or YouTube Shorts links.</div>
+              <strong style="font-size:0.9rem; color:var(--neon-cyan);">📱 Reels Android File Manager</strong>
+              <div style="font-size:0.7rem; color:var(--text-secondary);">Manage Reels folders, subfolders, and video/image files just like Articles.</div>
             </div>
             <label style="display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; font-weight:800; cursor:pointer;">
               <input type="checkbox" id="cfgReelsFeedEnabled" style="width:auto;" /> Show Feed on Home
@@ -1045,15 +1113,6 @@
 
           <div class="field-group"><label>Section Heading</label><input type="text" id="cfgReelsSectionTitle" /></div>
 
-          <div class="android-tile-card" style="background:#090d16; margin-bottom:0;">
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:6px;">
-              <strong style="font-size:0.78rem; color:var(--neon-cyan);">Selected Folder: <span id="reelSelectedFolderDisplay">Root</span></strong>
-              <button type="button" class="btn btn-cyan" style="padding:4px 8px; font-size:0.7rem;" onclick="createReelFolderInManager()">+ New Folder</button>
-            </div>
-            <div class="folder-path-bar" id="reelManagerPathBar"></div>
-            <div id="reelManagerFoldersList" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
-          </div>
-
           <div class="form-grid two-col">
             <div class="field-group">
               <label>Right-Side Title</label>
@@ -1061,15 +1120,24 @@
             </div>
             <div class="field-group">
               <label>Direct .mp4 Video / Drive / Image / YouTube Shorts URL</label>
-              <input type="text" id="reelMediaUrlInp" placeholder="https://.../video.mp4 or https://youtube.com/shorts/..." />
+              <input type="text" id="reelMediaUrlInp" placeholder="https://.../video.mp4 or https://youtube.com/shorts/..." oninput="attachLivePreviewToInput(this)" />
+              <div class="live-media-preview-box"></div>
             </div>
           </div>
           <div style="display:flex; justify-content:flex-end;">
-            <button type="button" class="btn btn-cyan" onclick="addReelFeedItem()">+ Add Content to Selected Folder</button>
+            <button type="button" class="btn btn-cyan" onclick="addReelFeedItem()">+ Add Reel to Current Folder</button>
           </div>
         </div>
 
-        <div id="reelsFeedEditorList"></div>
+        <div class="android-tile-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+            <strong style="font-size:0.86rem;">📂 Reels Folders & Files</strong>
+            <button type="button" class="btn btn-cyan" onclick="createReelFolderInManager()">+ New Folder</button>
+          </div>
+          <div class="folder-path-bar" id="reelManagerPathBar"></div>
+          <div id="reelManagerFoldersList"></div>
+          <div id="reelsFeedEditorList" style="margin-top:8px;"></div>
+        </div>
       </div>
 
       <!-- Tab 7: Android File Manager for Articles -->
@@ -1087,7 +1155,7 @@
         </div>
       </div>
 
-      <!-- Tab 8: Homepage Sections & Boxes Sequence + Visibility + Notice Board + Socials + GitHub -->
+      <!-- Tab 8: Homepage Sections & Boxes Sequence + Visibility + Notice Board + Socials -->
       <div id="tab-sequence" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
           <strong style="font-size:0.86rem; display:block; margin-bottom:4px;">🏠 Homepage Sections & Boxes (Visibility & Sequence)</strong>
@@ -1105,9 +1173,12 @@
           <strong style="font-size:0.86rem; display:block; margin-bottom:8px;">Footer Social Media Links</strong>
           <div class="form-grid two-col" id="socialEditorFields"></div>
         </div>
+      </div>
 
+      <!-- Tab 9: Dedicated GitHub Sync Section -->
+      <div id="tab-github" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
-          <strong style="font-size:0.86rem; display:block; margin-bottom:8px;">GitHub Fine-Grained Token & HTML Export</strong>
+          <strong style="font-size:0.86rem; display:block; margin-bottom:8px;">☁️ GitHub Fine-Grained Token & HTML Export</strong>
           <div class="form-grid two-col">
             <div class="field-group"><label>Owner</label><input type="text" id="ghOwner" /></div>
             <div class="field-group"><label>Repository</label><input type="text" id="ghRepo" /></div>
@@ -1146,7 +1217,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V24";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V25";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1324,6 +1395,18 @@
       hubDesc: "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
       footerText: "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
       articleSortOrder: "newest",
+      menuDrawerMode: "standard",
+      movieMenuHeading: "Browse Reviews",
+      movieReviewMenu: {
+        ottItems: [
+          { label: "Netflix", target: "Netflix" },
+          { label: "Prime Video", target: "Prime Video" },
+          { label: "JioCinema", target: "JioCinema" },
+          { label: "Disney+ Hotstar", target: "Hotstar" }
+        ],
+        genreItems: ["Action", "Drama", "Thriller", "Comedy", "Sci-Fi", "Crime", "Romance", "Horror"],
+        yearItems: ["2026", "2025", "2024", "2023", "2022", "2021"]
+      },
       sectionVisibility: {
         portalCardsGrid: true,
         mainNeonBanner: true,
@@ -1437,8 +1520,8 @@
           url: "https://crackcgpsc.github.io/PYQPapers/"
         },
         {
-          title: "Topic Quiz",
-          sub: "CHAPTER PRACTICE BANK",
+          title: "Short Video Tab",
+          sub: "SHORT TOPIC VIDEOS",
           image: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=120&q=70",
           actionType: "reelsTab",
           url: ""
@@ -1491,7 +1574,6 @@
     let slideTimerId = null;
     let activeTableCell = null;
     let isFullReelsTabOpen = false;
-    let activeReelSlotIndex = 0;
     let isDesignerBarOpen = false;
     let isMoveEditEnabled = false;
     let selectedVeId = "";
@@ -1560,7 +1642,6 @@
       closeEduExplorerModal();
       teardownDesignerBar(false);
       isFullReelsTabOpen = false;
-      activeReelSlotIndex = 0;
       currentFolderId = "";
       selectedSubjectFolderId = "";
       selectedReelFolderPath = "";
@@ -1572,7 +1653,6 @@
 
     function openFullReelsTab() {
       showHomeUI();
-      activeReelSlotIndex = 0;
       isFullReelsTabOpen = true;
       renderAll();
       pushAppView("reelsTab");
@@ -1580,7 +1660,6 @@
 
     function closeReelsTabToHome(popHist = true) {
       isFullReelsTabOpen = false;
-      document.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
       renderAll();
       if (popHist && activeStack[activeStack.length - 1] === "reelsTab") activeStack.pop();
     }
@@ -1641,6 +1720,27 @@
       return t;
     }
 
+    function attachLivePreviewToInput(inputEl) {
+      if (!inputEl) return;
+      const box = inputEl.parentElement?.querySelector(".live-media-preview-box");
+      if (!box) return;
+      const src = convertDriveUrl(inputEl.value || "");
+      if (!src) {
+        box.classList.remove("has-img");
+        box.innerHTML = "";
+        return;
+      }
+      box.classList.add("has-img");
+      box.innerHTML = `<img src="${escapeHtml(src)}" alt="Preview" onerror="this.closest('.live-media-preview-box').classList.remove('has-img')" />`;
+    }
+
+    function refreshAllAdminPreviews() {
+      document.querySelectorAll(".live-media-preview-box").forEach(box => {
+        const inp = box.parentElement?.querySelector("input");
+        if (inp) attachLivePreviewToInput(inp);
+      });
+    }
+
     function applyFaviconLink() {
       const favEl = document.getElementById("dynamicSiteFavicon");
       if (!favEl) return;
@@ -1670,37 +1770,64 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Preloads active + neighboring slides so there is no 1s black screen delay on scroll
+    // Instant thumbnail layer + active-only playback when visible on screen
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
 
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
-        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="auto" loop playsinline controls></video></div>`;
+        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="metadata" loop playsinline controls></video></div>`;
       }
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        const shouldPreload = Math.abs(index - activeReelSlotIndex) <= 1;
-        const isCur = index === activeReelSlotIndex;
-        const src = shouldPreload ? `${yt.embedUrl}?autoplay=${isCur ? "1" : "0"}&mute=0&loop=1&playsinline=1&rel=0` : "";
-        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" data-reel-idx="${index}" data-yt-embed="${escapeHtml(yt.embedUrl)}" src="${escapeHtml(src)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+        const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
+        return `
+          <div class="reel-media-frame">
+            <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="lazy" />
+            <iframe class="inpage-shorts-iframe" data-reel-idx="${index}" data-yt-embed="${escapeHtml(yt.embedUrl)}" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        `;
       }
 
       const imgSrc = convertDriveUrl(clean);
-      return `<div class="reel-media-frame"><img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
+      return `<div class="reel-media-frame"><img class="static-reel-img" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    function bindSmoothSingleReelController(scrollerEl) {
+    function bindVisibilityAwareReelController(secEl, scrollerEl) {
       const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
-      const applyWindowAround = (centerIdx) => {
-        activeReelSlotIndex = centerIdx;
-        cards.forEach((card, idx) => {
-          const isCur = idx === centerIdx;
-          const near = Math.abs(idx - centerIdx) <= 1;
+      let sectionVisible = false;
 
+      const stopAll = () => {
+        scrollerEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
+        scrollerEl.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => {
+          if (f.src) f.src = "";
+        });
+      };
+
+      const syncCenteredCard = () => {
+        if (!sectionVisible) {
+          stopAll();
+          return;
+        }
+        const sRect = scrollerEl.getBoundingClientRect();
+        const midY = sRect.top + sRect.height / 2;
+        let bestIdx = 0;
+        let bestDist = Infinity;
+
+        cards.forEach((c, i) => {
+          const r = c.getBoundingClientRect();
+          const d = Math.abs((r.top + r.height / 2) - midY);
+          if (d < bestDist) {
+            bestDist = d;
+            bestIdx = i;
+          }
+        });
+
+        cards.forEach((card, idx) => {
+          const isCur = idx === bestIdx;
           const vid = card.querySelector("video.auto-scroll-reel-video");
           if (vid) {
             if (isCur) {
@@ -1711,17 +1838,12 @@
               vid.pause();
             }
           }
-
           const iframe = card.querySelector("iframe.inpage-shorts-iframe");
           if (iframe) {
             const base = iframe.dataset.ytEmbed || "";
-            if (!base) return;
-            if (isCur) {
-              const targetSrc = `${base}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
-              if (iframe.src !== targetSrc) iframe.src = targetSrc;
-            } else if (near) {
-              const warmSrc = `${base}?autoplay=0&mute=0&loop=1&playsinline=1&rel=0`;
-              if (iframe.src !== warmSrc) iframe.src = warmSrc;
+            if (isCur && base) {
+              const target = `${base}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
+              if (iframe.src !== target) iframe.src = target;
             } else if (iframe.src) {
               iframe.src = "";
             }
@@ -1729,29 +1851,21 @@
         });
       };
 
-      const detectCenteredCard = () => {
-        const rect = scrollerEl.getBoundingClientRect();
-        const midY = rect.top + rect.height / 2;
-        let bestIdx = 0;
-        let bestDist = Infinity;
-        cards.forEach((c, idx) => {
-          const cr = c.getBoundingClientRect();
-          const d = Math.abs((cr.top + cr.height / 2) - midY);
-          if (d < bestDist) {
-            bestDist = d;
-            bestIdx = idx;
-          }
+      const secObs = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          sectionVisible = en.isIntersecting && en.intersectionRatio >= 0.35;
+          if (!sectionVisible) stopAll();
+          else syncCenteredCard();
         });
-        applyWindowAround(bestIdx);
-      };
+      }, { threshold: [0.35] });
+      secObs.observe(secEl);
 
       let tId = null;
       scrollerEl.addEventListener("scroll", () => {
+        stopAll();
         clearTimeout(tId);
-        tId = setTimeout(detectCenteredCard, 75);
+        tId = setTimeout(syncCenteredCard, 75);
       }, { passive: true });
-
-      applyWindowAround(0);
     }
 
     function parseRelatedLinks(rawText = "") {
@@ -1790,6 +1904,7 @@
       return trimmed.split(/\n\s*\n/).map(block => `<p>${escapeHtml(block).replace(/\n/g, "<br>")}</p>`).join("");
     }
 
+    // GOOGLE DOCS WYSIWYG + TABLE CONTROLS
     function createGoogleDocsEditor(initialHtml = "", placeholder = "Write here...") {
       const wrap = document.createElement("div");
       wrap.className = "wysiwyg-shell";
@@ -2008,8 +2123,57 @@
       document.execCommand("insertHTML", false, `<div class="${cls}" contenteditable="false"><iframe src="${yt.embedUrl}" allowfullscreen></iframe></div><p><br></p>`);
     }
 
+    // DYNAMIC ACTION TARGET PICKER (Adapts dynamically to chosen actionType)
+    function buildActionTargetPickerHtml(actionType, currentVal, targetInputClass) {
+      if (actionType === "reelsFolder") {
+        const paths = ["Root"];
+        (siteData.reelsFolders || []).forEach(f => {
+          const p = getReelFolderPathString(f.id);
+          if (p && !paths.includes(p)) paths.push(p);
+        });
+        const opts = paths.map(p => `<option value="${escapeHtml(p)}" ${currentVal === p ? "selected" : ""}>📁 ${escapeHtml(p)}</option>`).join("");
+        return `<select class="${targetInputClass}">${opts}</select>`;
+      }
+
+      if (actionType === "folder") {
+        const opts = [`<option value="" ${currentVal === "" ? "selected" : ""}>📁 Root (All Article Folders)</option>`]
+          .concat((siteData.folders || []).map(f => `<option value="${escapeHtml(f.id)}" ${currentVal === f.id ? "selected" : ""}>📁 ${escapeHtml(f.name)}</option>`)).join("");
+        return `<select class="${targetInputClass}">${opts}</select>`;
+      }
+
+      if (actionType === "article") {
+        const opts = (siteData.articles || []).map(a => `<option value="${escapeHtml(a.id)}" ${currentVal === a.id ? "selected" : ""}>📄 ${escapeHtml(a.title)}</option>`).join("");
+        return `<select class="${targetInputClass}">${opts}</select>`;
+      }
+
+      if (actionType === "anchor") {
+        const anchors = [
+          { id: "dest-portal-hub", label: "Official Portal Hub" },
+          { id: "dest-welcome-card", label: "Featured Showcase" },
+          { id: "dest-reels-feed", label: "Shorts & Reels Feed" },
+          { id: "articlesSection", label: "Articles Section" },
+          { id: "dest-notice-board", label: "Notice Board" },
+          { id: "dest-folders-section", label: "Study Folders" },
+          { id: "dest-footer", label: "Footer" }
+        ];
+        const opts = anchors.map(an => `<option value="${escapeHtml(an.id)}" ${currentVal === an.id ? "selected" : ""}>📍 ${escapeHtml(an.label)}</option>`).join("");
+        return `<select class="${targetInputClass}">${opts}</select>`;
+      }
+
+      if (actionType === "reelsTab") {
+        return `<input type="text" class="${targetInputClass}" value="" placeholder="Opens Full-Screen Reels Tab automatically" readonly />`;
+      }
+
+      return `<input type="text" class="${targetInputClass}" value="${escapeHtml(currentVal || "")}" placeholder="https://..." />`;
+    }
+
+    function renderDynamicTargetForRow(selectEl, targetWrapEl, targetInputClass, existingVal = "") {
+      if (!selectEl || !targetWrapEl) return;
+      targetWrapEl.innerHTML = buildActionTargetPickerHtml(selectEl.value, existingVal, targetInputClass);
+    }
+
     function getReelFolderPathString(folderId) {
-      if (!folderId) return "";
+      if (!folderId) return "Root";
       const all = siteData.reelsFolders || [];
       const chain = [];
       let cur = all.find(f => f.id === folderId);
@@ -2017,7 +2181,7 @@
         chain.unshift(cur.name);
         cur = all.find(f => f.id === cur.parentId);
       }
-      return chain.join(" > ");
+      return chain.join(" > ") || "Root";
     }
 
     function openEducationContentFolder(startFolderId = "") {
@@ -2109,9 +2273,86 @@
       if (sec) sec.scrollIntoView({ behavior: "smooth" });
     }
 
+    function applyMovieMenuFilter(keyword) {
+      searchQuery = (keyword || "").trim().toLowerCase();
+      document.getElementById("quickSearchInput").value = keyword || "";
+      currentArticlePage = 1;
+      showHomeUI();
+      handleBackAction();
+      renderHomeStack();
+      applySavedElementStylesAndAutoFit();
+      const sec = document.getElementById("articlesSection");
+      if (sec) sec.scrollIntoView({ behavior: "smooth" });
+    }
+
     function renderDrawerMenu() {
       const host = document.getElementById("drawerDynamicItemsContainer");
       host.innerHTML = "";
+
+      if ((siteData.menuDrawerMode || "standard") === "movieReview") {
+        const mr = siteData.movieReviewMenu || DEFAULT_DATA.movieReviewMenu;
+        const headLbl = document.createElement("div");
+        headLbl.style.cssText = "font-size:0.72rem; font-weight:800; color:var(--neon-cyan); padding:2px 4px;";
+        headLbl.textContent = siteData.movieMenuHeading || "Browse Reviews";
+        host.appendChild(headLbl);
+
+        const groups = [
+          {
+            title: "OTT",
+            items: (mr.ottItems || []).map(o => ({
+              label: o.label,
+              onClick: () => {
+                if (/^https?:\/\//i.test(o.target || "")) {
+                  handleBackAction();
+                  window.open(o.target, "_blank", "noopener,noreferrer");
+                } else {
+                  applyMovieMenuFilter(o.target || o.label);
+                }
+              }
+            }))
+          },
+          {
+            title: "By Genres",
+            items: (mr.genreItems || []).map(g => ({
+              label: g,
+              onClick: () => applyMovieMenuFilter(g)
+            }))
+          },
+          {
+            title: "By Year",
+            items: (mr.yearItems || []).map(yr => ({
+              label: yr,
+              onClick: () => applyMovieMenuFilter(yr)
+            }))
+          }
+        ];
+
+        groups.forEach(grp => {
+          const tBtn = document.createElement("button");
+          tBtn.type = "button";
+          tBtn.className = "btn btn-cyan";
+          tBtn.textContent = `${grp.title} ▾`;
+
+          const dd = document.createElement("div");
+          dd.className = "subject-dropdown-list";
+          tBtn.onclick = () => dd.classList.toggle("open");
+
+          grp.items.forEach(sub => {
+            if (!sub.label) return;
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "subject-filter-item";
+            b.innerHTML = `<span>${escapeHtml(sub.label)}</span><span>→</span>`;
+            b.onclick = sub.onClick;
+            dd.appendChild(b);
+          });
+
+          host.appendChild(tBtn);
+          host.appendChild(dd);
+        });
+        return;
+      }
+
       const items = siteData.menuItems || DEFAULT_DATA.menuItems;
       const folders = siteData.folders || [];
       const articles = siteData.articles || [];
@@ -2198,26 +2439,32 @@
         openFullReelsTab();
         return;
       }
-      if (!target) return;
-
       if (type === "reelsFolder") {
         showHomeUI();
-        selectedReelFolderPath = target;
+        selectedReelFolderPath = (!target || target === "Root") ? "" : target;
         openFullReelsTab();
-      } else if (type === "folder") {
+        return;
+      }
+      if (type === "folder") {
         showHomeUI();
         currentFolderId = target;
-        pushAppView("folder");
+        if (target) pushAppView("folder");
         renderBottomFolders();
         document.getElementById("dest-folders-section").scrollIntoView({ behavior: "smooth" });
-      } else if (type === "article") {
+        return;
+      }
+      if (type === "article") {
         const idx = (siteData.articles || []).findIndex(a => a.id === target);
         if (idx > -1) openArticleReader(idx);
-      } else if (type === "anchor") {
+        return;
+      }
+      if (type === "anchor") {
         showHomeUI();
         const el = document.getElementById(target) || document.getElementById(`dest-${target}`);
         if (el) el.scrollIntoView({ behavior: "smooth" });
-      } else {
+        return;
+      }
+      if (target) {
         window.open(target, "_blank", "noopener,noreferrer");
       }
     }
@@ -2281,18 +2528,21 @@
           (siteData.portalCards || []).forEach((card, idx) => {
             const themeClass = `card-theme-${idx % 4}`;
             const imgUrl = convertDriveUrl(card.image);
-            const isReelsBtn = card.actionType === "reelsTab";
+            const actType = card.actionType || "link";
             const a = document.createElement("a");
             a.className = `glass-portal-card ${themeClass}`;
             if (isMoveEditEnabled) {
               a.href = "javascript:void(0)";
-            } else if (isReelsBtn) {
-              a.href = "javascript:void(0)";
-              a.onclick = (ev) => { ev.preventDefault(); openFullReelsTab(); };
-            } else {
-              a.href = card.url || "#";
+            } else if (actType === "link" && card.url) {
+              a.href = card.url;
               a.target = "_blank";
               a.rel = "noopener noreferrer";
+            } else {
+              a.href = "javascript:void(0)";
+              a.onclick = (ev) => {
+                ev.preventDefault();
+                executePillAction({ actionType: actType, target: card.url || "" });
+              };
             }
             a.innerHTML = `
               ${imgUrl ? `<img class="glass-icon-img" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(card.title)}" loading="lazy" />` : ""}
@@ -2441,7 +2691,7 @@
 
             sec.appendChild(scroller);
             stack.appendChild(sec);
-            bindSmoothSingleReelController(scroller);
+            bindVisibilityAwareReelController(sec, scroller);
           }
         } else if (secId === "articlesSection" && !isFullReelsTabOpen) {
           const showNotice = isSectionVisible("noticeBoardPanel");
@@ -2479,7 +2729,7 @@
             if (allowedFolderSet && !allowedFolderSet.has(art.folderId || "")) return false;
             if (!searchQuery) return true;
             const rev = art.reviewData || {};
-            return `${art.title} ${art.excerpt} ${art.category || ""} ${rev.movieName || ""} ${rev.streamingPlatform || ""} ${(rev.categories || []).join(" ")}`.toLowerCase().includes(searchQuery);
+            return `${art.title} ${art.excerpt} ${art.category || ""} ${rev.movieName || ""} ${rev.releaseYear || ""} ${rev.streamingPlatform || ""} ${(rev.categories || []).join(" ")}`.toLowerCase().includes(searchQuery);
           });
 
           const totalPages = Math.max(1, Math.ceil(matchedArticles.length / ARTICLES_PER_PAGE));
@@ -2918,13 +3168,23 @@
       if (tabId === "tab-folders") renderAdminFileManager();
       if (tabId === "tab-reels") renderReelFolderManagerUI();
       if (tabId === "tab-sequence") renderSequenceManager();
+      refreshAllAdminPreviews();
     }
 
+    function toggleMenuModePanels() {
+      const mode = document.getElementById("cfgMenuDrawerMode").value;
+      const isMr = mode === "movieReview";
+      document.getElementById("movieReviewMenuBuilderCard").style.display = isMr ? "grid" : "none";
+      document.getElementById("standardMenuBuilderCard").style.display = isMr ? "none" : "block";
+    }
+
+    // DEDICATED REELS ANDROID FILE MANAGER
     function renderReelFolderManagerUI() {
       const folders = siteData.reelsFolders || [];
+      const items = siteData.reelsFeed?.items || [];
       const pathEl = document.getElementById("reelManagerPathBar");
-      const listEl = document.getElementById("reelManagerFoldersList");
-      const dispEl = document.getElementById("reelSelectedFolderDisplay");
+      const foldersHost = document.getElementById("reelManagerFoldersList");
+      const filesHost = document.getElementById("reelsFeedEditorList");
 
       const trail = [{ id: "", name: "📁 Root" }];
       let walk = folders.find(f => f.id === activeReelFolderId);
@@ -2936,31 +3196,49 @@
       trail.push(...chain);
 
       pathEl.innerHTML = trail.map((n, i) => {
-        const sep = i > 0 ? `<span>/</span>` : "";
+        const sep = i > 0 ? `<span style="color:var(--text-secondary);">/</span>` : "";
         return `${sep}<button type="button" class="btn" style="padding:3px 7px; font-size:0.7rem;" onclick="activeReelFolderId='${escapeHtml(n.id)}'; renderReelFolderManagerUI();">${escapeHtml(n.name)}</button>`;
       }).join("");
 
-      const pStr = getReelFolderPathString(activeReelFolderId);
-      dispEl.textContent = pStr ? `📁 ${pStr}` : "Root";
-
-      const children = folders.filter(f => (f.parentId || "") === activeReelFolderId);
-      listEl.innerHTML = "";
-      children.forEach(f => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "btn";
-        b.style.padding = "5px 9px";
-        b.style.fontSize = "0.72rem";
-        b.textContent = `📁 ${f.name} →`;
-        b.onclick = () => { activeReelFolderId = f.id; renderReelFolderManagerUI(); };
-        listEl.appendChild(b);
+      const childFolders = folders.filter(f => (f.parentId || "") === activeReelFolderId);
+      foldersHost.innerHTML = "";
+      childFolders.forEach(f => {
+        const row = document.createElement("div");
+        row.className = "android-tile-card";
+        row.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px; background:#090d16;";
+        row.innerHTML = `
+          <div style="cursor:pointer; flex:1; min-width:0;" onclick="activeReelFolderId='${escapeHtml(f.id)}'; renderReelFolderManagerUI();">
+            <div style="font-size:0.84rem; font-weight:800;">📁 ${escapeHtml(f.name)}</div>
+            <div style="font-size:0.65rem; color:var(--neon-cyan);">Tap to open folder</div>
+          </div>
+          <div style="display:flex; gap:5px;">
+            <button type="button" class="btn" style="padding:4px 8px; font-size:0.7rem;" onclick="renameReelFolderById('${escapeHtml(f.id)}')">Rename</button>
+            <button type="button" class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteReelFolderById('${escapeHtml(f.id)}')">✕</button>
+          </div>
+        `;
+        foldersHost.appendChild(row);
       });
 
-      renderReelsFeedEditorList();
+      const folderReels = items.filter(it => (it.folderId || "") === activeReelFolderId);
+      filesHost.innerHTML = "";
+      folderReels.forEach((it) => {
+        const realIdx = items.indexOf(it);
+        const card = document.createElement("div");
+        card.className = "android-tile-card";
+        card.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px; background:#090d16;";
+        card.innerHTML = `
+          <div style="min-width:0; flex:1;">
+            <div style="font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🎬 ${escapeHtml(it.caption || it.url)}</div>
+            <div style="font-size:0.66rem; color:var(--neon-cyan); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(it.url)}</div>
+          </div>
+          <button type="button" class="btn btn-danger" onclick="deleteReelFeedItem(${realIdx})">✕</button>
+        `;
+        filesHost.appendChild(card);
+      });
     }
 
     function createReelFolderInManager() {
-      const name = prompt("Enter Folder / Subfolder Name:");
+      const name = prompt("Enter Reels Folder / Subfolder Name:");
       if (!name || !name.trim()) return;
       const id = `rf-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       siteData.reelsFolders = siteData.reelsFolders || [];
@@ -2968,11 +3246,36 @@
       activeReelFolderId = id;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderReelFolderManagerUI();
-      showToast("Folder created & selected");
+      showToast("Reels folder created");
+    }
+
+    function renameReelFolderById(id) {
+      const f = (siteData.reelsFolders || []).find(x => x.id === id);
+      if (!f) return;
+      const next = prompt("New folder name:", f.name);
+      if (!next || !next.trim()) return;
+      f.name = next.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderReelFolderManagerUI();
+      showToast("Reels folder renamed");
+    }
+
+    function deleteReelFolderById(id) {
+      siteData.reelsFolders = (siteData.reelsFolders || []).filter(f => f.id !== id && f.parentId !== id);
+      (siteData.reelsFeed?.items || []).forEach(it => {
+        if (it.folderId === id) {
+          it.folderId = "";
+          it.folderPath = "Root";
+        }
+      });
+      if (activeReelFolderId === id) activeReelFolderId = "";
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderReelFolderManagerUI();
+      showToast("Reels folder deleted");
     }
 
     function addReelFeedItem() {
-      const folderPath = getReelFolderPathString(activeReelFolderId) || "Root";
+      const folderPath = getReelFolderPathString(activeReelFolderId);
       const url = (document.getElementById("reelMediaUrlInp").value || "").trim();
       const caption = (document.getElementById("reelCaptionInp").value || "").trim();
       if (!url) { showToast("Shorts / Video / Image link daalein"); return; }
@@ -2989,35 +3292,16 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       document.getElementById("reelMediaUrlInp").value = "";
       document.getElementById("reelCaptionInp").value = "";
-      renderReelsFeedEditorList();
+      refreshAllAdminPreviews();
+      renderReelFolderManagerUI();
       renderAll();
-      showToast("Added to Scroll Feed");
-    }
-
-    function renderReelsFeedEditorList() {
-      const host = document.getElementById("reelsFeedEditorList");
-      if (!host) return;
-      const items = siteData.reelsFeed?.items || [];
-      host.innerHTML = "";
-      items.forEach((it, idx) => {
-        const card = document.createElement("div");
-        card.className = "android-tile-card";
-        card.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px;";
-        card.innerHTML = `
-          <div style="min-width:0; flex:1;">
-            <div style="font-size:0.8rem; font-weight:800; color:var(--neon-cyan);">${escapeHtml(it.folderPath || "Root")}</div>
-            <div style="font-size:0.74rem; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(it.caption || it.url)}</div>
-          </div>
-          <button type="button" class="btn btn-danger" onclick="deleteReelFeedItem(${idx})">✕</button>
-        `;
-        host.appendChild(card);
-      });
+      showToast("Added to Reels folder");
     }
 
     function deleteReelFeedItem(idx) {
       (siteData.reelsFeed?.items || []).splice(idx, 1);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
-      renderReelsFeedEditorList();
+      renderReelFolderManagerUI();
       renderAll();
       showToast("Removed from feed");
     }
@@ -3028,7 +3312,11 @@
       box.innerHTML = `
         <div class="field-group"><label>Badge Tag</label><input type="text" class="sc-tag" value="${escapeHtml(slide.tag || "")}" /></div>
         <div class="field-group"><label>Slide Title</label><input type="text" class="sc-title" value="${escapeHtml(slide.title || "")}" /></div>
-        <div class="field-group"><label>Image / Drive GIF Link</label><input type="text" class="sc-img" value="${escapeHtml(slide.imageUrl || "")}" placeholder="https://drive.google.com/file/d/..." /></div>
+        <div class="field-group">
+          <label>Image / Drive GIF Link</label>
+          <input type="text" class="sc-img" value="${escapeHtml(slide.imageUrl || "")}" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
+          <div class="live-media-preview-box"></div>
+        </div>
         <div class="field-group"><label>Button Text & Link (Text | URL)</label><input type="text" class="sc-btn" value="${escapeHtml(`${slide.btnText || ""} | ${slide.btnUrl || ""}`)}" placeholder="Open → | https://..." /></div>
         <div class="field-group" style="grid-column:1 / -1;">
           <label>Short Description</label>
@@ -3039,6 +3327,7 @@
         </div>
       `;
       document.getElementById("showcaseSlidesEditorList").appendChild(box);
+      attachLivePreviewToInput(box.querySelector(".sc-img"));
     }
 
     function addMenuBuilderRow(data = { id: "", label: "", mode: "direct", dropdownSource: "folders", actionType: "link", target: "", customOptions: [] }) {
@@ -3064,16 +3353,20 @@
         </div>
         <div class="mb-direct-fields form-grid two-col" style="display:${!isDropdown ? "grid" : "none"};">
           <div class="field-group">
-            <label>Click Action Type</label>
-            <select class="mb-action-type">
+            <label>Action Type</label>
+            <select class="mb-action-type" onchange="renderDynamicTargetForRow(this, this.closest('.mb-direct-fields').querySelector('.mb-target-wrap'), 'mb-target')">
               <option value="link" ${actType === "link" ? "selected" : ""}>External Link (New Tab)</option>
-              <option value="reelsFolder" ${actType === "reelsFolder" ? "selected" : ""}>Reels Folder Filter</option>
+              <option value="reelsFolder" ${actType === "reelsFolder" ? "selected" : ""}>Open Reels Folder</option>
               <option value="folder" ${actType === "folder" ? "selected" : ""}>Open Article Folder</option>
               <option value="article" ${actType === "article" ? "selected" : ""}>Open Article</option>
-              <option value="anchor" ${actType === "anchor" ? "selected" : ""}>Page Destination Section</option>
+              <option value="reelsTab" ${actType === "reelsTab" ? "selected" : ""}>Open Reels Tab</option>
+              <option value="anchor" ${actType === "anchor" ? "selected" : ""}>Destination Point</option>
             </select>
           </div>
-          <div class="field-group"><label>Target</label><input type="text" class="mb-target" value="${escapeHtml(data.target || "")}" /></div>
+          <div class="field-group">
+            <label>Target</label>
+            <div class="mb-target-wrap">${buildActionTargetPickerHtml(actType, data.target || "", "mb-target")}</div>
+          </div>
         </div>
         <div class="mb-dropdown-fields form-grid" style="display:${isDropdown ? "grid" : "none"};">
           <div class="field-group">
@@ -3119,8 +3412,13 @@
       ];
       document.getElementById("globalReviewMetaEditor").innerHTML = fields.map(f => `
         <div class="field-group"><label>${f.title} Text</label><input type="text" data-rev-cfg="${f.kLabel}" value="${escapeHtml(cfg[f.kLabel] || "")}" /></div>
-        <div class="field-group"><label>${f.title} Small Icon / Drive GIF URL</label><input type="text" data-rev-cfg="${f.kIcon}" value="${escapeHtml(cfg[f.kIcon] || "")}" placeholder="https://drive.google.com/file/d/..." /></div>
+        <div class="field-group">
+          <label>${f.title} Small Icon / Drive GIF URL</label>
+          <input type="text" data-rev-cfg="${f.kIcon}" value="${escapeHtml(cfg[f.kIcon] || "")}" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
+          <div class="live-media-preview-box"></div>
+        </div>
       `).join("") + `<div class="field-group" style="grid-column:1 / -1;"><label>YouTube Review Button Text</label><input type="text" data-rev-cfg="youtubeCtaLabel" value="${escapeHtml(cfg.youtubeCtaLabel || "Watch Detailed Review on YouTube")}" /></div>`;
+      refreshAllAdminPreviews();
     }
 
     function resetPostComposerToNew() {
@@ -3219,12 +3517,20 @@
 
           <div class="standard-article-fields form-grid two-col" style="display:${!isReview ? "grid" : "none"};">
             <div class="field-group"><label>Top Badge / Category</label><input type="text" class="art-cat-inp" value="${escapeHtml(data.category || "")}" /></div>
-            <div class="field-group"><label>Preview Thumbnail Link (Drive GIF / Image)</label><input type="text" class="art-cover-inp" value="${escapeHtml(data.coverImage || "")}" /></div>
+            <div class="field-group">
+              <label>Preview Thumbnail Link (Drive GIF / Image)</label>
+              <input type="text" class="art-cover-inp" value="${escapeHtml(data.coverImage || "")}" oninput="attachLivePreviewToInput(this)" />
+              <div class="live-media-preview-box"></div>
+            </div>
           </div>
 
           <div class="movie-review-fields form-grid" style="display:${isReview ? "grid" : "none"};">
             <div class="form-grid two-col">
-              <div class="field-group"><label>Movie Poster Image Link (Drive / URL)</label><input type="text" class="rev-poster-inp" value="${escapeHtml(rev.posterUrl || data.coverImage || "")}" /></div>
+              <div class="field-group">
+                <label>Movie Poster Image Link (Drive / URL)</label>
+                <input type="text" class="rev-poster-inp" value="${escapeHtml(rev.posterUrl || data.coverImage || "")}" oninput="attachLivePreviewToInput(this)" />
+                <div class="live-media-preview-box"></div>
+              </div>
               <div class="field-group"><label>Movie Name</label><input type="text" class="rev-movie-name" value="${escapeHtml(rev.movieName || "")}" /></div>
               <div class="field-group"><label>Release Year</label><input type="text" class="rev-release-year" value="${escapeHtml(rev.releaseYear || "")}" /></div>
               <div class="field-group"><label>Streaming Platform</label><input type="text" class="rev-streaming-platform" value="${escapeHtml(rev.streamingPlatform || "")}" placeholder="e.g. Netflix, JioCinema, Prime Video" /></div>
@@ -3281,6 +3587,7 @@
       `;
 
       document.getElementById("composerWysiwygMount").appendChild(createGoogleDocsEditor(data.body || "", "Start writing here..."));
+      refreshAllAdminPreviews();
     }
 
     function switchPostTemplateMode(btnEl, mode) {
@@ -3293,6 +3600,7 @@
       const btns = btnEl.parentElement.querySelectorAll(".btn");
       btns[0].classList.toggle("btn-primary", !isRev);
       btns[1].classList.toggle("btn-primary", isRev);
+      refreshAllAdminPreviews();
     }
 
     function addNewCategoryCheckbox(btnEl) {
@@ -3577,6 +3885,14 @@
       document.getElementById("cfgHubDesc").value = siteData.hubDesc || "";
       document.getElementById("cfgArticlesHeading").value = siteData.articlesHeading || "";
 
+      document.getElementById("cfgMenuDrawerMode").value = siteData.menuDrawerMode || "standard";
+      document.getElementById("cfgMovieMenuHeading").value = siteData.movieMenuHeading || "Browse Reviews";
+      const mr = siteData.movieReviewMenu || DEFAULT_DATA.movieReviewMenu;
+      document.getElementById("cfgMrOttItems").value = (mr.ottItems || []).map(o => `${o.label} | ${o.target}`).join("\n");
+      document.getElementById("cfgMrGenreItems").value = (mr.genreItems || []).join("\n");
+      document.getElementById("cfgMrYearItems").value = (mr.yearItems || []).join("\n");
+      toggleMenuModePanels();
+
       const sc = siteData.showcaseCarousel || DEFAULT_DATA.showcaseCarousel;
       document.getElementById("cfgShowcaseEnabled").checked = sc.enabled !== false;
       const slideList = document.getElementById("showcaseSlidesEditorList");
@@ -3631,6 +3947,7 @@
       document.getElementById("ghBranch").value = gh.branch || "main";
       document.getElementById("ghPath").value = gh.path || "site-data.json";
       document.getElementById("ghToken").value = gh.token || "";
+      refreshAllAdminPreviews();
     }
 
     function addNavButtonRow(data = { label: "", actionType: "link", target: "" }) {
@@ -3641,18 +3958,19 @@
         <div class="field-group"><label>Pill Label</label><input type="text" class="nav-label" value="${escapeHtml(data.label)}" /></div>
         <div class="field-group">
           <label>Action Type</label>
-          <select class="nav-type">
+          <select class="nav-type" onchange="renderDynamicTargetForRow(this, this.closest('.android-tile-card').querySelector('.nav-target-wrap'), 'nav-target')">
             <option value="link" ${type === "link" ? "selected" : ""}>External Link (New Tab)</option>
-            <option value="reelsFolder" ${type === "reelsFolder" ? "selected" : ""}>Reels Folder Filter</option>
+            <option value="reelsFolder" ${type === "reelsFolder" ? "selected" : ""}>Open Reels Folder</option>
             <option value="folder" ${type === "folder" ? "selected" : ""}>Open Article Folder</option>
             <option value="article" ${type === "article" ? "selected" : ""}>Open Article</option>
-            <option value="anchor" ${type === "anchor" ? "selected" : ""}>Destination Point (Anchor ID)</option>
+            <option value="reelsTab" ${type === "reelsTab" ? "selected" : ""}>Open Reels Tab</option>
+            <option value="anchor" ${type === "anchor" ? "selected" : ""}>Destination Point</option>
           </select>
         </div>
         <div class="field-group" style="grid-column:1 / -1;">
           <label>Target</label>
-          <div style="display:flex; gap:6px;">
-            <input type="text" class="nav-target" value="${escapeHtml(data.target || data.url || "")}" />
+          <div style="display:flex; gap:6px; align-items:center;">
+            <div class="nav-target-wrap" style="flex:1;">${buildActionTargetPickerHtml(type, data.target || data.url || "", "nav-target")}</div>
             <button type="button" class="btn btn-danger" onclick="this.closest('.android-tile-card').remove()">✕</button>
           </div>
         </div>
@@ -3667,38 +3985,44 @@
       box.innerHTML = `
         <div class="field-group"><label>Button Title</label><input type="text" class="card-title-inp" value="${escapeHtml(data.title)}" /></div>
         <div class="field-group"><label>Small Subtitle</label><input type="text" class="card-sub-inp" value="${escapeHtml(data.sub)}" /></div>
-        <div class="field-group"><label>Icon / Drive GIF Link</label><input type="text" class="card-img-inp" value="${escapeHtml(data.image)}" /></div>
+        <div class="field-group">
+          <label>Icon / Drive GIF Link</label>
+          <input type="text" class="card-img-inp" value="${escapeHtml(data.image)}" oninput="attachLivePreviewToInput(this)" />
+          <div class="live-media-preview-box"></div>
+        </div>
         <div class="field-group">
           <label>Button Action</label>
-          <select class="card-action-sel" onchange="togglePortalCardUrlField(this)">
+          <select class="card-action-sel" onchange="renderDynamicTargetForRow(this, this.closest('.android-tile-card').querySelector('.card-target-wrap'), 'card-url-inp')">
             <option value="link" ${act === "link" ? "selected" : ""}>External Link (New Tab)</option>
-            <option value="reelsTab" ${act === "reelsTab" ? "selected" : ""}>Reels Tab (Full-Screen In-App)</option>
+            <option value="reelsFolder" ${act === "reelsFolder" ? "selected" : ""}>Open Reels Folder</option>
+            <option value="folder" ${act === "folder" ? "selected" : ""}>Open Article Folder</option>
+            <option value="article" ${act === "article" ? "selected" : ""}>Open Article</option>
+            <option value="reelsTab" ${act === "reelsTab" ? "selected" : ""}>Open Reels Tab</option>
+            <option value="anchor" ${act === "anchor" ? "selected" : ""}>Destination Point</option>
           </select>
         </div>
-        <div class="field-group card-url-wrap" style="grid-column:1 / -1; display:${act === "reelsTab" ? "none" : "flex"};">
-          <label>Destination URL</label>
-          <div style="display:flex; gap:6px;">
-            <input type="text" class="card-url-inp" value="${escapeHtml(data.url || "")}" />
+        <div class="field-group" style="grid-column:1 / -1;">
+          <label>Target</label>
+          <div style="display:flex; gap:6px; align-items:center;">
+            <div class="card-target-wrap" style="flex:1;">${buildActionTargetPickerHtml(act, data.url || "", "card-url-inp")}</div>
             <button type="button" class="btn btn-danger" onclick="this.closest('.android-tile-card').remove()">✕</button>
           </div>
         </div>
-        ${act === "reelsTab" ? `<div style="grid-column:1 / -1; display:flex; justify-content:flex-end;"><button type="button" class="btn btn-danger" onclick="this.closest('.android-tile-card').remove()">Remove Card</button></div>` : ""}
       `;
       document.getElementById("cardsEditorList").appendChild(box);
-    }
-
-    function togglePortalCardUrlField(sel) {
-      const card = sel.closest(".android-tile-card");
-      const wrap = card.querySelector(".card-url-wrap");
-      if (wrap) wrap.style.display = sel.value === "reelsTab" ? "none" : "flex";
+      attachLivePreviewToInput(box.querySelector(".card-img-inp"));
     }
 
     function collectAdminFormData() {
-      const navButtons = Array.from(document.querySelectorAll("#navEditorList .android-tile-card")).map(el => ({
-        label: el.querySelector(".nav-label").value.trim(),
-        actionType: el.querySelector(".nav-type").value,
-        target: el.querySelector(".nav-target").value.trim()
-      })).filter(x => x.label && x.target);
+      const navButtons = Array.from(document.querySelectorAll("#navEditorList .android-tile-card")).map(el => {
+        const actionType = el.querySelector(".nav-type").value;
+        const target = (el.querySelector(".nav-target")?.value || "").trim();
+        return {
+          label: el.querySelector(".nav-label").value.trim(),
+          actionType,
+          target
+        };
+      }).filter(x => x.label && (x.actionType === "reelsTab" || x.target !== undefined));
 
       const menuItems = Array.from(document.querySelectorAll("#menuBuilderEditorList .android-tile-card")).map(el => {
         const customRaw = el.querySelector(".mb-custom-opts").value || "";
@@ -3714,22 +4038,22 @@
           mode: el.querySelector(".mb-mode").value,
           dropdownSource: el.querySelector(".mb-dd-source").value,
           actionType: el.querySelector(".mb-action-type").value,
-          target: el.querySelector(".mb-target").value.trim(),
+          target: (el.querySelector(".mb-target")?.value || "").trim(),
           customOptions
         };
       }).filter(m => m.label);
 
       const portalCards = Array.from(document.querySelectorAll("#cardsEditorList .android-tile-card")).map(el => {
         const actType = el.querySelector(".card-action-sel")?.value || "link";
-        const uVal = el.querySelector(".card-url-inp")?.value.trim() || "";
+        const uVal = (el.querySelector(".card-url-inp")?.value || "").trim();
         return {
           title: el.querySelector(".card-title-inp").value.trim(),
           sub: el.querySelector(".card-sub-inp").value.trim(),
           image: el.querySelector(".card-img-inp").value.trim(),
           actionType: actType,
-          url: actType === "reelsTab" ? "" : uVal
+          url: uVal
         };
-      }).filter(x => x.title && (x.actionType === "reelsTab" || x.url));
+      }).filter(x => x.title);
 
       const slides = Array.from(document.querySelectorAll("#showcaseSlidesEditorList .android-tile-card")).map(el => {
         const btnPair = (el.querySelector(".sc-btn").value || "").split("|");
@@ -3742,6 +4066,14 @@
           btnUrl: (btnPair[1] || "").trim()
         };
       }).filter(s => s.title || s.imageUrl);
+
+      const ottItems = (document.getElementById("cfgMrOttItems").value || "").split("\n").map(l => l.trim()).filter(Boolean).map(line => {
+        const p = line.indexOf("|");
+        if (p === -1) return { label: line, target: line };
+        return { label: line.slice(0, p).trim(), target: line.slice(p + 1).trim() };
+      });
+      const genreItems = (document.getElementById("cfgMrGenreItems").value || "").split("\n").map(l => l.trim()).filter(Boolean);
+      const yearItems = (document.getElementById("cfgMrYearItems").value || "").split("\n").map(l => l.trim()).filter(Boolean);
 
       const reviewConfig = { ...DEFAULT_REVIEW_TEMPLATE_CONFIG };
       document.querySelectorAll("[data-rev-cfg]").forEach(inp => {
@@ -3768,6 +4100,9 @@
         hubDesc: document.getElementById("cfgHubDesc").value.trim() || "",
         footerText: siteData.footerText,
         articleSortOrder: siteData.articleSortOrder || "newest",
+        menuDrawerMode: document.getElementById("cfgMenuDrawerMode").value || "standard",
+        movieMenuHeading: document.getElementById("cfgMovieMenuHeading").value.trim() || "Browse Reviews",
+        movieReviewMenu: { ottItems, genreItems, yearItems },
         sectionVisibility: siteData.sectionVisibility || DEFAULT_DATA.sectionVisibility,
         showcaseCarousel: {
           enabled: document.getElementById("cfgShowcaseEnabled").checked,
@@ -4153,7 +4488,8 @@
         ${isCustom ? `
           <div class="field-group">
             <label>Image / Google Drive GIF Link (Auto-adjusts inside box)</label>
-            <input type="text" id="insInnerImg" value="${escapeHtml(customObj?.innerImageUrl || "")}" placeholder="https://drive.google.com/file/d/..." />
+            <input type="text" id="insInnerImg" value="${escapeHtml(customObj?.innerImageUrl || "")}" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
+            <div class="live-media-preview-box"></div>
           </div>
           <div class="field-group">
             <label>Extra Note / Text Inside Box</label>
@@ -4198,6 +4534,8 @@
         </div>
       `;
       document.getElementById("inspectorBackdrop").classList.add("open");
+      const innerImgInp = document.getElementById("insInnerImg");
+      if (innerImgInp) attachLivePreviewToInput(innerImgInp);
     }
 
     function saveElementStyleFromInspector(id, customIdx) {
