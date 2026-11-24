@@ -387,7 +387,7 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: One Item Per Snap View (No Extra Top Filter Pills Taking Space) */
+    /* Shorts / Reels Feed: Single-Active Video + Single-Line Folder & Title Header */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -423,7 +423,7 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      height: 520px;
+      height: 540px;
       overflow-y: auto;
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
@@ -432,7 +432,7 @@
 
     @media (min-width: 768px) {
       .reels-vertical-scroller {
-        height: 620px;
+        height: 640px;
       }
     }
 
@@ -453,18 +453,21 @@
       background: rgba(11, 15, 25, 0.98);
       border: 1px solid rgba(34, 211, 238, 0.25);
       border-radius: 14px;
-      padding: 8px 10px;
+      padding: 7px 9px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       gap: 5px;
     }
 
-    .reel-card-top {
+    /* Single-Line Header Row: Folder Left + Title Right */
+    .reel-single-meta-line {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
+      padding: 1px 2px;
+      min-width: 0;
     }
 
     .reel-folder-path-link {
@@ -473,23 +476,27 @@
       color: var(--neon-cyan);
       cursor: pointer;
       text-decoration: underline;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    /* Compact Small Caption on Top */
     .reel-top-caption {
-      font-size: 0.74rem;
+      font-size: 0.7rem;
       font-weight: 700;
       color: #f1f5f9;
       line-height: 1.2;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      text-align: right;
+      flex: 1;
+      min-width: 0;
     }
 
     .reel-media-frame {
       position: relative;
       width: 100%;
-      max-width: 420px;
+      max-width: 430px;
       margin: 0 auto;
       border-radius: 12px;
       overflow: hidden;
@@ -897,7 +904,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Single-Active Shorts/Video • Snap Feed • Homepage Control</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Single-Active Shorts/Video • Single-Line Header • Homepage Control</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1037,8 +1044,8 @@
 
           <div class="form-grid two-col">
             <div class="field-group">
-              <label>Top Caption Title</label>
-              <input type="text" id="reelCaptionInp" placeholder="e.g. Parliament Articles Trick" />
+              <label>Right-Side Title</label>
+              <input type="text" id="reelCaptionInp" placeholder="e.g. Why India Has Left Slope ?" />
             </div>
             <div class="field-group">
               <label>Direct .mp4 Video / Drive / Image / YouTube Shorts URL</label>
@@ -1127,7 +1134,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V21";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V22";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1468,7 +1475,7 @@
     let slideTimerId = null;
     let activeTableCell = null;
     let isFullReelsTabOpen = false;
-    let userPreferredSoundOn = false;
+    let activeReelSlotIndex = 0;
     let isDesignerBarOpen = false;
     let isMoveEditEnabled = false;
     let selectedVeId = "";
@@ -1537,6 +1544,7 @@
       closeEduExplorerModal();
       teardownDesignerBar(false);
       isFullReelsTabOpen = false;
+      activeReelSlotIndex = 0;
       currentFolderId = "";
       selectedSubjectFolderId = "";
       selectedReelFolderPath = "";
@@ -1548,6 +1556,7 @@
 
     function openFullReelsTab() {
       showHomeUI();
+      activeReelSlotIndex = 0;
       isFullReelsTabOpen = true;
       renderAll();
       pushAppView("reelsTab");
@@ -1625,67 +1634,78 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    function renderReelMediaElement(rawUrl, caption) {
+    // Renders active media ONLY for activeReelSlotIndex so background iframes/videos never stay active on scroll
+    function renderActiveOnlyReelMedia(rawUrl, caption, isCurrentActive) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
 
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
-        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" src="${escapeHtml(clean)}" loop playsinline controls></video></div>`;
+        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" src="${escapeHtml(clean)}" ${isCurrentActive ? "autoplay" : ""} loop playsinline controls></video></div>`;
       }
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        const muteFlag = userPreferredSoundOn ? "0" : "1";
-        const src = `${yt.embedUrl}?autoplay=1&mute=${muteFlag}&loop=1&playsinline=1&rel=0`;
-        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" src="${src}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
+        if (!isCurrentActive) {
+          const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
+          return `<div class="reel-media-frame"><img src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="lazy" /></div>`;
+        }
+        const src = `${yt.embedUrl}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
+        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" src="${src}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
       }
 
       const imgSrc = convertDriveUrl(clean);
       return `<div class="reel-media-frame"><img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    // Ensures ONLY the single most visible video plays, pauses all others, and enables sound
-    function bindSingleActiveVideoController(scrollerEl) {
+    function bindSingleActiveSlotController(scrollerEl, onIndexChange) {
       const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
-      const syncActiveVideo = () => {
+      const pauseAllVideos = () => {
+        scrollerEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
+      };
+
+      const handleScrollSnap = () => {
         const scrollerRect = scrollerEl.getBoundingClientRect();
-        let bestCard = null;
+        let bestIdx = activeReelSlotIndex;
         let bestOverlap = 0;
 
-        cards.forEach(card => {
+        cards.forEach((card, idx) => {
           const r = card.getBoundingClientRect();
           const overlap = Math.max(0, Math.min(r.bottom, scrollerRect.bottom) - Math.max(r.top, scrollerRect.top));
           if (overlap > bestOverlap) {
             bestOverlap = overlap;
-            bestCard = card;
+            bestIdx = idx;
           }
         });
 
-        cards.forEach(card => {
-          const vid = card.querySelector("video.auto-scroll-reel-video");
-          if (!vid) return;
-          if (card === bestCard && bestOverlap > 60) {
-            vid.muted = !userPreferredSoundOn;
-            vid.volume = 1;
-            vid.play().catch(() => {
-              vid.muted = true;
-              vid.play().catch(() => {});
-            });
-          } else {
-            vid.pause();
+        pauseAllVideos();
+        if (bestIdx !== activeReelSlotIndex && bestOverlap > 120) {
+          activeReelSlotIndex = bestIdx;
+          onIndexChange(bestIdx);
+        } else {
+          const curVid = cards[activeReelSlotIndex]?.querySelector("video.auto-scroll-reel-video");
+          if (curVid) {
+            curVid.muted = false;
+            curVid.volume = 1;
+            curVid.play().catch(() => {});
           }
-        });
+        }
       };
 
-      scrollerEl.addEventListener("scroll", syncActiveVideo, { passive: true });
-      document.addEventListener("pointerdown", () => {
-        userPreferredSoundOn = true;
-        syncActiveVideo();
-      }, { once: true });
+      let scrollDebounce = null;
+      scrollerEl.addEventListener("scroll", () => {
+        pauseAllVideos();
+        clearTimeout(scrollDebounce);
+        scrollDebounce = setTimeout(handleScrollSnap, 110);
+      }, { passive: true });
 
-      setTimeout(syncActiveVideo, 120);
+      const activeVid = cards[activeReelSlotIndex]?.querySelector("video.auto-scroll-reel-video");
+      if (activeVid) {
+        activeVid.muted = false;
+        activeVid.volume = 1;
+        activeVid.play().catch(() => {});
+      }
     }
 
     function parseRelatedLinks(rawText = "") {
@@ -2330,6 +2350,8 @@
               return `${pStr} ${r.caption || ""}`.toLowerCase().includes(searchQuery);
             });
 
+            if (activeReelSlotIndex >= filteredReels.length) activeReelSlotIndex = 0;
+
             const sec = document.createElement("section");
             sec.className = `reels-feed-section ${isFullReelsTabOpen ? "full-tab-reels-mode" : ""}`;
             sec.id = "dest-reels-feed";
@@ -2350,32 +2372,41 @@
 
             const scroller = document.createElement("div");
             scroller.className = "reels-vertical-scroller";
-            filteredReels.forEach(item => {
+            filteredReels.forEach((item, idx) => {
               const pathLabel = item.folderPath || getReelFolderPathString(item.folderId) || "Root";
+              const isCur = idx === activeReelSlotIndex;
               const card = document.createElement("div");
               card.className = "reel-feed-card";
 
-              const topBar = document.createElement("div");
-              topBar.className = "reel-card-top";
+              const metaLine = document.createElement("div");
+              metaLine.className = "reel-single-meta-line";
 
               const pathSpan = document.createElement("span");
               pathSpan.className = "reel-folder-path-link";
               pathSpan.textContent = `📁 ${pathLabel}`;
               pathSpan.onclick = () => openEducationContentFolder(item.folderId || "");
 
-              topBar.appendChild(pathSpan);
-              card.appendChild(topBar);
-
+              metaLine.appendChild(pathSpan);
               if (item.caption) {
-                card.insertAdjacentHTML("beforeend", `<div class="reel-top-caption">${escapeHtml(item.caption)}</div>`);
+                metaLine.insertAdjacentHTML("beforeend", `<span class="reel-top-caption">${escapeHtml(item.caption)}</span>`);
               }
 
-              card.insertAdjacentHTML("beforeend", renderReelMediaElement(item.url, item.caption));
+              card.appendChild(metaLine);
+              card.insertAdjacentHTML("beforeend", renderActiveOnlyReelMedia(item.url, item.caption, isCur));
               scroller.appendChild(card);
             });
+
             sec.appendChild(scroller);
             stack.appendChild(sec);
-            bindSingleActiveVideoController(scroller);
+
+            // Scroll to keep activeReelSlotIndex aligned and activate ONLY that card
+            if (activeReelSlotIndex > 0 && scroller.children[activeReelSlotIndex]) {
+              scroller.scrollTop = scroller.children[activeReelSlotIndex].offsetTop - scroller.offsetTop;
+            }
+
+            bindSingleActiveSlotController(scroller, () => {
+              renderAll();
+            });
           }
         } else if (secId === "articlesSection" && !isFullReelsTabOpen) {
           const showNotice = isSectionVisible("noticeBoardPanel");
