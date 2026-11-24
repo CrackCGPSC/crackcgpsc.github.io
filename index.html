@@ -127,6 +127,24 @@
       animation: logoNeonFloat 3.4s ease-in-out infinite;
     }
 
+    .brand-logo-media-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      max-height: 92px;
+      margin: 0 auto;
+    }
+
+    .brand-logo-media-box img {
+      max-width: 100%;
+      max-height: 92px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
     .neon-brand-sub {
       margin-top: 4px;
       font-family: "Montserrat", sans-serif;
@@ -388,7 +406,7 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: Smooth Snap Without DOM Rebuild Glitch */
+    /* Shorts / Reels Feed: Preloaded Adjacent Slides for Instant Start */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -809,7 +827,7 @@
     <div class="top-bar-wrap" data-ve-id="headerWrap">
       <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu">☰</button>
       <div class="hero-brand-center" onclick="handleBrandClick()">
-        <div class="neon-brand-title" id="headerBrandTitle" data-ve-id="brandTitle">CRACK CGPSC</div>
+        <div id="headerBrandLogoHost" data-ve-id="brandTitle"></div>
         <div class="neon-brand-sub" id="headerBrandSub" data-ve-id="brandSub">TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL</div>
       </div>
     </div>
@@ -895,7 +913,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Favicon • Streaming Platform • Custom PG • Smooth Shorts</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Instant Shorts Preload • Logo Image/GIF • Search Hint</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -919,8 +937,10 @@
       <!-- Tab 1 -->
       <div id="tab-general" class="admin-tab-content">
         <div class="android-tile-card form-grid two-col">
-          <div class="field-group"><label>Brand Title</label><input type="text" id="cfgBrandTitle" /></div>
+          <div class="field-group"><label>Brand Logo Text</label><input type="text" id="cfgBrandTitle" /></div>
+          <div class="field-group"><label>Brand Logo Image / GIF URL (Replaces Text When Set)</label><input type="text" id="cfgBrandLogoUrl" placeholder="https://drive.google.com/file/d/..." /></div>
           <div class="field-group"><label>Single-Line Subtitle</label><input type="text" id="cfgBrandSub" /></div>
+          <div class="field-group"><label>Search Box Suggestion Text</label><input type="text" id="cfgSearchPlaceholder" placeholder="Search History, Topics, Reviews or Articles..." /></div>
           <div class="field-group"><label>Website Favicon Link (Google Drive / Image URL)</label><input type="text" id="cfgFaviconUrl" placeholder="https://drive.google.com/file/d/..." /></div>
           <div class="field-group"><label>Articles Section Title</label><input type="text" id="cfgArticlesHeading" /></div>
           <div class="field-group"><label>Hub Tag</label><input type="text" id="cfgHubTag" /></div>
@@ -1126,7 +1146,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V23";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V24";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1294,7 +1314,9 @@
 
     const DEFAULT_DATA = {
       brandTitle: "CRACK CGPSC",
+      brandLogoUrl: "",
       brandSub: "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
+      searchPlaceholder: "Search History, Topics, Reviews or Articles...",
       faviconUrl: "",
       articlesHeading: "Latest Study Notes & Reviews",
       hubTag: "● OFFICIAL PORTAL HUB",
@@ -1626,6 +1648,19 @@
       favEl.href = src || "";
     }
 
+    function renderBrandLogoArea() {
+      const host = document.getElementById("headerBrandLogoHost");
+      if (!host) return;
+      const logoImg = convertDriveUrl(siteData.brandLogoUrl || "");
+      if (logoImg) {
+        host.className = "brand-logo-media-box";
+        host.innerHTML = `<img src="${escapeHtml(logoImg)}" alt="${escapeHtml(siteData.brandTitle || "Logo")}" loading="lazy" />`;
+      } else {
+        host.className = "neon-brand-title";
+        host.textContent = siteData.brandTitle || "CRACK CGPSC";
+      }
+    }
+
     function parseYouTubeEmbed(url) {
       if (!url) return null;
       const clean = url.trim();
@@ -1635,36 +1670,40 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Pre-renders all cards cleanly once without re-creating DOM during scroll
+    // Preloads active + neighboring slides so there is no 1s black screen delay on scroll
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
 
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
-        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" loop playsinline controls></video></div>`;
+        return `<div class="reel-media-frame"><video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="auto" loop playsinline controls></video></div>`;
       }
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        const src = `${yt.embedUrl}?autoplay=0&mute=0&loop=1&playsinline=1&rel=0`;
-        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" data-reel-idx="${index}" data-yt-src="${escapeHtml(src)}" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+        const shouldPreload = Math.abs(index - activeReelSlotIndex) <= 1;
+        const isCur = index === activeReelSlotIndex;
+        const src = shouldPreload ? `${yt.embedUrl}?autoplay=${isCur ? "1" : "0"}&mute=0&loop=1&playsinline=1&rel=0` : "";
+        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" data-reel-idx="${index}" data-yt-embed="${escapeHtml(yt.embedUrl)}" src="${escapeHtml(src)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
       }
 
       const imgSrc = convertDriveUrl(clean);
       return `<div class="reel-media-frame"><img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    // Smoothly activates ONLY the centered card without rebuilding DOM or jumping scrollTop
     function bindSmoothSingleReelController(scrollerEl) {
       const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
-      const activateCardAt = (targetIdx) => {
+      const applyWindowAround = (centerIdx) => {
+        activeReelSlotIndex = centerIdx;
         cards.forEach((card, idx) => {
-          const isTarget = idx === targetIdx;
+          const isCur = idx === centerIdx;
+          const near = Math.abs(idx - centerIdx) <= 1;
+
           const vid = card.querySelector("video.auto-scroll-reel-video");
           if (vid) {
-            if (isTarget) {
+            if (isCur) {
               vid.muted = false;
               vid.volume = 1;
               vid.play().catch(() => {});
@@ -1672,12 +1711,17 @@
               vid.pause();
             }
           }
+
           const iframe = card.querySelector("iframe.inpage-shorts-iframe");
           if (iframe) {
-            const baseSrc = iframe.dataset.ytSrc || "";
-            if (isTarget) {
-              const autoSrc = baseSrc.replace("autoplay=0", "autoplay=1");
-              if (iframe.src !== autoSrc) iframe.src = autoSrc;
+            const base = iframe.dataset.ytEmbed || "";
+            if (!base) return;
+            if (isCur) {
+              const targetSrc = `${base}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
+              if (iframe.src !== targetSrc) iframe.src = targetSrc;
+            } else if (near) {
+              const warmSrc = `${base}?autoplay=0&mute=0&loop=1&playsinline=1&rel=0`;
+              if (iframe.src !== warmSrc) iframe.src = warmSrc;
             } else if (iframe.src) {
               iframe.src = "";
             }
@@ -1687,28 +1731,27 @@
 
       const detectCenteredCard = () => {
         const rect = scrollerEl.getBoundingClientRect();
-        const centerY = rect.top + rect.height / 2;
-        let closestIdx = 0;
+        const midY = rect.top + rect.height / 2;
+        let bestIdx = 0;
         let bestDist = Infinity;
         cards.forEach((c, idx) => {
           const cr = c.getBoundingClientRect();
-          const cCenter = cr.top + cr.height / 2;
-          const dist = Math.abs(cCenter - centerY);
-          if (dist < bestDist) {
-            bestDist = dist;
-            closestIdx = idx;
+          const d = Math.abs((cr.top + cr.height / 2) - midY);
+          if (d < bestDist) {
+            bestDist = d;
+            bestIdx = idx;
           }
         });
-        activateCardAt(closestIdx);
+        applyWindowAround(bestIdx);
       };
 
       let tId = null;
       scrollerEl.addEventListener("scroll", () => {
         clearTimeout(tId);
-        tId = setTimeout(detectCenteredCard, 90);
+        tId = setTimeout(detectCenteredCard, 75);
       }, { passive: true });
 
-      activateCardAt(0);
+      applyWindowAround(0);
     }
 
     function parseRelatedLinks(rawText = "") {
@@ -2622,8 +2665,9 @@
     function renderAll() {
       document.title = `${siteData.brandTitle} - ${siteData.brandSub}`;
       applyFaviconLink();
-      document.getElementById("headerBrandTitle").textContent = siteData.brandTitle;
+      renderBrandLogoArea();
       document.getElementById("headerBrandSub").textContent = siteData.brandSub;
+      document.getElementById("quickSearchInput").placeholder = siteData.searchPlaceholder || DEFAULT_DATA.searchPlaceholder;
       document.getElementById("footerCopyText").textContent = siteData.footerText;
       document.getElementById("dest-footer").style.display = (isSectionVisible("siteFooter") && !isFullReelsTabOpen) ? "block" : "none";
 
@@ -2679,7 +2723,7 @@
       });
 
       el.querySelectorAll("img").forEach(img => {
-        if (img.closest(".showcase-slide-item") || img.closest(".poster-thumb-box") || img.closest(".reel-media-frame")) return;
+        if (img.closest(".showcase-slide-item") || img.closest(".poster-thumb-box") || img.closest(".reel-media-frame") || img.closest(".brand-logo-media-box")) return;
         if (h > 0) {
           img.style.maxHeight = `${Math.max(24, h - 14)}px`;
           img.style.width = "auto";
@@ -3524,7 +3568,9 @@
 
     function populateAdminEditors() {
       document.getElementById("cfgBrandTitle").value = siteData.brandTitle || "";
+      document.getElementById("cfgBrandLogoUrl").value = siteData.brandLogoUrl || "";
       document.getElementById("cfgBrandSub").value = siteData.brandSub || "";
+      document.getElementById("cfgSearchPlaceholder").value = siteData.searchPlaceholder || DEFAULT_DATA.searchPlaceholder;
       document.getElementById("cfgFaviconUrl").value = siteData.faviconUrl || "";
       document.getElementById("cfgHubTag").value = siteData.hubTag || "";
       document.getElementById("cfgHubHeading").value = siteData.hubHeading || "";
@@ -3712,7 +3758,9 @@
 
       return {
         brandTitle: document.getElementById("cfgBrandTitle").value.trim() || "CRACK CGPSC",
+        brandLogoUrl: document.getElementById("cfgBrandLogoUrl").value.trim(),
         brandSub: document.getElementById("cfgBrandSub").value.trim() || "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
+        searchPlaceholder: document.getElementById("cfgSearchPlaceholder").value.trim() || DEFAULT_DATA.searchPlaceholder,
         faviconUrl: document.getElementById("cfgFaviconUrl").value.trim(),
         articlesHeading: document.getElementById("cfgArticlesHeading").value.trim() || "Latest Study Notes & Reviews",
         hubTag: document.getElementById("cfgHubTag").value.trim() || "● OFFICIAL PORTAL HUB",
@@ -3798,6 +3846,8 @@
       const preservedReels = siteData.reelsFeed;
       const preservedReelsFolders = siteData.reelsFolders;
       const preservedFavicon = siteData.faviconUrl;
+      const preservedBrandLogo = siteData.brandLogoUrl;
+      const preservedSearchPh = siteData.searchPlaceholder;
       const fresh = structuredClone(DEFAULT_DATA);
       fresh.articles = preservedArticles || fresh.articles;
       fresh.folders = preservedFolders || fresh.folders;
@@ -3809,6 +3859,8 @@
       fresh.reelsFeed = preservedReels || fresh.reelsFeed;
       fresh.reelsFolders = preservedReelsFolders || fresh.reelsFolders;
       fresh.faviconUrl = preservedFavicon || "";
+      fresh.brandLogoUrl = preservedBrandLogo || "";
+      fresh.searchPlaceholder = preservedSearchPh || DEFAULT_DATA.searchPlaceholder;
       siteData = fresh;
       selectedVeId = "";
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
