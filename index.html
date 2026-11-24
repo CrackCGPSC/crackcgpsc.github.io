@@ -387,13 +387,15 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed (Single Full-Screen Snap Slide Per View in Reels Tab) */
+    /* Shorts & Reels Feed: One Item Per Snap View (Full Reels Tab & Home Window) */
     .reels-feed-section {
       background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
       border: 1px solid rgba(255, 42, 133, 0.3);
       border-radius: 16px;
-      padding: 13px 14px;
+      padding: 12px;
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
     }
 
     .reels-feed-section.full-tab-reels-mode {
@@ -407,8 +409,6 @@
       overflow: hidden;
       padding: 10px 12px;
       background: #04060a;
-      display: flex;
-      flex-direction: column;
     }
 
     .reels-top-home-btn {
@@ -424,54 +424,70 @@
     .reels-vertical-scroller {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-height: 540px;
+      gap: 0;
+      height: 450px;
       overflow-y: auto;
-      padding-right: 4px;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      border-radius: 14px;
+    }
+
+    @media (min-width: 768px) {
+      .reels-vertical-scroller {
+        height: 540px;
+      }
     }
 
     .reels-feed-section.full-tab-reels-mode .reels-vertical-scroller {
       flex: 1;
-      max-height: none;
-      gap: 0;
-      padding-right: 0;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
+      height: auto;
+      min-height: 0;
     }
 
     .reel-feed-card {
       position: relative;
-      background: rgba(11, 15, 25, 0.96);
-      border: 1px solid rgba(34, 211, 238, 0.25);
-      border-radius: 14px;
-      padding: 11px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .reels-feed-section.full-tab-reels-mode .reel-feed-card {
-      min-height: 100%;
+      width: 100%;
       height: 100%;
+      min-height: 100%;
       flex-shrink: 0;
-      border-radius: 14px;
       scroll-snap-align: start;
       scroll-snap-stop: always;
+      background: rgba(11, 15, 25, 0.98);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      border-radius: 14px;
+      padding: 9px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 6px;
+    }
+
+    .reel-card-top {
+      display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-
-    .reel-fullscreen-home-btn {
-      display: none !important;
-    }
-
-    .reel-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
 
     .reel-folder-path-link {
-      font-size: 0.7rem;
+      font-size: 0.66rem;
       font-weight: 800;
       color: var(--neon-cyan);
       cursor: pointer;
       text-decoration: underline;
+    }
+
+    /* Compact Small Caption on Top */
+    .reel-top-caption {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.25;
+      padding: 2px 2px 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .reel-media-frame {
@@ -484,31 +500,22 @@
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: #05070c;
       flex: 1;
+      min-height: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .reel-media-frame video,
-    .reel-media-frame img {
+    .reel-media-frame img,
+    .reel-media-frame iframe.inpage-shorts-iframe {
       width: 100%;
       height: 100%;
-      max-height: 62vh;
+      max-height: 100%;
+      border: 0;
       object-fit: contain;
       display: block;
       margin: 0 auto;
-    }
-
-    .shorts-launcher-card {
-      width: 100%;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-align: center;
-      min-height: 220px;
     }
 
     /* Articles + Notice Board Split (Collapses cleanly to 1fr when Notice Board is hidden) */
@@ -894,7 +901,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Shorts/Video Feed • Portal Reels Tab • Homepage Control</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">In-Page Shorts/Video • Single-Snap Feed • Homepage Control</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1034,7 +1041,7 @@
 
           <div class="form-grid two-col">
             <div class="field-group">
-              <label>Content Title / Caption</label>
+              <label>Top Caption Title</label>
               <input type="text" id="reelCaptionInp" placeholder="e.g. Parliament Articles Trick" />
             </div>
             <div class="field-group">
@@ -1124,7 +1131,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V19";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V20";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1551,7 +1558,6 @@
 
     function closeReelsTabToHome(popHist = true) {
       isFullReelsTabOpen = false;
-      document.querySelectorAll(".reel-feed-card.fullscreen-reel-mode").forEach(c => c.classList.remove("fullscreen-reel-mode"));
       renderAll();
       if (popHist && activeStack[activeStack.length - 1] === "reelsTab") activeStack.pop();
     }
@@ -1621,7 +1627,7 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Renders direct MP4/Drive video/image in-page AND clean YouTube Shorts card without Error 153
+    // Plays video directly in-page via HTML5 video or YouTube embed without external redirect
     function renderReelMediaElement(rawUrl, caption) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
@@ -1632,17 +1638,8 @@
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
-        const watchHref = `https://www.youtube.com/shorts/${yt.videoId}`;
-        return `
-          <div class="reel-media-frame">
-            <div class="shorts-launcher-card">
-              <img src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "YouTube Short")}" style="width:100%; max-height:240px; object-fit:cover; border-radius:10px;" loading="lazy" />
-              <div style="font-size:0.82rem; font-weight:800; color:#fff;">${escapeHtml(caption || "YouTube Short")}</div>
-              <a class="btn btn-primary" href="${escapeHtml(watchHref)}" target="_blank" rel="noopener noreferrer">▶ Play YouTube Short</a>
-            </div>
-          </div>
-        `;
+        const src = `${yt.embedUrl}?autoplay=1&mute=1&loop=1&playsinline=1&rel=0`;
+        return `<div class="reel-media-frame"><iframe class="inpage-shorts-iframe" src="${src}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
       }
 
       const imgSrc = convertDriveUrl(clean);
@@ -1655,13 +1652,13 @@
       const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const vid = entry.target;
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             vid.play().catch(() => {});
           } else {
             vid.pause();
           }
         });
-      }, { threshold: [0.45] });
+      }, { threshold: [0.5] });
       videos.forEach(v => obs.observe(v));
     }
 
@@ -2176,11 +2173,6 @@
       return base;
     }
 
-    function toggleReelCardFullscreen(cardEl, btnEl) {
-      const isFs = cardEl.classList.toggle("fullscreen-reel-mode");
-      if (btnEl) btnEl.textContent = isFs ? "✕ Exit" : "⛶ Fullscreen";
-    }
-
     function renderHomeStack() {
       const stack = document.getElementById("homeSectionsStack");
       stack.innerHTML = "";
@@ -2367,21 +2359,14 @@
               pathSpan.textContent = `📁 ${pathLabel}`;
               pathSpan.onclick = () => openEducationContentFolder(item.folderId || "");
 
-              const fsBtn = document.createElement("button");
-              fsBtn.type = "button";
-              fsBtn.className = "btn";
-              fsBtn.style.cssText = "padding:3px 8px; font-size:0.68rem;";
-              fsBtn.textContent = "⛶ Fullscreen";
-              fsBtn.onclick = () => toggleReelCardFullscreen(card, fsBtn);
-
               topBar.appendChild(pathSpan);
-              topBar.appendChild(fsBtn);
-
               card.appendChild(topBar);
-              card.insertAdjacentHTML("beforeend", renderReelMediaElement(item.url, item.caption));
+
               if (item.caption) {
-                card.insertAdjacentHTML("beforeend", `<p style="font-size:0.8rem; color:#e4eaf5; text-align:center;">${escapeHtml(item.caption)}</p>`);
+                card.insertAdjacentHTML("beforeend", `<div class="reel-top-caption">${escapeHtml(item.caption)}</div>`);
               }
+
+              card.insertAdjacentHTML("beforeend", renderReelMediaElement(item.url, item.caption));
               scroller.appendChild(card);
             });
             sec.appendChild(scroller);
@@ -2652,7 +2637,7 @@
       const h = el.clientHeight || el.offsetHeight || 0;
 
       el.querySelectorAll("div, p, h2, span, li").forEach(node => {
-        if (node.children.length === 0 && !node.classList.contains("ve-move-handle") && !node.classList.contains("ve-corner-handle") && node.textContent.trim()) {
+        if (node.children.length === 0 && !node.classList.contains("ve-move-handle") && !node.classList.contains("ve-corner-handle") && !node.classList.contains("reel-top-caption") && node.textContent.trim()) {
           let fs = baseFontSizePx || parseFloat(getComputedStyle(node).fontSize) || 14;
           const minFs = h > 0 && h < 48 ? 9 : 10;
           node.style.fontSize = `${fs}px`;
