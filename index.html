@@ -12,10 +12,16 @@
   <style>
     :root {
       --bg-main: #05070b;
+      --bg-card: rgba(16, 21, 34, 0.92);
       --text-primary: #f5f7fc;
       --text-secondary: #9ca7be;
       --neon-pink: #ff2a85;
       --neon-cyan: #22d3ee;
+      --ambient-a: rgba(255, 42, 133, 0.16);
+      --ambient-b: rgba(34, 211, 238, 0.10);
+      --box-radius: 14px;
+      --btn-radius: 999px;
+      --glow-color: rgba(34, 211, 238, 0.35);
     }
 
     * {
@@ -27,8 +33,8 @@
 
     body {
       background:
-        radial-gradient(circle at 50% 0%, rgba(255, 42, 133, 0.16), transparent 42%),
-        radial-gradient(circle at 80% 12%, rgba(34, 211, 238, 0.1), transparent 36%),
+        radial-gradient(circle at 50% 0%, var(--ambient-a), transparent 44%),
+        radial-gradient(circle at 82% 14%, var(--ambient-b), transparent 38%),
         var(--bg-main);
       color: var(--text-primary);
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
@@ -36,6 +42,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      transition: background 0.25s ease, color 0.2s ease;
     }
 
     a {
@@ -90,7 +97,7 @@
       justify-content: center;
       cursor: pointer;
       z-index: 25;
-      box-shadow: 0 0 14px rgba(34, 211, 238, 0.18);
+      box-shadow: 0 0 14px var(--glow-color);
     }
 
     .hero-brand-center {
@@ -103,16 +110,14 @@
       0%, 100% {
         transform: translateY(0px);
         text-shadow:
-          0 0 7px rgba(255, 42, 133, 0.9),
-          0 0 18px rgba(255, 42, 133, 0.55),
-          0 0 30px rgba(34, 211, 238, 0.35);
+          0 0 7px var(--neon-pink),
+          0 0 18px var(--glow-color);
       }
       50% {
         transform: translateY(-1.5px);
         text-shadow:
-          0 0 11px rgba(255, 42, 133, 1),
-          0 0 24px rgba(34, 211, 238, 0.65),
-          0 0 38px rgba(255, 42, 133, 0.5);
+          0 0 12px var(--neon-cyan),
+          0 0 24px var(--neon-pink);
       }
     }
 
@@ -181,7 +186,7 @@
       background: rgba(18, 23, 35, 0.88);
       backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 999px;
+      border-radius: var(--btn-radius);
       padding: 3px 3px 3px 14px;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 22px rgba(0, 0, 0, 0.55);
     }
@@ -198,10 +203,10 @@
     }
 
     .search-neon-btn {
-      background: linear-gradient(135deg, #d81b60, #ff2a85);
+      background: linear-gradient(135deg, var(--neon-pink), #ff2a85);
       color: #fff;
-      border: 1px solid rgba(255, 150, 195, 0.45);
-      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--btn-radius);
       padding: 6px 14px;
       font-family: "Montserrat", sans-serif;
       font-size: 0.68rem;
@@ -209,7 +214,7 @@
       letter-spacing: 0.8px;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 0 14px rgba(255, 42, 133, 0.5);
+      box-shadow: 0 0 14px var(--glow-color);
       flex-shrink: 0;
     }
 
@@ -226,7 +231,7 @@
       margin: 4px auto 0;
       width: 88%;
       border-radius: 999px;
-      background: linear-gradient(90deg, transparent 0%, rgba(34, 211, 238, 0.45) 35%, rgba(255, 255, 255, 0.78) 50%, rgba(255, 42, 133, 0.5) 65%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, var(--neon-cyan) 35%, rgba(255, 255, 255, 0.82) 50%, var(--neon-pink) 65%, transparent 100%);
       background-size: 200% 100%;
       filter: blur(1.2px);
       animation: thinFlareDrift 9s linear infinite;
@@ -269,7 +274,7 @@
       gap: 9px;
       min-height: 46px;
       padding: 6px 11px;
-      border-radius: 12px;
+      border-radius: var(--box-radius);
       text-decoration: none !important;
       overflow: hidden;
       backdrop-filter: blur(14px);
@@ -322,12 +327,12 @@
       justify-content: space-between;
       gap: 10px;
       padding: 8px 14px;
-      border-radius: 12px;
+      border-radius: var(--box-radius);
       color: #fff;
       background: linear-gradient(90deg, rgba(190, 24, 93, 0.85), rgba(225, 29, 72, 0.78), rgba(136, 19, 55, 0.9));
       backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 135, 185, 0.4);
-      box-shadow: 0 0 18px rgba(255, 42, 133, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      box-shadow: 0 0 18px var(--glow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);
       cursor: pointer;
     }
 
@@ -344,7 +349,7 @@
     .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
     .glass-pill-btn {
       padding: 6px 13px;
-      border-radius: 999px;
+      border-radius: var(--btn-radius);
       background: rgba(20, 26, 39, 0.86);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -354,28 +359,63 @@
       cursor: pointer;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
-    .glass-pill-btn:hover, .glass-pill-btn:active, .glass-pill-btn.active { border-color: var(--neon-cyan); box-shadow: 0 0 14px rgba(34, 211, 238, 0.5); }
+    .glass-pill-btn:hover, .glass-pill-btn:active, .glass-pill-btn.active { border-color: var(--neon-cyan); box-shadow: 0 0 14px var(--glow-color); }
 
     /* Official Portal Hub */
     .portal-hub-card {
-      background: linear-gradient(160deg, rgba(42, 16, 32, 0.76) 0%, rgba(12, 17, 28, 0.94) 68%);
+      background: var(--bg-card);
       backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 42, 133, 0.28);
-      border-radius: 16px;
+      border-radius: var(--box-radius);
       padding: 15px 18px;
       overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 16px var(--glow-color);
     }
 
-    .hub-tag { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px; background: rgba(255, 42, 133, 0.16); border: 1px solid rgba(255, 42, 133, 0.35); color: #ff6aa8; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 7px; }
+    .hub-tag { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: var(--btn-radius); background: rgba(255, 42, 133, 0.16); border: 1px solid rgba(255, 42, 133, 0.35); color: #ff6aa8; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 7px; }
     .hub-heading { font-size: clamp(0.88rem, 2.2vw, 1.18rem); font-weight: 800; color: #fff; margin-bottom: 4px; }
     .hub-copy { font-size: clamp(0.7rem, 1.7vw, 0.84rem); color: var(--text-secondary); }
+
+    /* Homepage Featured Media + Article Block (Clean Background) */
+    .home-featured-media-article {
+      background: transparent;
+      border-radius: var(--box-radius);
+      padding: 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .home-featured-media-frame {
+      width: 100%;
+      border-radius: var(--box-radius);
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .home-featured-media-frame img,
+    .home-featured-media-frame video {
+      width: 100%;
+      max-height: 440px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border-radius: var(--box-radius);
+    }
+
+    .home-featured-media-frame iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+      border-radius: var(--box-radius);
+    }
 
     /* Showcase Carousel */
     .showcase-carousel-box {
       position: relative;
       width: 100%;
-      border-radius: 16px;
+      border-radius: var(--box-radius);
       overflow: hidden;
       border: 1px solid rgba(34, 211, 238, 0.35);
       background: #0b0f18;
@@ -398,7 +438,7 @@
       gap: 6px;
     }
 
-    .showcase-pill-tag { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: 999px; background: rgba(255, 42, 133, 0.88); color: #fff; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; }
+    .showcase-pill-tag { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: var(--btn-radius); background: rgba(255, 42, 133, 0.88); color: #fff; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; }
     .showcase-slide-title { font-family: "Montserrat", sans-serif; font-size: clamp(1rem, 2.6vw, 1.55rem); font-weight: 900; color: #fff; line-height: 1.15; }
     .showcase-slide-desc { font-size: clamp(0.7rem, 1.5vw, 0.84rem); color: #e2e8f5; max-width: 760px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
@@ -406,11 +446,11 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: Smooth Touch Swipe Over Media */
+    /* Shorts / Reels Feed: 1:1 Real-Time Finger-Tracking Slide Deck */
     .reels-feed-section {
-      background: linear-gradient(155deg, rgba(16, 21, 34, 0.92), rgba(9, 13, 22, 0.96));
+      background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
-      border-radius: 16px;
+      border-radius: var(--box-radius);
       padding: 10px 12px;
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
       display: flex;
@@ -433,38 +473,44 @@
     .reels-top-home-btn { display: none !important; }
     .reels-feed-section.full-tab-reels-mode .reels-top-home-btn { display: inline-flex !important; }
 
-    .reels-vertical-scroller {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .reels-deck-viewport {
+      position: relative;
+      width: 100%;
       height: 540px;
-      overflow-y: auto;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-      border-radius: 14px;
+      overflow: hidden;
+      border-radius: var(--box-radius);
+      touch-action: none;
+      user-select: none;
     }
 
     @media (min-width: 768px) {
-      .reels-vertical-scroller { height: 640px; }
+      .reels-deck-viewport { height: 640px; }
     }
 
-    .reels-feed-section.full-tab-reels-mode .reels-vertical-scroller {
+    .reels-feed-section.full-tab-reels-mode .reels-deck-viewport {
       flex: 1;
       height: auto;
       min-height: 0;
+    }
+
+    .reels-deck-track {
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reels-deck-track.dragging {
+      transition: none !important;
     }
 
     .reel-feed-card {
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 100%;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
       background: rgba(11, 15, 25, 0.98);
       border: 1px solid rgba(34, 211, 238, 0.25);
-      border-radius: 14px;
+      border-radius: var(--box-radius);
       padding: 7px 9px;
       display: flex;
       flex-direction: column;
@@ -544,12 +590,11 @@
       margin: 0 auto;
     }
 
-    .reel-swipe-layer {
+    .reel-gesture-shield {
       position: absolute;
       inset: 0;
       z-index: 4;
       background: transparent;
-      touch-action: pan-y;
     }
 
     /* Live Image/GIF Preview Box in Admin Studio */
@@ -614,7 +659,7 @@
       align-items: center;
       gap: 6px;
       padding: 3px 9px;
-      border-radius: 999px;
+      border-radius: var(--btn-radius);
       background: rgba(34, 211, 238, 0.14);
       border: 1px solid rgba(34, 211, 238, 0.45);
       color: var(--neon-cyan);
@@ -626,26 +671,15 @@
     .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     @media (min-width: 960px) { .articles-grid { grid-template-columns: repeat(4, 1fr); } }
 
-    @keyframes borderGlowPulse {
-      0%, 100% {
-        border-color: rgba(34, 211, 238, 0.28);
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), 0 0 8px rgba(34, 211, 238, 0.14);
-      }
-      50% {
-        border-color: rgba(255, 42, 133, 0.55);
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55), 0 0 16px rgba(255, 42, 133, 0.28);
-      }
-    }
-
     .poster-article-card {
-      background: linear-gradient(170deg, rgba(20, 27, 43, 0.94), rgba(11, 15, 24, 0.98));
+      background: var(--bg-card);
       border: 1px solid rgba(34, 211, 238, 0.28);
-      border-radius: 14px;
+      border-radius: var(--box-radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       cursor: pointer;
-      animation: borderGlowPulse 4s ease-in-out infinite;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), 0 0 12px var(--glow-color);
       transition: transform 0.15s ease, border-color 0.15s ease;
     }
 
@@ -653,20 +687,20 @@
 
     .poster-thumb-box { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #080b12; overflow: hidden; }
     .poster-thumb-box img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-    .poster-top-badge { position: absolute; top: 7px; left: 7px; background: rgba(216, 27, 96, 0.92); color: #fff; font-size: 0.54rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; }
+    .poster-top-badge { position: absolute; top: 7px; left: 7px; background: rgba(216, 27, 96, 0.92); color: #fff; font-size: 0.54rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: var(--btn-radius); text-transform: uppercase; }
 
     .poster-card-body { padding: 9px 10px 11px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
     .poster-card-title { font-size: clamp(0.76rem, 1.4vw, 0.88rem); font-weight: 800; color: #fff; line-height: 1.24; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .poster-card-desc { font-size: clamp(0.64rem, 1.15vw, 0.74rem); color: var(--text-secondary); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
     .pagination-bar { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
-    .page-num-btn { min-width: 30px; height: 30px; padding: 0 9px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.16); background: #121826; color: #fff; font-size: 0.74rem; font-weight: 800; cursor: pointer; }
-    .page-num-btn.active { background: linear-gradient(135deg, #c9185b, #ff2a85); border-color: transparent; box-shadow: 0 0 12px rgba(255, 42, 133, 0.55); }
+    .page-num-btn { min-width: 30px; height: 30px; padding: 0 9px; border-radius: var(--btn-radius); border: 1px solid rgba(255, 255, 255, 0.16); background: #121826; color: #fff; font-size: 0.74rem; font-weight: 800; cursor: pointer; }
+    .page-num-btn.active { background: linear-gradient(135deg, var(--neon-pink), #ff2a85); border-color: transparent; box-shadow: 0 0 12px var(--glow-color); }
 
     .notice-board-panel {
-      background: linear-gradient(165deg, rgba(18, 24, 38, 0.94), rgba(10, 14, 22, 0.96));
+      background: var(--bg-card);
       border: 1px solid rgba(34, 211, 238, 0.32);
-      border-radius: 16px;
+      border-radius: var(--box-radius);
       padding: 13px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
     }
@@ -706,16 +740,17 @@
       align-items: center;
       gap: 8px;
       padding: 8px 10px;
-      border-radius: 12px;
-      background: rgba(20, 26, 40, 0.9);
+      border-radius: var(--box-radius);
+      background: var(--bg-card);
       border: 1px solid rgba(255, 255, 255, 0.14);
       cursor: pointer;
       text-align: left;
     }
 
-    .custom-canvas-element { position: relative; padding: 8px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18); min-height: 44px; overflow: hidden; }
+    .custom-canvas-element { position: relative; padding: 8px; border-radius: var(--box-radius); border: 1px solid rgba(255, 255, 255, 0.18); min-height: 44px; overflow: hidden; }
 
-    .article-reader { background: rgba(14, 18, 27, 0.94); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 16px; padding: 16px; }
+    /* Full Article & Full-Page About Reader */
+    .article-reader { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: var(--box-radius); padding: 16px; }
     .article-hero-img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 12px 0 16px; }
     .review-meta-list { display: flex; flex-direction: column; gap: 9px; margin: 14px 0 18px; background: #0b0f18; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px; }
     .review-meta-row { display: flex; align-items: flex-start; gap: 9px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.86rem; }
@@ -728,7 +763,7 @@
     .family-verdict-box { margin: 16px 0; padding: 12px 14px; border-radius: 11px; background: rgba(20, 26, 40, 0.9); border: 1px solid rgba(34, 211, 238, 0.3); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
     .verdict-badge-yes { background: #16a34a; color: #fff; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800; }
     .verdict-badge-no { background: #dc2626; color: #fff; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800; }
-    .review-cta-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 11px 14px; border-radius: 10px; font-size: 0.88rem; font-weight: 800; color: #fff !important; text-decoration: none !important; margin-top: 10px; }
+    .review-cta-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 11px 14px; border-radius: var(--btn-radius); font-size: 0.88rem; font-weight: 800; color: #fff !important; text-decoration: none !important; margin-top: 10px; }
     .yt-cta-btn { background: linear-gradient(135deg, #b91c1c, #ef4444); border: 1px solid rgba(255, 150, 150, 0.4); }
     .tg-cta-btn { background: linear-gradient(135deg, #0284c7, #229ed9); border: 1px solid rgba(125, 211, 252, 0.4); }
 
@@ -747,7 +782,7 @@
     .site-footer { background: rgba(9, 12, 18, 0.94); border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
     .footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
     .social-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
-    .social-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(20, 25, 37, 0.88); border: 1px solid rgba(255, 255, 255, 0.13); color: #fff; font-size: 0.76rem; font-weight: 700; text-decoration: none !important; }
+    .social-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--btn-radius); background: rgba(20, 25, 37, 0.88); border: 1px solid rgba(255, 255, 255, 0.13); color: #fff; font-size: 0.76rem; font-weight: 700; text-decoration: none !important; }
     .social-chip svg { width: 14px; height: 14px; fill: currentColor; }
     .footer-copy { font-size: 0.74rem; color: var(--text-secondary); }
 
@@ -762,10 +797,10 @@
     .subject-filter-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 9px; border-radius: 7px; background: #121826; border: 1px solid rgba(255, 255, 255, 0.08); color: #fff; font-size: 0.78rem; font-weight: 700; cursor: pointer; text-align: left; }
     .subject-filter-item:hover, .subject-filter-item.active { border-color: var(--neon-pink); background: rgba(255, 42, 133, 0.16); }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 10px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(22, 28, 41, 0.9); color: #fff; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-decoration: none !important; white-space: nowrap; }
-    .btn-primary { background: linear-gradient(135deg, #c9185b, #ff2a85); border-color: transparent; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 10px; border-radius: var(--btn-radius); border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(22, 28, 41, 0.9); color: #fff; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-decoration: none !important; white-space: nowrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--neon-pink), #ff2a85); border-color: transparent; }
     .btn-success { background: linear-gradient(135deg, #059669, #10b981); border-color: transparent; }
-    .btn-cyan { background: linear-gradient(135deg, #0891b2, #22d3ee); color: #041016; border-color: transparent; }
+    .btn-cyan { background: linear-gradient(135deg, #0891b2, var(--neon-cyan)); color: #041016; border-color: transparent; }
     .btn-danger { background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.45); color: #fca5a5; }
 
     .modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); z-index: 90; display: none; align-items: center; justify-content: center; padding: 16px; }
@@ -879,7 +914,7 @@
       <div class="neon-flare-strip" aria-hidden="true"></div>
     </div>
 
-    <!-- Main Home & Article View -->
+    <!-- Main Home, Article & Full-Page About View -->
     <main class="container" id="mainSiteContainer">
       <div id="homeView">
         <div class="home-sections-stack" id="homeSectionsStack"></div>
@@ -890,6 +925,13 @@
           <button class="btn" onclick="handleBackAction()">← Back</button>
         </div>
         <article class="article-reader" id="articleReaderContainer"></article>
+      </div>
+
+      <div id="aboutPageView" style="display:none;">
+        <div style="margin-bottom:10px;">
+          <button class="btn" onclick="handleBackAction()">← Home</button>
+        </div>
+        <section class="article-reader" id="aboutPageContentHost"></section>
       </div>
     </main>
 
@@ -909,7 +951,7 @@
     </footer>
   </div>
 
-  <!-- Right Slide Menu -->
+  <!-- Right Slide Menu (No direct Admin Login button -- hidden inside Full-Page About) -->
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="handleBackAction()"></div>
   <aside class="drawer-panel" id="drawerPanel">
     <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.12);">
@@ -919,14 +961,14 @@
     <button class="btn" onclick="navigateToHome(true)">🏠 Home</button>
     <div id="drawerDynamicItemsContainer" style="display:flex; flex-direction:column; gap:7px;"></div>
     <hr style="border:0; border-top:1px solid rgba(255,255,255,0.12); margin:4px 0;" />
-    <button class="btn btn-primary" id="drawerAdminActionBtn" onclick="openLoginOrAdmin()">🔐 Admin Login</button>
+    <button class="btn" onclick="openAboutFullPage()">ℹ️ About</button>
   </aside>
 
   <!-- Login Modal -->
   <div class="modal-backdrop" id="loginModal">
     <div class="modal-box">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h3 style="font-size:1rem;">Admin Studio Login</h3>
+        <h3 style="font-size:1rem;">Studio Login</h3>
         <button class="btn" onclick="handleBackAction()">✕</button>
       </div>
       <form onsubmit="handleAdminLogin(event)" class="form-grid">
@@ -939,7 +981,7 @@
           <input type="password" id="adminPassInput" required autocomplete="current-password" placeholder="Enter Password" />
         </div>
         <div id="loginErrorMsg" style="color:#fca5a5; font-size:0.8rem; display:none;">Invalid ID or Password.</div>
-        <button type="submit" class="btn btn-primary">Open Full-Screen Admin Studio</button>
+        <button type="submit" class="btn btn-primary">Open Admin Studio</button>
       </form>
     </div>
   </div>
@@ -951,7 +993,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Banner Action Picker • Auto Movie Filters • Swipe Shorts</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">1:1 Finger Swipe Shorts • About Page • Media Block • Themes</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -962,7 +1004,7 @@
 
     <div class="android-studio-wrap">
       <div class="android-segment-bar">
-        <button class="btn btn-primary" data-tab="tab-general" onclick="switchAdminTab('tab-general', this)">1. Header & Pills</button>
+        <button class="btn btn-primary" data-tab="tab-general" onclick="switchAdminTab('tab-general', this)">1. Header, Pills & About</button>
         <button class="btn" data-tab="tab-menu" onclick="switchAdminTab('tab-menu', this)">2. Menu Builder</button>
         <button class="btn" data-tab="tab-cards" onclick="switchAdminTab('tab-cards', this)">3. Cards & Banner</button>
         <button class="btn" data-tab="tab-post-composer" onclick="switchAdminTab('tab-post-composer', this)">4. New / Edit Post</button>
@@ -971,9 +1013,10 @@
         <button class="btn" data-tab="tab-folders" onclick="switchAdminTab('tab-folders', this)">7. Article Folders</button>
         <button class="btn" data-tab="tab-sequence" onclick="switchAdminTab('tab-sequence', this)">8. Homepage</button>
         <button class="btn" data-tab="tab-github" onclick="switchAdminTab('tab-github', this)">9. GitHub Sync</button>
+        <button class="btn" data-tab="tab-theme" onclick="switchAdminTab('tab-theme', this)">10. Homepage Theme</button>
       </div>
 
-      <!-- Tab 1 -->
+      <!-- Tab 1: Header, Pills & Full-Page About Editor -->
       <div id="tab-general" class="admin-tab-content">
         <div class="android-tile-card form-grid two-col">
           <div class="field-group"><label>Brand Logo Text</label><input type="text" id="cfgBrandTitle" /></div>
@@ -993,6 +1036,12 @@
           <div class="field-group"><label>Hub Tag</label><input type="text" id="cfgHubTag" /></div>
           <div class="field-group"><label>Hub Heading</label><input type="text" id="cfgHubHeading" /></div>
           <div class="field-group" style="grid-column:1 / -1;"><label>Hub Description</label><textarea id="cfgHubDesc" style="min-height:58px;"></textarea></div>
+        </div>
+
+        <div class="android-tile-card form-grid">
+          <strong style="font-size:0.86rem; color:var(--neon-cyan);">ℹ️ Full-Page About Section Content (Shown When User Clicks "About" in Menu)</strong>
+          <div class="field-group"><label>About Page Heading</label><input type="text" id="cfgAboutHeading" /></div>
+          <div id="aboutWysiwygHost"></div>
         </div>
 
         <div class="android-tile-card">
@@ -1037,7 +1086,7 @@
         </div>
       </div>
 
-      <!-- Tab 3: Cards & Banner (With Button Action + Dynamic Target Picker) -->
+      <!-- Tab 3: Cards & Banner -->
       <div id="tab-cards" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;"><strong style="font-size:0.86rem;">Education Content Folder Banner</strong></div>
@@ -1168,12 +1217,30 @@
         </div>
       </div>
 
-      <!-- Tab 8: Homepage Sections & Boxes Sequence + Visibility + Notice Board + Socials -->
+      <!-- Tab 8: Homepage Sequence + Visibility + Homepage Featured Media/Article Block + Notice Board + Socials -->
       <div id="tab-sequence" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
           <strong style="font-size:0.86rem; display:block; margin-bottom:4px;">🏠 Homepage Sections & Boxes (Visibility & Sequence)</strong>
           <div style="font-size:0.72rem; color:var(--text-secondary); margin-bottom:10px;">Tick/untick any section or box to control visibility, and use ↑/↓ to change sequence.</div>
           <div id="sequenceListContainer"></div>
+        </div>
+
+        <div class="android-tile-card form-grid">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <strong style="font-size:0.86rem; color:var(--neon-cyan);">🖼️ Homepage Media (Google Drive Image / GIF / Video) + Article Block</strong>
+            <label style="display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; font-weight:800; cursor:pointer;">
+              <input type="checkbox" id="cfgHomeFeaturedMediaVisible" style="width:auto;" onchange="toggleSectionVisibility('homeFeaturedMediaBlock', this.checked)" /> Show on Homepage
+            </label>
+          </div>
+          <div class="field-group">
+            <label>Google Drive Image / GIF / Video Link (Clean Background Render)</label>
+            <input type="text" id="cfgHomeFeaturedMediaUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
+            <div class="live-media-preview-box"></div>
+          </div>
+          <div class="field-group">
+            <label>Article Text Below Media (Google Docs Rich Editor)</label>
+            <div id="homeFeaturedMediaWysiwygHost"></div>
+          </div>
         </div>
 
         <div class="android-tile-card form-grid">
@@ -1207,6 +1274,41 @@
           </div>
         </div>
       </div>
+
+      <!-- Tab 10: Homepage Theme Section (12+ Options per Setting) -->
+      <div id="tab-theme" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card form-grid two-col">
+          <div style="grid-column:1 / -1;">
+            <strong style="font-size:0.9rem; color:var(--neon-cyan);">🎨 Homepage Theme, Light Ambiance & Shapes Customizer</strong>
+            <div style="font-size:0.72rem; color:var(--text-secondary);">Choose from 12+ theme presets, ambient light effects, box shapes, button shapes, and neon glow colors.</div>
+          </div>
+
+          <div class="field-group">
+            <label>1. Website Color & Ambiance Theme (12 Presets)</label>
+            <select id="cfgThemePreset" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+
+          <div class="field-group">
+            <label>2. Ambient Light & Glow Effect (12 Styles)</label>
+            <select id="cfgThemeLightEffect" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+
+          <div class="field-group">
+            <label>3. Light Effect Primary Color (12 Colors)</label>
+            <select id="cfgThemeLightColor" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+
+          <div class="field-group">
+            <label>4. Cards & Boxes Shape (12 Shapes)</label>
+            <select id="cfgThemeBoxShape" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+
+          <div class="field-group">
+            <label>5. Buttons & Pills Shape (12 Shapes)</label>
+            <select id="cfgThemeButtonShape" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="android-bottom-dock">
@@ -1230,11 +1332,86 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V26";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V27";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
     const ARTICLES_PER_PAGE = 10;
+
+    const THEME_COLOR_PRESETS = [
+      { id: "cyber-neon", label: "1. Cyber Neon Dark (Default)", bg: "#05070b", card: "rgba(16, 21, 34, 0.92)", text: "#f5f7fc", pink: "#ff2a85", cyan: "#22d3ee" },
+      { id: "emerald-psc", label: "2. Emerald PSC Night", bg: "#040b09", card: "rgba(11, 28, 24, 0.92)", text: "#ecfdf5", pink: "#10b981", cyan: "#34d399" },
+      { id: "royal-sapphire", label: "3. Royal Sapphire Deep", bg: "#040814", card: "rgba(14, 24, 52, 0.92)", text: "#eff6ff", pink: "#3b82f6", cyan: "#38bdf8" },
+      { id: "sunset-amber", label: "4. Sunset Amber Gold", bg: "#0c0704", card: "rgba(34, 20, 11, 0.92)", text: "#fffbeb", pink: "#f59e0b", cyan: "#fbbf24" },
+      { id: "midnight-violet", label: "5. Midnight Violet", bg: "#080512", card: "rgba(24, 15, 48, 0.92)", text: "#f5f3ff", pink: "#a855f7", cyan: "#c084fc" },
+      { id: "crimson-slate", label: "6. Crimson Cinema Slate", bg: "#0b0507", card: "rgba(34, 14, 20, 0.92)", text: "#fff1f2", pink: "#e11d48", cyan: "#fb7185" },
+      { id: "ocean-teal", label: "7. Deep Ocean Teal", bg: "#030a0c", card: "rgba(10, 30, 36, 0.92)", text: "#f0fdfa", pink: "#0d9488", cyan: "#2dd4bf" },
+      { id: "obsidian-gold", label: "8. Obsidian Luxury Gold", bg: "#070707", card: "rgba(24, 22, 18, 0.94)", text: "#fefce8", pink: "#eab308", cyan: "#fde047" },
+      { id: "aurora-mint", label: "9. Aurora Mint Wave", bg: "#050c0e", card: "rgba(13, 32, 36, 0.92)", text: "#ecfeff", pink: "#06b6d4", cyan: "#6ee7b7" },
+      { id: "cosmic-indigo", label: "10. Cosmic Indigo", bg: "#060614", card: "rgba(18, 19, 48, 0.92)", text: "#eef2ff", pink: "#6366f1", cyan: "#818cf8" },
+      { id: "graphite-pro", label: "11. Graphite Minimal Pro", bg: "#090a0d", card: "rgba(24, 26, 32, 0.94)", text: "#f8fafc", pink: "#ec4899", cyan: "#94a3b8" },
+      { id: "ruby-noir", label: "12. Ruby Noir Studio", bg: "#0a0406", card: "rgba(30, 12, 18, 0.94)", text: "#fff1f2", pink: "#f43f5e", cyan: "#38bdf8" }
+    ];
+
+    const THEME_LIGHT_EFFECTS = [
+      { id: "dual-aura", label: "1. Neon Dual Aura", aOp: 0.18, bOp: 0.12 },
+      { id: "top-spotlight", label: "2. Top Center Spotlight", aOp: 0.28, bOp: 0.04 },
+      { id: "cyber-pulse", label: "3. High-Intensity Cyber Glow", aOp: 0.32, bOp: 0.22 },
+      { id: "aurora-mist", label: "4. Soft Aurora Mist", aOp: 0.14, bOp: 0.18 },
+      { id: "halo-horizon", label: "5. Horizon Light Halo", aOp: 0.22, bOp: 0.15 },
+      { id: "subtle-ambient", label: "6. Subtle Studio Ambiance", aOp: 0.09, bOp: 0.07 },
+      { id: "deep-theater", label: "7. Deep Theater Vignette", aOp: 0.06, bOp: 0.04 },
+      { id: "neon-flare", label: "8. Vivid Neon Flare", aOp: 0.35, bOp: 0.24 },
+      { id: "prism-glow", label: "9. Dual Prism Split", aOp: 0.20, bOp: 0.20 },
+      { id: "velvet-shade", label: "10. Velvet Dark Shade", aOp: 0.11, bOp: 0.09 },
+      { id: "crystal-beam", label: "11. Crystal Top Beam", aOp: 0.25, bOp: 0.10 },
+      { id: "matte-clean", label: "12. Clean Matte (No Ambient Light)", aOp: 0.0, bOp: 0.0 }
+    ];
+
+    const THEME_LIGHT_COLORS = [
+      { id: "pink-cyan", label: "1. Neon Pink & Cyan", glow: "rgba(34, 211, 238, 0.35)", a: "rgba(255, 42, 133, 0.22)", b: "rgba(34, 211, 238, 0.14)" },
+      { id: "electric-cyan", label: "2. Electric Cyan Light", glow: "rgba(34, 211, 238, 0.48)", a: "rgba(34, 211, 238, 0.24)", b: "rgba(56, 189, 248, 0.16)" },
+      { id: "hot-magenta", label: "3. Hot Magenta Light", glow: "rgba(255, 42, 133, 0.48)", a: "rgba(255, 42, 133, 0.26)", b: "rgba(244, 63, 94, 0.14)" },
+      { id: "emerald-glow", label: "4. Emerald Green Light", glow: "rgba(16, 185, 129, 0.45)", a: "rgba(16, 185, 129, 0.24)", b: "rgba(52, 211, 153, 0.14)" },
+      { id: "solar-gold", label: "5. Solar Gold Light", glow: "rgba(245, 158, 11, 0.45)", a: "rgba(245, 158, 11, 0.24)", b: "rgba(251, 191, 36, 0.14)" },
+      { id: "royal-purple", label: "6. Royal Purple Light", glow: "rgba(168, 85, 247, 0.45)", a: "rgba(168, 85, 247, 0.24)", b: "rgba(192, 132, 252, 0.14)" },
+      { id: "crimson-red", label: "7. Crimson Red Light", glow: "rgba(239, 68, 68, 0.45)", a: "rgba(239, 68, 68, 0.24)", b: "rgba(248, 113, 113, 0.14)" },
+      { id: "ice-white", label: "8. Ice White Studio Light", glow: "rgba(255, 255, 255, 0.32)", a: "rgba(255, 255, 255, 0.14)", b: "rgba(203, 213, 225, 0.10)" },
+      { id: "sunset-orange", label: "9. Sunset Orange Light", glow: "rgba(249, 115, 22, 0.45)", a: "rgba(249, 115, 22, 0.24)", b: "rgba(251, 146, 60, 0.14)" },
+      { id: "lime-volt", label: "10. Lime Volt Light", glow: "rgba(132, 204, 22, 0.45)", a: "rgba(132, 204, 22, 0.22)", b: "rgba(163, 230, 53, 0.14)" },
+      { id: "sky-blue", label: "11. Deep Sky Blue Light", glow: "rgba(14, 165, 233, 0.45)", a: "rgba(14, 165, 233, 0.24)", b: "rgba(56, 189, 248, 0.14)" },
+      { id: "no-glow", label: "12. Off / No Light Glow", glow: "rgba(0, 0, 0, 0)", a: "rgba(0, 0, 0, 0)", b: "rgba(0, 0, 0, 0)" }
+    ];
+
+    const THEME_BOX_SHAPES = [
+      { id: "14px", label: "1. Rounded Glass (14px)" },
+      { id: "0px", label: "2. Sharp Rectangular (0px)" },
+      { id: "4px", label: "3. Tactical Micro-Corner (4px)" },
+      { id: "8px", label: "4. Clean Card (8px)" },
+      { id: "18px", label: "5. Soft Modern (18px)" },
+      { id: "24px", label: "6. Smooth Bubble (24px)" },
+      { id: "30px", label: "7. Ultra Capsule Box (30px)" },
+      { id: "2px", label: "8. Crisp Minimal (2px)" },
+      { id: "12px", label: "9. Compact Grid Box (12px)" },
+      { id: "20px", label: "10. Curved Lounge (20px)" },
+      { id: "6px", label: "11. Classic Portal Tile (6px)" },
+      { id: "28px", label: "12. Deep Arc Card (28px)" }
+    ];
+
+    const THEME_BUTTON_SHAPES = [
+      { id: "999px", label: "1. Full Pill Capsule (999px)" },
+      { id: "0px", label: "2. Sharp Square Button (0px)" },
+      { id: "4px", label: "3. Tactical Edge (4px)" },
+      { id: "8px", label: "4. Classic Rounded (8px)" },
+      { id: "12px", label: "5. Soft Modern Button (12px)" },
+      { id: "16px", label: "6. Smooth Curved (16px)" },
+      { id: "20px", label: "7. Semi-Pill (20px)" },
+      { id: "2px", label: "8. Crisp Flat (2px)" },
+      { id: "6px", label: "9. Compact Chip (6px)" },
+      { id: "14px", label: "10. Balanced Studio (14px)" },
+      { id: "24px", label: "11. Stadium Round (24px)" },
+      { id: "10px", label: "12. Android Material (10px)" }
+    ];
 
     const PARENTAL_ITEMS_LIST = [
       "Kiss on Cheeks", "Lip kiss Short", "Long Lip kiss", "Nudity Male",
@@ -1264,6 +1441,7 @@
       "mainNeonBanner",
       "quickPillButtons",
       "portalHubCard",
+      "homeFeaturedMediaBlock",
       "welcomeCardSection",
       "reelsFeedSection",
       "articlesSection"
@@ -1406,6 +1584,19 @@
       hubTag: "● OFFICIAL PORTAL HUB",
       hubHeading: "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
       hubDesc: "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
+      aboutHeading: "About Crack CGPSC",
+      aboutBody: `<h2>Welcome to Crack CGPSC</h2><p><strong>Crack CGPSC</strong> is a dedicated digital learning & exam preparation portal crafted for <strong>CGPSC</strong> and <strong>CGVYAPAM</strong> aspirants across Chhattisgarh.</p><ul><li><strong>Free Test Series & CBT Practice:</strong> Real exam-like mock tests and topic-wise quizzes.</li><li><strong>PYQ Papers Archive:</strong> Structured previous year question papers and analytical study notes.</li><li><strong>Visual & Quick Revision Feed:</strong> Bite-sized maps, tricks, and concept reels for fast retention.</li></ul>`,
+      homeFeaturedMedia: {
+        mediaUrl: "",
+        articleHtml: ""
+      },
+      themeConfig: {
+        preset: "cyber-neon",
+        lightEffect: "dual-aura",
+        lightColor: "pink-cyan",
+        boxShape: "14px",
+        buttonShape: "999px"
+      },
       footerText: "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
       articleSortOrder: "newest",
       menuDrawerMode: "standard",
@@ -1415,6 +1606,7 @@
         mainNeonBanner: true,
         quickPillButtons: true,
         portalHubCard: true,
+        homeFeaturedMediaBlock: false,
         welcomeCardSection: true,
         reelsFeedSection: true,
         articlesSection: true,
@@ -1622,7 +1814,7 @@
         document.getElementById("adminStudio").classList.remove("open");
       } else if (viewName === "designer") {
         teardownDesignerBar(false);
-      } else if (viewName === "article") {
+      } else if (viewName === "article" || viewName === "about") {
         showHomeUI();
       } else if (viewName === "reelsTab") {
         closeReelsTabToHome(false);
@@ -1636,7 +1828,32 @@
 
     function showHomeUI() {
       document.getElementById("articleView").style.display = "none";
+      document.getElementById("aboutPageView").style.display = "none";
       document.getElementById("homeView").style.display = "block";
+    }
+
+    function openAboutFullPage() {
+      if (activeStack[activeStack.length - 1] === "drawer") {
+        activeStack.pop();
+        document.getElementById("drawerBackdrop").classList.remove("open");
+        document.getElementById("drawerPanel").classList.remove("open");
+      }
+      isFullReelsTabOpen = false;
+      document.getElementById("homeView").style.display = "none";
+      document.getElementById("articleView").style.display = "none";
+      const aboutHost = document.getElementById("aboutPageView");
+      aboutHost.style.display = "block";
+
+      const loggedIn = isAdminLoggedIn();
+      document.getElementById("aboutPageContentHost").innerHTML = `
+        <h1 style="font-size:clamp(1.25rem, 2.8vw, 1.85rem); font-weight:900; margin-bottom:10px;">${escapeHtml(siteData.aboutHeading || "About Crack CGPSC")}</h1>
+        <div class="article-body-content">${renderRichHtmlBody(siteData.aboutBody || DEFAULT_DATA.aboutBody)}</div>
+        <div style="margin-top:26px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:flex-end;">
+          <button type="button" class="btn" style="font-size:0.72rem; opacity:0.85;" onclick="openLoginOrAdmin()">${loggedIn ? "Admin Studio" : "Login"}</button>
+        </div>
+      `;
+      pushAppView("about");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function navigateToHome(resetHistory) {
@@ -1709,6 +1926,31 @@
       } catch (e) {}
     }
 
+    function applyHomepageThemeStyles() {
+      const tc = { ...DEFAULT_DATA.themeConfig, ...(siteData.themeConfig || {}) };
+      const preset = THEME_COLOR_PRESETS.find(p => p.id === tc.preset) || THEME_COLOR_PRESETS[0];
+      const lightEff = THEME_LIGHT_EFFECTS.find(e => e.id === tc.lightEffect) || THEME_LIGHT_EFFECTS[0];
+      const lightCol = THEME_LIGHT_COLORS.find(c => c.id === tc.lightColor) || THEME_LIGHT_COLORS[0];
+
+      const root = document.documentElement;
+      root.style.setProperty("--bg-main", preset.bg);
+      root.style.setProperty("--bg-card", preset.card);
+      root.style.setProperty("--text-primary", preset.text);
+      root.style.setProperty("--neon-pink", preset.pink);
+      root.style.setProperty("--neon-cyan", preset.cyan);
+      root.style.setProperty("--box-radius", tc.boxShape || "14px");
+      root.style.setProperty("--btn-radius", tc.buttonShape || "999px");
+      root.style.setProperty("--glow-color", lightCol.glow);
+
+      if (lightEff.id === "matte-clean" || lightCol.id === "no-glow") {
+        root.style.setProperty("--ambient-a", "transparent");
+        root.style.setProperty("--ambient-b", "transparent");
+      } else {
+        root.style.setProperty("--ambient-a", lightCol.a);
+        root.style.setProperty("--ambient-b", lightCol.b);
+      }
+    }
+
     function isSectionVisible(id) {
       if (siteData.sectionVisibility && Object.prototype.hasOwnProperty.call(siteData.sectionVisibility, id)) {
         return siteData.sectionVisibility[id] !== false;
@@ -1724,6 +1966,24 @@
       const m2 = t.match(/[?&]id=([a-zA-Z0-9_-]+)/);
       if (m2 && m2[1] && t.includes("drive.google.com")) return `https://lh3.googleusercontent.com/d/${m2[1]}`;
       return t;
+    }
+
+    function renderUniversalMediaEmbed(rawUrl, altTitle = "Media") {
+      const clean = (rawUrl || "").trim();
+      if (!clean) return "";
+      if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
+        return `<video src="${escapeHtml(clean)}" controls playsinline preload="metadata"></video>`;
+      }
+      const yt = parseYouTubeEmbed(clean);
+      if (yt) {
+        return `<iframe src="${yt.embedUrl}?rel=0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>`;
+      }
+      const driveMatch = clean.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (driveMatch && clean.includes("video")) {
+        return `<iframe src="https://drive.google.com/file/d/${driveMatch[1]}/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe>`;
+      }
+      const imgSrc = convertDriveUrl(clean);
+      return `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(altTitle)}" loading="lazy" />`;
     }
 
     function attachLivePreviewToInput(inputEl) {
@@ -1776,7 +2036,7 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Smooth vertical touch swipe over video/iframe so scrolling works anywhere on the card
+    // YouTube JS API enabled so playVideo/pauseVideo runs instantaneously without iframe reload black screen
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
@@ -1784,8 +2044,8 @@
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
         return `
           <div class="reel-media-frame">
-            <video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="metadata" loop playsinline controls></video>
-            <div class="reel-swipe-layer" data-swipe-idx="${index}"></div>
+            <video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="auto" loop playsinline controls></video>
+            <div class="reel-gesture-shield" data-shield-idx="${index}"></div>
           </div>
         `;
       }
@@ -1793,11 +2053,12 @@
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
         const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
+        const apiSrc = `${yt.embedUrl}?enablejsapi=1&autoplay=0&mute=0&loop=1&playlist=${yt.videoId}&playsinline=1&rel=0`;
         return `
           <div class="reel-media-frame">
-            <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="lazy" />
-            <iframe class="inpage-shorts-iframe" data-reel-idx="${index}" data-yt-embed="${escapeHtml(yt.embedUrl)}" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-            <div class="reel-swipe-layer" data-swipe-idx="${index}"></div>
+            <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="eager" />
+            <iframe class="inpage-shorts-iframe" data-reel-idx="${index}" src="${escapeHtml(apiSrc)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <div class="reel-gesture-shield" data-shield-idx="${index}"></div>
           </div>
         `;
       }
@@ -1806,40 +2067,33 @@
       return `<div class="reel-media-frame"><img class="static-reel-img" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    function bindVisibilityAwareReelController(secEl, scrollerEl) {
-      const cards = Array.from(scrollerEl.querySelectorAll(".reel-feed-card"));
+    function sendYtCommand(iframe, funcName) {
+      if (!iframe || !iframe.contentWindow) return;
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: funcName, args: [] }), "*");
+      } catch (e) {}
+    }
+
+    // 1:1 Real-Time Finger-Tracking Slide Deck (Matches YouTube Shorts smoothness)
+    function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
+      const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
-      let sectionVisible = false;
+      let currentIndex = 0;
+      let isInView = false;
 
-      const stopAll = () => {
-        scrollerEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
-        scrollerEl.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => {
-          if (f.src) f.src = "";
-        });
+      const pauseAllMedia = () => {
+        trackEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
+        trackEl.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => sendYtCommand(f, "pauseVideo"));
       };
 
-      const syncCenteredCard = () => {
-        if (!sectionVisible) {
-          stopAll();
+      const playOnlyCurrent = () => {
+        if (!isInView) {
+          pauseAllMedia();
           return;
         }
-        const sRect = scrollerEl.getBoundingClientRect();
-        const midY = sRect.top + sRect.height / 2;
-        let bestIdx = 0;
-        let bestDist = Infinity;
-
-        cards.forEach((c, i) => {
-          const r = c.getBoundingClientRect();
-          const d = Math.abs((r.top + r.height / 2) - midY);
-          if (d < bestDist) {
-            bestDist = d;
-            bestIdx = i;
-          }
-        });
-
         cards.forEach((card, idx) => {
-          const isCur = idx === bestIdx;
+          const isCur = idx === currentIndex;
           const vid = card.querySelector("video.auto-scroll-reel-video");
           if (vid) {
             if (isCur) {
@@ -1852,71 +2106,81 @@
           }
           const iframe = card.querySelector("iframe.inpage-shorts-iframe");
           if (iframe) {
-            const base = iframe.dataset.ytEmbed || "";
-            if (isCur && base) {
-              const target = `${base}?autoplay=1&mute=0&loop=1&playsinline=1&rel=0`;
-              if (iframe.src !== target) iframe.src = target;
-            } else if (iframe.src) {
-              iframe.src = "";
+            if (isCur) {
+              sendYtCommand(iframe, "unMute");
+              sendYtCommand(iframe, "playVideo");
+            } else {
+              sendYtCommand(iframe, "pauseVideo");
             }
           }
         });
       };
 
+      const goToSlide = (nextIdx, animate = true) => {
+        currentIndex = Math.max(0, Math.min(cards.length - 1, nextIdx));
+        const h = viewportEl.clientHeight || 540;
+        trackEl.classList.toggle("dragging", !animate);
+        trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
+        playOnlyCurrent();
+      };
+
       const secObs = new IntersectionObserver((entries) => {
         entries.forEach(en => {
-          sectionVisible = en.isIntersecting && en.intersectionRatio >= 0.35;
-          if (!sectionVisible) stopAll();
-          else syncCenteredCard();
+          isInView = en.isIntersecting && en.intersectionRatio >= 0.35;
+          if (!isInView) pauseAllMedia();
+          else playOnlyCurrent();
         });
       }, { threshold: [0.35] });
       secObs.observe(secEl);
 
-      // Enable smooth vertical touch swiping on top of video frames
-      scrollerEl.querySelectorAll(".reel-swipe-layer").forEach((layer) => {
-        const idx = Number(layer.dataset.swipeIdx || 0);
-        let startY = 0;
-        let moved = false;
+      let startY = 0;
+      let currentDeltaY = 0;
+      let dragging = false;
 
-        layer.addEventListener("touchstart", (ev) => {
-          if (!ev.touches.length) return;
-          startY = ev.touches[0].clientY;
-          moved = false;
-        }, { passive: true });
-
-        layer.addEventListener("touchmove", (ev) => {
-          if (!ev.touches.length) return;
-          const dy = ev.touches[0].clientY - startY;
-          if (Math.abs(dy) > 10) {
-            moved = true;
-            scrollerEl.scrollTop -= dy * 0.65;
-            startY = ev.touches[0].clientY;
-          }
-        }, { passive: true });
-
-        layer.addEventListener("touchend", () => {
-          if (!moved) {
-            layer.style.pointerEvents = "none";
-            const card = cards[idx];
-            const vid = card?.querySelector("video.auto-scroll-reel-video");
-            if (vid) {
-              vid.muted = false;
-              vid.play().catch(() => {});
-            }
-            setTimeout(() => { layer.style.pointerEvents = "auto"; }, 2200);
-          } else {
-            const cardH = cards[0]?.clientHeight || scrollerEl.clientHeight;
-            const snappedIdx = Math.max(0, Math.min(cards.length - 1, Math.round(scrollerEl.scrollTop / Math.max(1, cardH))));
-            scrollerEl.scrollTo({ top: snappedIdx * cardH, behavior: "smooth" });
-          }
-        });
+      viewportEl.addEventListener("pointerdown", (e) => {
+        if (e.target.closest(".reel-folder-path-link")) return;
+        dragging = true;
+        startY = e.clientY;
+        currentDeltaY = 0;
+        trackEl.classList.add("dragging");
       });
 
-      let tId = null;
-      scrollerEl.addEventListener("scroll", () => {
-        clearTimeout(tId);
-        tId = setTimeout(syncCenteredCard, 80);
-      }, { passive: true });
+      viewportEl.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
+        currentDeltaY = e.clientY - startY;
+        const h = viewportEl.clientHeight || 540;
+        const baseOffset = -currentIndex * h;
+        const resistance = ((currentIndex === 0 && currentDeltaY > 0) || (currentIndex === cards.length - 1 && currentDeltaY < 0)) ? 0.3 : 1;
+        trackEl.style.transform = `translate3d(0px, ${baseOffset + currentDeltaY * resistance}px, 0px)`;
+      });
+
+      const finishGesture = () => {
+        if (!dragging) return;
+        dragging = false;
+        const h = viewportEl.clientHeight || 540;
+        const threshold = Math.min(75, h * 0.14);
+
+        if (Math.abs(currentDeltaY) < 8) {
+          // Tap to play/unmute active video directly
+          playOnlyCurrent();
+          goToSlide(currentIndex, true);
+          return;
+        }
+
+        if (currentDeltaY <= -threshold && currentIndex < cards.length - 1) {
+          goToSlide(currentIndex + 1, true);
+        } else if (currentDeltaY >= threshold && currentIndex > 0) {
+          goToSlide(currentIndex - 1, true);
+        } else {
+          goToSlide(currentIndex, true);
+        }
+      };
+
+      viewportEl.addEventListener("pointerup", finishGesture);
+      viewportEl.addEventListener("pointercancel", finishGesture);
+
+      window.addEventListener("resize", () => goToSlide(currentIndex, false));
+      setTimeout(() => goToSlide(0, false), 60);
     }
 
     function parseRelatedLinks(rawText = "") {
@@ -2174,7 +2438,6 @@
       document.execCommand("insertHTML", false, `<div class="${cls}" contenteditable="false"><iframe src="${yt.embedUrl}" allowfullscreen></iframe></div><p><br></p>`);
     }
 
-    // COLLECTS OTT, GENRES & YEARS AUTOMATICALLY FROM SAVED MOVIE REVIEW POSTS
     function extractMovieFilterOptionsFromPosts() {
       const ottSet = new Set();
       const genreSet = new Set();
@@ -2209,7 +2472,6 @@
       return Array.from(new Set([...ext.ott, ...ext.genres, ...ext.years]));
     }
 
-    // DYNAMIC ACTION TARGET PICKER (Adapts dynamically to chosen actionType)
     function buildActionTargetPickerHtml(actionType, currentVal, targetInputClass) {
       if (actionType === "movieFilter") {
         const tags = getAllFilterableMovieTags();
@@ -2241,6 +2503,7 @@
       if (actionType === "anchor") {
         const anchors = [
           { id: "dest-portal-hub", label: "Official Portal Hub" },
+          { id: "dest-home-featured-media", label: "Homepage Featured Media & Article" },
           { id: "dest-welcome-card", label: "Featured Showcase" },
           { id: "dest-reels-feed", label: "Shorts & Reels Feed" },
           { id: "articlesSection", label: "Articles Section" },
@@ -2679,6 +2942,21 @@
             <p class="hub-copy" id="hubDescText">${escapeHtml(siteData.hubDesc)}</p>
           `;
           stack.appendChild(hub);
+        } else if (secId === "homeFeaturedMediaBlock") {
+          const hfm = siteData.homeFeaturedMedia || {};
+          const mHtml = renderUniversalMediaEmbed(hfm.mediaUrl || "", "Featured Visual");
+          const aHtml = renderRichHtmlBody(hfm.articleHtml || "");
+          if ((mHtml || aHtml) && !isFullReelsTabOpen) {
+            const sec = document.createElement("section");
+            sec.className = "home-featured-media-article";
+            sec.id = "dest-home-featured-media";
+            sec.dataset.veId = "homeFeaturedMediaBlock";
+            sec.innerHTML = `
+              ${mHtml ? `<div class="home-featured-media-frame">${mHtml}</div>` : ""}
+              ${aHtml ? `<div class="article-body-content">${aHtml}</div>` : ""}
+            `;
+            stack.appendChild(sec);
+          }
         } else if (secId === "welcomeCardSection") {
           const sc = siteData.showcaseCarousel || DEFAULT_DATA.showcaseCarousel;
           const slides = (sc.slides || []).filter(s => s.title || s.imageUrl);
@@ -2743,8 +3021,12 @@
 
             sec.appendChild(headRow);
 
-            const scroller = document.createElement("div");
-            scroller.className = "reels-vertical-scroller";
+            const viewport = document.createElement("div");
+            viewport.className = "reels-deck-viewport";
+
+            const track = document.createElement("div");
+            track.className = "reels-deck-track";
+
             filteredReels.forEach((item, idx) => {
               const pathLabel = item.folderPath || getReelFolderPathString(item.folderId) || "Root";
               const card = document.createElement("div");
@@ -2765,12 +3047,13 @@
 
               card.appendChild(metaLine);
               card.insertAdjacentHTML("beforeend", renderReelMediaSlot(item.url, item.caption, idx));
-              scroller.appendChild(card);
+              track.appendChild(card);
             });
 
-            sec.appendChild(scroller);
+            viewport.appendChild(track);
+            sec.appendChild(viewport);
             stack.appendChild(sec);
-            bindVisibilityAwareReelController(sec, scroller);
+            bindSmoothFingerDeckController(sec, viewport, track);
           }
         } else if (secId === "articlesSection" && !isFullReelsTabOpen) {
           const showNotice = isSectionVisible("noticeBoardPanel");
@@ -3006,6 +3289,7 @@
     }
 
     function renderAll() {
+      applyHomepageThemeStyles();
       document.title = `${siteData.brandTitle} - ${siteData.brandSub}`;
       applyFaviconLink();
       renderBrandLogoArea();
@@ -3020,7 +3304,6 @@
       renderSocialLinks();
       applySavedElementStylesAndAutoFit();
       attachHandlesIfSelected();
-      updateAdminButtonState();
     }
 
     function renderSocialLinks() {
@@ -3066,7 +3349,7 @@
       });
 
       el.querySelectorAll("img").forEach(img => {
-        if (img.closest(".showcase-slide-item") || img.closest(".poster-thumb-box") || img.closest(".reel-media-frame") || img.closest(".brand-logo-media-box")) return;
+        if (img.closest(".showcase-slide-item") || img.closest(".poster-thumb-box") || img.closest(".reel-media-frame") || img.closest(".brand-logo-media-box") || img.closest(".home-featured-media-frame")) return;
         if (h > 0) {
           img.style.maxHeight = `${Math.max(24, h - 14)}px`;
           img.style.width = "auto";
@@ -3111,6 +3394,7 @@
       const art = siteData.articles[index];
       if (!art) return;
       document.getElementById("homeView").style.display = "none";
+      document.getElementById("aboutPageView").style.display = "none";
       document.getElementById("articleView").style.display = "block";
 
       const relatedItems = parseRelatedLinks(art.relatedLinks || "");
@@ -3207,14 +3491,8 @@
     });
 
     function isAdminLoggedIn() { return sessionStorage.getItem(ADMIN_AUTH_KEY) === "1"; }
-    function updateAdminButtonState() { document.getElementById("drawerAdminActionBtn").textContent = isAdminLoggedIn() ? "🛠️ Full-Screen Admin Studio" : "🔐 Admin Login"; }
 
     function openLoginOrAdmin() {
-      if (activeStack[activeStack.length - 1] === "drawer") {
-        activeStack.pop();
-        document.getElementById("drawerBackdrop").classList.remove("open");
-        document.getElementById("drawerPanel").classList.remove("open");
-      }
       if (isAdminLoggedIn()) openAdminStudio();
       else {
         document.getElementById("loginErrorMsg").style.display = "none";
@@ -3241,7 +3519,6 @@
     function logoutAdmin() {
       sessionStorage.removeItem(ADMIN_AUTH_KEY);
       navigateToHome(true);
-      updateAdminButtonState();
       showToast("Logged out");
     }
 
@@ -3250,7 +3527,6 @@
       document.getElementById("adminStudio").classList.add("open");
       document.getElementById("adminStudio").scrollTop = 0;
       pushAppView("admin");
-      updateAdminButtonState();
     }
 
     function switchAdminTab(tabId, btnEl) {
@@ -3269,6 +3545,33 @@
       const isMr = mode === "movieReview";
       document.getElementById("movieReviewMenuBuilderCard").style.display = isMr ? "grid" : "none";
       document.getElementById("standardMenuBuilderCard").style.display = isMr ? "none" : "block";
+    }
+
+    function populateThemeSelectors() {
+      const tc = { ...DEFAULT_DATA.themeConfig, ...(siteData.themeConfig || {}) };
+      const fillSel = (elId, arr, curVal) => {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        el.innerHTML = arr.map(o => `<option value="${escapeHtml(o.id)}" ${curVal === o.id ? "selected" : ""}>${escapeHtml(o.label)}</option>`).join("");
+      };
+      fillSel("cfgThemePreset", THEME_COLOR_PRESETS, tc.preset);
+      fillSel("cfgThemeLightEffect", THEME_LIGHT_EFFECTS, tc.lightEffect);
+      fillSel("cfgThemeLightColor", THEME_LIGHT_COLORS, tc.lightColor);
+      fillSel("cfgThemeBoxShape", THEME_BOX_SHAPES, tc.boxShape);
+      fillSel("cfgThemeButtonShape", THEME_BUTTON_SHAPES, tc.buttonShape);
+    }
+
+    function applyThemePreviewFromAdmin() {
+      siteData.themeConfig = {
+        preset: document.getElementById("cfgThemePreset").value,
+        lightEffect: document.getElementById("cfgThemeLightEffect").value,
+        lightColor: document.getElementById("cfgThemeLightColor").value,
+        boxShape: document.getElementById("cfgThemeBoxShape").value,
+        buttonShape: document.getElementById("cfgThemeButtonShape").value
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      applyHomepageThemeStyles();
+      showToast("Theme applied");
     }
 
     // DEDICATED REELS ANDROID FILE MANAGER
@@ -3914,6 +4217,7 @@
         mainNeonBanner: "Education Content Folder Banner",
         quickPillButtons: "Quick Pill Buttons",
         portalHubCard: "Official Portal Hub Box",
+        homeFeaturedMediaBlock: "🖼️ Homepage Media & Article Block",
         welcomeCardSection: "🎞️ Auto-Sliding Showcase Carousel",
         reelsFeedSection: "🎬 Shorts & Reels Scroll Feed",
         articlesSection: "Articles Section",
@@ -3952,7 +4256,12 @@
     function toggleSectionVisibility(secId, visible) {
       siteData.sectionVisibility = siteData.sectionVisibility || {};
       siteData.sectionVisibility[secId] = Boolean(visible);
+      if (secId === "homeFeaturedMediaBlock") {
+        const chk = document.getElementById("cfgHomeFeaturedMediaVisible");
+        if (chk) chk.checked = Boolean(visible);
+      }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderSequenceManager();
       renderAll();
     }
 
@@ -3979,6 +4288,11 @@
       document.getElementById("cfgHubDesc").value = siteData.hubDesc || "";
       document.getElementById("cfgArticlesHeading").value = siteData.articlesHeading || "";
 
+      document.getElementById("cfgAboutHeading").value = siteData.aboutHeading || "About Crack CGPSC";
+      const aboutHost = document.getElementById("aboutWysiwygHost");
+      aboutHost.innerHTML = "";
+      aboutHost.appendChild(createGoogleDocsEditor(siteData.aboutBody || DEFAULT_DATA.aboutBody, "Write About page details..."));
+
       document.getElementById("cfgMenuDrawerMode").value = siteData.menuDrawerMode || "standard";
       document.getElementById("cfgMovieMenuHeading").value = siteData.movieMenuHeading || "Browse Reviews";
       toggleMenuModePanels();
@@ -3993,6 +4307,14 @@
       document.getElementById("cfgReelsFeedEnabled").checked = rf.enabled !== false;
       document.getElementById("cfgReelsSectionTitle").value = rf.sectionTitle || "🎬 Shorts & Reels Scroll Feed";
       renderReelFolderManagerUI();
+
+      // Homepage Media + Article Block Editor
+      document.getElementById("cfgHomeFeaturedMediaVisible").checked = isSectionVisible("homeFeaturedMediaBlock");
+      const hfm = siteData.homeFeaturedMedia || { mediaUrl: "", articleHtml: "" };
+      document.getElementById("cfgHomeFeaturedMediaUrl").value = hfm.mediaUrl || "";
+      const hfmHost = document.getElementById("homeFeaturedMediaWysiwygHost");
+      hfmHost.innerHTML = "";
+      hfmHost.appendChild(createGoogleDocsEditor(hfm.articleHtml || "", "Write article text below media..."));
 
       document.getElementById("cfgNoticeTitle").value = siteData.noticeTitle || "📌 Notice Board";
       const noticeHost = document.getElementById("noticeWysiwygHost");
@@ -4028,6 +4350,7 @@
       resetPostComposerToNew();
       renderAdminFileManager();
       renderSequenceManager();
+      populateThemeSelectors();
 
       const socialContainer = document.getElementById("socialEditorFields");
       socialContainer.innerHTML = "";
@@ -4171,6 +4494,12 @@
         reviewConfig[inp.dataset.revCfg] = inp.value.trim();
       });
 
+      const aboutCanvas = document.querySelector("#aboutWysiwygHost .wysiwyg-canvas");
+      const aboutHtml = aboutCanvas ? aboutCanvas.innerHTML : (siteData.aboutBody || DEFAULT_DATA.aboutBody);
+
+      const hfmCanvas = document.querySelector("#homeFeaturedMediaWysiwygHost .wysiwyg-canvas");
+      const hfmHtml = hfmCanvas ? hfmCanvas.innerHTML : (siteData.homeFeaturedMedia?.articleHtml || "");
+
       const noticeCanvas = document.querySelector("#noticeWysiwygHost .wysiwyg-canvas");
       const noticeHtml = noticeCanvas ? noticeCanvas.innerHTML : (siteData.noticeBody || "");
 
@@ -4178,6 +4507,9 @@
       document.querySelectorAll("[data-social-key]").forEach(inp => {
         socialLinks[inp.dataset.socialKey] = inp.value.trim();
       });
+
+      const secVis = { ...(siteData.sectionVisibility || DEFAULT_DATA.sectionVisibility) };
+      secVis.homeFeaturedMediaBlock = document.getElementById("cfgHomeFeaturedMediaVisible").checked;
 
       return {
         brandTitle: document.getElementById("cfgBrandTitle").value.trim() || "CRACK CGPSC",
@@ -4189,11 +4521,24 @@
         hubTag: document.getElementById("cfgHubTag").value.trim() || "● OFFICIAL PORTAL HUB",
         hubHeading: document.getElementById("cfgHubHeading").value.trim() || "Crack CGPSC",
         hubDesc: document.getElementById("cfgHubDesc").value.trim() || "",
+        aboutHeading: document.getElementById("cfgAboutHeading").value.trim() || "About Crack CGPSC",
+        aboutBody: aboutHtml,
+        homeFeaturedMedia: {
+          mediaUrl: document.getElementById("cfgHomeFeaturedMediaUrl").value.trim(),
+          articleHtml: hfmHtml
+        },
+        themeConfig: {
+          preset: document.getElementById("cfgThemePreset")?.value || "cyber-neon",
+          lightEffect: document.getElementById("cfgThemeLightEffect")?.value || "dual-aura",
+          lightColor: document.getElementById("cfgThemeLightColor")?.value || "pink-cyan",
+          boxShape: document.getElementById("cfgThemeBoxShape")?.value || "14px",
+          buttonShape: document.getElementById("cfgThemeButtonShape")?.value || "999px"
+        },
         footerText: siteData.footerText,
         articleSortOrder: siteData.articleSortOrder || "newest",
         menuDrawerMode: document.getElementById("cfgMenuDrawerMode").value || "standard",
         movieMenuHeading: document.getElementById("cfgMovieMenuHeading").value.trim() || "Browse Reviews",
-        sectionVisibility: siteData.sectionVisibility || DEFAULT_DATA.sectionVisibility,
+        sectionVisibility: secVis,
         showcaseCarousel: {
           enabled: document.getElementById("cfgShowcaseEnabled").checked,
           slides
@@ -4262,31 +4607,26 @@
     }
 
     function resetDesignerLayout() {
-      const preservedArticles = siteData.articles;
-      const preservedFolders = siteData.folders;
-      const preservedGh = siteData.github;
-      const preservedSocial = siteData.socialLinks;
-      const preservedMenu = siteData.menuItems;
-      const preservedReviewCfg = siteData.reviewConfig;
-      const preservedShowcase = siteData.showcaseCarousel;
-      const preservedReels = siteData.reelsFeed;
-      const preservedReelsFolders = siteData.reelsFolders;
-      const preservedFavicon = siteData.faviconUrl;
-      const preservedBrandLogo = siteData.brandLogoUrl;
-      const preservedSearchPh = siteData.searchPlaceholder;
+      const preserved = {
+        articles: siteData.articles,
+        folders: siteData.folders,
+        github: siteData.github,
+        socialLinks: siteData.socialLinks,
+        menuItems: siteData.menuItems,
+        reviewConfig: siteData.reviewConfig,
+        showcaseCarousel: siteData.showcaseCarousel,
+        reelsFeed: siteData.reelsFeed,
+        reelsFolders: siteData.reelsFolders,
+        faviconUrl: siteData.faviconUrl,
+        brandLogoUrl: siteData.brandLogoUrl,
+        searchPlaceholder: siteData.searchPlaceholder,
+        aboutHeading: siteData.aboutHeading,
+        aboutBody: siteData.aboutBody,
+        homeFeaturedMedia: siteData.homeFeaturedMedia,
+        themeConfig: siteData.themeConfig
+      };
       const fresh = structuredClone(DEFAULT_DATA);
-      fresh.articles = preservedArticles || fresh.articles;
-      fresh.folders = preservedFolders || fresh.folders;
-      fresh.github = preservedGh || fresh.github;
-      fresh.socialLinks = preservedSocial || fresh.socialLinks;
-      fresh.menuItems = preservedMenu || fresh.menuItems;
-      fresh.reviewConfig = preservedReviewCfg || fresh.reviewConfig;
-      fresh.showcaseCarousel = preservedShowcase || fresh.showcaseCarousel;
-      fresh.reelsFeed = preservedReels || fresh.reelsFeed;
-      fresh.reelsFolders = preservedReelsFolders || fresh.reelsFolders;
-      fresh.faviconUrl = preservedFavicon || "";
-      fresh.brandLogoUrl = preservedBrandLogo || "";
-      fresh.searchPlaceholder = preservedSearchPh || DEFAULT_DATA.searchPlaceholder;
+      Object.assign(fresh, preserved);
       siteData = fresh;
       selectedVeId = "";
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
