@@ -6,21 +6,22 @@
   <title>CRACK CGPSC - Test Series • Topic Quiz • PYQ Papers • CBT Portal</title>
   <meta name="description" content="Crack CGPSC - Free Test Series, Topic Quiz, Previous Year Question Papers, CBT Portal, and Study Articles for CGPSC and CGVYAPAM aspirants." />
   <link id="dynamicSiteFavicon" rel="icon" href="" />
+  <link id="dynamicShortcutFavicon" rel="shortcut icon" href="" />
   <link id="dynamicExtraFontsLink" rel="stylesheet" href="" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-main: #05070b;
-      --bg-card: rgba(16, 21, 34, 0.92);
-      --text-primary: #f5f7fc;
-      --text-secondary: #9ca7be;
+      --bg-main: #06080f;
+      --bg-card: rgba(14, 19, 32, 0.96);
+      --text-primary: #f6f8fc;
+      --text-secondary: #9aa6be;
       --neon-pink: #ff2a85;
       --neon-cyan: #22d3ee;
-      --ambient-a: rgba(255, 42, 133, 0.16);
-      --ambient-b: rgba(34, 211, 238, 0.10);
-      --box-radius: 14px;
+      --ambient-a: rgba(255, 42, 133, 0.14);
+      --ambient-b: rgba(34, 211, 238, 0.11);
+      --box-radius: 12px;
       --btn-radius: 999px;
       --glow-color: rgba(34, 211, 238, 0.35);
     }
@@ -34,8 +35,8 @@
 
     body {
       background:
-        radial-gradient(circle at 50% 0%, var(--ambient-a), transparent 44%),
-        radial-gradient(circle at 82% 14%, var(--ambient-b), transparent 38%),
+        radial-gradient(circle at 50% 0%, var(--ambient-a), transparent 42%),
+        radial-gradient(circle at 82% 14%, var(--ambient-b), transparent 36%),
         var(--bg-main);
       color: var(--text-primary);
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
@@ -43,7 +44,6 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      transition: background 0.25s ease, color 0.2s ease;
     }
 
     a {
@@ -72,9 +72,26 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
+    /* Glass Light Effect on Hover / Active / Selected */
+    .glass-light-surface {
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
+    }
+
+    .glass-light-surface:hover,
+    .glass-light-surface:active,
+    .glass-light-surface.is-selected-glow {
+      filter: brightness(1.12);
+      border-color: rgba(255, 255, 255, 0.72) !important;
+      box-shadow:
+        0 0 18px var(--glow-color),
+        0 0 28px rgba(255, 42, 133, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.55) !important;
+    }
+
     /* Motion & Light Effect Classes */
     @keyframes fxBorderNeonPulse {
-      0%, 100% { box-shadow: 0 0 8px var(--neon-cyan), inset 0 0 6px rgba(34, 211, 238, 0.2); border-color: var(--neon-cyan); }
+      0%, 100% { box-shadow: 0 0 8px var(--neon-cyan), inset 0 0 6px rgba(34, 211, 238, 0.22); border-color: var(--neon-cyan); }
       50% { box-shadow: 0 0 18px var(--neon-pink), inset 0 0 10px rgba(255, 42, 133, 0.28); border-color: var(--neon-pink); }
     }
     @keyframes fxBorderRainbow {
@@ -115,14 +132,13 @@
       position: absolute;
       top: 16px;
       left: 16px;
-      height: 32px;
-      padding: 0 10px;
+      height: 30px;
+      padding: 0 9px;
       border-radius: 999px;
       border: 1px solid rgba(34, 211, 238, 0.55);
-      background: linear-gradient(135deg, rgba(14, 22, 38, 0.92), rgba(201, 24, 91, 0.78));
-      backdrop-filter: blur(12px);
+      background: linear-gradient(135deg, rgba(14, 22, 38, 0.95), rgba(201, 24, 91, 0.85));
       color: #fff;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 800;
       display: none;
       align-items: center;
@@ -139,9 +155,8 @@
       width: 36px;
       height: 34px;
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(20, 26, 38, 0.85);
-      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: #101624;
       color: #fff;
       font-size: 1.08rem;
       display: flex;
@@ -149,7 +164,7 @@
       justify-content: center;
       cursor: pointer;
       z-index: 25;
-      box-shadow: 0 0 14px var(--glow-color);
+      box-shadow: 0 0 12px var(--glow-color);
     }
 
     .hero-brand-center {
@@ -161,26 +176,23 @@
     @keyframes logoNeonFloat {
       0%, 100% {
         transform: translateY(0px);
-        text-shadow:
-          0 0 7px var(--neon-pink),
-          0 0 18px var(--glow-color);
+        text-shadow: 0 0 8px var(--neon-pink), 0 0 18px var(--glow-color);
       }
       50% {
         transform: translateY(-1.5px);
-        text-shadow:
-          0 0 12px var(--neon-cyan),
-          0 0 24px var(--neon-pink);
+        text-shadow: 0 0 12px var(--neon-cyan), 0 0 24px var(--neon-pink);
       }
     }
 
     .neon-brand-title {
       display: inline-block;
       font-family: "Montserrat", sans-serif;
-      font-size: clamp(1.42rem, 4.4vw, 2.7rem);
+      font-size: clamp(1.38rem, 4.3vw, 2.7rem);
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
       color: #ffffff;
+      white-space: nowrap;
       animation: logoNeonFloat 3.4s ease-in-out infinite;
     }
 
@@ -205,9 +217,9 @@
     .neon-brand-sub {
       margin-top: 4px;
       font-family: "Montserrat", sans-serif;
-      font-size: clamp(0.48rem, 1.3vw, 0.76rem);
+      font-size: clamp(0.46rem, 1.25vw, 0.76rem);
       font-weight: 700;
-      letter-spacing: clamp(0.3px, 0.2vw, 2px);
+      letter-spacing: clamp(0.2px, 0.18vw, 1.8px);
       text-transform: uppercase;
       color: #dce3f2;
       white-space: nowrap;
@@ -215,7 +227,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Search Bar + Thin Slow Smooth Flare Line */
+    /* Capsule Search Bar + Sharp Flare Line Below */
     .search-shell {
       width: 100%;
       max-width: 980px;
@@ -225,7 +237,7 @@
     }
 
     @media (min-width: 900px) {
-      .search-shell { max-width: 380px; }
+      .search-shell { max-width: 390px; }
     }
 
     .search-glass-box {
@@ -233,12 +245,11 @@
       z-index: 2;
       display: flex;
       align-items: center;
-      background: rgba(18, 23, 35, 0.88);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: var(--btn-radius);
-      padding: 3px 3px 3px 14px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 22px rgba(0, 0, 0, 0.55);
+      background: #0d121e;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 3px 4px 3px 16px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 8px 20px rgba(0, 0, 0, 0.6);
     }
 
     .search-glass-box input {
@@ -247,48 +258,47 @@
       border: none !important;
       outline: none;
       color: #fff;
-      font-size: 0.8rem;
-      padding: 5px 8px;
+      font-size: 0.82rem;
+      padding: 6px 8px;
       min-width: 0;
     }
 
     .search-neon-btn {
-      background: linear-gradient(135deg, var(--neon-pink), #ff2a85);
+      background: linear-gradient(135deg, #e11d67, var(--neon-pink));
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: var(--btn-radius);
-      padding: 6px 14px;
+      border: 1px solid rgba(255, 175, 210, 0.5);
+      border-radius: 999px;
+      padding: 7px 16px;
       font-family: "Montserrat", sans-serif;
       font-size: 0.68rem;
       font-weight: 800;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.9px;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 0 14px var(--glow-color);
+      box-shadow: 0 0 14px rgba(255, 42, 133, 0.55);
       flex-shrink: 0;
     }
 
-    @keyframes thinFlareDrift {
-      0% { background-position: -120% 50%; opacity: 0.55; }
-      50% { background-position: 120% 50%; opacity: 0.9; }
-      100% { background-position: -120% 50%; opacity: 0.55; }
+    @keyframes refFlareGlide {
+      0% { transform: translateX(-35%); opacity: 0.65; }
+      50% { transform: translateX(35%); opacity: 1; }
+      100% { transform: translateX(-35%); opacity: 0.65; }
     }
 
     .neon-flare-strip {
       position: relative;
       z-index: 1;
-      height: 3.5px;
+      height: 3px;
       margin: 4px auto 0;
-      width: 88%;
+      width: 78%;
       border-radius: 999px;
-      background: linear-gradient(90deg, transparent 0%, var(--neon-cyan) 35%, rgba(255, 255, 255, 0.82) 50%, var(--neon-pink) 65%, transparent 100%);
-      background-size: 200% 100%;
-      filter: blur(1.2px);
-      animation: thinFlareDrift 9s linear infinite;
+      background: linear-gradient(90deg, transparent 0%, var(--neon-cyan) 28%, #ffffff 50%, var(--neon-pink) 72%, transparent 100%);
+      filter: blur(0.6px);
+      animation: refFlareGlide 6.5s ease-in-out infinite;
       pointer-events: none;
     }
 
-    /* Full-Spread Container */
+    /* Container */
     .container {
       width: 100%;
       max-width: 1440px;
@@ -303,11 +313,11 @@
       gap: 14px;
     }
 
-    /* Portal Cards */
+    /* Portal Cards (Sharp Reference Shape) */
     .neon-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: 9px;
     }
 
     @media (min-width: 860px) {
@@ -321,30 +331,20 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 9px;
-      min-height: 46px;
-      padding: 6px 11px;
+      gap: 10px;
+      min-height: 48px;
+      padding: 7px 12px;
       border-radius: var(--box-radius);
       text-decoration: none !important;
       overflow: hidden;
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.16s ease, border-color 0.16s ease;
     }
 
-    .glass-portal-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(125deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 55%, rgba(0, 0, 0, 0.25) 100%);
-      pointer-events: none;
-    }
-
-    .card-theme-0 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.46), rgba(6, 78, 59, 0.76)); box-shadow: 0 0 12px rgba(16, 185, 129, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-    .card-theme-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.48), rgba(30, 58, 138, 0.78)); box-shadow: 0 0 12px rgba(59, 130, 246, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-    .card-theme-2 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.54), rgba(120, 53, 15, 0.8)); box-shadow: 0 0 12px rgba(245, 158, 11, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-    .card-theme-3 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(12, 74, 110, 0.78)); box-shadow: 0 0 12px rgba(34, 211, 238, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+    .card-theme-0 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.52), rgba(6, 78, 59, 0.85)); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
+    .card-theme-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.54), rgba(30, 58, 138, 0.86)); box-shadow: 0 4px 14px rgba(59, 130, 246, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
+    .card-theme-2 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.58), rgba(120, 53, 15, 0.88)); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
+    .card-theme-3 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.54), rgba(12, 74, 110, 0.86)); box-shadow: 0 4px 14px rgba(34, 211, 238, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
 
     .glass-icon-img {
       position: relative;
@@ -355,27 +355,25 @@
       min-height: 24px;
       object-fit: contain;
       flex-shrink: 0;
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.42));
       display: block;
     }
 
     .glass-card-text { position: relative; z-index: 1; min-width: 0; flex: 1; }
     .glass-card-title { font-size: clamp(0.76rem, 1.5vw, 0.92rem); font-weight: 800; color: #ffffff; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .glass-card-sub { margin-top: 2px; font-size: clamp(0.48rem, 1vw, 0.6rem); font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .glass-card-sub { margin-top: 2px; font-size: clamp(0.48rem, 1vw, 0.6rem); font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.88); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Education Content Folder Banner */
+    /* Banner */
     .neon-banner-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 8px 14px;
+      padding: 9px 14px;
       border-radius: var(--box-radius);
       color: #fff;
-      background: linear-gradient(90deg, rgba(190, 24, 93, 0.85), rgba(225, 29, 72, 0.78), rgba(136, 19, 55, 0.9));
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 135, 185, 0.4);
-      box-shadow: 0 0 18px var(--glow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      background: linear-gradient(90deg, rgba(190, 24, 93, 0.92), rgba(225, 29, 72, 0.86), rgba(136, 19, 55, 0.95));
+      border: 1px solid rgba(255, 145, 190, 0.45);
+      box-shadow: 0 6px 18px rgba(255, 42, 133, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.26);
       cursor: pointer;
     }
 
@@ -383,43 +381,47 @@
       .neon-banner-bar { max-width: 720px; margin: 0 auto; width: 100%; }
     }
 
-    .banner-left { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
+    .banner-left { display: flex; align-items: center; gap: 9px; min-width: 0; flex: 1; }
     .banner-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.72rem, 1.5vw, 0.9rem); font-weight: 800; letter-spacing: 0.4px; line-height: 1.12; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .banner-sub { font-size: clamp(0.54rem, 1.1vw, 0.68rem); color: rgba(255, 255, 255, 0.88); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .banner-sub { font-size: clamp(0.54rem, 1.1vw, 0.68rem); color: rgba(255, 255, 255, 0.9); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .banner-right-cta { font-size: clamp(0.66rem, 1.3vw, 0.78rem); font-weight: 800; white-space: nowrap; flex-shrink: 0; }
 
     /* Quick Pill Buttons */
-    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
+    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
     .glass-pill-btn {
-      padding: 6px 13px;
+      padding: 6px 14px;
       border-radius: var(--btn-radius);
-      background: rgba(20, 26, 39, 0.86);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: #e8eef9;
+      background: #101624;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #eef3fc;
       font-size: 0.74rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
     }
-    .glass-pill-btn:hover, .glass-pill-btn:active, .glass-pill-btn.active { border-color: var(--neon-cyan); box-shadow: 0 0 14px var(--glow-color); }
 
     /* Official Portal Hub */
     .portal-hub-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 42, 133, 0.28);
+      background: linear-gradient(160deg, rgba(36, 14, 28, 0.92) 0%, var(--bg-card) 65%);
+      border: 1px solid rgba(255, 42, 133, 0.32);
       border-radius: var(--box-radius);
       padding: 15px 18px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 16px var(--glow-color);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
     }
 
-    .hub-tag { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: var(--btn-radius); background: rgba(255, 42, 133, 0.16); border: 1px solid rgba(255, 42, 133, 0.35); color: #ff6aa8; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 7px; }
+    .portal-hub-card.clean-no-box {
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      padding: 4px 2px !important;
+    }
+
+    .hub-tag { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: var(--btn-radius); background: rgba(255, 42, 133, 0.18); border: 1px solid rgba(255, 42, 133, 0.4); color: #ff6aa8; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 7px; }
     .hub-heading { font-size: clamp(0.88rem, 2.2vw, 1.18rem); font-weight: 800; color: #fff; margin-bottom: 4px; }
     .hub-copy { font-size: clamp(0.7rem, 1.7vw, 0.84rem); color: var(--text-secondary); }
 
-    /* Homepage Featured Media + Article Block (Clean Background) */
+    /* Homepage Featured Media + Article Block */
     .home-featured-media-article {
       background: transparent;
       border-radius: var(--box-radius);
@@ -433,7 +435,6 @@
       width: 100%;
       border-radius: var(--box-radius);
       overflow: hidden;
-      background: transparent;
     }
 
     .home-featured-media-frame img,
@@ -454,40 +455,61 @@
       border-radius: var(--box-radius);
     }
 
-    /* Showcase Carousel */
+    /* Reference-Style Wide Banner Showcase Carousel + Prev/Next Arrows */
     .showcase-carousel-box {
       position: relative;
       width: 100%;
       border-radius: var(--box-radius);
       overflow: hidden;
-      border: 1px solid rgba(34, 211, 238, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       background: #0b0f18;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
     }
 
-    .showcase-slide-item { position: relative; width: 100%; height: 220px; display: none; }
-    @media (min-width: 768px) { .showcase-slide-item { height: 295px; } }
+    .showcase-slide-item { position: relative; width: 100%; height: 158px; display: none; }
+    @media (min-width: 768px) { .showcase-slide-item { height: 220px; } }
     .showcase-slide-item.active { display: block; }
     .showcase-slide-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 
     .showcase-overlay-scrim {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(6, 8, 12, 0.18) 0%, rgba(6, 8, 12, 0.52) 55%, rgba(6, 8, 12, 0.88) 100%);
+      background: linear-gradient(90deg, rgba(6, 8, 12, 0.9) 0%, rgba(6, 8, 12, 0.65) 55%, rgba(6, 8, 12, 0.25) 100%);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 16px 20px 24px;
-      gap: 6px;
+      justify-content: center;
+      padding: 14px 44px 14px 18px;
+      gap: 5px;
     }
 
-    .showcase-pill-tag { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: var(--btn-radius); background: rgba(255, 42, 133, 0.88); color: #fff; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; }
-    .showcase-slide-title { font-family: "Montserrat", sans-serif; font-size: clamp(1rem, 2.6vw, 1.55rem); font-weight: 900; color: #fff; line-height: 1.15; }
-    .showcase-slide-desc { font-size: clamp(0.7rem, 1.5vw, 0.84rem); color: #e2e8f5; max-width: 760px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .showcase-pill-tag { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: var(--btn-radius); background: var(--neon-pink); color: #fff; font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; }
+    .showcase-slide-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.95rem, 2.3vw, 1.45rem); font-weight: 900; color: #fff; line-height: 1.15; }
+    .showcase-slide-desc { font-size: clamp(0.68rem, 1.4vw, 0.82rem); color: #e2e8f5; max-width: 640px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    .showcase-dots-row { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 6; }
-    .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
-    .showcase-dot.active { width: 20px; background: var(--neon-pink); }
+    .showcase-arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 7;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(6, 9, 16, 0.72);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .showcase-arrow-btn.prev { left: 8px; }
+    .showcase-arrow-btn.next { right: 8px; }
+
+    .showcase-dots-row { position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 6; }
+    .showcase-dot { width: 7px; height: 7px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
+    .showcase-dot.active { width: 18px; background: var(--neon-pink); }
 
     /* Full-Page Android Reels Folder Explorer */
     .android-reels-explorer-page {
@@ -508,21 +530,15 @@
       background: linear-gradient(135deg, rgba(22, 30, 48, 0.96), rgba(12, 17, 29, 0.98));
       border: 1px solid rgba(34, 211, 238, 0.28);
       cursor: pointer;
-      transition: transform 0.14s ease, border-color 0.14s ease;
     }
 
-    .explorer-folder-tile:hover, .explorer-folder-tile:active {
-      border-color: var(--neon-pink);
-      transform: translateY(-1px);
-    }
-
-    /* Shorts / Reels Feed: 1:1 Finger Swipe + Center Tap Play/Pause */
+    /* Shorts / Reels Feed: Clean Full View + Scrub Bar + Wheel/Drag/Tap */
     .reels-feed-section {
       background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
       border-radius: var(--box-radius);
       padding: 10px 12px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
     }
@@ -534,9 +550,9 @@
       border-radius: 0;
       border: 0;
       width: 100vw;
-      height: 100vh;
+      height: 100dvh;
       overflow: hidden;
-      padding: 8px 10px;
+      padding: 6px 10px 10px;
       background: #04060a;
     }
 
@@ -567,7 +583,7 @@
       width: 100%;
       height: 100%;
       will-change: transform;
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .reels-deck-track.dragging { transition: none !important; }
@@ -576,14 +592,14 @@
       position: relative;
       width: 100%;
       height: 100%;
-      background: rgba(11, 15, 25, 0.98);
-      border: 1px solid rgba(34, 211, 238, 0.25);
+      background: #070a11;
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--box-radius);
-      padding: 7px 9px;
+      padding: 6px 8px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 5px;
+      gap: 4px;
     }
 
     .reel-single-meta-line {
@@ -591,12 +607,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding: 1px 2px;
+      padding: 0 2px;
       min-width: 0;
     }
 
     .reel-folder-path-link {
-      font-size: 0.64rem;
+      font-size: 0.62rem;
       font-weight: 800;
       color: var(--neon-cyan);
       cursor: pointer;
@@ -606,7 +622,7 @@
     }
 
     .reel-top-caption {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       color: #f1f5f9;
       line-height: 1.2;
@@ -621,12 +637,11 @@
     .reel-media-frame {
       position: relative;
       width: 100%;
-      max-width: 430px;
+      max-width: 440px;
       margin: 0 auto;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: #05070c;
+      background: #04060a;
       flex: 1;
       min-height: 0;
       display: flex;
@@ -645,22 +660,31 @@
     }
 
     .reel-media-frame video,
-    .reel-media-frame img.static-reel-img,
-    .reel-media-frame iframe.inpage-shorts-iframe {
+    .reel-media-frame img.static-reel-img {
       position: relative;
       z-index: 2;
       width: 100%;
       height: 100%;
       max-height: 100%;
-      border: 0;
       object-fit: contain;
       display: block;
       margin: 0 auto;
     }
 
+    /* Overscaled YouTube Shorts iframe clips out top title & bottom share/channel bar */
+    .reel-media-frame iframe.inpage-shorts-iframe {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: calc(100% + 96px);
+      margin-top: -48px;
+      border: 0;
+      display: block;
+    }
+
     .reel-gesture-shield {
       position: absolute;
-      inset: 0;
+      inset: 0 0 28px 0;
       z-index: 4;
       background: transparent;
       display: flex;
@@ -670,25 +694,51 @@
     }
 
     .reel-tap-indicator {
-      width: 56px;
-      height: 56px;
+      width: 54px;
+      height: 54px;
       border-radius: 999px;
-      background: rgba(5, 7, 12, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(5, 7, 12, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: #fff;
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 0.18s ease, transform 0.18s ease;
+      transform: scale(0.82);
+      transition: opacity 0.16s ease, transform 0.16s ease;
       pointer-events: none;
     }
 
     .reel-tap-indicator.visible {
       opacity: 1;
       transform: scale(1);
+    }
+
+    /* Video Seek / Forward Scrub Bar */
+    .reel-scrub-bar-wrap {
+      position: relative;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 2px 4px;
+      background: rgba(9, 13, 22, 0.92);
+      border-radius: 8px;
+    }
+
+    .reel-scrub-range {
+      flex: 1;
+      accent-color: var(--neon-pink);
+      height: 5px;
+      cursor: pointer;
+    }
+
+    .reel-scrub-time {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      white-space: nowrap;
     }
 
     /* Live Image/GIF Preview Box in Admin Studio */
@@ -767,36 +817,33 @@
 
     .poster-article-card {
       background: var(--bg-card);
-      border: 1px solid rgba(34, 211, 238, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: var(--box-radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), 0 0 12px var(--glow-color);
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
     }
 
-    .poster-article-card:hover, .poster-article-card:active { transform: translateY(-3px); border-color: var(--neon-cyan); }
-
-    .poster-thumb-box { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #080b12; overflow: hidden; }
+    .poster-thumb-box { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #080b12; overflow: hidden; }
     .poster-thumb-box img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-    .poster-top-badge { position: absolute; top: 7px; left: 7px; background: rgba(216, 27, 96, 0.92); color: #fff; font-size: 0.54rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: var(--btn-radius); text-transform: uppercase; }
+    .poster-top-badge { position: absolute; top: 6px; left: 6px; background: var(--neon-pink); color: #fff; font-size: 0.52rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: var(--btn-radius); text-transform: uppercase; }
 
-    .poster-card-body { padding: 9px 10px 11px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
-    .poster-card-title { font-size: clamp(0.76rem, 1.4vw, 0.88rem); font-weight: 800; color: #fff; line-height: 1.24; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .poster-card-desc { font-size: clamp(0.64rem, 1.15vw, 0.74rem); color: var(--text-secondary); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .poster-card-body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .poster-card-title { font-size: clamp(0.75rem, 1.35vw, 0.86rem); font-weight: 800; color: #fff; line-height: 1.24; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .poster-card-desc { font-size: clamp(0.62rem, 1.1vw, 0.72rem); color: var(--text-secondary); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
     .pagination-bar { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
     .page-num-btn { min-width: 30px; height: 30px; padding: 0 9px; border-radius: var(--btn-radius); border: 1px solid rgba(255, 255, 255, 0.16); background: #121826; color: #fff; font-size: 0.74rem; font-weight: 800; cursor: pointer; }
-    .page-num-btn.active { background: linear-gradient(135deg, var(--neon-pink), #ff2a85); border-color: transparent; box-shadow: 0 0 12px var(--glow-color); }
+    .page-num-btn.active { background: linear-gradient(135deg, var(--neon-pink), #ff2a85); border-color: transparent; }
 
     .notice-board-panel {
       background: var(--bg-card);
-      border: 1px solid rgba(34, 211, 238, 0.32);
+      border: 1px solid rgba(34, 211, 238, 0.3);
       border-radius: var(--box-radius);
       padding: 13px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.48);
     }
 
     .notice-content-flow { display: flex; flex-direction: column; gap: 9px; font-size: 0.8rem; color: #e4eaf5; }
@@ -825,7 +872,7 @@
     .article-body-content th { background: rgba(255, 42, 133, 0.22); color: #fff; }
 
     .bottom-folders-section { width: 100%; max-width: 1440px; margin: 0 auto 18px; padding: 0 16px; overflow: hidden; }
-    .folder-path-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; background: rgba(15, 20, 31, 0.88); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 6px 9px; margin-bottom: 8px; font-size: 0.74rem; }
+    .folder-path-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; background: rgba(15, 20, 31, 0.92); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 6px 9px; margin-bottom: 8px; font-size: 0.74rem; }
     .folders-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
     @media (min-width: 700px) { .folders-grid { grid-template-columns: repeat(4, 1fr); } }
 
@@ -843,7 +890,6 @@
 
     .custom-canvas-element { position: relative; padding: 8px; border-radius: var(--box-radius); border: 1px solid rgba(255, 255, 255, 0.18); min-height: 44px; overflow: hidden; }
 
-    /* Full Article & Full-Page About Reader */
     .article-reader { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: var(--box-radius); padding: 16px; }
     .article-hero-img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 12px 0 16px; }
     .review-meta-list { display: flex; flex-direction: column; gap: 9px; margin: 14px 0 18px; background: #0b0f18; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px; }
@@ -873,10 +919,10 @@
     .related-links-list { margin-top: 8px; display: flex; flex-direction: column; gap: 7px; }
     .related-embedded-link { font-size: 0.86rem; font-weight: 700; color: var(--neon-cyan); text-decoration: underline !important; display: inline-block; }
 
-    .site-footer { background: rgba(9, 12, 18, 0.94); border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
+    .site-footer { background: rgba(9, 12, 18, 0.96); border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
     .footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
     .social-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
-    .social-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--btn-radius); background: rgba(20, 25, 37, 0.88); border: 1px solid rgba(255, 255, 255, 0.13); color: #fff; font-size: 0.76rem; font-weight: 700; text-decoration: none !important; }
+    .social-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--btn-radius); background: rgba(20, 25, 37, 0.92); border: 1px solid rgba(255, 255, 255, 0.14); color: #fff; font-size: 0.76rem; font-weight: 700; text-decoration: none !important; }
     .social-chip svg { width: 14px; height: 14px; fill: currentColor; }
     .footer-copy { font-size: 0.74rem; color: var(--text-secondary); }
 
@@ -891,7 +937,7 @@
     .subject-filter-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 9px; border-radius: 7px; background: #121826; border: 1px solid rgba(255, 255, 255, 0.08); color: #fff; font-size: 0.78rem; font-weight: 700; cursor: pointer; text-align: left; }
     .subject-filter-item:hover, .subject-filter-item.active { border-color: var(--neon-pink); background: rgba(255, 42, 133, 0.16); }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 10px; border-radius: var(--btn-radius); border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(22, 28, 41, 0.9); color: #fff; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-decoration: none !important; white-space: nowrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 10px; border-radius: var(--btn-radius); border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(22, 28, 41, 0.92); color: #fff; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-decoration: none !important; white-space: nowrap; }
     .btn-primary { background: linear-gradient(135deg, var(--neon-pink), #ff2a85); border-color: transparent; }
     .btn-success { background: linear-gradient(135deg, #059669, #10b981); border-color: transparent; }
     .btn-cyan { background: linear-gradient(135deg, #0891b2, var(--neon-cyan)); color: #041016; border-color: transparent; }
@@ -945,7 +991,7 @@
       border-radius: 22px;
       padding: 8px;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
-      max-width: 290px;
+      max-width: 300px;
       width: 100%;
       margin: 0 auto;
     }
@@ -955,7 +1001,7 @@
       height: 360px;
       border: 0;
       border-radius: 16px;
-      background: #05070b;
+      background: transparent;
       display: block;
     }
 
@@ -1041,7 +1087,7 @@
 
   <div class="site-viewport-shell">
     <!-- Header -->
-    <div class="top-bar-wrap" data-ve-id="headerWrap">
+    <div class="top-bar-wrap glass-light-surface" data-ve-id="headerWrap">
       <button class="admin-quick-corner-btn" id="adminTopLeftQuickBtn" onclick="openAdminStudio()">⚙️ Studio</button>
       <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu">☰</button>
       <div class="hero-brand-center" onclick="handleBrandClick()">
@@ -1050,9 +1096,9 @@
       </div>
     </div>
 
-    <!-- Search + Thin Slow Flare Strip -->
+    <!-- Capsule Search + Sharp Flare Line Below -->
     <div class="search-shell" data-ve-id="searchWrap">
-      <form class="search-glass-box" onsubmit="handleQuickSearch(event)">
+      <form class="search-glass-box glass-light-surface" onsubmit="handleQuickSearch(event)">
         <input type="text" id="quickSearchInput" placeholder="Search History, Topics, Reviews or Articles..." oninput="applyFilter()" />
         <button type="submit" class="search-neon-btn">SEARCH</button>
       </form>
@@ -1063,6 +1109,9 @@
     <main class="container" id="mainSiteContainer">
       <div id="homeView">
         <div class="home-sections-stack" id="homeSectionsStack"></div>
+        <div style="margin-top:16px; display:flex; justify-content:center;">
+          <button type="button" class="btn" style="font-size:0.7rem; opacity:0.85;" onclick="resetEntireSiteToDefault()">↺ Reset Default</button>
+        </div>
       </div>
 
       <div id="reelsFolderPageView" style="display:none;">
@@ -1071,7 +1120,7 @@
           <button class="btn btn-primary" onclick="openFullReelsTab()">▶ Watch All Shorts</button>
         </div>
         <section class="android-reels-explorer-page">
-          <h2 class="section-title" style="margin-bottom:8px;">📁 Select Subject / Topic Short Videos</h2>
+          <h2 class="section-title" style="margin-bottom:8px;">📁 Reels Folder Manager</h2>
           <div class="folder-path-bar" id="reelsPageBreadcrumb"></div>
           <div id="reelsPageExplorerBody" style="display:flex; flex-direction:column; gap:8px; margin-top:8px;"></div>
         </section>
@@ -1143,17 +1192,20 @@
     </div>
   </div>
 
-  <!-- DEDICATED FULL-PAGE HOMEPAGE THEME STUDIO WITH TOP-RIGHT LIVE MOBILE SCREEN -->
+  <!-- DEDICATED FULL-PAGE HOMEPAGE THEME STUDIO WITH TOP-RIGHT LIVE MOBILE PREVIEW + BEFORE/AFTER TOGGLE -->
   <section class="theme-studio-page" id="themeStudioPage">
     <div class="android-top-appbar">
       <div style="display:flex; align-items:center; gap:8px;">
         <button class="btn" onclick="closeThemeStudioPage(true)">← Admin</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">🎨 Homepage Theme & Element Effects</div>
-          <div style="font-size:0.64rem; color:var(--neon-cyan);">Live Mobile Screen • Per-Element Styles • Free Effects Library</div>
+          <div style="font-size:0.64rem; color:var(--neon-cyan);">Live Preview + Before/After Toggle • Clean/Box Mode</div>
         </div>
       </div>
-      <button class="btn btn-success" onclick="saveThemeStudioAndApply()">✓ Apply</button>
+      <div style="display:flex; gap:6px;">
+        <button type="button" class="btn" onclick="resetThemeSectionDefault()">Default</button>
+        <button type="button" class="btn btn-success" onclick="saveThemeStudioAndApply()">✓ Apply</button>
+      </div>
     </div>
 
     <div class="theme-studio-layout">
@@ -1187,7 +1239,7 @@
 
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;">
-            <strong style="font-size:0.86rem; color:var(--neon-cyan);">🎯 Individual Element Customizer (Boxes, Buttons, Text & Light Motion)</strong>
+            <strong style="font-size:0.86rem; color:var(--neon-cyan);">🎯 Individual Element Customizer (Box/Clean • Colors • Light Motion)</strong>
           </div>
           <div class="field-group" style="grid-column:1 / -1;">
             <label>Select Homepage Element</label>
@@ -1208,12 +1260,19 @@
               <option value="siteFooter">Footer Section</option>
             </select>
           </div>
+          <div class="field-group">
+            <label>Background Style (Box vs Clean)</label>
+            <select id="tsElBgMode" onchange="saveThemeElementOverride()">
+              <option value="box">Box Background (Color/Card)</option>
+              <option value="clean">Clean Background (No Box/Border)</option>
+            </select>
+          </div>
           <div class="field-group"><label>Background Colour</label><input type="color" id="tsElBgColor" value="#101522" onchange="saveThemeElementOverride()" /></div>
           <div class="field-group"><label>Text Colour</label><input type="color" id="tsElTextColor" value="#ffffff" onchange="saveThemeElementOverride()" /></div>
           <div class="field-group"><label>Border / Glow Colour</label><input type="color" id="tsElGlowColor" value="#22d3ee" onchange="saveThemeElementOverride()" /></div>
           <div class="field-group">
             <label>Corner Shape Radius (px)</label>
-            <input type="number" id="tsElRadius" min="0" max="999" value="14" onchange="saveThemeElementOverride()" />
+            <input type="number" id="tsElRadius" min="0" max="999" value="12" onchange="saveThemeElementOverride()" />
           </div>
           <div class="field-group">
             <label>Border & Text Light Motion Effect</label>
@@ -1226,7 +1285,7 @@
               <option value="fx-motion-breathe">Smooth Breathe Pulse</option>
             </select>
           </div>
-          <div class="field-group">
+          <div class="field-group" style="grid-column:1 / -1;">
             <label>Free Online Effects Pack (Download & Save)</label>
             <div style="display:flex; gap:5px;">
               <select id="tsFreeEffectsCatalog">
@@ -1242,11 +1301,14 @@
         </div>
       </div>
 
-      <!-- Top-Right Live Small Mobile Preview Screen -->
+      <!-- Top-Right Live Small Mobile Preview Screen with Before/After Toggle -->
       <div class="live-mobile-preview-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:2px 6px 6px; font-size:0.68rem; font-weight:800; color:var(--neon-cyan);">
-          <span>📱 Live Mobile Screen</span>
-          <button type="button" class="btn" style="padding:2px 7px; font-size:0.62rem;" onclick="refreshLiveMobileFrame()">↻ Refresh</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:2px 4px 6px; gap:4px;">
+          <span style="font-size:0.66rem; font-weight:800; color:var(--neon-cyan);">📱 Preview</span>
+          <div style="display:flex; gap:4px;">
+            <button type="button" class="btn" id="previewCompareBtn" style="padding:2px 7px; font-size:0.6rem;" onclick="toggleBeforeAfterPreview()">Before/After: After</button>
+            <button type="button" class="btn" style="padding:2px 7px; font-size:0.6rem;" onclick="refreshLiveMobileFrame()">↻</button>
+          </div>
         </div>
         <iframe id="liveMobilePreviewIframe" class="live-mobile-screen-frame" title="Live Mobile Preview"></iframe>
       </div>
@@ -1260,7 +1322,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Reels Explorer • Tap Pause/Play • Theme Studio • Fonts</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Sharp UI • Scrub & Wheel Shorts • Per-Section Defaults • Theme Studio</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1285,6 +1347,10 @@
 
       <!-- Tab 1 -->
       <div id="tab-general" class="admin-tab-content">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Header, Search & About Settings</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('general')">Default</button>
+        </div>
         <div class="android-tile-card form-grid two-col">
           <div class="field-group"><label>Brand Logo Text</label><input type="text" id="cfgBrandTitle" /></div>
           <div class="field-group">
@@ -1322,6 +1388,10 @@
 
       <!-- Tab 2 -->
       <div id="tab-menu" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Menu Drawer Configuration</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('menu')">Default</button>
+        </div>
         <div class="android-tile-card form-grid two-col">
           <div class="field-group">
             <label>Menu Drawer Mode</label>
@@ -1355,6 +1425,10 @@
 
       <!-- Tab 3: Cards & Banner (Includes Google Drive Icon/GIF Link for Banner) -->
       <div id="tab-cards" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Portal Cards & Banner Settings</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('cards')">Default</button>
+        </div>
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;"><strong style="font-size:0.86rem;">Education Content Folder Banner</strong></div>
           <div class="field-group"><label>Banner Title</label><input type="text" id="cfgBannerTitle" /></div>
@@ -1394,6 +1468,10 @@
 
       <!-- Tab 4 -->
       <div id="tab-post-composer" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Post & Review Template Settings</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('posts')">Default</button>
+        </div>
         <div class="android-tile-card">
           <details>
             <summary style="cursor:pointer; font-size:0.84rem; font-weight:800; color:var(--neon-cyan);">
@@ -1416,6 +1494,10 @@
 
       <!-- Tab 5 -->
       <div id="tab-welcome" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Showcase Carousel Settings</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('showcase')">Default</button>
+        </div>
         <div class="android-tile-card form-grid">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <strong style="font-size:0.9rem; color:var(--neon-cyan);">🎞️ Auto-Sliding Featured Showcase (Above Articles)</strong>
@@ -1432,8 +1514,12 @@
         </div>
       </div>
 
-      <!-- Tab 6: Dedicated Reels Android File Manager (Rename + Reorder Folders & Files) -->
+      <!-- Tab 6: Dedicated Reels Android File Manager (Rename + Reorder Folders & Items) -->
       <div id="tab-reels" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Reels Feed & File Manager</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('reels')">Default</button>
+        </div>
         <div class="android-tile-card form-grid">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <div>
@@ -1476,6 +1562,10 @@
 
       <!-- Tab 7: Android File Manager for Articles -->
       <div id="tab-folders" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Article Folders Manager</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('folders')">Default</button>
+        </div>
         <div class="android-tile-card">
           <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
             <div>
@@ -1491,6 +1581,10 @@
 
       <!-- Tab 8: Homepage Sequence + Visibility + Featured Media/Article + Notice Board + Socials -->
       <div id="tab-sequence" class="admin-tab-content" style="display:none;">
+        <div class="android-tile-card" style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.84rem; color:var(--neon-cyan);">Homepage Sequence, Media Block & Notice Board</strong>
+          <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('homepage')">Default</button>
+        </div>
         <div class="android-tile-card">
           <strong style="font-size:0.86rem; display:block; margin-bottom:4px;">🏠 Homepage Sections & Boxes (Visibility & Sequence)</strong>
           <div style="font-size:0.72rem; color:var(--text-secondary); margin-bottom:10px;">Tick/untick any section or box to control visibility, and use ↑/↓ to change sequence.</div>
@@ -1530,7 +1624,10 @@
       <!-- Tab 9: Dedicated GitHub Sync Section -->
       <div id="tab-github" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
-          <strong style="font-size:0.86rem; display:block; margin-bottom:8px;">☁️ GitHub Fine-Grained Token & HTML Export</strong>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong style="font-size:0.86rem;">☁️ GitHub Fine-Grained Token & HTML Export</strong>
+            <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('github')">Default</button>
+          </div>
           <div class="form-grid two-col">
             <div class="field-group"><label>Owner</label><input type="text" id="ghOwner" /></div>
             <div class="field-group"><label>Repository</label><input type="text" id="ghRepo" /></div>
@@ -1569,25 +1666,25 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V28";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V29";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
     const ARTICLES_PER_PAGE = 10;
 
     const THEME_COLOR_PRESETS = [
-      { id: "cyber-neon", label: "1. Cyber Neon Dark (Default)", bg: "#05070b", card: "rgba(16, 21, 34, 0.92)", text: "#f5f7fc", pink: "#ff2a85", cyan: "#22d3ee" },
-      { id: "emerald-psc", label: "2. Emerald PSC Night", bg: "#040b09", card: "rgba(11, 28, 24, 0.92)", text: "#ecfdf5", pink: "#10b981", cyan: "#34d399" },
-      { id: "royal-sapphire", label: "3. Royal Sapphire Deep", bg: "#040814", card: "rgba(14, 24, 52, 0.92)", text: "#eff6ff", pink: "#3b82f6", cyan: "#38bdf8" },
-      { id: "sunset-amber", label: "4. Sunset Amber Gold", bg: "#0c0704", card: "rgba(34, 20, 11, 0.92)", text: "#fffbeb", pink: "#f59e0b", cyan: "#fbbf24" },
-      { id: "midnight-violet", label: "5. Midnight Violet", bg: "#080512", card: "rgba(24, 15, 48, 0.92)", text: "#f5f3ff", pink: "#a855f7", cyan: "#c084fc" },
-      { id: "crimson-slate", label: "6. Crimson Cinema Slate", bg: "#0b0507", card: "rgba(34, 14, 20, 0.92)", text: "#fff1f2", pink: "#e11d48", cyan: "#fb7185" },
-      { id: "ocean-teal", label: "7. Deep Ocean Teal", bg: "#030a0c", card: "rgba(10, 30, 36, 0.92)", text: "#f0fdfa", pink: "#0d9488", cyan: "#2dd4bf" },
-      { id: "obsidian-gold", label: "8. Obsidian Luxury Gold", bg: "#070707", card: "rgba(24, 22, 18, 0.94)", text: "#fefce8", pink: "#eab308", cyan: "#fde047" },
-      { id: "aurora-mint", label: "9. Aurora Mint Wave", bg: "#050c0e", card: "rgba(13, 32, 36, 0.92)", text: "#ecfeff", pink: "#06b6d4", cyan: "#6ee7b7" },
-      { id: "cosmic-indigo", label: "10. Cosmic Indigo", bg: "#060614", card: "rgba(18, 19, 48, 0.92)", text: "#eef2ff", pink: "#6366f1", cyan: "#818cf8" },
-      { id: "graphite-pro", label: "11. Graphite Minimal Pro", bg: "#090a0d", card: "rgba(24, 26, 32, 0.94)", text: "#f8fafc", pink: "#ec4899", cyan: "#94a3b8" },
-      { id: "ruby-noir", label: "12. Ruby Noir Studio", bg: "#0a0406", card: "rgba(30, 12, 18, 0.94)", text: "#fff1f2", pink: "#f43f5e", cyan: "#38bdf8" }
+      { id: "cyber-neon", label: "1. Cyber Neon Dark (Default)", bg: "#06080f", card: "rgba(14, 19, 32, 0.96)", text: "#f6f8fc", pink: "#ff2a85", cyan: "#22d3ee" },
+      { id: "emerald-psc", label: "2. Emerald PSC Night", bg: "#040b09", card: "rgba(11, 28, 24, 0.96)", text: "#ecfdf5", pink: "#10b981", cyan: "#34d399" },
+      { id: "royal-sapphire", label: "3. Royal Sapphire Deep", bg: "#040814", card: "rgba(14, 24, 52, 0.96)", text: "#eff6ff", pink: "#3b82f6", cyan: "#38bdf8" },
+      { id: "sunset-amber", label: "4. Sunset Amber Gold", bg: "#0c0704", card: "rgba(34, 20, 11, 0.96)", text: "#fffbeb", pink: "#f59e0b", cyan: "#fbbf24" },
+      { id: "midnight-violet", label: "5. Midnight Violet", bg: "#080512", card: "rgba(24, 15, 48, 0.96)", text: "#f5f3ff", pink: "#a855f7", cyan: "#c084fc" },
+      { id: "crimson-slate", label: "6. Crimson Cinema Slate", bg: "#0b0507", card: "rgba(34, 14, 20, 0.96)", text: "#fff1f2", pink: "#e11d48", cyan: "#fb7185" },
+      { id: "ocean-teal", label: "7. Deep Ocean Teal", bg: "#030a0c", card: "rgba(10, 30, 36, 0.96)", text: "#f0fdfa", pink: "#0d9488", cyan: "#2dd4bf" },
+      { id: "obsidian-gold", label: "8. Obsidian Luxury Gold", bg: "#070707", card: "rgba(24, 22, 18, 0.96)", text: "#fefce8", pink: "#eab308", cyan: "#fde047" },
+      { id: "aurora-mint", label: "9. Aurora Mint Wave", bg: "#050c0e", card: "rgba(13, 32, 36, 0.96)", text: "#ecfeff", pink: "#06b6d4", cyan: "#6ee7b7" },
+      { id: "cosmic-indigo", label: "10. Cosmic Indigo", bg: "#060614", card: "rgba(18, 19, 48, 0.96)", text: "#eef2ff", pink: "#6366f1", cyan: "#818cf8" },
+      { id: "graphite-pro", label: "11. Graphite Minimal Pro", bg: "#090a0d", card: "rgba(24, 26, 32, 0.96)", text: "#f8fafc", pink: "#ec4899", cyan: "#94a3b8" },
+      { id: "ruby-noir", label: "12. Ruby Noir Studio", bg: "#0a0406", card: "rgba(30, 12, 18, 0.96)", text: "#fff1f2", pink: "#f43f5e", cyan: "#38bdf8" }
     ];
 
     const THEME_LIGHT_EFFECTS = [
@@ -1606,33 +1703,33 @@
     ];
 
     const THEME_LIGHT_COLORS = [
-      { id: "pink-cyan", label: "1. Neon Pink & Cyan", glow: "rgba(34, 211, 238, 0.35)", a: "rgba(255, 42, 133, 0.22)", b: "rgba(34, 211, 238, 0.14)" },
-      { id: "electric-cyan", label: "2. Electric Cyan Light", glow: "rgba(34, 211, 238, 0.48)", a: "rgba(34, 211, 238, 0.24)", b: "rgba(56, 189, 248, 0.16)" },
-      { id: "hot-magenta", label: "3. Hot Magenta Light", glow: "rgba(255, 42, 133, 0.48)", a: "rgba(255, 42, 133, 0.26)", b: "rgba(244, 63, 94, 0.14)" },
-      { id: "emerald-glow", label: "4. Emerald Green Light", glow: "rgba(16, 185, 129, 0.45)", a: "rgba(16, 185, 129, 0.24)", b: "rgba(52, 211, 153, 0.14)" },
-      { id: "solar-gold", label: "5. Solar Gold Light", glow: "rgba(245, 158, 11, 0.45)", a: "rgba(245, 158, 11, 0.24)", b: "rgba(251, 191, 36, 0.14)" },
-      { id: "royal-purple", label: "6. Royal Purple Light", glow: "rgba(168, 85, 247, 0.45)", a: "rgba(168, 85, 247, 0.24)", b: "rgba(192, 132, 252, 0.14)" },
-      { id: "crimson-red", label: "7. Crimson Red Light", glow: "rgba(239, 68, 68, 0.45)", a: "rgba(239, 68, 68, 0.24)", b: "rgba(248, 113, 113, 0.14)" },
-      { id: "ice-white", label: "8. Ice White Studio Light", glow: "rgba(255, 255, 255, 0.32)", a: "rgba(255, 255, 255, 0.14)", b: "rgba(203, 213, 225, 0.10)" },
-      { id: "sunset-orange", label: "9. Sunset Orange Light", glow: "rgba(249, 115, 22, 0.45)", a: "rgba(249, 115, 22, 0.24)", b: "rgba(251, 146, 60, 0.14)" },
-      { id: "lime-volt", label: "10. Lime Volt Light", glow: "rgba(132, 204, 22, 0.45)", a: "rgba(132, 204, 22, 0.22)", b: "rgba(163, 230, 53, 0.14)" },
-      { id: "sky-blue", label: "11. Deep Sky Blue Light", glow: "rgba(14, 165, 233, 0.45)", a: "rgba(14, 165, 233, 0.24)", b: "rgba(56, 189, 248, 0.14)" },
+      { id: "pink-cyan", label: "1. Neon Pink & Cyan", glow: "rgba(34, 211, 238, 0.35)", a: "rgba(255, 42, 133, 0.16)", b: "rgba(34, 211, 238, 0.11)" },
+      { id: "electric-cyan", label: "2. Electric Cyan Light", glow: "rgba(34, 211, 238, 0.48)", a: "rgba(34, 211, 238, 0.18)", b: "rgba(56, 189, 248, 0.12)" },
+      { id: "hot-magenta", label: "3. Hot Magenta Light", glow: "rgba(255, 42, 133, 0.48)", a: "rgba(255, 42, 133, 0.20)", b: "rgba(244, 63, 94, 0.12)" },
+      { id: "emerald-glow", label: "4. Emerald Green Light", glow: "rgba(16, 185, 129, 0.45)", a: "rgba(16, 185, 129, 0.18)", b: "rgba(52, 211, 153, 0.12)" },
+      { id: "solar-gold", label: "5. Solar Gold Light", glow: "rgba(245, 158, 11, 0.45)", a: "rgba(245, 158, 11, 0.18)", b: "rgba(251, 191, 36, 0.12)" },
+      { id: "royal-purple", label: "6. Royal Purple Light", glow: "rgba(168, 85, 247, 0.45)", a: "rgba(168, 85, 247, 0.18)", b: "rgba(192, 132, 252, 0.12)" },
+      { id: "crimson-red", label: "7. Crimson Red Light", glow: "rgba(239, 68, 68, 0.45)", a: "rgba(239, 68, 68, 0.18)", b: "rgba(248, 113, 113, 0.12)" },
+      { id: "ice-white", label: "8. Ice White Studio Light", glow: "rgba(255, 255, 255, 0.32)", a: "rgba(255, 255, 255, 0.12)", b: "rgba(203, 213, 225, 0.08)" },
+      { id: "sunset-orange", label: "9. Sunset Orange Light", glow: "rgba(249, 115, 22, 0.45)", a: "rgba(249, 115, 22, 0.18)", b: "rgba(251, 146, 60, 0.12)" },
+      { id: "lime-volt", label: "10. Lime Volt Light", glow: "rgba(132, 204, 22, 0.45)", a: "rgba(132, 204, 22, 0.18)", b: "rgba(163, 230, 53, 0.12)" },
+      { id: "sky-blue", label: "11. Deep Sky Blue Light", glow: "rgba(14, 165, 233, 0.45)", a: "rgba(14, 165, 233, 0.18)", b: "rgba(56, 189, 248, 0.12)" },
       { id: "no-glow", label: "12. Off / No Light Glow", glow: "rgba(0, 0, 0, 0)", a: "rgba(0, 0, 0, 0)", b: "rgba(0, 0, 0, 0)" }
     ];
 
     const THEME_BOX_SHAPES = [
-      { id: "14px", label: "1. Rounded Glass (14px)" },
+      { id: "12px", label: "1. Sharp Modern Card (12px)" },
       { id: "0px", label: "2. Sharp Rectangular (0px)" },
       { id: "4px", label: "3. Tactical Micro-Corner (4px)" },
-      { id: "8px", label: "4. Clean Card (8px)" },
-      { id: "18px", label: "5. Soft Modern (18px)" },
-      { id: "24px", label: "6. Smooth Bubble (24px)" },
-      { id: "30px", label: "7. Ultra Capsule Box (30px)" },
+      { id: "8px", label: "4. Clean Crisp Card (8px)" },
+      { id: "16px", label: "5. Soft Rounded (16px)" },
+      { id: "22px", label: "6. Smooth Bubble (22px)" },
+      { id: "28px", label: "7. Ultra Capsule Box (28px)" },
       { id: "2px", label: "8. Crisp Minimal (2px)" },
-      { id: "12px", label: "9. Compact Grid Box (12px)" },
-      { id: "20px", label: "10. Curved Lounge (20px)" },
+      { id: "10px", label: "9. Compact Grid Box (10px)" },
+      { id: "18px", label: "10. Curved Lounge (18px)" },
       { id: "6px", label: "11. Classic Portal Tile (6px)" },
-      { id: "28px", label: "12. Deep Arc Card (28px)" }
+      { id: "24px", label: "12. Deep Arc Card (24px)" }
     ];
 
     const THEME_BUTTON_SHAPES = [
@@ -1832,7 +1929,7 @@
         preset: "cyber-neon",
         lightEffect: "dual-aura",
         lightColor: "pink-cyan",
-        boxShape: "14px",
+        boxShape: "12px",
         buttonShape: "999px"
       },
       footerText: "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
@@ -1995,6 +2092,8 @@
     };
 
     let siteData = loadInitialData();
+    let beforeThemeSnapshot = null;
+    let showingBeforeInPreview = false;
     let designerSnapshotBeforeEdit = null;
     let searchQuery = "";
     let movieFilterTag = "";
@@ -2100,7 +2199,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Full-Page Android File Manager for "Open Reels Folder"
+    // Full-Page Android File Manager for "Open Reels Folder" (Strictly Reels folders & reels items)
     function openFullReelsFolderExplorer(targetPathOrId = "") {
       const folders = siteData.reelsFolders || [];
       let startId = "";
@@ -2151,7 +2250,7 @@
         const subCount = folders.filter(x => x.parentId === f.id).length;
         const vidCount = items.filter(x => x.folderId === f.id).length;
         const tile = document.createElement("div");
-        tile.className = "explorer-folder-tile";
+        tile.className = "explorer-folder-tile glass-light-surface";
         tile.onclick = () => { reelsExplorerFolderId = f.id; renderFullReelsFolderPage(); };
         tile.innerHTML = `
           <div style="display:flex; align-items:center; gap:10px; min-width:0;">
@@ -2169,7 +2268,7 @@
       directItems.forEach((it, idx) => {
         const title = it.caption || `Short Video #${idx + 1}`;
         const vTile = document.createElement("div");
-        vTile.className = "explorer-folder-tile";
+        vTile.className = "explorer-folder-tile glass-light-surface";
         vTile.style.borderColor = "rgba(255, 42, 133, 0.45)";
         vTile.onclick = () => {
           selectedReelFolderPath = it.folderPath || getReelFolderPathString(it.folderId) || "";
@@ -2207,6 +2306,70 @@
       showHomeUI();
       if (resetHistory) activeStack = [];
       renderAll();
+    }
+
+    function resetEntireSiteToDefault() {
+      const preserved = {
+        articles: siteData.articles,
+        folders: siteData.folders,
+        reelsFolders: siteData.reelsFolders,
+        reelsFeed: siteData.reelsFeed,
+        github: siteData.github,
+        socialLinks: siteData.socialLinks
+      };
+      const fresh = structuredClone(DEFAULT_DATA);
+      Object.assign(fresh, preserved);
+      siteData = fresh;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderAll();
+      showToast("Design reset to default");
+    }
+
+    function resetSectionToDefault(sectionKey) {
+      if (sectionKey === "general") {
+        siteData.brandTitle = DEFAULT_DATA.brandTitle;
+        siteData.brandLogoUrl = DEFAULT_DATA.brandLogoUrl;
+        siteData.brandSub = DEFAULT_DATA.brandSub;
+        siteData.searchPlaceholder = DEFAULT_DATA.searchPlaceholder;
+        siteData.faviconUrl = DEFAULT_DATA.faviconUrl;
+        siteData.articlesHeading = DEFAULT_DATA.articlesHeading;
+        siteData.hubTag = DEFAULT_DATA.hubTag;
+        siteData.hubHeading = DEFAULT_DATA.hubHeading;
+        siteData.hubDesc = DEFAULT_DATA.hubDesc;
+        siteData.aboutHeading = DEFAULT_DATA.aboutHeading;
+        siteData.aboutBody = DEFAULT_DATA.aboutBody;
+        siteData.navButtons = structuredClone(DEFAULT_DATA.navButtons);
+      } else if (sectionKey === "menu") {
+        siteData.menuDrawerMode = DEFAULT_DATA.menuDrawerMode;
+        siteData.movieMenuHeading = DEFAULT_DATA.movieMenuHeading;
+        siteData.menuItems = structuredClone(DEFAULT_DATA.menuItems);
+      } else if (sectionKey === "cards") {
+        siteData.banner = structuredClone(DEFAULT_DATA.banner);
+        siteData.portalCards = structuredClone(DEFAULT_DATA.portalCards);
+      } else if (sectionKey === "posts") {
+        siteData.reviewConfig = structuredClone(DEFAULT_REVIEW_TEMPLATE_CONFIG);
+        siteData.categorySuggestions = [...DEFAULT_CATEGORY_SUGGESTIONS];
+      } else if (sectionKey === "showcase") {
+        siteData.showcaseCarousel = structuredClone(DEFAULT_DATA.showcaseCarousel);
+      } else if (sectionKey === "reels") {
+        siteData.reelsFeed.enabled = true;
+        siteData.reelsFeed.sectionTitle = DEFAULT_DATA.reelsFeed.sectionTitle;
+      } else if (sectionKey === "folders") {
+        siteData.folders = structuredClone(DEFAULT_DATA.folders);
+      } else if (sectionKey === "homepage") {
+        siteData.sectionOrder = [...DEFAULT_SECTION_ORDER];
+        siteData.sectionVisibility = structuredClone(DEFAULT_DATA.sectionVisibility);
+        siteData.homeFeaturedMedia = { mediaUrl: "", articleHtml: "" };
+        siteData.noticeTitle = DEFAULT_DATA.noticeTitle;
+        siteData.noticeBody = DEFAULT_DATA.noticeBody;
+        siteData.socialLinks = structuredClone(DEFAULT_DATA.socialLinks);
+      } else if (sectionKey === "github") {
+        siteData.github = structuredClone(DEFAULT_DATA.github);
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      populateAdminEditors();
+      renderAll();
+      showToast("Section restored to default");
     }
 
     function openFullReelsTab() {
@@ -2285,7 +2448,7 @@
       root.style.setProperty("--text-primary", preset.text);
       root.style.setProperty("--neon-pink", preset.pink);
       root.style.setProperty("--neon-cyan", preset.cyan);
-      root.style.setProperty("--box-radius", tc.boxShape || "14px");
+      root.style.setProperty("--box-radius", tc.boxShape || "12px");
       root.style.setProperty("--btn-radius", tc.buttonShape || "999px");
       root.style.setProperty("--glow-color", lightCol.glow);
 
@@ -2315,7 +2478,6 @@
       return t;
     }
 
-    // Desktop PC Telegram fallback to Telegram Web if native app isn't installed
     function openTelegramSmartUrl(url, ev) {
       if (ev) ev.preventDefault();
       const clean = (url || "").trim();
@@ -2369,10 +2531,11 @@
     }
 
     function applyFaviconLink() {
-      const favEl = document.getElementById("dynamicSiteFavicon");
-      if (!favEl) return;
       const src = convertDriveUrl(siteData.faviconUrl || "");
-      favEl.href = src || "";
+      const fav1 = document.getElementById("dynamicSiteFavicon");
+      const fav2 = document.getElementById("dynamicShortcutFavicon");
+      if (fav1) fav1.href = src || "";
+      if (fav2) fav2.href = src || "";
     }
 
     function renderBrandLogoArea() {
@@ -2397,6 +2560,13 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
+    function fmtSec(sec) {
+      const s = Math.max(0, Math.floor(Number(sec) || 0));
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return `${m}:${r < 10 ? "0" : ""}${r}`;
+    }
+
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
@@ -2409,13 +2579,18 @@
               <span class="reel-tap-indicator">⏸</span>
             </div>
           </div>
+          <div class="reel-scrub-bar-wrap" data-scrub-idx="${index}">
+            <span class="reel-scrub-time current-t">0:00</span>
+            <input type="range" class="reel-scrub-range" min="0" max="100" value="0" step="0.5" />
+            <span class="reel-scrub-time total-t">0:30</span>
+          </div>
         `;
       }
 
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
         const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
-        const apiSrc = `${yt.embedUrl}?enablejsapi=1&autoplay=0&mute=0&loop=1&playlist=${yt.videoId}&playsinline=1&rel=0&controls=0&modestbranding=1`;
+        const apiSrc = `${yt.embedUrl}?enablejsapi=1&autoplay=0&mute=0&loop=1&playlist=${yt.videoId}&playsinline=1&rel=0&controls=0&modestbranding=1&showinfo=0`;
         return `
           <div class="reel-media-frame">
             <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="eager" />
@@ -2424,6 +2599,11 @@
               <span class="reel-tap-indicator">⏸</span>
             </div>
           </div>
+          <div class="reel-scrub-bar-wrap" data-scrub-idx="${index}">
+            <span class="reel-scrub-time current-t">0:00</span>
+            <input type="range" class="reel-scrub-range" min="0" max="60" value="0" step="1" />
+            <span class="reel-scrub-time total-t">0:60</span>
+          </div>
         `;
       }
 
@@ -2431,14 +2611,14 @@
       return `<div class="reel-media-frame"><img class="static-reel-img" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(caption || "Reel Post")}" loading="lazy" /></div>`;
     }
 
-    function sendYtCommand(iframe, funcName) {
+    function sendYtCommand(iframe, funcName, args = []) {
       if (!iframe || !iframe.contentWindow) return;
       try {
-        iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: funcName, args: [] }), "*");
+        iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: funcName, args }), "*");
       } catch (e) {}
     }
 
-    // 1:1 Finger-Tracking Slide Deck + Center Tap Play/Pause (YouTube Shorts UX)
+    // 1:1 Finger Swipe + Mouse Wheel + Tap Play/Pause + Scrub Forward/Backward
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
@@ -2446,6 +2626,8 @@
       let currentIndex = 0;
       let isInView = false;
       let isPausedByUser = false;
+      let simulatedSec = 0;
+      let scrubTimer = null;
 
       const flashTapIcon = (card, symbol) => {
         const ind = card?.querySelector(".reel-tap-indicator");
@@ -2453,12 +2635,50 @@
         ind.textContent = symbol;
         ind.classList.add("visible");
         clearTimeout(ind._t);
-        ind._t = setTimeout(() => ind.classList.remove("visible"), 550);
+        ind._t = setTimeout(() => ind.classList.remove("visible"), 500);
       };
 
       const pauseAllMedia = () => {
+        clearInterval(scrubTimer);
         trackEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
         trackEl.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => sendYtCommand(f, "pauseVideo"));
+      };
+
+      const updateScrubUiForCurrent = () => {
+        const card = cards[currentIndex];
+        if (!card) return;
+        const scrubWrap = card.querySelector(".reel-scrub-bar-wrap");
+        if (!scrubWrap) return;
+        const range = scrubWrap.querySelector(".reel-scrub-range");
+        const curLbl = scrubWrap.querySelector(".current-t");
+        const totLbl = scrubWrap.querySelector(".total-t");
+        const vid = card.querySelector("video.auto-scroll-reel-video");
+
+        if (vid) {
+          const dur = vid.duration && isFinite(vid.duration) ? vid.duration : 30;
+          range.max = String(dur);
+          range.value = String(vid.currentTime || 0);
+          curLbl.textContent = fmtSec(vid.currentTime || 0);
+          totLbl.textContent = fmtSec(dur);
+        } else {
+          range.max = "60";
+          range.value = String(simulatedSec % 60);
+          curLbl.textContent = fmtSec(simulatedSec % 60);
+          totLbl.textContent = "1:00";
+        }
+      };
+
+      const startScrubClock = () => {
+        clearInterval(scrubTimer);
+        scrubTimer = setInterval(() => {
+          if (!isInView || isPausedByUser) return;
+          const card = cards[currentIndex];
+          const vid = card?.querySelector("video.auto-scroll-reel-video");
+          if (!vid) {
+            simulatedSec = (simulatedSec + 1) % 60;
+          }
+          updateScrubUiForCurrent();
+        }, 1000);
       };
 
       const syncCurrentPlayback = () => {
@@ -2488,16 +2708,39 @@
             }
           }
         });
+        startScrubClock();
       };
 
       const goToSlide = (nextIdx, animate = true) => {
         currentIndex = Math.max(0, Math.min(cards.length - 1, nextIdx));
         isPausedByUser = false;
+        simulatedSec = 0;
         const h = viewportEl.clientHeight || 540;
         trackEl.classList.toggle("dragging", !animate);
         trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
         syncCurrentPlayback();
+        updateScrubUiForCurrent();
       };
+
+      // Bind scrub sliders
+      cards.forEach((card, idx) => {
+        const range = card.querySelector(".reel-scrub-range");
+        if (!range) return;
+        range.addEventListener("pointerdown", (e) => e.stopPropagation());
+        range.addEventListener("input", () => {
+          const targetSec = Number(range.value || 0);
+          const vid = card.querySelector("video.auto-scroll-reel-video");
+          if (vid) {
+            vid.currentTime = targetSec;
+          }
+          const iframe = card.querySelector("iframe.inpage-shorts-iframe");
+          if (iframe) {
+            sendYtCommand(iframe, "seekTo", [targetSec, true]);
+          }
+          if (idx === currentIndex) simulatedSec = targetSec;
+          updateScrubUiForCurrent();
+        });
+      });
 
       const secObs = new IntersectionObserver((entries) => {
         entries.forEach(en => {
@@ -2508,12 +2751,24 @@
       }, { threshold: [0.35] });
       secObs.observe(secEl);
 
+      // Desktop mouse wheel smooth slide navigation
+      let wheelLock = false;
+      viewportEl.addEventListener("wheel", (e) => {
+        if (Math.abs(e.deltaY) < 12) return;
+        e.preventDefault();
+        if (wheelLock) return;
+        wheelLock = true;
+        if (e.deltaY > 0 && currentIndex < cards.length - 1) goToSlide(currentIndex + 1, true);
+        else if (e.deltaY < 0 && currentIndex > 0) goToSlide(currentIndex - 1, true);
+        setTimeout(() => { wheelLock = false; }, 260);
+      }, { passive: false });
+
       let startY = 0;
       let currentDeltaY = 0;
       let dragging = false;
 
       viewportEl.addEventListener("pointerdown", (e) => {
-        if (e.target.closest(".reel-folder-path-link")) return;
+        if (e.target.closest(".reel-folder-path-link") || e.target.closest(".reel-scrub-bar-wrap")) return;
         dragging = true;
         startY = e.clientY;
         currentDeltaY = 0;
@@ -2533,10 +2788,9 @@
         if (!dragging) return;
         dragging = false;
         const h = viewportEl.clientHeight || 540;
-        const threshold = Math.min(75, h * 0.14);
+        const threshold = Math.min(70, h * 0.13);
 
         if (Math.abs(currentDeltaY) < 9) {
-          // Single Tap on Screen: Toggle Play / Pause just like YouTube Shorts
           isPausedByUser = !isPausedByUser;
           flashTapIcon(cards[currentIndex], isPausedByUser ? "⏸" : "▶");
           syncCurrentPlayback();
@@ -2603,7 +2857,6 @@
       return Array.from(new Set([...base, ...extra]));
     }
 
-    // GOOGLE DOCS WYSIWYG + FREE FONT DOWNLOADER + TABLE CONTROLS
     function createGoogleDocsEditor(initialHtml = "", placeholder = "Write here...") {
       const fontOpts = getAllAvailableFontNames()
         .map(fn => `<option value="${escapeHtml(fn)}">${escapeHtml(fn)}</option>`)
@@ -3286,7 +3539,7 @@
             const imgUrl = convertDriveUrl(card.image);
             const actType = card.actionType || "link";
             const a = document.createElement("a");
-            a.className = `glass-portal-card ${themeClass}`;
+            a.className = `glass-portal-card glass-light-surface ${themeClass}`;
             if (isMoveEditEnabled) {
               a.href = "javascript:void(0)";
             } else if (actType === "link" && card.url) {
@@ -3318,7 +3571,7 @@
           const bAct = b.actionType || "reelsFolder";
           const bIcon = convertDriveUrl(b.iconUrl || "");
           const div = document.createElement("div");
-          div.className = "neon-banner-bar";
+          div.className = "neon-banner-bar glass-light-surface";
           div.id = "mainNeonBanner";
           div.dataset.veId = "mainNeonBanner";
           div.onclick = () => {
@@ -3345,7 +3598,7 @@
             if (!btn.label) return;
             const p = document.createElement("button");
             p.type = "button";
-            p.className = "glass-pill-btn";
+            p.className = "glass-pill-btn glass-light-surface";
             p.textContent = btn.label;
             p.onclick = () => executePillAction(btn);
             row.appendChild(p);
@@ -3353,7 +3606,7 @@
           stack.appendChild(row);
         } else if (secId === "portalHubCard") {
           const hub = document.createElement("section");
-          hub.className = "portal-hub-card";
+          hub.className = "portal-hub-card glass-light-surface";
           hub.id = "dest-portal-hub";
           hub.dataset.veId = "portalHubCard";
           hub.innerHTML = `
@@ -3383,7 +3636,7 @@
           if (sc.enabled !== false && slides.length > 0 && currentArticlePage === 1 && !searchQuery && !selectedSubjectFolderId && !movieFilterTag && !isFullReelsTabOpen) {
             if (activeSlideIndex >= slides.length) activeSlideIndex = 0;
             const box = document.createElement("section");
-            box.className = "showcase-carousel-box";
+            box.className = "showcase-carousel-box glass-light-surface";
             box.id = "dest-welcome-card";
             box.dataset.veId = "welcomeCardSection";
 
@@ -3402,13 +3655,18 @@
               `;
             }).join("");
 
+            const arrowsHtml = slides.length > 1 ? `
+              <button type="button" class="showcase-arrow-btn prev" onclick="event.stopPropagation(); setCarouselSlide(activeSlideIndex - 1);" aria-label="Previous Slide">‹</button>
+              <button type="button" class="showcase-arrow-btn next" onclick="event.stopPropagation(); setCarouselSlide(activeSlideIndex + 1);" aria-label="Next Slide">›</button>
+            ` : "";
+
             const dotsHtml = slides.length > 1 ? `
               <div class="showcase-dots-row">
                 ${slides.map((_, i) => `<button type="button" class="showcase-dot ${i === activeSlideIndex ? "active" : ""}" onclick="setCarouselSlide(${i})" aria-label="Slide ${i + 1}"></button>`).join("")}
               </div>
             ` : "";
 
-            box.innerHTML = slidesHtml + dotsHtml;
+            box.innerHTML = slidesHtml + arrowsHtml + dotsHtml;
             stack.appendChild(box);
             startCarouselAutoPlay();
           }
@@ -3548,7 +3806,7 @@
             const cardDesc = art.excerpt || (isReview ? `${art.reviewData?.releaseYear || ""} • ${art.reviewData?.streamingPlatform || (art.reviewData?.categories || []).join(", ")}` : "");
 
             const card = document.createElement("div");
-            card.className = "poster-article-card";
+            card.className = "poster-article-card glass-light-surface";
             card.onclick = () => { if (!isMoveEditEnabled) openArticleReader(realIdx); };
             card.innerHTML = `
               <div class="poster-thumb-box">
@@ -3614,7 +3872,7 @@
 
           if (showNotice) {
             const noticeBox = document.createElement("aside");
-            noticeBox.className = "notice-board-panel";
+            noticeBox.className = "notice-board-panel glass-light-surface";
             noticeBox.id = "dest-notice-board";
             noticeBox.dataset.veId = "noticeBoardPanel";
             noticeBox.innerHTML = `
@@ -3631,7 +3889,7 @@
           if (!el) return;
           const showOutline = el.showInnerOutline !== false;
           const box = document.createElement("div");
-          box.className = "custom-canvas-element";
+          box.className = "custom-canvas-element glass-light-surface";
           box.dataset.veId = secId;
           box.style.background = el.bgColor || "rgba(17, 22, 34, 0.9)";
           box.style.color = el.textColor || "#ffffff";
@@ -3688,7 +3946,7 @@
         const subCount = allFolders.filter(f => f.parentId === fld.id).length;
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "android-folder-chip";
+        btn.className = "android-folder-chip glass-light-surface";
         btn.onclick = () => openFolderView(fld.id);
         btn.innerHTML = `
           <span style="font-size:1.1rem;">📁</span>
@@ -3749,7 +4007,7 @@
         const href = (s[item.key] || "").trim();
         if (!href) return;
         const a = document.createElement("a");
-        a.className = "social-chip";
+        a.className = "social-chip glass-light-surface";
         a.href = isMoveEditEnabled ? "javascript:void(0)" : href;
         if (!isMoveEditEnabled) {
           a.target = "_blank";
@@ -3806,16 +4064,24 @@
         const st = styles[id] || {};
         el.classList.remove(...fxClasses);
         if (st.effectClass) el.classList.add(st.effectClass);
+
+        if (st.bgMode === "clean") {
+          el.style.background = "transparent";
+          el.style.border = "0";
+          el.style.boxShadow = "none";
+        } else {
+          if (st.bgColor) el.style.background = st.bgColor;
+          if (st.borderWidth !== undefined && st.borderColor) el.style.border = `${st.borderWidth}px solid ${st.borderColor}`;
+          if (st.glowColor) el.style.boxShadow = `0 0 20px ${st.glowColor}`;
+        }
+
         if (st.textColor) el.style.color = st.textColor;
-        if (st.bgColor) el.style.background = st.bgColor;
         if (st.fontFamily) el.style.fontFamily = st.fontFamily;
         if (st.fontSize) el.style.fontSize = `${st.fontSize}px`;
         if (typeof st.bold === "boolean") el.style.fontWeight = st.bold ? "800" : "";
         if (st.radius !== undefined && st.radius !== "") el.style.borderRadius = `${st.radius}px`;
         if (st.width) el.style.width = `${st.width}px`;
         if (st.height) { el.style.height = `${st.height}px`; el.style.overflow = "hidden"; }
-        if (st.borderWidth !== undefined && st.borderColor) el.style.border = `${st.borderWidth}px solid ${st.borderColor}`;
-        if (st.glowColor) el.style.boxShadow = `0 0 20px ${st.glowColor}`;
         const dx = Number(st.posX || 0);
         const dy = Number(st.posY || 0);
         el.style.transform = (dx || dy) ? `translate(${dx}px, ${dy}px)` : "";
@@ -3981,8 +4247,14 @@
       refreshAllAdminPreviews();
     }
 
-    // DEDICATED FULL-PAGE THEME STUDIO WITH LIVE TOP-RIGHT MOBILE PREVIEW
+    // DEDICATED FULL-PAGE THEME STUDIO WITH LIVE TOP-RIGHT MOBILE PREVIEW + BEFORE/AFTER COMPARISON
     function openThemeStudioPage() {
+      beforeThemeSnapshot = structuredClone({
+        themeConfig: siteData.themeConfig,
+        elementStyles: siteData.elementStyles
+      });
+      showingBeforeInPreview = false;
+      document.getElementById("previewCompareBtn").textContent = "Before/After: After";
       populateThemeSelectors();
       loadThemeElementFields();
       document.getElementById("themeStudioPage").classList.add("open");
@@ -3995,11 +4267,82 @@
       if (popHist && activeStack[activeStack.length - 1] === "themeStudio") activeStack.pop();
     }
 
+    function toggleBeforeAfterPreview() {
+      showingBeforeInPreview = !showingBeforeInPreview;
+      document.getElementById("previewCompareBtn").textContent = showingBeforeInPreview ? "Before/After: Before" : "Before/After: After";
+      refreshLiveMobileFrame();
+    }
+
     function refreshLiveMobileFrame() {
       const iframe = document.getElementById("liveMobilePreviewIframe");
       if (!iframe) return;
+      const snapToShow = (showingBeforeInPreview && beforeThemeSnapshot)
+        ? {
+            ...siteData,
+            themeConfig: beforeThemeSnapshot.themeConfig,
+            elementStyles: beforeThemeSnapshot.elementStyles
+          }
+        : siteData;
+
+      const previewHtml = buildPreviewSnapshotHtml(snapToShow);
+      iframe.srcdoc = previewHtml;
+    }
+
+    function buildPreviewSnapshotHtml(snap) {
+      const tc = { ...DEFAULT_DATA.themeConfig, ...(snap.themeConfig || {}) };
+      const preset = THEME_COLOR_PRESETS.find(p => p.id === tc.preset) || THEME_COLOR_PRESETS[0];
+      const lightEff = THEME_LIGHT_EFFECTS.find(e => e.id === tc.lightEffect) || THEME_LIGHT_EFFECTS[0];
+      const lightCol = THEME_LIGHT_COLORS.find(c => c.id === tc.lightColor) || THEME_LIGHT_COLORS[0];
+      const ambA = (lightEff.id === "matte-clean" || lightCol.id === "no-glow") ? "transparent" : lightCol.a;
+      const ambB = (lightEff.id === "matte-clean" || lightCol.id === "no-glow") ? "transparent" : lightCol.b;
+
+      const titleStyle = (snap.elementStyles || {}).brandTitle || {};
+      const titleColor = titleStyle.textColor || "#ffffff";
+      const titleGlow = titleStyle.glowColor || lightCol.glow;
+      const titleFx = titleStyle.effectClass || "";
+
+      const cardsHtml = (snap.portalCards || []).map((c, idx) => `
+        <div style="background:linear-gradient(135deg, rgba(34,211,238,0.22), rgba(14,19,32,0.95)); border:1px solid rgba(255,255,255,0.22); border-radius:${tc.boxShape}; padding:6px 8px; min-width:0;">
+          <div style="font-size:0.72rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.title)}</div>
+          <div style="font-size:0.48rem; color:#cbd5e1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.sub || "")}</div>
+        </div>
+      `).join("");
+
+      const pillsHtml = (snap.navButtons || []).map(p => `
+        <span style="padding:4px 9px; border-radius:${tc.buttonShape}; background:#121828; border:1px solid rgba(255,255,255,0.18); font-size:0.62rem; font-weight:700; color:#e2e8f0;">${escapeHtml(p.label)}</span>
+      `).join("");
+
+      return `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/><style>
+        body { margin:0; padding:10px; font-family:'Plus Jakarta Sans',sans-serif; color:${preset.text}; background:radial-gradient(circle at 50% 0%, ${ambA}, transparent 45%), radial-gradient(circle at 80% 15%, ${ambB}, transparent 40%), ${preset.bg}; }
+        .m-title { font-family:'Montserrat',sans-serif; font-size:1.15rem; font-weight:900; letter-spacing:1.2px; text-align:center; color:${titleColor}; white-space:nowrap; text-shadow:0 0 12px ${titleGlow}; }
+        .m-sub { font-size:0.46rem; font-weight:700; letter-spacing:0.6px; text-align:center; color:#cbd5e1; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .m-search { margin:8px 0; display:flex; align-items:center; background:#0d121e; border:1px solid rgba(255,255,255,0.2); border-radius:${tc.buttonShape}; padding:2px 3px 2px 10px; }
+        .m-search span { flex:1; font-size:0.64rem; color:#94a3b8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .m-search b { background:${preset.pink}; color:#fff; font-size:0.54rem; padding:4px 9px; border-radius:${tc.buttonShape}; }
+      </style></head><body>
+        <div class="m-title ${escapeHtml(titleFx)}">${escapeHtml(snap.brandTitle || "CRACK CGPSC")}</div>
+        <div class="m-sub">${escapeHtml(snap.brandSub || "")}</div>
+        <div class="m-search"><span>${escapeHtml(snap.searchPlaceholder || "Search...")}</span><b>SEARCH</b></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">${cardsHtml}</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin-bottom:8px;">${pillsHtml}</div>
+        <div style="background:${preset.card}; border:1px solid rgba(255,255,255,0.16); border-radius:${tc.boxShape}; padding:9px; box-shadow:0 0 12px ${lightCol.glow};">
+          <div style="font-size:0.74rem; font-weight:800;">${escapeHtml(snap.hubHeading || "")}</div>
+          <div style="font-size:0.62rem; color:#94a3b8; margin-top:3px;">${escapeHtml((snap.hubDesc || "").slice(0, 95))}</div>
+        </div>
+      </body></html>`;
+    }
+
+    function resetThemeSectionDefault() {
+      siteData.themeConfig = structuredClone(DEFAULT_DATA.themeConfig);
+      siteData.elementStyles = {};
+      showingBeforeInPreview = false;
+      document.getElementById("previewCompareBtn").textContent = "Before/After: After";
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
-      iframe.src = window.location.href.split("#")[0];
+      populateThemeSelectors();
+      loadThemeElementFields();
+      renderAll();
+      refreshLiveMobileFrame();
+      showToast("Theme & element styles reset to default");
     }
 
     function saveThemeStudioAndApply() {
@@ -4013,10 +4356,11 @@
     function loadThemeElementFields() {
       const elId = document.getElementById("tsTargetElementSel").value;
       const st = (siteData.elementStyles || {})[elId] || {};
+      document.getElementById("tsElBgMode").value = st.bgMode || "box";
       document.getElementById("tsElBgColor").value = st.bgColor || "#101522";
       document.getElementById("tsElTextColor").value = st.textColor || "#ffffff";
       document.getElementById("tsElGlowColor").value = st.glowColor || "#22d3ee";
-      document.getElementById("tsElRadius").value = st.radius !== undefined && st.radius !== "" ? st.radius : 14;
+      document.getElementById("tsElRadius").value = st.radius !== undefined && st.radius !== "" ? st.radius : 12;
       document.getElementById("tsElEffectClass").value = st.effectClass || "";
     }
 
@@ -4025,12 +4369,15 @@
       siteData.elementStyles = siteData.elementStyles || {};
       siteData.elementStyles[elId] = {
         ...(siteData.elementStyles[elId] || {}),
+        bgMode: document.getElementById("tsElBgMode").value,
         bgColor: document.getElementById("tsElBgColor").value,
         textColor: document.getElementById("tsElTextColor").value,
         glowColor: document.getElementById("tsElGlowColor").value,
-        radius: Number(document.getElementById("tsElRadius").value || 14),
+        radius: Number(document.getElementById("tsElRadius").value || 12),
         effectClass: document.getElementById("tsElEffectClass").value
       };
+      showingBeforeInPreview = false;
+      document.getElementById("previewCompareBtn").textContent = "Before/After: After";
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       applySavedElementStylesAndAutoFit();
       refreshLiveMobileFrame();
@@ -4074,6 +4421,8 @@
         boxShape: document.getElementById("cfgThemeBoxShape").value,
         buttonShape: document.getElementById("cfgThemeButtonShape").value
       };
+      showingBeforeInPreview = false;
+      document.getElementById("previewCompareBtn").textContent = "Before/After: After";
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       applyHomepageThemeStyles();
       refreshLiveMobileFrame();
@@ -5082,13 +5431,7 @@
           mediaUrl: document.getElementById("cfgHomeFeaturedMediaUrl").value.trim(),
           articleHtml: hfmHtml
         },
-        themeConfig: {
-          preset: document.getElementById("cfgThemePreset")?.value || "cyber-neon",
-          lightEffect: document.getElementById("cfgThemeLightEffect")?.value || "dual-aura",
-          lightColor: document.getElementById("cfgThemeLightColor")?.value || "pink-cyan",
-          boxShape: document.getElementById("cfgThemeBoxShape")?.value || "14px",
-          buttonShape: document.getElementById("cfgThemeButtonShape")?.value || "999px"
-        },
+        themeConfig: siteData.themeConfig || structuredClone(DEFAULT_DATA.themeConfig),
         footerText: siteData.footerText,
         articleSortOrder: siteData.articleSortOrder || "newest",
         menuDrawerMode: document.getElementById("cfgMenuDrawerMode").value || "standard",
@@ -5163,32 +5506,7 @@
     }
 
     function resetDesignerLayout() {
-      const preserved = {
-        articles: siteData.articles,
-        folders: siteData.folders,
-        github: siteData.github,
-        socialLinks: siteData.socialLinks,
-        menuItems: siteData.menuItems,
-        reviewConfig: siteData.reviewConfig,
-        showcaseCarousel: siteData.showcaseCarousel,
-        reelsFeed: siteData.reelsFeed,
-        reelsFolders: siteData.reelsFolders,
-        faviconUrl: siteData.faviconUrl,
-        brandLogoUrl: siteData.brandLogoUrl,
-        searchPlaceholder: siteData.searchPlaceholder,
-        aboutHeading: siteData.aboutHeading,
-        aboutBody: siteData.aboutBody,
-        homeFeaturedMedia: siteData.homeFeaturedMedia,
-        themeConfig: siteData.themeConfig,
-        customFonts: siteData.customFonts
-      };
-      const fresh = structuredClone(DEFAULT_DATA);
-      Object.assign(fresh, preserved);
-      siteData = fresh;
-      selectedVeId = "";
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
-      renderAll();
-      showToast("Layout reset to default");
+      resetEntireSiteToDefault();
     }
 
     function toggleMoveEditSwitch() {
