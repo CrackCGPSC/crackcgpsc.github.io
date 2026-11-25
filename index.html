@@ -6,6 +6,7 @@
   <title>CRACK CGPSC - Test Series • Topic Quiz • PYQ Papers • CBT Portal</title>
   <meta name="description" content="Crack CGPSC - Free Test Series, Topic Quiz, Previous Year Question Papers, CBT Portal, and Study Articles for CGPSC and CGVYAPAM aspirants." />
   <link id="dynamicSiteFavicon" rel="icon" href="" />
+  <link id="dynamicExtraFontsLink" rel="stylesheet" href="" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -71,13 +72,64 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    /* Header + Shiny Motion Title & Flare */
+    /* Motion & Light Effect Classes */
+    @keyframes fxBorderNeonPulse {
+      0%, 100% { box-shadow: 0 0 8px var(--neon-cyan), inset 0 0 6px rgba(34, 211, 238, 0.2); border-color: var(--neon-cyan); }
+      50% { box-shadow: 0 0 18px var(--neon-pink), inset 0 0 10px rgba(255, 42, 133, 0.28); border-color: var(--neon-pink); }
+    }
+    @keyframes fxBorderRainbow {
+      0% { border-color: #ff2a85; box-shadow: 0 0 14px rgba(255, 42, 133, 0.55); }
+      33% { border-color: #22d3ee; box-shadow: 0 0 14px rgba(34, 211, 238, 0.55); }
+      66% { border-color: #10b981; box-shadow: 0 0 14px rgba(16, 185, 129, 0.55); }
+      100% { border-color: #ff2a85; box-shadow: 0 0 14px rgba(255, 42, 133, 0.55); }
+    }
+    @keyframes fxTextGlowWave {
+      0%, 100% { text-shadow: 0 0 6px var(--neon-cyan), 0 0 14px rgba(34, 211, 238, 0.45); }
+      50% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 42, 133, 0.65); }
+    }
+    @keyframes fxFloatGentle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+    @keyframes fxBreatheScale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.015); }
+    }
+
+    .fx-border-pulse { animation: fxBorderNeonPulse 2.8s ease-in-out infinite !important; }
+    .fx-border-rainbow { animation: fxBorderRainbow 4s linear infinite !important; }
+    .fx-text-glow { animation: fxTextGlowWave 2.6s ease-in-out infinite !important; }
+    .fx-motion-float { animation: fxFloatGentle 3.2s ease-in-out infinite !important; }
+    .fx-motion-breathe { animation: fxBreatheScale 3.5s ease-in-out infinite !important; }
+
+    /* Header + Top-Left Admin Quick Button (Visible ONLY when Admin is logged in) */
     .top-bar-wrap {
       position: relative;
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
       padding: 14px 16px 4px;
+    }
+
+    .admin-quick-corner-btn {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      height: 32px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 211, 238, 0.55);
+      background: linear-gradient(135deg, rgba(14, 22, 38, 0.92), rgba(201, 24, 91, 0.78));
+      backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      display: none;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      z-index: 25;
+      box-shadow: 0 0 14px rgba(255, 42, 133, 0.45);
     }
 
     .menu-float-btn {
@@ -102,7 +154,7 @@
 
     .hero-brand-center {
       text-align: center;
-      padding: 2px 48px 2px;
+      padding: 2px 68px 2px;
       cursor: pointer;
     }
 
@@ -124,7 +176,7 @@
     .neon-brand-title {
       display: inline-block;
       font-family: "Montserrat", sans-serif;
-      font-size: clamp(1.5rem, 4.6vw, 2.75rem);
+      font-size: clamp(1.42rem, 4.4vw, 2.7rem);
       font-weight: 900;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -173,9 +225,7 @@
     }
 
     @media (min-width: 900px) {
-      .search-shell {
-        max-width: 380px;
-      }
+      .search-shell { max-width: 380px; }
     }
 
     .search-glass-box {
@@ -292,16 +342,9 @@
     }
 
     .card-theme-0 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.46), rgba(6, 78, 59, 0.76)); box-shadow: 0 0 12px rgba(16, 185, 129, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-    .card-theme-0:hover, .card-theme-0:active { border-color: rgba(167, 243, 208, 0.95); box-shadow: 0 0 22px rgba(16, 185, 129, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
-
     .card-theme-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.48), rgba(30, 58, 138, 0.78)); box-shadow: 0 0 12px rgba(59, 130, 246, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-    .card-theme-1:hover, .card-theme-1:active { border-color: rgba(191, 219, 254, 0.95); box-shadow: 0 0 22px rgba(59, 130, 246, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
-
     .card-theme-2 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.54), rgba(120, 53, 15, 0.8)); box-shadow: 0 0 12px rgba(245, 158, 11, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-    .card-theme-2:hover, .card-theme-2:active { border-color: rgba(254, 240, 138, 0.95); box-shadow: 0 0 22px rgba(245, 158, 11, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
-
     .card-theme-3 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(12, 74, 110, 0.78)); box-shadow: 0 0 12px rgba(34, 211, 238, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
-    .card-theme-3:hover, .card-theme-3:active { border-color: rgba(165, 243, 252, 0.95); box-shadow: 0 0 22px rgba(34, 211, 238, 0.78), inset 0 0 12px rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
 
     .glass-icon-img {
       position: relative;
@@ -446,7 +489,34 @@
     .showcase-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); border: none; cursor: pointer; }
     .showcase-dot.active { width: 20px; background: var(--neon-pink); }
 
-    /* Shorts / Reels Feed: 1:1 Real-Time Finger-Tracking Slide Deck */
+    /* Full-Page Android Reels Folder Explorer */
+    .android-reels-explorer-page {
+      background: var(--bg-card);
+      border: 1px solid rgba(34, 211, 238, 0.32);
+      border-radius: var(--box-radius);
+      padding: 14px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    }
+
+    .explorer-folder-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 13px;
+      border-radius: var(--box-radius);
+      background: linear-gradient(135deg, rgba(22, 30, 48, 0.96), rgba(12, 17, 29, 0.98));
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      cursor: pointer;
+      transition: transform 0.14s ease, border-color 0.14s ease;
+    }
+
+    .explorer-folder-tile:hover, .explorer-folder-tile:active {
+      border-color: var(--neon-pink);
+      transform: translateY(-1px);
+    }
+
+    /* Shorts / Reels Feed: 1:1 Finger Swipe + Center Tap Play/Pause */
     .reels-feed-section {
       background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -500,9 +570,7 @@
       transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .reels-deck-track.dragging {
-      transition: none !important;
-    }
+    .reels-deck-track.dragging { transition: none !important; }
 
     .reel-feed-card {
       position: relative;
@@ -595,6 +663,32 @@
       inset: 0;
       z-index: 4;
       background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .reel-tap-indicator {
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      background: rgba(5, 7, 12, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      pointer-events: none;
+    }
+
+    .reel-tap-indicator.visible {
+      opacity: 1;
+      transform: scale(1);
     }
 
     /* Live Image/GIF Preview Box in Admin Studio */
@@ -815,6 +909,56 @@
     @media (min-width: 680px) { .android-segment-bar { grid-template-columns: repeat(3, 1fr); } }
     .android-tile-card { background: #111622; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 11px; margin-bottom: 10px; }
 
+    /* Dedicated Full-Page Homepage Theme Studio with Top-Right Live Mobile Preview */
+    .theme-studio-page {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 105;
+      background: #06080d;
+      overflow-y: auto;
+      padding-bottom: 80px;
+    }
+    .theme-studio-page.open { display: block; }
+
+    .theme-studio-layout {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    @media (min-width: 780px) {
+      .theme-studio-layout {
+        grid-template-columns: 1.55fr 1fr;
+      }
+    }
+
+    .live-mobile-preview-card {
+      position: sticky;
+      top: 58px;
+      background: #0b0f18;
+      border: 2px solid rgba(34, 211, 238, 0.45);
+      border-radius: 22px;
+      padding: 8px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+      max-width: 290px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .live-mobile-screen-frame {
+      width: 100%;
+      height: 360px;
+      border: 0;
+      border-radius: 16px;
+      background: #05070b;
+      display: block;
+    }
+
     .wysiwyg-shell { border: 1px solid rgba(34, 211, 238, 0.35); border-radius: 10px; background: #090d16; overflow: hidden; }
     .wysiwyg-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 6px; background: #131a29; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
     .wysiwyg-table-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 5px 6px; background: #0e1420; border-bottom: 1px solid rgba(255, 42, 133, 0.28); }
@@ -898,6 +1042,7 @@
   <div class="site-viewport-shell">
     <!-- Header -->
     <div class="top-bar-wrap" data-ve-id="headerWrap">
+      <button class="admin-quick-corner-btn" id="adminTopLeftQuickBtn" onclick="openAdminStudio()">⚙️ Studio</button>
       <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu">☰</button>
       <div class="hero-brand-center" onclick="handleBrandClick()">
         <div id="headerBrandLogoHost" data-ve-id="brandTitle"></div>
@@ -914,10 +1059,22 @@
       <div class="neon-flare-strip" aria-hidden="true"></div>
     </div>
 
-    <!-- Main Home, Article & Full-Page About View -->
+    <!-- Main Home, Reels Folder Explorer, Article & Full-Page About View -->
     <main class="container" id="mainSiteContainer">
       <div id="homeView">
         <div class="home-sections-stack" id="homeSectionsStack"></div>
+      </div>
+
+      <div id="reelsFolderPageView" style="display:none;">
+        <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+          <button class="btn" onclick="handleBackAction()">← Back</button>
+          <button class="btn btn-primary" onclick="openFullReelsTab()">▶ Watch All Shorts</button>
+        </div>
+        <section class="android-reels-explorer-page">
+          <h2 class="section-title" style="margin-bottom:8px;">📁 Select Subject / Topic Short Videos</h2>
+          <div class="folder-path-bar" id="reelsPageBreadcrumb"></div>
+          <div id="reelsPageExplorerBody" style="display:flex; flex-direction:column; gap:8px; margin-top:8px;"></div>
+        </section>
       </div>
 
       <div id="articleView" style="display:none;">
@@ -986,6 +1143,116 @@
     </div>
   </div>
 
+  <!-- DEDICATED FULL-PAGE HOMEPAGE THEME STUDIO WITH TOP-RIGHT LIVE MOBILE SCREEN -->
+  <section class="theme-studio-page" id="themeStudioPage">
+    <div class="android-top-appbar">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button class="btn" onclick="closeThemeStudioPage(true)">← Admin</button>
+        <div>
+          <div style="font-size:0.9rem; font-weight:800;">🎨 Homepage Theme & Element Effects</div>
+          <div style="font-size:0.64rem; color:var(--neon-cyan);">Live Mobile Screen • Per-Element Styles • Free Effects Library</div>
+        </div>
+      </div>
+      <button class="btn btn-success" onclick="saveThemeStudioAndApply()">✓ Apply</button>
+    </div>
+
+    <div class="theme-studio-layout">
+      <!-- Left Controls Column -->
+      <div class="form-grid">
+        <div class="android-tile-card form-grid two-col">
+          <div style="grid-column:1 / -1;">
+            <strong style="font-size:0.86rem; color:var(--neon-cyan);">🌐 Global Theme, Ambiance & Shapes (12+ Options Each)</strong>
+          </div>
+          <div class="field-group">
+            <label>1. Website Color & Ambiance Theme</label>
+            <select id="cfgThemePreset" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+          <div class="field-group">
+            <label>2. Ambient Light & Glow Effect</label>
+            <select id="cfgThemeLightEffect" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+          <div class="field-group">
+            <label>3. Light Effect Primary Color</label>
+            <select id="cfgThemeLightColor" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+          <div class="field-group">
+            <label>4. Cards & Boxes Shape</label>
+            <select id="cfgThemeBoxShape" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+          <div class="field-group" style="grid-column:1 / -1;">
+            <label>5. Buttons & Pills Shape</label>
+            <select id="cfgThemeButtonShape" onchange="applyThemePreviewFromAdmin()"></select>
+          </div>
+        </div>
+
+        <div class="android-tile-card form-grid two-col">
+          <div style="grid-column:1 / -1;">
+            <strong style="font-size:0.86rem; color:var(--neon-cyan);">🎯 Individual Element Customizer (Boxes, Buttons, Text & Light Motion)</strong>
+          </div>
+          <div class="field-group" style="grid-column:1 / -1;">
+            <label>Select Homepage Element</label>
+            <select id="tsTargetElementSel" onchange="loadThemeElementFields()">
+              <option value="brandTitle">Brand Title / Logo</option>
+              <option value="brandSub">Brand Subtitle</option>
+              <option value="searchWrap">Search Bar Box</option>
+              <option value="portalCardsGrid">Portal Cards Grid</option>
+              <option value="mainNeonBanner">Education Folder Banner</option>
+              <option value="quickPillButtons">Quick Pill Buttons</option>
+              <option value="portalHubCard">Official Portal Hub Box</option>
+              <option value="homeFeaturedMediaBlock">Homepage Media & Article Block</option>
+              <option value="welcomeCardSection">Showcase Carousel</option>
+              <option value="reelsFeedSection">Shorts & Reels Section</option>
+              <option value="articlesSection">Articles Section</option>
+              <option value="noticeBoardPanel">Notice Board Panel</option>
+              <option value="bottomFoldersSection">Bottom Study Folders</option>
+              <option value="siteFooter">Footer Section</option>
+            </select>
+          </div>
+          <div class="field-group"><label>Background Colour</label><input type="color" id="tsElBgColor" value="#101522" onchange="saveThemeElementOverride()" /></div>
+          <div class="field-group"><label>Text Colour</label><input type="color" id="tsElTextColor" value="#ffffff" onchange="saveThemeElementOverride()" /></div>
+          <div class="field-group"><label>Border / Glow Colour</label><input type="color" id="tsElGlowColor" value="#22d3ee" onchange="saveThemeElementOverride()" /></div>
+          <div class="field-group">
+            <label>Corner Shape Radius (px)</label>
+            <input type="number" id="tsElRadius" min="0" max="999" value="14" onchange="saveThemeElementOverride()" />
+          </div>
+          <div class="field-group">
+            <label>Border & Text Light Motion Effect</label>
+            <select id="tsElEffectClass" onchange="saveThemeElementOverride()">
+              <option value="">None (Static)</option>
+              <option value="fx-border-pulse">Border Neon Pulse Glow</option>
+              <option value="fx-border-rainbow">Border RGB Spectrum Cycle</option>
+              <option value="fx-text-glow">Text Neon Light Wave</option>
+              <option value="fx-motion-float">Gentle Floating Motion</option>
+              <option value="fx-motion-breathe">Smooth Breathe Pulse</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Free Online Effects Pack (Download & Save)</label>
+            <div style="display:flex; gap:5px;">
+              <select id="tsFreeEffectsCatalog">
+                <option value="fx-border-pulse|Cyber Neon Pulse">Cyber Neon Pulse</option>
+                <option value="fx-border-rainbow|Prism RGB Border">Prism RGB Border</option>
+                <option value="fx-text-glow|Aurora Text Shimmer">Aurora Text Shimmer</option>
+                <option value="fx-motion-float|Zero-G Float Motion">Zero-G Float Motion</option>
+                <option value="fx-motion-breathe|Cinema Breathe Scale">Cinema Breathe Scale</option>
+              </select>
+              <button type="button" class="btn btn-cyan" onclick="downloadFreeEffectPreset()">⬇ Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top-Right Live Small Mobile Preview Screen -->
+      <div class="live-mobile-preview-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:2px 6px 6px; font-size:0.68rem; font-weight:800; color:var(--neon-cyan);">
+          <span>📱 Live Mobile Screen</span>
+          <button type="button" class="btn" style="padding:2px 7px; font-size:0.62rem;" onclick="refreshLiveMobileFrame()">↻ Refresh</button>
+        </div>
+        <iframe id="liveMobilePreviewIframe" class="live-mobile-screen-frame" title="Live Mobile Preview"></iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- FULL-PAGE ANDROID ADMIN STUDIO -->
   <section class="fullpage-admin-screen" id="adminStudio">
     <div class="android-top-appbar">
@@ -993,7 +1260,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">1:1 Finger Swipe Shorts • About Page • Media Block • Themes</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Reels Explorer • Tap Pause/Play • Theme Studio • Fonts</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1013,10 +1280,10 @@
         <button class="btn" data-tab="tab-folders" onclick="switchAdminTab('tab-folders', this)">7. Article Folders</button>
         <button class="btn" data-tab="tab-sequence" onclick="switchAdminTab('tab-sequence', this)">8. Homepage</button>
         <button class="btn" data-tab="tab-github" onclick="switchAdminTab('tab-github', this)">9. GitHub Sync</button>
-        <button class="btn" data-tab="tab-theme" onclick="switchAdminTab('tab-theme', this)">10. Homepage Theme</button>
+        <button class="btn btn-cyan" data-tab="tab-theme" onclick="openThemeStudioPage()">10. Homepage Theme</button>
       </div>
 
-      <!-- Tab 1: Header, Pills & Full-Page About Editor -->
+      <!-- Tab 1 -->
       <div id="tab-general" class="admin-tab-content">
         <div class="android-tile-card form-grid two-col">
           <div class="field-group"><label>Brand Logo Text</label><input type="text" id="cfgBrandTitle" /></div>
@@ -1053,7 +1320,7 @@
         </div>
       </div>
 
-      <!-- Tab 2: Menu Drawer Builder + Auto Movie Filter Menu -->
+      <!-- Tab 2 -->
       <div id="tab-menu" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid two-col">
           <div class="field-group">
@@ -1086,7 +1353,7 @@
         </div>
       </div>
 
-      <!-- Tab 3: Cards & Banner -->
+      <!-- Tab 3: Cards & Banner (Includes Google Drive Icon/GIF Link for Banner) -->
       <div id="tab-cards" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;"><strong style="font-size:0.86rem;">Education Content Folder Banner</strong></div>
@@ -1094,18 +1361,23 @@
           <div class="field-group"><label>Banner Subtitle</label><input type="text" id="cfgBannerSub" /></div>
           <div class="field-group"><label>Banner Right CTA</label><input type="text" id="cfgBannerCta" /></div>
           <div class="field-group">
+            <label>Banner Icon / Google Drive Image or GIF Link</label>
+            <input type="text" id="cfgBannerIconUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
+            <div class="live-media-preview-box"></div>
+          </div>
+          <div class="field-group">
             <label>Banner Action</label>
             <select id="cfgBannerActionType" onchange="renderDynamicTargetForRow(this, document.getElementById('cfgBannerTargetWrap'), 'cfg-banner-target')">
-              <option value="contentExplorer">Content Folder Explorer (Default)</option>
+              <option value="reelsFolder">Open Reels Folder (Full-Page Explorer)</option>
+              <option value="contentExplorer">Popup Folder Explorer</option>
               <option value="link">External Link (New Tab)</option>
-              <option value="reelsFolder">Open Reels Folder</option>
               <option value="folder">Open Article Folder</option>
               <option value="article">Open Article</option>
               <option value="reelsTab">Open Reels Tab</option>
               <option value="anchor">Destination Point</option>
             </select>
           </div>
-          <div class="field-group" style="grid-column:1 / -1;">
+          <div class="field-group">
             <label>Banner Target</label>
             <div id="cfgBannerTargetWrap"></div>
           </div>
@@ -1160,13 +1432,13 @@
         </div>
       </div>
 
-      <!-- Tab 6: Dedicated Reels Android File Manager -->
+      <!-- Tab 6: Dedicated Reels Android File Manager (Rename + Reorder Folders & Files) -->
       <div id="tab-reels" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card form-grid">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <div>
               <strong style="font-size:0.9rem; color:var(--neon-cyan);">📱 Reels Android File Manager</strong>
-              <div style="font-size:0.7rem; color:var(--text-secondary);">Manage Reels folders, subfolders, and video/image files just like Articles.</div>
+              <div style="font-size:0.7rem; color:var(--text-secondary);">Rename folders or reel titles and arrange their sequence with ↑ / ↓.</div>
             </div>
             <label style="display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; font-weight:800; cursor:pointer;">
               <input type="checkbox" id="cfgReelsFeedEnabled" style="width:auto;" /> Show Feed on Home
@@ -1193,7 +1465,7 @@
 
         <div class="android-tile-card">
           <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
-            <strong style="font-size:0.86rem;">📂 Reels Folders & Files</strong>
+            <strong style="font-size:0.86rem;">📂 Reels Folders & Files (Rename & Reorder)</strong>
             <button type="button" class="btn btn-cyan" onclick="createReelFolderInManager()">+ New Folder</button>
           </div>
           <div class="folder-path-bar" id="reelManagerPathBar"></div>
@@ -1217,7 +1489,7 @@
         </div>
       </div>
 
-      <!-- Tab 8: Homepage Sequence + Visibility + Homepage Featured Media/Article Block + Notice Board + Socials -->
+      <!-- Tab 8: Homepage Sequence + Visibility + Featured Media/Article + Notice Board + Socials -->
       <div id="tab-sequence" class="admin-tab-content" style="display:none;">
         <div class="android-tile-card">
           <strong style="font-size:0.86rem; display:block; margin-bottom:4px;">🏠 Homepage Sections & Boxes (Visibility & Sequence)</strong>
@@ -1274,41 +1546,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Tab 10: Homepage Theme Section (12+ Options per Setting) -->
-      <div id="tab-theme" class="admin-tab-content" style="display:none;">
-        <div class="android-tile-card form-grid two-col">
-          <div style="grid-column:1 / -1;">
-            <strong style="font-size:0.9rem; color:var(--neon-cyan);">🎨 Homepage Theme, Light Ambiance & Shapes Customizer</strong>
-            <div style="font-size:0.72rem; color:var(--text-secondary);">Choose from 12+ theme presets, ambient light effects, box shapes, button shapes, and neon glow colors.</div>
-          </div>
-
-          <div class="field-group">
-            <label>1. Website Color & Ambiance Theme (12 Presets)</label>
-            <select id="cfgThemePreset" onchange="applyThemePreviewFromAdmin()"></select>
-          </div>
-
-          <div class="field-group">
-            <label>2. Ambient Light & Glow Effect (12 Styles)</label>
-            <select id="cfgThemeLightEffect" onchange="applyThemePreviewFromAdmin()"></select>
-          </div>
-
-          <div class="field-group">
-            <label>3. Light Effect Primary Color (12 Colors)</label>
-            <select id="cfgThemeLightColor" onchange="applyThemePreviewFromAdmin()"></select>
-          </div>
-
-          <div class="field-group">
-            <label>4. Cards & Boxes Shape (12 Shapes)</label>
-            <select id="cfgThemeBoxShape" onchange="applyThemePreviewFromAdmin()"></select>
-          </div>
-
-          <div class="field-group">
-            <label>5. Buttons & Pills Shape (12 Shapes)</label>
-            <select id="cfgThemeButtonShape" onchange="applyThemePreviewFromAdmin()"></select>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="android-bottom-dock">
@@ -1332,7 +1569,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V27";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V28";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -1354,18 +1591,18 @@
     ];
 
     const THEME_LIGHT_EFFECTS = [
-      { id: "dual-aura", label: "1. Neon Dual Aura", aOp: 0.18, bOp: 0.12 },
-      { id: "top-spotlight", label: "2. Top Center Spotlight", aOp: 0.28, bOp: 0.04 },
-      { id: "cyber-pulse", label: "3. High-Intensity Cyber Glow", aOp: 0.32, bOp: 0.22 },
-      { id: "aurora-mist", label: "4. Soft Aurora Mist", aOp: 0.14, bOp: 0.18 },
-      { id: "halo-horizon", label: "5. Horizon Light Halo", aOp: 0.22, bOp: 0.15 },
-      { id: "subtle-ambient", label: "6. Subtle Studio Ambiance", aOp: 0.09, bOp: 0.07 },
-      { id: "deep-theater", label: "7. Deep Theater Vignette", aOp: 0.06, bOp: 0.04 },
-      { id: "neon-flare", label: "8. Vivid Neon Flare", aOp: 0.35, bOp: 0.24 },
-      { id: "prism-glow", label: "9. Dual Prism Split", aOp: 0.20, bOp: 0.20 },
-      { id: "velvet-shade", label: "10. Velvet Dark Shade", aOp: 0.11, bOp: 0.09 },
-      { id: "crystal-beam", label: "11. Crystal Top Beam", aOp: 0.25, bOp: 0.10 },
-      { id: "matte-clean", label: "12. Clean Matte (No Ambient Light)", aOp: 0.0, bOp: 0.0 }
+      { id: "dual-aura", label: "1. Neon Dual Aura" },
+      { id: "top-spotlight", label: "2. Top Center Spotlight" },
+      { id: "cyber-pulse", label: "3. High-Intensity Cyber Glow" },
+      { id: "aurora-mist", label: "4. Soft Aurora Mist" },
+      { id: "halo-horizon", label: "5. Horizon Light Halo" },
+      { id: "subtle-ambient", label: "6. Subtle Studio Ambiance" },
+      { id: "deep-theater", label: "7. Deep Theater Vignette" },
+      { id: "neon-flare", label: "8. Vivid Neon Flare" },
+      { id: "prism-glow", label: "9. Dual Prism Split" },
+      { id: "velvet-shade", label: "10. Velvet Dark Shade" },
+      { id: "crystal-beam", label: "11. Crystal Top Beam" },
+      { id: "matte-clean", label: "12. Clean Matte (No Ambient Light)" }
     ];
 
     const THEME_LIGHT_COLORS = [
@@ -1580,6 +1817,7 @@
       brandSub: "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
       searchPlaceholder: "Search History, Topics, Reviews or Articles...",
       faviconUrl: "",
+      customFonts: [],
       articlesHeading: "Latest Study Notes & Reviews",
       hubTag: "● OFFICIAL PORTAL HUB",
       hubHeading: "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
@@ -1688,11 +1926,12 @@
         }
       ],
       banner: {
-        title: "Education Content Folder",
-        sub: "Browse Folders & Scroll Content by Topic",
-        cta: "Open Folder →",
-        actionType: "contentExplorer",
-        url: ""
+        title: "Topic Wise Short Videos",
+        sub: "WATCH TRICKS, CONCEPTS, TOPIC WISE",
+        cta: "Select Topic →",
+        iconUrl: "",
+        actionType: "reelsFolder",
+        url: "Root"
       },
       navButtons: [
         { label: "Free Test Series", actionType: "link", target: "https://crackcgpsc.github.io/FreeTestSeries/" },
@@ -1761,6 +2000,7 @@
     let movieFilterTag = "";
     let selectedSubjectFolderId = "";
     let selectedReelFolderPath = "";
+    let reelsExplorerFolderId = "";
     let activeReelFolderId = "";
     let eduModalFolderId = "";
     let currentFolderId = "";
@@ -1810,11 +2050,13 @@
         document.getElementById("drawerPanel").classList.remove("open");
       } else if (viewName === "login") {
         document.getElementById("loginModal").classList.remove("open");
+      } else if (viewName === "themeStudio") {
+        document.getElementById("themeStudioPage").classList.remove("open");
       } else if (viewName === "admin") {
         document.getElementById("adminStudio").classList.remove("open");
       } else if (viewName === "designer") {
         teardownDesignerBar(false);
-      } else if (viewName === "article" || viewName === "about") {
+      } else if (viewName === "article" || viewName === "about" || viewName === "reelsFolderPage") {
         showHomeUI();
       } else if (viewName === "reelsTab") {
         closeReelsTabToHome(false);
@@ -1829,6 +2071,7 @@
     function showHomeUI() {
       document.getElementById("articleView").style.display = "none";
       document.getElementById("aboutPageView").style.display = "none";
+      document.getElementById("reelsFolderPageView").style.display = "none";
       document.getElementById("homeView").style.display = "block";
     }
 
@@ -1841,6 +2084,7 @@
       isFullReelsTabOpen = false;
       document.getElementById("homeView").style.display = "none";
       document.getElementById("articleView").style.display = "none";
+      document.getElementById("reelsFolderPageView").style.display = "none";
       const aboutHost = document.getElementById("aboutPageView");
       aboutHost.style.display = "block";
 
@@ -1849,11 +2093,101 @@
         <h1 style="font-size:clamp(1.25rem, 2.8vw, 1.85rem); font-weight:900; margin-bottom:10px;">${escapeHtml(siteData.aboutHeading || "About Crack CGPSC")}</h1>
         <div class="article-body-content">${renderRichHtmlBody(siteData.aboutBody || DEFAULT_DATA.aboutBody)}</div>
         <div style="margin-top:26px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:flex-end;">
-          <button type="button" class="btn" style="font-size:0.72rem; opacity:0.85;" onclick="openLoginOrAdmin()">${loggedIn ? "Admin Studio" : "Login"}</button>
+          <button type="button" class="btn" style="font-size:0.72rem; opacity:0.88;" onclick="openLoginOrAdmin()">${loggedIn ? "Admin Studio" : "Login"}</button>
         </div>
       `;
       pushAppView("about");
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Full-Page Android File Manager for "Open Reels Folder"
+    function openFullReelsFolderExplorer(targetPathOrId = "") {
+      const folders = siteData.reelsFolders || [];
+      let startId = "";
+      if (targetPathOrId && targetPathOrId !== "Root") {
+        const byId = folders.find(f => f.id === targetPathOrId);
+        if (byId) startId = byId.id;
+        else {
+          const byPath = folders.find(f => getReelFolderPathString(f.id) === targetPathOrId);
+          if (byPath) startId = byPath.id;
+        }
+      }
+      reelsExplorerFolderId = startId;
+      isFullReelsTabOpen = false;
+      document.getElementById("homeView").style.display = "none";
+      document.getElementById("articleView").style.display = "none";
+      document.getElementById("aboutPageView").style.display = "none";
+      document.getElementById("reelsFolderPageView").style.display = "block";
+      renderFullReelsFolderPage();
+      pushAppView("reelsFolderPage");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderFullReelsFolderPage() {
+      const folders = siteData.reelsFolders || [];
+      const items = siteData.reelsFeed?.items || [];
+      const crumb = document.getElementById("reelsPageBreadcrumb");
+      const body = document.getElementById("reelsPageExplorerBody");
+
+      const trail = [{ id: "", name: "📁 Root" }];
+      let walk = folders.find(f => f.id === reelsExplorerFolderId);
+      const chain = [];
+      while (walk) {
+        chain.unshift({ id: walk.id, name: `📂 ${walk.name}` });
+        walk = folders.find(f => f.id === walk.parentId);
+      }
+      trail.push(...chain);
+
+      crumb.innerHTML = trail.map((n, i) => {
+        const sep = i > 0 ? `<span style="color:var(--text-secondary);">/</span>` : "";
+        return `${sep}<button type="button" class="btn" style="padding:3px 8px; font-size:0.7rem;" onclick="reelsExplorerFolderId='${escapeHtml(n.id)}'; renderFullReelsFolderPage();">${escapeHtml(n.name)}</button>`;
+      }).join("");
+
+      const childFolders = folders.filter(f => (f.parentId || "") === reelsExplorerFolderId);
+      const directItems = items.filter(it => (it.folderId || "") === reelsExplorerFolderId);
+
+      body.innerHTML = "";
+      childFolders.forEach(f => {
+        const subCount = folders.filter(x => x.parentId === f.id).length;
+        const vidCount = items.filter(x => x.folderId === f.id).length;
+        const tile = document.createElement("div");
+        tile.className = "explorer-folder-tile";
+        tile.onclick = () => { reelsExplorerFolderId = f.id; renderFullReelsFolderPage(); };
+        tile.innerHTML = `
+          <div style="display:flex; align-items:center; gap:10px; min-width:0;">
+            <span style="font-size:1.3rem;">📁</span>
+            <div style="min-width:0;">
+              <div style="font-size:0.88rem; font-weight:800; color:#fff;">${escapeHtml(f.name)}</div>
+              <div style="font-size:0.68rem; color:var(--neon-cyan);">${subCount} subfolder • ${vidCount} short video</div>
+            </div>
+          </div>
+          <span style="font-size:0.78rem; font-weight:800; color:var(--neon-pink);">Open →</span>
+        `;
+        body.appendChild(tile);
+      });
+
+      directItems.forEach((it, idx) => {
+        const title = it.caption || `Short Video #${idx + 1}`;
+        const vTile = document.createElement("div");
+        vTile.className = "explorer-folder-tile";
+        vTile.style.borderColor = "rgba(255, 42, 133, 0.45)";
+        vTile.onclick = () => {
+          selectedReelFolderPath = it.folderPath || getReelFolderPathString(it.folderId) || "";
+          openFullReelsTab();
+        };
+        vTile.innerHTML = `
+          <div style="display:flex; align-items:center; gap:10px; min-width:0;">
+            <span style="font-size:1.2rem;">🎬</span>
+            <div style="font-size:0.84rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(title)}</div>
+          </div>
+          <span class="btn btn-primary" style="padding:4px 10px; font-size:0.7rem;">▶ Play</span>
+        `;
+        body.appendChild(vTile);
+      });
+
+      if (childFolders.length === 0 && directItems.length === 0) {
+        body.innerHTML = `<div style="font-size:0.8rem; color:var(--text-secondary); padding:10px;">Is folder mein abhi koi subfolder ya video add nahi hai.</div>`;
+      }
     }
 
     function navigateToHome(resetHistory) {
@@ -1861,6 +2195,7 @@
       document.getElementById("drawerPanel").classList.remove("open");
       document.getElementById("loginModal").classList.remove("open");
       document.getElementById("adminStudio").classList.remove("open");
+      document.getElementById("themeStudioPage").classList.remove("open");
       closeEduExplorerModal();
       teardownDesignerBar(false);
       isFullReelsTabOpen = false;
@@ -1926,6 +2261,18 @@
       } catch (e) {}
     }
 
+    function loadExtraGoogleFonts() {
+      const linkEl = document.getElementById("dynamicExtraFontsLink");
+      if (!linkEl) return;
+      const fonts = Array.isArray(siteData.customFonts) ? siteData.customFonts.filter(Boolean) : [];
+      if (!fonts.length) {
+        linkEl.href = "";
+        return;
+      }
+      const families = fonts.map(f => `family=${encodeURIComponent(f.trim()).replace(/%20/g, "+")}:wght@400;600;700;800`).join("&");
+      linkEl.href = `https://fonts.googleapis.com/css2?${families}&display=swap`;
+    }
+
     function applyHomepageThemeStyles() {
       const tc = { ...DEFAULT_DATA.themeConfig, ...(siteData.themeConfig || {}) };
       const preset = THEME_COLOR_PRESETS.find(p => p.id === tc.preset) || THEME_COLOR_PRESETS[0];
@@ -1966,6 +2313,20 @@
       const m2 = t.match(/[?&]id=([a-zA-Z0-9_-]+)/);
       if (m2 && m2[1] && t.includes("drive.google.com")) return `https://lh3.googleusercontent.com/d/${m2[1]}`;
       return t;
+    }
+
+    // Desktop PC Telegram fallback to Telegram Web if native app isn't installed
+    function openTelegramSmartUrl(url, ev) {
+      if (ev) ev.preventDefault();
+      const clean = (url || "").trim();
+      if (!clean) return;
+      const isDesktop = !/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const userMatch = clean.match(/t\.me\/([a-zA-Z0-9_]+)/);
+      if (isDesktop && userMatch && userMatch[1] && userMatch[1] !== "joinchat") {
+        window.open(`https://web.telegram.org/k/#@${userMatch[1]}`, "_blank", "noopener,noreferrer");
+        return;
+      }
+      window.open(clean, "_blank", "noopener,noreferrer");
     }
 
     function renderUniversalMediaEmbed(rawUrl, altTitle = "Media") {
@@ -2036,7 +2397,6 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // YouTube JS API enabled so playVideo/pauseVideo runs instantaneously without iframe reload black screen
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
@@ -2044,8 +2404,10 @@
       if (/\.(mp4|webm|mov)(\?|$)/i.test(clean)) {
         return `
           <div class="reel-media-frame">
-            <video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="auto" loop playsinline controls></video>
-            <div class="reel-gesture-shield" data-shield-idx="${index}"></div>
+            <video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="auto" loop playsinline></video>
+            <div class="reel-gesture-shield" data-shield-idx="${index}">
+              <span class="reel-tap-indicator">⏸</span>
+            </div>
           </div>
         `;
       }
@@ -2053,12 +2415,14 @@
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
         const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
-        const apiSrc = `${yt.embedUrl}?enablejsapi=1&autoplay=0&mute=0&loop=1&playlist=${yt.videoId}&playsinline=1&rel=0`;
+        const apiSrc = `${yt.embedUrl}?enablejsapi=1&autoplay=0&mute=0&loop=1&playlist=${yt.videoId}&playsinline=1&rel=0&controls=0&modestbranding=1`;
         return `
           <div class="reel-media-frame">
             <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="eager" />
             <iframe class="inpage-shorts-iframe" data-reel-idx="${index}" src="${escapeHtml(apiSrc)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-            <div class="reel-gesture-shield" data-shield-idx="${index}"></div>
+            <div class="reel-gesture-shield" data-shield-idx="${index}">
+              <span class="reel-tap-indicator">⏸</span>
+            </div>
           </div>
         `;
       }
@@ -2074,21 +2438,31 @@
       } catch (e) {}
     }
 
-    // 1:1 Real-Time Finger-Tracking Slide Deck (Matches YouTube Shorts smoothness)
+    // 1:1 Finger-Tracking Slide Deck + Center Tap Play/Pause (YouTube Shorts UX)
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
       let currentIndex = 0;
       let isInView = false;
+      let isPausedByUser = false;
+
+      const flashTapIcon = (card, symbol) => {
+        const ind = card?.querySelector(".reel-tap-indicator");
+        if (!ind) return;
+        ind.textContent = symbol;
+        ind.classList.add("visible");
+        clearTimeout(ind._t);
+        ind._t = setTimeout(() => ind.classList.remove("visible"), 550);
+      };
 
       const pauseAllMedia = () => {
         trackEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => v.pause());
         trackEl.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => sendYtCommand(f, "pauseVideo"));
       };
 
-      const playOnlyCurrent = () => {
-        if (!isInView) {
+      const syncCurrentPlayback = () => {
+        if (!isInView || isPausedByUser) {
           pauseAllMedia();
           return;
         }
@@ -2118,17 +2492,18 @@
 
       const goToSlide = (nextIdx, animate = true) => {
         currentIndex = Math.max(0, Math.min(cards.length - 1, nextIdx));
+        isPausedByUser = false;
         const h = viewportEl.clientHeight || 540;
         trackEl.classList.toggle("dragging", !animate);
         trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
-        playOnlyCurrent();
+        syncCurrentPlayback();
       };
 
       const secObs = new IntersectionObserver((entries) => {
         entries.forEach(en => {
           isInView = en.isIntersecting && en.intersectionRatio >= 0.35;
           if (!isInView) pauseAllMedia();
-          else playOnlyCurrent();
+          else syncCurrentPlayback();
         });
       }, { threshold: [0.35] });
       secObs.observe(secEl);
@@ -2160,10 +2535,13 @@
         const h = viewportEl.clientHeight || 540;
         const threshold = Math.min(75, h * 0.14);
 
-        if (Math.abs(currentDeltaY) < 8) {
-          // Tap to play/unmute active video directly
-          playOnlyCurrent();
-          goToSlide(currentIndex, true);
+        if (Math.abs(currentDeltaY) < 9) {
+          // Single Tap on Screen: Toggle Play / Pause just like YouTube Shorts
+          isPausedByUser = !isPausedByUser;
+          flashTapIcon(cards[currentIndex], isPausedByUser ? "⏸" : "▶");
+          syncCurrentPlayback();
+          trackEl.classList.remove("dragging");
+          trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
           return;
         }
 
@@ -2219,8 +2597,18 @@
       return trimmed.split(/\n\s*\n/).map(block => `<p>${escapeHtml(block).replace(/\n/g, "<br>")}</p>`).join("");
     }
 
-    // GOOGLE DOCS WYSIWYG + TABLE CONTROLS
+    function getAllAvailableFontNames() {
+      const base = ["Plus Jakarta Sans", "Montserrat", "Poppins", "Roboto"];
+      const extra = Array.isArray(siteData.customFonts) ? siteData.customFonts : [];
+      return Array.from(new Set([...base, ...extra]));
+    }
+
+    // GOOGLE DOCS WYSIWYG + FREE FONT DOWNLOADER + TABLE CONTROLS
     function createGoogleDocsEditor(initialHtml = "", placeholder = "Write here...") {
+      const fontOpts = getAllAvailableFontNames()
+        .map(fn => `<option value="${escapeHtml(fn)}">${escapeHtml(fn)}</option>`)
+        .join("");
+
       const wrap = document.createElement("div");
       wrap.className = "wysiwyg-shell";
       wrap.innerHTML = `
@@ -2231,13 +2619,11 @@
             <option value="H2">Heading 1</option>
             <option value="H3">Heading 2</option>
           </select>
-          <select class="wysiwyg-select" onchange="execWysiwygFont(this)">
+          <select class="wysiwyg-select wysiwyg-font-sel" onchange="execWysiwygFont(this)">
             <option value="">Font</option>
-            <option value="Plus Jakarta Sans">Jakarta</option>
-            <option value="Montserrat">Montserrat</option>
-            <option value="Poppins">Poppins</option>
-            <option value="Roboto">Roboto</option>
+            ${fontOpts}
           </select>
+          <button type="button" class="wysiwyg-btn" style="background:rgba(34,211,238,0.2); border-color:var(--neon-cyan);" onclick="downloadFreeGoogleFontForEditor(this)">+ Font</button>
           <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'bold')"><strong>B</strong></button>
           <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'italic')"><em>I</em></button>
           <button type="button" class="wysiwyg-btn" onclick="execWysiwygCmd(this, 'underline')"><u>U</u></button>
@@ -2274,6 +2660,34 @@
       });
 
       return wrap;
+    }
+
+    function downloadFreeGoogleFontForEditor(btn) {
+      const name = prompt("Enter Free Google Font Name (e.g. Outfit, Cinzel, Oswald, Lora, Caveat):");
+      if (!name || !name.trim()) return;
+      const cleanName = name.trim();
+      siteData.customFonts = Array.from(new Set([...(siteData.customFonts || []), cleanName]));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      loadExtraGoogleFonts();
+
+      document.querySelectorAll(".wysiwyg-font-sel").forEach(sel => {
+        if (!Array.from(sel.options).some(o => o.value === cleanName)) {
+          const opt = document.createElement("option");
+          opt.value = cleanName;
+          opt.textContent = cleanName;
+          sel.appendChild(opt);
+        }
+      });
+
+      const shell = btn.closest(".wysiwyg-shell");
+      const sel = shell?.querySelector(".wysiwyg-font-sel");
+      const canvas = shell?.querySelector(".wysiwyg-canvas");
+      if (sel) sel.value = cleanName;
+      if (canvas) {
+        canvas.focus();
+        document.execCommand("fontName", false, cleanName);
+      }
+      showToast(`Font "${cleanName}" downloaded & applied`);
     }
 
     function getCanvasFromTool(el) {
@@ -2780,9 +3194,7 @@
         return;
       }
       if (type === "reelsFolder") {
-        showHomeUI();
-        selectedReelFolderPath = (!target || target === "Root") ? "" : target;
-        openFullReelsTab();
+        openFullReelsFolderExplorer(target);
         return;
       }
       if (type === "folder") {
@@ -2805,7 +3217,11 @@
         return;
       }
       if (target) {
-        window.open(target, "_blank", "noopener,noreferrer");
+        if (target.includes("t.me/")) {
+          openTelegramSmartUrl(target);
+        } else {
+          window.open(target, "_blank", "noopener,noreferrer");
+        }
       }
     }
 
@@ -2877,6 +3293,9 @@
               a.href = card.url;
               a.target = "_blank";
               a.rel = "noopener noreferrer";
+              if (card.url.includes("t.me/")) {
+                a.onclick = (ev) => openTelegramSmartUrl(card.url, ev);
+              }
             } else {
               a.href = "javascript:void(0)";
               a.onclick = (ev) => {
@@ -2896,24 +3315,25 @@
           stack.appendChild(grid);
         } else if (secId === "mainNeonBanner") {
           const b = siteData.banner || DEFAULT_DATA.banner;
-          const bAct = b.actionType || "contentExplorer";
+          const bAct = b.actionType || "reelsFolder";
+          const bIcon = convertDriveUrl(b.iconUrl || "");
           const div = document.createElement("div");
           div.className = "neon-banner-bar";
           div.id = "mainNeonBanner";
           div.dataset.veId = "mainNeonBanner";
           div.onclick = () => {
             if (isMoveEditEnabled) return;
-            executePillAction({ actionType: bAct, target: b.url || "" });
+            executePillAction({ actionType: bAct, target: b.url || "Root" });
           };
           div.innerHTML = `
             <div class="banner-left">
-              <span style="font-size:1rem;">📁</span>
+              ${bIcon ? `<img class="glass-icon-img" src="${escapeHtml(bIcon)}" alt="Banner Icon" loading="lazy" />` : `<span style="font-size:1rem;">📁</span>`}
               <div style="min-width:0;">
-                <div class="banner-title" id="bannerTitleText">${escapeHtml(b.title || "Education Content Folder")}</div>
+                <div class="banner-title" id="bannerTitleText">${escapeHtml(b.title || "Topic Wise Short Videos")}</div>
                 <div class="banner-sub" id="bannerSubText">${escapeHtml(b.sub || "")}</div>
               </div>
             </div>
-            <div class="banner-right-cta" id="bannerCtaText">${escapeHtml(b.cta || "Open Folder →")}</div>
+            <div class="banner-right-cta" id="bannerCtaText">${escapeHtml(b.cta || "Select Topic →")}</div>
           `;
           stack.appendChild(div);
         } else if (secId === "quickPillButtons") {
@@ -3038,7 +3458,7 @@
               const pathSpan = document.createElement("span");
               pathSpan.className = "reel-folder-path-link";
               pathSpan.textContent = `📁 ${pathLabel}`;
-              pathSpan.onclick = () => openEducationContentFolder(item.folderId || "");
+              pathSpan.onclick = () => openFullReelsFolderExplorer(item.folderId || "");
 
               metaLine.appendChild(pathSpan);
               if (item.caption) {
@@ -3288,8 +3708,16 @@
       renderBottomFolders();
     }
 
+    function updateAdminCornerShortcutVisibility() {
+      const btn = document.getElementById("adminTopLeftQuickBtn");
+      if (!btn) return;
+      btn.style.display = isAdminLoggedIn() ? "inline-flex" : "none";
+    }
+
     function renderAll() {
+      loadExtraGoogleFonts();
       applyHomepageThemeStyles();
+      updateAdminCornerShortcutVisibility();
       document.title = `${siteData.brandTitle} - ${siteData.brandSub}`;
       applyFaviconLink();
       renderBrandLogoArea();
@@ -3323,7 +3751,13 @@
         const a = document.createElement("a");
         a.className = "social-chip";
         a.href = isMoveEditEnabled ? "javascript:void(0)" : href;
-        if (!isMoveEditEnabled) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+        if (!isMoveEditEnabled) {
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          if (item.key === "telegram") {
+            a.onclick = (ev) => openTelegramSmartUrl(href, ev);
+          }
+        }
         a.innerHTML = `<svg viewBox="0 0 24 24">${item.svg}</svg><span>${item.label}</span>`;
         row.appendChild(a);
       });
@@ -3365,14 +3799,19 @@
 
     function applySavedElementStylesAndAutoFit() {
       const styles = siteData.elementStyles || {};
+      const fxClasses = ["fx-border-pulse", "fx-border-rainbow", "fx-text-glow", "fx-motion-float", "fx-motion-breathe"];
+
       document.querySelectorAll("[data-ve-id]").forEach(el => {
         const id = el.dataset.veId;
         const st = styles[id] || {};
+        el.classList.remove(...fxClasses);
+        if (st.effectClass) el.classList.add(st.effectClass);
         if (st.textColor) el.style.color = st.textColor;
         if (st.bgColor) el.style.background = st.bgColor;
         if (st.fontFamily) el.style.fontFamily = st.fontFamily;
         if (st.fontSize) el.style.fontSize = `${st.fontSize}px`;
         if (typeof st.bold === "boolean") el.style.fontWeight = st.bold ? "800" : "";
+        if (st.radius !== undefined && st.radius !== "") el.style.borderRadius = `${st.radius}px`;
         if (st.width) el.style.width = `${st.width}px`;
         if (st.height) { el.style.height = `${st.height}px`; el.style.overflow = "hidden"; }
         if (st.borderWidth !== undefined && st.borderColor) el.style.border = `${st.borderWidth}px solid ${st.borderColor}`;
@@ -3395,6 +3834,7 @@
       if (!art) return;
       document.getElementById("homeView").style.display = "none";
       document.getElementById("aboutPageView").style.display = "none";
+      document.getElementById("reelsFolderPageView").style.display = "none";
       document.getElementById("articleView").style.display = "block";
 
       const relatedItems = parseRelatedLinks(art.relatedLinks || "");
@@ -3464,7 +3904,7 @@
             <span class="${familyYes ? "verdict-badge-yes" : "verdict-badge-no"}">${familyYes ? "YES" : "NO"}</span>
           </div>
           ${rev.detailedYtUrl ? `<a class="review-cta-btn yt-cta-btn" href="${escapeHtml(rev.detailedYtUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHtml(cfg.youtubeCtaLabel || "Watch Detailed Review on YouTube")}</span></a>` : ""}
-          ${rev.telegramFileUrl ? `<a class="review-cta-btn tg-cta-btn" href="${escapeHtml(rev.telegramFileUrl)}" target="_blank" rel="noopener noreferrer"><span>Join Us on Telegram</span></a>` : ""}
+          ${rev.telegramFileUrl ? `<a class="review-cta-btn tg-cta-btn" href="${escapeHtml(rev.telegramFileUrl)}" onclick="openTelegramSmartUrl('${escapeHtml(rev.telegramFileUrl)}', event)"><span>Join Us on Telegram</span></a>` : ""}
           ${trailerYt ? `<div style="margin-top:16px;"><div class="article-meta" style="margin-bottom:6px;">Official Trailer</div><div class="${trailerYt.isShorts ? "article-media-embed shorts-frame" : "article-media-embed"}"><iframe src="${trailerYt.embedUrl}" allowfullscreen loading="lazy"></iframe></div></div>` : ""}
           ${relatedHtml}
         `;
@@ -3509,6 +3949,7 @@
         sessionStorage.setItem(ADMIN_AUTH_KEY, "1");
         document.getElementById("loginModal").classList.remove("open");
         if (activeStack[activeStack.length - 1] === "login") activeStack.pop();
+        updateAdminCornerShortcutVisibility();
         openAdminStudio();
         showToast("Admin Studio unlocked");
       } else {
@@ -3538,6 +3979,70 @@
       if (tabId === "tab-reels") renderReelFolderManagerUI();
       if (tabId === "tab-sequence") renderSequenceManager();
       refreshAllAdminPreviews();
+    }
+
+    // DEDICATED FULL-PAGE THEME STUDIO WITH LIVE TOP-RIGHT MOBILE PREVIEW
+    function openThemeStudioPage() {
+      populateThemeSelectors();
+      loadThemeElementFields();
+      document.getElementById("themeStudioPage").classList.add("open");
+      refreshLiveMobileFrame();
+      pushAppView("themeStudio");
+    }
+
+    function closeThemeStudioPage(popHist = true) {
+      document.getElementById("themeStudioPage").classList.remove("open");
+      if (popHist && activeStack[activeStack.length - 1] === "themeStudio") activeStack.pop();
+    }
+
+    function refreshLiveMobileFrame() {
+      const iframe = document.getElementById("liveMobilePreviewIframe");
+      if (!iframe) return;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      iframe.src = window.location.href.split("#")[0];
+    }
+
+    function saveThemeStudioAndApply() {
+      applyThemePreviewFromAdmin();
+      saveThemeElementOverride();
+      renderAll();
+      refreshLiveMobileFrame();
+      showToast("Theme & Element effects applied");
+    }
+
+    function loadThemeElementFields() {
+      const elId = document.getElementById("tsTargetElementSel").value;
+      const st = (siteData.elementStyles || {})[elId] || {};
+      document.getElementById("tsElBgColor").value = st.bgColor || "#101522";
+      document.getElementById("tsElTextColor").value = st.textColor || "#ffffff";
+      document.getElementById("tsElGlowColor").value = st.glowColor || "#22d3ee";
+      document.getElementById("tsElRadius").value = st.radius !== undefined && st.radius !== "" ? st.radius : 14;
+      document.getElementById("tsElEffectClass").value = st.effectClass || "";
+    }
+
+    function saveThemeElementOverride() {
+      const elId = document.getElementById("tsTargetElementSel").value;
+      siteData.elementStyles = siteData.elementStyles || {};
+      siteData.elementStyles[elId] = {
+        ...(siteData.elementStyles[elId] || {}),
+        bgColor: document.getElementById("tsElBgColor").value,
+        textColor: document.getElementById("tsElTextColor").value,
+        glowColor: document.getElementById("tsElGlowColor").value,
+        radius: Number(document.getElementById("tsElRadius").value || 14),
+        effectClass: document.getElementById("tsElEffectClass").value
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      applySavedElementStylesAndAutoFit();
+      refreshLiveMobileFrame();
+    }
+
+    function downloadFreeEffectPreset() {
+      const val = document.getElementById("tsFreeEffectsCatalog").value || "";
+      const [cls, label] = val.split("|");
+      if (!cls) return;
+      document.getElementById("tsElEffectClass").value = cls;
+      saveThemeElementOverride();
+      showToast(`Saved "${label}" to element`);
     }
 
     function toggleMenuModePanels() {
@@ -3571,10 +4076,10 @@
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       applyHomepageThemeStyles();
-      showToast("Theme applied");
+      refreshLiveMobileFrame();
     }
 
-    // DEDICATED REELS ANDROID FILE MANAGER
+    // DEDICATED REELS ANDROID FILE MANAGER (RENAME + REORDER FOLDERS & ITEMS)
     function renderReelFolderManagerUI() {
       const folders = siteData.reelsFolders || [];
       const items = siteData.reelsFeed?.items || [];
@@ -3601,13 +4106,15 @@
       childFolders.forEach(f => {
         const row = document.createElement("div");
         row.className = "android-tile-card";
-        row.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px; background:#090d16;";
+        row.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:6px; background:#090d16; flex-wrap:wrap;";
         row.innerHTML = `
-          <div style="cursor:pointer; flex:1; min-width:0;" onclick="activeReelFolderId='${escapeHtml(f.id)}'; renderReelFolderManagerUI();">
+          <div style="cursor:pointer; flex:1; min-width:140px;" onclick="activeReelFolderId='${escapeHtml(f.id)}'; renderReelFolderManagerUI();">
             <div style="font-size:0.84rem; font-weight:800;">📁 ${escapeHtml(f.name)}</div>
             <div style="font-size:0.65rem; color:var(--neon-cyan);">Tap to open folder</div>
           </div>
-          <div style="display:flex; gap:5px;">
+          <div style="display:flex; gap:4px; align-items:center;">
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFolderById('${escapeHtml(f.id)}', -1)">↑</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFolderById('${escapeHtml(f.id)}', 1)">↓</button>
             <button type="button" class="btn" style="padding:4px 8px; font-size:0.7rem;" onclick="renameReelFolderById('${escapeHtml(f.id)}')">Rename</button>
             <button type="button" class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteReelFolderById('${escapeHtml(f.id)}')">✕</button>
           </div>
@@ -3621,16 +4128,63 @@
         const realIdx = items.indexOf(it);
         const card = document.createElement("div");
         card.className = "android-tile-card";
-        card.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px; background:#090d16;";
+        card.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:6px; background:#090d16; flex-wrap:wrap;";
         card.innerHTML = `
-          <div style="min-width:0; flex:1;">
-            <div style="font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🎬 ${escapeHtml(it.caption || it.url)}</div>
+          <div style="min-width:150px; flex:1;">
+            <div style="font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🎬 ${escapeHtml(it.caption || "Untitled Reel")}</div>
             <div style="font-size:0.66rem; color:var(--neon-cyan); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(it.url)}</div>
           </div>
-          <button type="button" class="btn btn-danger" onclick="deleteReelFeedItem(${realIdx})">✕</button>
+          <div style="display:flex; gap:4px; align-items:center;">
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFeedItem(${realIdx}, -1)">↑</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFeedItem(${realIdx}, 1)">↓</button>
+            <button type="button" class="btn btn-cyan" style="padding:4px 8px; font-size:0.7rem;" onclick="renameReelFeedItem(${realIdx})">✏️ Rename</button>
+            <button type="button" class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteReelFeedItem(${realIdx})">✕</button>
+          </div>
         `;
         filesHost.appendChild(card);
       });
+    }
+
+    function moveReelFolderById(id, delta) {
+      const list = siteData.reelsFolders || [];
+      const siblings = [];
+      list.forEach((f, idx) => { if ((f.parentId || "") === activeReelFolderId) siblings.push(idx); });
+      const pos = siblings.findIndex(idx => list[idx].id === id);
+      const nextPos = pos + delta;
+      if (pos < 0 || nextPos < 0 || nextPos >= siblings.length) return;
+      const [moved] = list.splice(siblings[pos], 1);
+      list.splice(siblings[nextPos], 0, moved);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderReelFolderManagerUI();
+      showToast("Folder order updated");
+    }
+
+    function renameReelFeedItem(idx) {
+      const items = siteData.reelsFeed?.items || [];
+      const it = items[idx];
+      if (!it) return;
+      const nextTitle = prompt("Enter new Reel Title / Caption:", it.caption || "");
+      if (nextTitle === null) return;
+      it.caption = nextTitle.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderReelFolderManagerUI();
+      renderAll();
+      showToast("Reel title renamed");
+    }
+
+    function moveReelFeedItem(idx, delta) {
+      const items = siteData.reelsFeed?.items || [];
+      const sameFolderIndices = [];
+      items.forEach((it, i) => { if ((it.folderId || "") === activeReelFolderId) sameFolderIndices.push(i); });
+      const pos = sameFolderIndices.indexOf(idx);
+      const nextPos = pos + delta;
+      if (pos < 0 || nextPos < 0 || nextPos >= sameFolderIndices.length) return;
+      const [moved] = items.splice(sameFolderIndices[pos], 1);
+      items.splice(sameFolderIndices[nextPos], 0, moved);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderReelFolderManagerUI();
+      renderAll();
+      showToast("Reel sequence updated");
     }
 
     function createReelFolderInManager() {
@@ -4308,7 +4862,6 @@
       document.getElementById("cfgReelsSectionTitle").value = rf.sectionTitle || "🎬 Shorts & Reels Scroll Feed";
       renderReelFolderManagerUI();
 
-      // Homepage Media + Article Block Editor
       document.getElementById("cfgHomeFeaturedMediaVisible").checked = isSectionVisible("homeFeaturedMediaBlock");
       const hfm = siteData.homeFeaturedMedia || { mediaUrl: "", articleHtml: "" };
       document.getElementById("cfgHomeFeaturedMediaUrl").value = hfm.mediaUrl || "";
@@ -4322,16 +4875,17 @@
       noticeHost.appendChild(createGoogleDocsEditor(siteData.noticeBody || "", "Write notice board updates, tables, links..."));
 
       const b = siteData.banner || DEFAULT_DATA.banner;
-      const bAct = b.actionType || "contentExplorer";
+      const bAct = b.actionType || "reelsFolder";
       document.getElementById("cfgBannerTitle").value = b.title || "";
       document.getElementById("cfgBannerSub").value = b.sub || "";
       document.getElementById("cfgBannerCta").value = b.cta || "";
+      document.getElementById("cfgBannerIconUrl").value = b.iconUrl || "";
       document.getElementById("cfgBannerActionType").value = bAct;
       renderDynamicTargetForRow(
         document.getElementById("cfgBannerActionType"),
         document.getElementById("cfgBannerTargetWrap"),
         "cfg-banner-target",
-        b.url || ""
+        b.url || "Root"
       );
 
       const navList = document.getElementById("navEditorList");
@@ -4517,6 +5071,7 @@
         brandSub: document.getElementById("cfgBrandSub").value.trim() || "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
         searchPlaceholder: document.getElementById("cfgSearchPlaceholder").value.trim() || DEFAULT_DATA.searchPlaceholder,
         faviconUrl: document.getElementById("cfgFaviconUrl").value.trim(),
+        customFonts: siteData.customFonts || [],
         articlesHeading: document.getElementById("cfgArticlesHeading").value.trim() || "Latest Study Notes & Reviews",
         hubTag: document.getElementById("cfgHubTag").value.trim() || "● OFFICIAL PORTAL HUB",
         hubHeading: document.getElementById("cfgHubHeading").value.trim() || "Crack CGPSC",
@@ -4556,10 +5111,11 @@
         sectionOrder: ensureSectionOrder(),
         menuItems,
         banner: {
-          title: document.getElementById("cfgBannerTitle").value.trim() || "Education Content Folder",
+          title: document.getElementById("cfgBannerTitle").value.trim() || "Topic Wise Short Videos",
           sub: document.getElementById("cfgBannerSub").value.trim() || "",
-          cta: document.getElementById("cfgBannerCta").value.trim() || "Open Folder →",
-          actionType: document.getElementById("cfgBannerActionType").value || "contentExplorer",
+          cta: document.getElementById("cfgBannerCta").value.trim() || "Select Topic →",
+          iconUrl: document.getElementById("cfgBannerIconUrl").value.trim(),
+          actionType: document.getElementById("cfgBannerActionType").value || "reelsFolder",
           url: (document.querySelector(".cfg-banner-target")?.value || "").trim()
         },
         navButtons,
@@ -4623,7 +5179,8 @@
         aboutHeading: siteData.aboutHeading,
         aboutBody: siteData.aboutBody,
         homeFeaturedMedia: siteData.homeFeaturedMedia,
-        themeConfig: siteData.themeConfig
+        themeConfig: siteData.themeConfig,
+        customFonts: siteData.customFonts
       };
       const fresh = structuredClone(DEFAULT_DATA);
       Object.assign(fresh, preserved);
@@ -4995,6 +5552,7 @@
       if (linkInp && id === "mainNeonBanner") siteData.banner = { ...(siteData.banner || {}), url: linkInp.value.trim() };
 
       siteData.elementStyles[id] = {
+        ...(siteData.elementStyles[id] || {}),
         width: document.getElementById("insWidth").value ? Number(document.getElementById("insWidth").value) : "",
         height: document.getElementById("insHeight").value ? Number(document.getElementById("insHeight").value) : "",
         posX: Number(document.getElementById("insPosX").value || 0),
