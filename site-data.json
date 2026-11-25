@@ -8,6 +8,19 @@
   "hubTag": "● OFFICIAL PORTAL HUB",
   "hubHeading": "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
   "hubDesc": "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
+  "aboutHeading": "About Crack CGPSC",
+  "aboutBody": "<h2>Welcome to Crack CGPSC</h2><p><strong>Crack CGPSC</strong> is a dedicated digital learning &amp; exam preparation portal crafted for <strong>CGPSC</strong> and <strong>CGVYAPAM</strong> aspirants across Chhattisgarh.</p><ul><li><strong>Free Test Series &amp; CBT Practice:</strong> Real exam-like mock tests and topic-wise quizzes.</li><li><strong>PYQ Papers Archive:</strong> Structured previous year question papers and analytical study notes.</li><li><strong>Visual &amp; Quick Revision Feed:</strong> Bite-sized maps, tricks, and concept reels for fast retention.</li></ul>",
+  "homeFeaturedMedia": {
+    "mediaUrl": "",
+    "articleHtml": ""
+  },
+  "themeConfig": {
+    "preset": "cyber-neon",
+    "lightEffect": "dual-aura",
+    "lightColor": "pink-cyan",
+    "boxShape": "14px",
+    "buttonShape": "999px"
+  },
   "footerText": "© 2026 Crack CGPSC -- CGPSC & CGVYAPAM Preparation Hub",
   "articleSortOrder": "newest",
   "menuDrawerMode": "standard",
@@ -17,6 +30,7 @@
     "mainNeonBanner": true,
     "quickPillButtons": true,
     "portalHubCard": true,
+    "homeFeaturedMediaBlock": false,
     "welcomeCardSection": true,
     "reelsFeedSection": true,
     "articlesSection": true,
@@ -134,7 +148,8 @@
     "portalHubCard",
     "welcomeCardSection",
     "articlesSection",
-    "reelsFeedSection"
+    "reelsFeedSection",
+    "homeFeaturedMediaBlock"
   ],
   "menuItems": [
     {
@@ -374,7 +389,7 @@
   "socialLinks": {
     "youtube": "https://youtube.com/@crackcgpsc",
     "telegram": "https://t.me/crackcgpsc",
-    "instagram": "https://instagram.com/crackcgpsc",
+    "instagram": "https://www.instagram.com/crackcgpsc.in",
     "facebook": "https://facebook.com/crackcgpsc",
     "whatsapp": "https://whatsapp.com/channel/0029VbEaO1hCcW4zS4gf5C3J"
   },
