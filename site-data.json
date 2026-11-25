@@ -181,11 +181,11 @@
     }
   ],
   "banner": {
-    "title": "CRACK CGPSC PORTAL",
-    "sub": "Mock Tests, PYQs & CBT Practice",
-    "cta": "Open Now →",
-    "actionType": "contentExplorer",
-    "url": ""
+    "title": "Topic Wise Short Videos",
+    "sub": "WATCH TRICKS, CONCEPTS, TOPIC WISE",
+    "cta": "Select Topic→",
+    "actionType": "reelsFolder",
+    "url": "Root"
   },
   "navButtons": [
     {
