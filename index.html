@@ -485,7 +485,7 @@
       cursor: pointer;
     }
 
-    /* Shorts / Reels Feed: Full Screen Fit + Smooth Swipe + Center Play/Pause + 2x Hold */
+    /* Shorts / Reels Feed: Smooth Scroll + Gesture Shield + Center Play/Pause + 2x Hold */
     .reels-feed-section {
       background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -580,7 +580,7 @@
       min-width: 0;
       flex-shrink: 0;
       background: #000000;
-      z-index: 4;
+      z-index: 6;
     }
 
     .reel-folder-path-link {
@@ -643,6 +643,16 @@
       margin: 0;
     }
 
+    /* Transparent Gesture Shield Over Video Frame for Smooth Vertical Swipe + Hold 2x */
+    .reel-gesture-shield {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: transparent;
+      touch-action: none;
+      cursor: grab;
+    }
+
     /* Center Play/Pause Button + 2x Hold Badge */
     .reel-center-controls-layer {
       position: absolute;
@@ -662,7 +672,7 @@
       height: 48px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(10, 14, 24, 0.68);
+      background: rgba(10, 14, 24, 0.72);
       color: #ffffff;
       font-size: 1.15rem;
       font-weight: 900;
@@ -676,10 +686,10 @@
     .reel-speed-hold-badge {
       padding: 4px 12px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.78);
-      border: 1px solid rgba(34, 211, 238, 0.6);
+      background: rgba(0, 0, 0, 0.82);
+      border: 1px solid rgba(34, 211, 238, 0.65);
       color: #ffffff;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 800;
       opacity: 0;
       transition: opacity 0.14s ease;
@@ -1292,7 +1302,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Classic Fit Shorts • Center Play/Pause • 2x Hold</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Swipe Overlay Shorts • Play/Pause • 2x Hold</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1685,7 +1695,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V40";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V41";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -2581,6 +2591,7 @@
         return `
           <div class="reel-media-frame">
             <video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="auto" loop playsinline></video>
+            <div class="reel-gesture-shield" data-reel-idx="${index}"></div>
             <div class="reel-center-controls-layer">
               <button type="button" class="reel-center-playpause-btn" aria-label="Play or Pause">▶</button>
               <span class="reel-speed-hold-badge">2x ▶▶</span>
@@ -2597,6 +2608,7 @@
           <div class="reel-media-frame">
             <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="eager" />
             <iframe class="inpage-shorts-iframe" data-reel-idx="${index}" src="${escapeHtml(apiSrc)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <div class="reel-gesture-shield" data-reel-idx="${index}"></div>
             <div class="reel-center-controls-layer">
               <button type="button" class="reel-center-playpause-btn" aria-label="Play or Pause">▶</button>
               <span class="reel-speed-hold-badge">2x ▶▶</span>
@@ -2616,7 +2628,7 @@
       } catch (e) {}
     }
 
-    // Smooth vertical swipe controller across the full viewport + center play/pause + hold for 2x speed
+    // Gesture shield over video frame handles vertical swipe-to-next/prev, tap play/pause, and hold-to-2x speed
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
@@ -2673,6 +2685,12 @@
         setCardPlayVisual(idx, false);
       };
 
+      const togglePlayPauseAt = (idx) => {
+        const curPlaying = Boolean(playStateByIdx.get(idx));
+        if (curPlaying) pauseCardAt(idx);
+        else playCardAt(idx);
+      };
+
       const goToSlide = (nextIdx, animate = true) => {
         currentIndex = Math.max(0, Math.min(cards.length - 1, nextIdx));
         const h = viewportEl.clientHeight || 540;
@@ -2684,13 +2702,12 @@
 
       cards.forEach((card, idx) => {
         const ppBtn = card.querySelector(".reel-center-playpause-btn");
-        if (!ppBtn) return;
-        ppBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const curPlaying = Boolean(playStateByIdx.get(idx));
-          if (curPlaying) pauseCardAt(idx);
-          else playCardAt(idx);
-        });
+        if (ppBtn) {
+          ppBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            togglePlayPauseAt(idx);
+          });
+        }
       });
 
       const secObs = new IntersectionObserver((entries) => {
@@ -2752,7 +2769,7 @@
         curY = clientY;
         const dy = curY - startY;
         const dx = clientX - startX;
-        if (!swipingVertical && Math.abs(dy) > 14 && Math.abs(dy) > Math.abs(dx)) {
+        if (!swipingVertical && Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) {
           swipingVertical = true;
           clearTimeout(holdTimer);
           trackEl.classList.add("dragging");
@@ -2784,11 +2801,18 @@
           return;
         }
 
-        if (!swipingVertical) return;
-        swipingVertical = false;
         const dy = curY - startY;
+        if (!swipingVertical) {
+          if (Math.abs(dy) < 12) togglePlayPauseAt(currentIndex);
+          const h = viewportEl.clientHeight || 540;
+          trackEl.classList.remove("dragging");
+          trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
+          return;
+        }
+
+        swipingVertical = false;
         const h = viewportEl.clientHeight || 540;
-        const threshold = Math.min(44, h * 0.075);
+        const threshold = Math.min(40, h * 0.07);
         if (dy <= -threshold && currentIndex < cards.length - 1) {
           goToSlide(currentIndex + 1, true);
         } else if (dy >= threshold && currentIndex > 0) {
