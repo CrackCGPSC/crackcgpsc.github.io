@@ -485,7 +485,7 @@
       cursor: pointer;
     }
 
-    /* Shorts / Reels Feed: Legacy Full-Screen Fit + Center Play/Pause + 2x Hold + Smooth Scroll */
+    /* Shorts / Reels Feed: Full Screen Fit + Smooth Swipe + Center Play/Pause + 2x Hold */
     .reels-feed-section {
       background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -532,6 +532,7 @@
       height: 540px;
       overflow: hidden;
       border-radius: var(--box-radius);
+      touch-action: none;
       user-select: none;
     }
 
@@ -1684,7 +1685,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V39";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V40";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -2402,7 +2403,7 @@
       for (const key of Object.keys(source || {})) {
         if (source[key] === null || source[key] === undefined) continue;
         if (Array.isArray(source[key])) {
-          if (key === "reelsFeed" || Array.isArray(source[key])) target[key] = source[key];
+          target[key] = source[key];
         } else if (typeof source[key] === "object") {
           target[key] = mergeDeep(target[key] || {}, source[key]);
         } else {
@@ -2615,6 +2616,7 @@
       } catch (e) {}
     }
 
+    // Smooth vertical swipe controller across the full viewport + center play/pause + hold for 2x speed
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
@@ -2712,8 +2714,10 @@
       }, { passive: false });
 
       let startY = 0;
+      let startX = 0;
       let curY = 0;
       let tracking = false;
+      let swipingVertical = false;
       let holdTimer = null;
       let is2xActive = false;
 
@@ -2722,16 +2726,17 @@
         if (badge) badge.classList.toggle("visible", active);
       };
 
-      const onGestureStart = (clientY) => {
+      const beginDrag = (clientX, clientY) => {
         tracking = true;
+        swipingVertical = false;
         is2xActive = false;
+        startX = clientX;
         startY = clientY;
         curY = clientY;
-        trackEl.classList.add("dragging");
 
         clearTimeout(holdTimer);
         holdTimer = setTimeout(() => {
-          if (tracking && Math.abs(curY - startY) < 10) {
+          if (tracking && !swipingVertical) {
             is2xActive = true;
             const vid = cards[currentIndex]?.querySelector("video.auto-scroll-reel-video");
             if (vid) vid.playbackRate = 2.0;
@@ -2742,18 +2747,26 @@
         }, 350);
       };
 
-      const onGestureMove = (clientY) => {
+      const moveDrag = (clientX, clientY, ev) => {
         if (!tracking) return;
         curY = clientY;
         const dy = curY - startY;
-        if (Math.abs(dy) > 10) clearTimeout(holdTimer);
-        const h = viewportEl.clientHeight || 540;
-        const baseOffset = -currentIndex * h;
-        const resistance = ((currentIndex === 0 && dy > 0) || (currentIndex === cards.length - 1 && dy < 0)) ? 0.3 : 1;
-        trackEl.style.transform = `translate3d(0px, ${baseOffset + dy * resistance}px, 0px)`;
+        const dx = clientX - startX;
+        if (!swipingVertical && Math.abs(dy) > 14 && Math.abs(dy) > Math.abs(dx)) {
+          swipingVertical = true;
+          clearTimeout(holdTimer);
+          trackEl.classList.add("dragging");
+        }
+        if (swipingVertical) {
+          if (ev && ev.cancelable) ev.preventDefault();
+          const h = viewportEl.clientHeight || 540;
+          const baseOffset = -currentIndex * h;
+          const resistance = ((currentIndex === 0 && dy > 0) || (currentIndex === cards.length - 1 && dy < 0)) ? 0.3 : 1;
+          trackEl.style.transform = `translate3d(0px, ${baseOffset + dy * resistance}px, 0px)`;
+        }
       };
 
-      const onGestureEnd = () => {
+      const endDrag = () => {
         clearTimeout(holdTimer);
         if (!tracking) return;
         tracking = false;
@@ -2771,9 +2784,11 @@
           return;
         }
 
+        if (!swipingVertical) return;
+        swipingVertical = false;
         const dy = curY - startY;
         const h = viewportEl.clientHeight || 540;
-        const threshold = Math.min(42, h * 0.07);
+        const threshold = Math.min(44, h * 0.075);
         if (dy <= -threshold && currentIndex < cards.length - 1) {
           goToSlide(currentIndex + 1, true);
         } else if (dy >= threshold && currentIndex > 0) {
@@ -2785,27 +2800,28 @@
 
       viewportEl.addEventListener("touchstart", (e) => {
         if (e.target.closest(".reel-folder-path-link") || e.target.closest(".reel-center-playpause-btn") || !e.touches.length) return;
-        onGestureStart(e.touches[0].clientY);
+        beginDrag(e.touches[0].clientX, e.touches[0].clientY);
       }, { passive: true });
 
       viewportEl.addEventListener("touchmove", (e) => {
         if (!tracking || !e.touches.length) return;
-        onGestureMove(e.touches[0].clientY);
-      }, { passive: true });
+        moveDrag(e.touches[0].clientX, e.touches[0].clientY, e);
+      }, { passive: false });
 
-      viewportEl.addEventListener("touchend", onGestureEnd, { passive: true });
+      viewportEl.addEventListener("touchend", endDrag, { passive: true });
+      viewportEl.addEventListener("touchcancel", endDrag, { passive: true });
 
       viewportEl.addEventListener("mousedown", (e) => {
         if (e.button !== 0 || e.target.closest(".reel-folder-path-link") || e.target.closest(".reel-center-playpause-btn")) return;
-        onGestureStart(e.clientY);
+        beginDrag(e.clientX, e.clientY);
       });
 
       window.addEventListener("mousemove", (e) => {
         if (!tracking) return;
-        onGestureMove(e.clientY);
+        moveDrag(e.clientX, e.clientY, null);
       });
 
-      window.addEventListener("mouseup", onGestureEnd);
+      window.addEventListener("mouseup", endDrag);
 
       window.addEventListener("resize", () => goToSlide(currentIndex, false));
       setTimeout(() => goToSlide(0, false), 60);
