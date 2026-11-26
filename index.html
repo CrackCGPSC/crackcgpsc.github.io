@@ -23,7 +23,7 @@
       --ambient-b: transparent;
       --box-radius: 12px;
       --btn-radius: 999px;
-      --glow-color: rgba(34, 211, 238, 0.38);
+      --glow-color: rgba(34, 211, 238, 0.35);
     }
 
     * {
@@ -31,19 +31,22 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+      overflow-anchor: none;
     }
 
-    body {
+    html, body {
       background:
         radial-gradient(circle at 50% 0%, var(--ambient-a), transparent 42%),
         radial-gradient(circle at 82% 14%, var(--ambient-b), transparent 36%),
         var(--bg-main);
       color: var(--text-primary);
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      font-variant-numeric: tabular-nums;
       line-height: 1.45;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: clip;
     }
 
     a {
@@ -72,10 +75,8 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    /* Glass Light Effect ONLY on Hover / Active / Selected */
     .glass-light-surface {
       position: relative;
-      transition: transform 0.14s ease, box-shadow 0.16s ease, border-color 0.16s ease;
     }
 
     .glass-light-surface:hover,
@@ -84,29 +85,13 @@
       border-color: rgba(255, 255, 255, 0.72) !important;
       box-shadow:
         0 0 16px var(--glow-color),
-        0 0 24px rgba(255, 42, 133, 0.35),
+        0 0 24px rgba(255, 42, 133, 0.32),
         inset 0 1px 1px rgba(255, 255, 255, 0.45) !important;
     }
 
-    /* Optional Theme Effects (Applied only when chosen) */
-    @keyframes fxBorderNeonPulse {
-      0%, 100% { box-shadow: 0 0 8px var(--neon-cyan), inset 0 0 6px rgba(34, 211, 238, 0.22); border-color: var(--neon-cyan); }
-      50% { box-shadow: 0 0 18px var(--neon-pink), inset 0 0 10px rgba(255, 42, 133, 0.28); border-color: var(--neon-pink); }
-    }
-    @keyframes fxBorderRainbow {
-      0% { border-color: #ff2a85; box-shadow: 0 0 14px rgba(255, 42, 133, 0.55); }
-      33% { border-color: #22d3ee; box-shadow: 0 0 14px rgba(34, 211, 238, 0.55); }
-      66% { border-color: #10b981; box-shadow: 0 0 14px rgba(16, 185, 129, 0.55); }
-      100% { border-color: #ff2a85; box-shadow: 0 0 14px rgba(255, 42, 133, 0.55); }
-    }
-    @keyframes fxTextGlowWave {
-      0%, 100% { text-shadow: 0 0 6px var(--neon-cyan), 0 0 14px rgba(34, 211, 238, 0.45); }
-      50% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 42, 133, 0.65); }
-    }
-
-    .fx-border-pulse { animation: fxBorderNeonPulse 2.8s ease-in-out infinite !important; }
-    .fx-border-rainbow { animation: fxBorderRainbow 4s linear infinite !important; }
-    .fx-text-glow { animation: fxTextGlowWave 2.6s ease-in-out infinite !important; }
+    .fx-border-pulse { border-color: var(--neon-cyan) !important; box-shadow: 0 0 14px var(--neon-cyan) !important; }
+    .fx-border-rainbow { border-color: var(--neon-pink) !important; box-shadow: 0 0 16px rgba(255, 42, 133, 0.55) !important; }
+    .fx-text-glow { text-shadow: 0 0 10px var(--neon-cyan), 0 0 18px rgba(255, 42, 133, 0.45) !important; }
 
     /* Header + Top-Left Admin Quick Button (Visible ONLY when Admin is logged in) */
     .top-bar-wrap {
@@ -134,7 +119,6 @@
       gap: 4px;
       cursor: pointer;
       z-index: 25;
-      box-shadow: 0 0 14px rgba(255, 42, 133, 0.45);
     }
 
     .menu-float-btn {
@@ -204,7 +188,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Capsule Search Bar + Sharp Flare Line Below */
+    /* Capsule Search Bar + Reference Flair Light Motion Below Search */
     .search-shell {
       width: 100%;
       max-width: 980px;
@@ -257,9 +241,9 @@
     }
 
     @keyframes refFlareGlide {
-      0% { transform: translateX(-32%); opacity: 0.7; }
-      50% { transform: translateX(32%); opacity: 1; }
-      100% { transform: translateX(-32%); opacity: 0.7; }
+      0% { transform: translateX(-28%); opacity: 0.72; }
+      50% { transform: translateX(28%); opacity: 1; }
+      100% { transform: translateX(-28%); opacity: 0.72; }
     }
 
     .neon-flare-strip {
@@ -267,10 +251,10 @@
       z-index: 1;
       height: 2.5px;
       margin: 4px auto 0;
-      width: 76%;
+      width: 78%;
       border-radius: 999px;
       background: linear-gradient(90deg, transparent 0%, var(--neon-cyan) 30%, #ffffff 50%, var(--neon-pink) 70%, transparent 100%);
-      animation: refFlareGlide 6.5s ease-in-out infinite;
+      animation: refFlareGlide 6s ease-in-out infinite;
       pointer-events: none;
     }
 
@@ -289,11 +273,11 @@
       gap: 14px;
     }
 
-    /* Portal Cards */
+    /* Compact Portal Cards */
     .neon-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 9px;
+      gap: 8px;
     }
 
     @media (min-width: 860px) {
@@ -307,36 +291,36 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 7px 12px;
+      gap: 8px;
+      height: 46px;
+      padding: 6px 10px;
       border-radius: var(--box-radius);
       text-decoration: none !important;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       cursor: pointer;
     }
 
-    .card-theme-0 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.56), rgba(6, 78, 59, 0.88)); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
-    .card-theme-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.58), rgba(30, 58, 138, 0.88)); box-shadow: 0 4px 14px rgba(59, 130, 246, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
-    .card-theme-2 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.62), rgba(120, 53, 15, 0.90)); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
-    .card-theme-3 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.58), rgba(12, 74, 110, 0.88)); box-shadow: 0 4px 14px rgba(34, 211, 238, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28); }
+    .card-theme-0 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.54), rgba(6, 78, 59, 0.88)); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.24); }
+    .card-theme-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.56), rgba(30, 58, 138, 0.88)); box-shadow: 0 4px 14px rgba(59, 130, 246, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.24); }
+    .card-theme-2 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.60), rgba(120, 53, 15, 0.90)); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.24); }
+    .card-theme-3 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.56), rgba(12, 74, 110, 0.88)); box-shadow: 0 4px 14px rgba(34, 211, 238, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.24); }
 
     .glass-icon-img {
       position: relative;
       z-index: 1;
-      width: 24px;
-      height: 24px;
-      min-width: 24px;
-      min-height: 24px;
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      min-height: 22px;
       object-fit: contain;
       flex-shrink: 0;
       display: block;
     }
 
     .glass-card-text { position: relative; z-index: 1; min-width: 0; flex: 1; }
-    .glass-card-title { font-size: clamp(0.76rem, 1.5vw, 0.92rem); font-weight: 800; color: #ffffff; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .glass-card-sub { margin-top: 2px; font-size: clamp(0.48rem, 1vw, 0.6rem); font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.88); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .glass-card-title { font-size: clamp(0.72rem, 1.35vw, 0.86rem); font-weight: 800; color: #ffffff; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .glass-card-sub { margin-top: 2px; font-size: clamp(0.45rem, 0.95vw, 0.56rem); font-weight: 700; letter-spacing: 0.25px; text-transform: uppercase; color: rgba(255, 255, 255, 0.86); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     /* Banner */
     .neon-banner-bar {
@@ -344,12 +328,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 9px 14px;
+      padding: 8px 13px;
       border-radius: var(--box-radius);
       color: #fff;
       background: linear-gradient(90deg, rgba(190, 24, 93, 0.94), rgba(225, 29, 72, 0.88), rgba(136, 19, 55, 0.96));
       border: 1px solid rgba(255, 145, 190, 0.45);
-      box-shadow: 0 6px 18px rgba(255, 42, 133, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.26);
+      box-shadow: 0 6px 18px rgba(255, 42, 133, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.24);
       cursor: pointer;
     }
 
@@ -357,20 +341,20 @@
       .neon-banner-bar { max-width: 720px; margin: 0 auto; width: 100%; }
     }
 
-    .banner-left { display: flex; align-items: center; gap: 9px; min-width: 0; flex: 1; }
-    .banner-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.72rem, 1.5vw, 0.9rem); font-weight: 800; letter-spacing: 0.4px; line-height: 1.12; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .banner-sub { font-size: clamp(0.54rem, 1.1vw, 0.68rem); color: rgba(255, 255, 255, 0.9); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .banner-right-cta { font-size: clamp(0.66rem, 1.3vw, 0.78rem); font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+    .banner-left { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
+    .banner-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.7rem, 1.4vw, 0.86rem); font-weight: 800; letter-spacing: 0.35px; line-height: 1.12; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .banner-sub { font-size: clamp(0.5rem, 1vw, 0.64rem); color: rgba(255, 255, 255, 0.88); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .banner-right-cta { font-size: clamp(0.64rem, 1.25vw, 0.74rem); font-weight: 800; white-space: nowrap; flex-shrink: 0; }
 
     /* Quick Pill Buttons */
-    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
     .glass-pill-btn {
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: var(--btn-radius);
       background: #0d121d;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       color: #eef3fc;
-      font-size: 0.74rem;
+      font-size: 0.7rem;
       font-weight: 700;
       cursor: pointer;
     }
@@ -423,7 +407,7 @@
       border-radius: var(--box-radius);
     }
 
-    /* Reference-Style Wide Banner Showcase Carousel + Prev/Next Arrows */
+    /* Showcase Carousel + Prev/Next Arrows */
     .showcase-carousel-box {
       position: relative;
       width: 100%;
@@ -434,25 +418,27 @@
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.65);
     }
 
-    .showcase-slide-item { position: relative; width: 100%; height: 156px; display: none; }
-    @media (min-width: 768px) { .showcase-slide-item { height: 220px; } }
+    .showcase-slide-item { position: relative; width: 100%; min-height: 158px; display: none; }
+    @media (min-width: 768px) { .showcase-slide-item { min-height: 220px; } }
     .showcase-slide-item.active { display: block; }
-    .showcase-slide-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .showcase-slide-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 
     .showcase-overlay-scrim {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(4, 6, 10, 0.92) 0%, rgba(4, 6, 10, 0.72) 56%, rgba(4, 6, 10, 0.25) 100%);
+      position: relative;
+      z-index: 2;
+      min-height: 158px;
+      background: linear-gradient(90deg, rgba(4, 6, 10, 0.92) 0%, rgba(4, 6, 10, 0.74) 60%, rgba(4, 6, 10, 0.28) 100%);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 12px 42px 14px 16px;
-      gap: 4px;
+      padding: 14px 42px 20px 16px;
+      gap: 5px;
     }
+    @media (min-width: 768px) { .showcase-overlay-scrim { min-height: 220px; } }
 
     .showcase-pill-tag { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: var(--btn-radius); background: var(--neon-pink); color: #fff; font-size: 0.56rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; }
-    .showcase-slide-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.9rem, 2.2vw, 1.4rem); font-weight: 900; color: #fff; line-height: 1.15; }
-    .showcase-slide-desc { font-size: clamp(0.64rem, 1.3vw, 0.78rem); color: #e2e8f5; max-width: 640px; line-height: 1.28; overflow: hidden; }
+    .showcase-slide-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.9rem, 2.2vw, 1.4rem); font-weight: 900; color: #fff; line-height: 1.18; }
+    .showcase-slide-desc { font-size: clamp(0.64rem, 1.3vw, 0.78rem); color: #e2e8f5; max-width: 640px; line-height: 1.32; }
 
     .showcase-arrow-btn {
       position: absolute;
@@ -499,12 +485,12 @@
       cursor: pointer;
     }
 
-    /* Shorts / Reels Feed: Full Uncropped View + Tap Play/Pause + Hold 2x + Swipe/Wheel */
+    /* Shorts / Reels Feed: Smooth Scroll + Center Play/Pause + 2x Hold + Full Fit */
     .reels-feed-section {
       background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
       border-radius: var(--box-radius);
-      padding: 10px 12px;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
     }
@@ -516,14 +502,29 @@
       border-radius: 0;
       border: 0;
       width: 100vw;
-      height: 100dvh;
+      height: 100vh;
       overflow: hidden;
-      padding: 6px 10px 10px;
+      padding: 2px 4px 2px;
       background: #000000;
+      gap: 0;
+    }
+
+    .reels-feed-section.full-tab-reels-mode .section-header-row {
+      margin-bottom: 0;
+      min-height: 30px;
+      padding: 0 4px;
+    }
+
+    .reels-feed-section.full-tab-reels-mode .section-title {
+      font-size: 0.78rem;
     }
 
     .reels-top-home-btn { display: none !important; }
-    .reels-feed-section.full-tab-reels-mode .reels-top-home-btn { display: inline-flex !important; }
+    .reels-feed-section.full-tab-reels-mode .reels-top-home-btn {
+      display: inline-flex !important;
+      padding: 2px 8px !important;
+      font-size: 0.66rem !important;
+    }
 
     .reels-deck-viewport {
       position: relative;
@@ -543,13 +544,14 @@
       flex: 1;
       height: auto;
       min-height: 0;
+      border-radius: 4px;
     }
 
     .reels-deck-track {
       width: 100%;
       height: 100%;
       will-change: transform;
-      transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .reels-deck-track.dragging { transition: none !important; }
@@ -561,11 +563,11 @@
       background: #000000;
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--box-radius);
-      padding: 6px 8px;
+      padding: 2px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 4px;
+      gap: 0;
     }
 
     .reel-single-meta-line {
@@ -573,12 +575,13 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding: 0 2px;
+      padding: 2px 4px;
       min-width: 0;
+      flex-shrink: 0;
     }
 
     .reel-folder-path-link {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 800;
       color: var(--neon-cyan);
       cursor: pointer;
@@ -588,10 +591,10 @@
     }
 
     .reel-top-caption {
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       font-weight: 700;
       color: #f1f5f9;
-      line-height: 1.2;
+      line-height: 1.15;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -603,16 +606,14 @@
     .reel-media-frame {
       position: relative;
       width: 100%;
-      max-width: 440px;
+      height: 100%;
       margin: 0 auto;
-      border-radius: 10px;
+      border-radius: 6px;
       overflow: hidden;
       background: #000000;
       flex: 1;
       min-height: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
     }
 
     .reel-poster-layer {
@@ -639,37 +640,50 @@
       margin: 0 auto;
     }
 
-    .reel-gesture-shield {
+    /* Dedicated Center Play/Pause Button + 2x Hold Badge */
+    .reel-center-controls-layer {
       position: absolute;
       inset: 0;
-      z-index: 4;
-      background: transparent;
+      z-index: 5;
+      pointer-events: none;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      gap: 10px;
     }
 
-    .reel-tap-indicator {
-      padding: 8px 14px;
+    .reel-center-playpause-btn {
+      pointer-events: auto;
+      width: 48px;
+      height: 48px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(10, 14, 24, 0.68);
+      color: #ffffff;
       font-size: 1.15rem;
-      font-weight: 800;
+      font-weight: 900;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 0.16s ease, transform 0.16s ease;
-      pointer-events: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
     }
 
-    .reel-tap-indicator.visible {
+    .reel-speed-hold-badge {
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.78);
+      border: 1px solid rgba(34, 211, 238, 0.6);
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 800;
+      opacity: 0;
+      transition: opacity 0.14s ease;
+    }
+
+    .reel-speed-hold-badge.visible {
       opacity: 1;
-      transform: scale(1);
     }
 
     /* Live Image/GIF Preview Box in Admin Studio */
@@ -694,6 +708,42 @@
       object-fit: contain;
       border-radius: 6px;
       display: block;
+    }
+
+    /* Mini Google Docs Toolbar attached to Editable Text Fields */
+    .mini-gdocs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+      padding: 4px 6px;
+      border-radius: 7px;
+      background: #0d121d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mini-gdocs-bar select {
+      width: auto !important;
+      padding: 2px 5px !important;
+      font-size: 0.66rem !important;
+      border-radius: 5px !important;
+    }
+    .mini-gdocs-bar input[type="color"] {
+      width: 22px !important;
+      height: 22px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+    .mini-gdocs-btn {
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #182032;
+      color: #fff;
+      font-size: 0.64rem;
+      font-weight: 800;
+      cursor: pointer;
     }
 
     /* Articles + Notice Board Split */
@@ -743,7 +793,6 @@
       cursor: pointer;
     }
 
-    /* Reference-Style Poster/Article Cards (Clean Rectangle Framing) */
     .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     @media (min-width: 960px) { .articles-grid { grid-template-columns: repeat(4, 1fr); } }
 
@@ -820,7 +869,6 @@
 
     .custom-canvas-element { position: relative; padding: 8px; border-radius: var(--box-radius); border: 1px solid rgba(255, 255, 255, 0.18); min-height: 44px; overflow: hidden; }
 
-    /* Full Article & Full-Page About Reader */
     .article-reader { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: var(--box-radius); padding: 16px; }
     .article-hero-img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 12px 0 16px; }
     .review-meta-list { display: flex; flex-direction: column; gap: 9px; margin: 14px 0 18px; background: #0b0f18; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px; }
@@ -850,7 +898,7 @@
     .related-links-list { margin-top: 8px; display: flex; flex-direction: column; gap: 7px; }
     .related-embedded-link { font-size: 0.86rem; font-weight: 700; color: var(--neon-cyan); text-decoration: underline !important; display: inline-block; }
 
-    .site-footer { background: #06080f; border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
+    .site-footer { background: #000000; border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
     .footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
     .social-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
     .social-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--btn-radius); background: #0d121d; border: 1px solid rgba(255, 255, 255, 0.14); color: #fff; font-size: 0.76rem; font-weight: 700; text-decoration: none !important; }
@@ -880,13 +928,12 @@
 
     .fullpage-admin-screen { display: none; position: fixed; inset: 0; z-index: 95; background: #07090e; overflow-y: auto; padding-bottom: 84px; }
     .fullpage-admin-screen.open { display: block; }
-    .android-top-appbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; background: rgba(13, 17, 26, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
-    .android-studio-wrap { max-width: 900px; margin: 0 auto; padding: 12px 12px 24px; }
+    .android-top-appbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; background: #0d111a; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    .android-studio-wrap { width: 100%; max-width: 900px; margin: 0 auto; padding: 12px 12px 24px; }
     .android-segment-bar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 14px; }
     @media (min-width: 680px) { .android-segment-bar { grid-template-columns: repeat(3, 1fr); } }
-    .android-tile-card { background: #111622; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 11px; margin-bottom: 10px; }
+    .android-tile-card { width: 100%; background: #111622; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 11px; margin-bottom: 10px; }
 
-    /* Dedicated Full-Page Homepage Theme Studio with Top-Right Live Mobile Preview */
     .theme-studio-page {
       display: none;
       position: fixed;
@@ -927,7 +974,7 @@
 
     .live-mobile-screen-frame {
       width: 100%;
-      height: 360px;
+      height: 440px;
       border: 0;
       border-radius: 16px;
       background: #000000;
@@ -952,9 +999,9 @@
 
     .pg-editor-row { display: grid; grid-template-columns: 1.5fr 0.7fr 1fr; gap: 6px; align-items: center; padding: 6px; border-radius: 8px; background: #090d16; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 6px; }
 
-    .android-bottom-dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: rgba(11, 15, 23, 0.96); backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 9px 12px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .android-bottom-dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: #0b0f17; border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 9px 12px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 
-    .designer-slim-bar { display: none; position: sticky; top: 0; z-index: 108; width: 100%; background: rgba(10, 14, 22, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(34, 211, 238, 0.35); padding: 5px 5px; gap: 3px; align-items: center; justify-content: space-between; overflow-x: auto; }
+    .designer-slim-bar { display: none; position: sticky; top: 0; z-index: 108; width: 100%; background: #0a0e16; border-bottom: 1px solid rgba(34, 211, 238, 0.35); padding: 5px 5px; gap: 3px; align-items: center; justify-content: space-between; overflow-x: auto; }
     body.designer-mode-active .designer-slim-bar { display: flex; }
 
     body.move-edit-enabled [data-ve-id] { outline: 1px dashed rgba(34, 211, 238, 0.6); outline-offset: 2px; user-select: none; }
@@ -1025,7 +1072,7 @@
       </div>
     </div>
 
-    <!-- Capsule Search + Sharp Flare Line Below -->
+    <!-- Capsule Search + Reference Flair Motion Line Below -->
     <div class="search-shell" data-ve-id="searchWrap">
       <form class="search-glass-box glass-light-surface" onsubmit="handleQuickSearch(event)">
         <input type="text" id="quickSearchInput" placeholder="Search History, Topics, Reviews or Articles..." oninput="applyFilter()" />
@@ -1083,7 +1130,7 @@
     </footer>
   </div>
 
-  <!-- Right Slide Menu (No direct Admin Login button -- hidden inside Full-Page About) -->
+  <!-- Right Slide Menu -->
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="handleBackAction()"></div>
   <aside class="drawer-panel" id="drawerPanel">
     <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.12);">
@@ -1118,14 +1165,14 @@
     </div>
   </div>
 
-  <!-- DEDICATED FULL-PAGE HOMEPAGE THEME STUDIO WITH TOP-RIGHT LIVE MOBILE PREVIEW + BEFORE/AFTER TOGGLE -->
+  <!-- DEDICATED FULL-PAGE HOMEPAGE THEME STUDIO WITH FULL LIVE MOBILE PREVIEW -->
   <section class="theme-studio-page" id="themeStudioPage">
     <div class="android-top-appbar">
       <div style="display:flex; align-items:center; gap:8px;">
         <button class="btn" onclick="closeThemeStudioPage(true)">← Admin</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">🎨 Homepage Theme & Element Effects</div>
-          <div style="font-size:0.64rem; color:var(--neon-cyan);">Live Preview + Before/After Toggle • Clean/Box Mode</div>
+          <div style="font-size:0.64rem; color:var(--neon-cyan);">Full Live Preview + Before/After Toggle • Clean/Box Mode</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1135,7 +1182,6 @@
     </div>
 
     <div class="theme-studio-layout">
-      <!-- Left Controls Column -->
       <div class="form-grid">
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;">
@@ -1223,16 +1269,15 @@
         </div>
       </div>
 
-      <!-- Top-Right Live Small Mobile Preview Screen with Before/After Toggle -->
       <div class="live-mobile-preview-card">
         <div style="display:flex; justify-content:space-between; align-items:center; padding:2px 4px 6px; gap:4px;">
-          <span style="font-size:0.66rem; font-weight:800; color:var(--neon-cyan);">📱 Preview</span>
+          <span style="font-size:0.66rem; font-weight:800; color:var(--neon-cyan);">📱 Full Preview</span>
           <div style="display:flex; gap:4px;">
             <button type="button" class="btn" id="previewCompareBtn" style="padding:2px 7px; font-size:0.6rem;" onclick="toggleBeforeAfterPreview()">Before/After: After</button>
             <button type="button" class="btn" style="padding:2px 7px; font-size:0.6rem;" onclick="refreshLiveMobileFrame()">↻</button>
           </div>
         </div>
-        <iframe id="liveMobilePreviewIframe" class="live-mobile-screen-frame" title="Live Mobile Preview"></iframe>
+        <iframe id="liveMobilePreviewIframe" class="live-mobile-screen-frame" title="Full Live Mobile Preview"></iframe>
       </div>
     </div>
   </section>
@@ -1244,7 +1289,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Pure Black UI • Tap Pause/Hold 2x Shorts • Theme Studio • Fonts</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Smooth Shorts • Center Play/Pause • 2x Hold • Captions OFF</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1274,28 +1319,60 @@
           <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('general')">Default</button>
         </div>
         <div class="android-tile-card form-grid two-col">
-          <div class="field-group"><label>Brand Logo Text</label><input type="text" id="cfgBrandTitle" /></div>
+          <div class="field-group" data-style-target="brandTitle">
+            <label>Brand Logo Text</label>
+            <input type="text" id="cfgBrandTitle" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div class="field-group">
             <label>Brand Logo Image / GIF URL (Fits Box Without Cropping)</label>
             <input type="text" id="cfgBrandLogoUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
             <div class="live-media-preview-box"></div>
           </div>
-          <div class="field-group"><label>Single-Line Subtitle</label><input type="text" id="cfgBrandSub" /></div>
-          <div class="field-group"><label>Search Box Suggestion Text</label><input type="text" id="cfgSearchPlaceholder" placeholder="Search History, Topics, Reviews or Articles..." /></div>
+          <div class="field-group" data-style-target="brandSub">
+            <label>Single-Line Subtitle</label>
+            <input type="text" id="cfgBrandSub" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="searchWrap">
+            <label>Search Box Suggestion Text</label>
+            <input type="text" id="cfgSearchPlaceholder" placeholder="Search History, Topics, Reviews or Articles..." />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div class="field-group">
             <label>Website Favicon Link (Google Drive / Image URL)</label>
             <input type="text" id="cfgFaviconUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
             <div class="live-media-preview-box"></div>
           </div>
-          <div class="field-group"><label>Articles Section Title</label><input type="text" id="cfgArticlesHeading" /></div>
-          <div class="field-group"><label>Hub Tag</label><input type="text" id="cfgHubTag" /></div>
-          <div class="field-group"><label>Hub Heading</label><input type="text" id="cfgHubHeading" /></div>
-          <div class="field-group" style="grid-column:1 / -1;"><label>Hub Description</label><textarea id="cfgHubDesc" style="min-height:58px;"></textarea></div>
+          <div class="field-group" data-style-target="articlesSection">
+            <label>Articles Section Title</label>
+            <input type="text" id="cfgArticlesHeading" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="portalHubCard">
+            <label>Hub Tag</label>
+            <input type="text" id="cfgHubTag" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="portalHubCard">
+            <label>Hub Heading</label>
+            <input type="text" id="cfgHubHeading" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" style="grid-column:1 / -1;" data-style-target="portalHubCard">
+            <label>Hub Description</label>
+            <textarea id="cfgHubDesc" style="min-height:58px;"></textarea>
+            <div class="mini-gdocs-bar"></div>
+          </div>
         </div>
 
         <div class="android-tile-card form-grid">
           <strong style="font-size:0.86rem; color:var(--neon-cyan);">ℹ️ Full-Page About Section Content (Shown When User Clicks "About" in Menu)</strong>
-          <div class="field-group"><label>About Page Heading</label><input type="text" id="cfgAboutHeading" /></div>
+          <div class="field-group" data-style-target="aboutPageContentHost">
+            <label>About Page Heading</label>
+            <input type="text" id="cfgAboutHeading" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div id="aboutWysiwygHost"></div>
         </div>
 
@@ -1325,6 +1402,7 @@
           <div class="field-group">
             <label>Movie Review Menu Header Title</label>
             <input type="text" id="cfgMovieMenuHeading" placeholder="Browse Reviews" />
+            <div class="mini-gdocs-bar"></div>
           </div>
         </div>
 
@@ -1353,9 +1431,21 @@
         </div>
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;"><strong style="font-size:0.86rem;">Education Content Folder Banner</strong></div>
-          <div class="field-group"><label>Banner Title</label><input type="text" id="cfgBannerTitle" /></div>
-          <div class="field-group"><label>Banner Subtitle</label><input type="text" id="cfgBannerSub" /></div>
-          <div class="field-group"><label>Banner Right CTA</label><input type="text" id="cfgBannerCta" /></div>
+          <div class="field-group" data-style-target="mainNeonBanner">
+            <label>Banner Title</label>
+            <input type="text" id="cfgBannerTitle" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="mainNeonBanner">
+            <label>Banner Subtitle</label>
+            <input type="text" id="cfgBannerSub" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="mainNeonBanner">
+            <label>Banner Right CTA</label>
+            <input type="text" id="cfgBannerCta" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div class="field-group">
             <label>Banner Icon / Google Drive Image or GIF Link</label>
             <input type="text" id="cfgBannerIconUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
@@ -1533,7 +1623,11 @@
 
         <div class="android-tile-card form-grid">
           <strong style="font-size:0.86rem; color:var(--neon-cyan);">📌 Notice Board Editor (with Table Add/Remove/Sub-Table Controls)</strong>
-          <div class="field-group"><label>Notice Board Heading</label><input type="text" id="cfgNoticeTitle" /></div>
+          <div class="field-group" data-style-target="noticeBoardPanel">
+            <label>Notice Board Heading</label>
+            <input type="text" id="cfgNoticeTitle" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div id="noticeWysiwygHost"></div>
         </div>
 
@@ -1588,7 +1682,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V29";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V37";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -2121,7 +2215,6 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Full-Page Android File Manager for "Open Reels Folder" (Strictly Reels folders & reels items)
     function openFullReelsFolderExplorer(targetPathOrId = "") {
       const folders = siteData.reelsFolders || [];
       let startId = "";
@@ -2228,23 +2321,6 @@
       showHomeUI();
       if (resetHistory) activeStack = [];
       renderAll();
-    }
-
-    function resetEntireSiteToDefault() {
-      const preserved = {
-        articles: siteData.articles,
-        folders: siteData.folders,
-        reelsFolders: siteData.reelsFolders,
-        reelsFeed: siteData.reelsFeed,
-        github: siteData.github,
-        socialLinks: siteData.socialLinks
-      };
-      const fresh = structuredClone(DEFAULT_DATA);
-      Object.assign(fresh, preserved);
-      siteData = fresh;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
-      renderAll();
-      showToast("Design reset to default");
     }
 
     function resetSectionToDefault(sectionKey) {
@@ -2421,7 +2497,7 @@
       }
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
-        return `<iframe src="${yt.embedUrl}?rel=0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>`;
+        return `<iframe src="${yt.embedUrl}?rel=0&cc_load_policy=0&iv_load_policy=3" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>`;
       }
       const driveMatch = clean.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
       if (driveMatch && clean.includes("video")) {
@@ -2482,6 +2558,7 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
+    // Renders video/YouTube frame with captions off by default + center play/pause + 2x hold indicator
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
@@ -2490,8 +2567,9 @@
         return `
           <div class="reel-media-frame">
             <video class="auto-scroll-reel-video" data-reel-idx="${index}" src="${escapeHtml(clean)}" preload="auto" loop playsinline></video>
-            <div class="reel-gesture-shield" data-shield-idx="${index}">
-              <span class="reel-tap-indicator">⏸</span>
+            <div class="reel-center-controls-layer">
+              <button type="button" class="reel-center-playpause-btn" aria-label="Play or Pause">▶</button>
+              <span class="reel-speed-hold-badge">2x ▶▶</span>
             </div>
           </div>
         `;
@@ -2500,13 +2578,14 @@
       const yt = parseYouTubeEmbed(clean);
       if (yt) {
         const thumb = `https://i.ytimg.com/vi/${yt.videoId}/hqdefault.jpg`;
-        const apiSrc = `${yt.embedUrl}?enablejsapi=1&autoplay=0&mute=0&loop=1&playlist=${yt.videoId}&playsinline=1&rel=0&controls=1&modestbranding=1`;
+        const apiSrc = `${yt.embedUrl}?enablejsapi=1&autoplay=0&mute=0&loop=1&playlist=${yt.videoId}&playsinline=1&rel=0&controls=1&modestbranding=1&cc_load_policy=0&iv_load_policy=3`;
         return `
           <div class="reel-media-frame">
             <img class="reel-poster-layer" src="${escapeHtml(thumb)}" alt="${escapeHtml(caption || "Short Video")}" loading="eager" />
             <iframe class="inpage-shorts-iframe" data-reel-idx="${index}" src="${escapeHtml(apiSrc)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-            <div class="reel-gesture-shield" data-shield-idx="${index}">
-              <span class="reel-tap-indicator">⏸</span>
+            <div class="reel-center-controls-layer">
+              <button type="button" class="reel-center-playpause-btn" aria-label="Play or Pause">▶</button>
+              <span class="reel-speed-hold-badge">2x ▶▶</span>
             </div>
           </div>
         `;
@@ -2523,78 +2602,88 @@
       } catch (e) {}
     }
 
-    // 1:1 Finger Swipe + Mouse Wheel + Tap Play/Pause + Hold 2x Speed
+    // Smooth vertical swipe/wheel slide + dedicated center play/pause button + hold for 2x speed
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
       let currentIndex = 0;
       let isInView = false;
-      let isPausedByUser = false;
+      const playStateByIdx = new Map();
 
-      const flashTapIcon = (card, symbol) => {
-        const ind = card?.querySelector(".reel-tap-indicator");
-        if (!ind) return;
-        ind.textContent = symbol;
-        ind.classList.add("visible");
-        clearTimeout(ind._t);
-        ind._t = setTimeout(() => ind.classList.remove("visible"), 550);
+      const setCardPlayVisual = (idx, playing) => {
+        playStateByIdx.set(idx, playing);
+        const btn = cards[idx]?.querySelector(".reel-center-playpause-btn");
+        if (btn) btn.textContent = playing ? "❚❚" : "▶";
       };
 
       const pauseAllMedia = () => {
-        trackEl.querySelectorAll("video.auto-scroll-reel-video").forEach(v => {
+        trackEl.querySelectorAll("video.auto-scroll-reel-video").forEach((v, i) => {
           v.pause();
           v.playbackRate = 1;
+          setCardPlayVisual(i, false);
         });
-        trackEl.querySelectorAll("iframe.inpage-shorts-iframe").forEach(f => {
+        trackEl.querySelectorAll("iframe.inpage-shorts-iframe").forEach((f, i) => {
           sendYtCommand(f, "setPlaybackRate", [1]);
           sendYtCommand(f, "pauseVideo");
+          setCardPlayVisual(i, false);
         });
       };
 
-      const syncCurrentPlayback = () => {
-        if (!isInView || isPausedByUser) {
-          pauseAllMedia();
-          return;
+      const playCardAt = (idx) => {
+        const card = cards[idx];
+        if (!card) return;
+        const vid = card.querySelector("video.auto-scroll-reel-video");
+        if (vid) {
+          vid.muted = false;
+          vid.volume = 1;
+          vid.play().catch(() => {});
+          setCardPlayVisual(idx, true);
         }
-        cards.forEach((card, idx) => {
-          const isCur = idx === currentIndex;
-          const vid = card.querySelector("video.auto-scroll-reel-video");
-          if (vid) {
-            if (isCur) {
-              vid.muted = false;
-              vid.volume = 1;
-              vid.play().catch(() => {});
-            } else {
-              vid.pause();
-            }
-          }
-          const iframe = card.querySelector("iframe.inpage-shorts-iframe");
-          if (iframe) {
-            if (isCur) {
-              sendYtCommand(iframe, "unMute");
-              sendYtCommand(iframe, "playVideo");
-            } else {
-              sendYtCommand(iframe, "pauseVideo");
-            }
-          }
-        });
+        const iframe = card.querySelector("iframe.inpage-shorts-iframe");
+        if (iframe) {
+          sendYtCommand(iframe, "unloadModule", ["captions"]);
+          sendYtCommand(iframe, "unMute");
+          sendYtCommand(iframe, "playVideo");
+          setCardPlayVisual(idx, true);
+        }
+      };
+
+      const pauseCardAt = (idx) => {
+        const card = cards[idx];
+        if (!card) return;
+        const vid = card.querySelector("video.auto-scroll-reel-video");
+        if (vid) vid.pause();
+        const iframe = card.querySelector("iframe.inpage-shorts-iframe");
+        if (iframe) sendYtCommand(iframe, "pauseVideo");
+        setCardPlayVisual(idx, false);
       };
 
       const goToSlide = (nextIdx, animate = true) => {
         currentIndex = Math.max(0, Math.min(cards.length - 1, nextIdx));
-        isPausedByUser = false;
         const h = viewportEl.clientHeight || 540;
         trackEl.classList.toggle("dragging", !animate);
         trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
-        syncCurrentPlayback();
+        pauseAllMedia();
+        if (isInView) playCardAt(currentIndex);
       };
+
+      cards.forEach((card, idx) => {
+        const ppBtn = card.querySelector(".reel-center-playpause-btn");
+        if (!ppBtn) return;
+        ppBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const curPlaying = Boolean(playStateByIdx.get(idx));
+          if (curPlaying) pauseCardAt(idx);
+          else playCardAt(idx);
+        });
+      });
 
       const secObs = new IntersectionObserver((entries) => {
         entries.forEach(en => {
           isInView = en.isIntersecting && en.intersectionRatio >= 0.35;
           if (!isInView) pauseAllMedia();
-          else syncCurrentPlayback();
+          else playCardAt(currentIndex);
         });
       }, { threshold: [0.35] });
       secObs.observe(secEl);
@@ -2611,41 +2700,45 @@
       }, { passive: false });
 
       let startY = 0;
-      let currentDeltaY = 0;
+      let deltaY = 0;
       let dragging = false;
       let holdTimer = null;
       let is2xActive = false;
 
+      const show2xBadge = (idx, active) => {
+        const badge = cards[idx]?.querySelector(".reel-speed-hold-badge");
+        if (badge) badge.classList.toggle("visible", active);
+      };
+
       viewportEl.addEventListener("pointerdown", (e) => {
-        if (e.target.closest(".reel-folder-path-link")) return;
+        if (e.target.closest(".reel-folder-path-link") || e.target.closest(".reel-center-playpause-btn")) return;
         dragging = true;
         is2xActive = false;
         startY = e.clientY;
-        currentDeltaY = 0;
+        deltaY = 0;
         trackEl.classList.add("dragging");
 
         clearTimeout(holdTimer);
         holdTimer = setTimeout(() => {
-          if (dragging && Math.abs(currentDeltaY) < 8) {
+          if (dragging && Math.abs(deltaY) < 10) {
             is2xActive = true;
-            const curCard = cards[currentIndex];
-            const vid = curCard?.querySelector("video.auto-scroll-reel-video");
+            const vid = cards[currentIndex]?.querySelector("video.auto-scroll-reel-video");
             if (vid) vid.playbackRate = 2.0;
-            const ifr = curCard?.querySelector("iframe.inpage-shorts-iframe");
+            const ifr = cards[currentIndex]?.querySelector("iframe.inpage-shorts-iframe");
             if (ifr) sendYtCommand(ifr, "setPlaybackRate", [2]);
-            flashTapIcon(curCard, "2x ▶▶");
+            show2xBadge(currentIndex, true);
           }
-        }, 420);
+        }, 400);
       });
 
       viewportEl.addEventListener("pointermove", (e) => {
         if (!dragging) return;
-        currentDeltaY = e.clientY - startY;
-        if (Math.abs(currentDeltaY) > 10) clearTimeout(holdTimer);
+        deltaY = e.clientY - startY;
+        if (Math.abs(deltaY) > 10) clearTimeout(holdTimer);
         const h = viewportEl.clientHeight || 540;
         const baseOffset = -currentIndex * h;
-        const resistance = ((currentIndex === 0 && currentDeltaY > 0) || (currentIndex === cards.length - 1 && currentDeltaY < 0)) ? 0.3 : 1;
-        trackEl.style.transform = `translate3d(0px, ${baseOffset + currentDeltaY * resistance}px, 0px)`;
+        const resistance = ((currentIndex === 0 && deltaY > 0) || (currentIndex === cards.length - 1 && deltaY < 0)) ? 0.3 : 1;
+        trackEl.style.transform = `translate3d(0px, ${baseOffset + deltaY * resistance}px, 0px)`;
       });
 
       const finishGesture = () => {
@@ -2655,11 +2748,11 @@
 
         if (is2xActive) {
           is2xActive = false;
-          const curCard = cards[currentIndex];
-          const vid = curCard?.querySelector("video.auto-scroll-reel-video");
+          const vid = cards[currentIndex]?.querySelector("video.auto-scroll-reel-video");
           if (vid) vid.playbackRate = 1.0;
-          const ifr = curCard?.querySelector("iframe.inpage-shorts-iframe");
+          const ifr = cards[currentIndex]?.querySelector("iframe.inpage-shorts-iframe");
           if (ifr) sendYtCommand(ifr, "setPlaybackRate", [1]);
+          show2xBadge(currentIndex, false);
           const h = viewportEl.clientHeight || 540;
           trackEl.classList.remove("dragging");
           trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
@@ -2667,20 +2760,10 @@
         }
 
         const h = viewportEl.clientHeight || 540;
-        const threshold = Math.min(70, h * 0.13);
-
-        if (Math.abs(currentDeltaY) < 9) {
-          isPausedByUser = !isPausedByUser;
-          flashTapIcon(cards[currentIndex], isPausedByUser ? "⏸" : "▶");
-          syncCurrentPlayback();
-          trackEl.classList.remove("dragging");
-          trackEl.style.transform = `translate3d(0px, ${-currentIndex * h}px, 0px)`;
-          return;
-        }
-
-        if (currentDeltaY <= -threshold && currentIndex < cards.length - 1) {
+        const threshold = Math.min(60, h * 0.11);
+        if (deltaY <= -threshold && currentIndex < cards.length - 1) {
           goToSlide(currentIndex + 1, true);
-        } else if (currentDeltaY >= threshold && currentIndex > 0) {
+        } else if (deltaY >= threshold && currentIndex > 0) {
           goToSlide(currentIndex - 1, true);
         } else {
           goToSlide(currentIndex, true);
@@ -2734,6 +2817,76 @@
       const base = ["Plus Jakarta Sans", "Montserrat", "Poppins", "Roboto"];
       const extra = Array.isArray(siteData.customFonts) ? siteData.customFonts : [];
       return Array.from(new Set([...base, ...extra]));
+    }
+
+    function hydrateMiniGdocsBars() {
+      const fontNames = getAllAvailableFontNames();
+      const optsHtml = `<option value="">Font</option>` + fontNames.map(fn => `<option value="${escapeHtml(fn)}">${escapeHtml(fn)}</option>`).join("");
+
+      document.querySelectorAll(".mini-gdocs-bar").forEach(bar => {
+        const group = bar.closest(".field-group");
+        const targetId = group?.dataset?.styleTarget || "";
+        const inp = group?.querySelector("input, textarea");
+        const curStyle = (siteData.elementStyles || {})[targetId] || {};
+
+        bar.innerHTML = `
+          <select class="mini-font-sel" title="Font Family">${optsHtml}</select>
+          <button type="button" class="mini-gdocs-btn" title="Download Free Google Font">+ Font</button>
+          <input type="color" class="mini-fg-col" title="Text Color" value="${escapeHtml(curStyle.textColor || "#ffffff")}" />
+          <input type="color" class="mini-bg-col" title="Highlight / Box Color" value="${escapeHtml(curStyle.bgColor || "#0b0e16")}" />
+          <button type="button" class="mini-gdocs-btn" title="Bold"><strong>B</strong></button>
+        `;
+
+        const fSel = bar.querySelector(".mini-font-sel");
+        if (curStyle.fontFamily) fSel.value = curStyle.fontFamily;
+
+        fSel.addEventListener("change", () => {
+          if (!targetId) return;
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), fontFamily: fSel.value };
+          if (inp && fSel.value) inp.style.fontFamily = fSel.value;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+        });
+
+        bar.querySelectorAll(".mini-gdocs-btn")[0].addEventListener("click", () => {
+          const fname = prompt("Enter Free Google Font Name (e.g. Outfit, Cinzel, Oswald, Lora, Caveat):");
+          if (!fname || !fname.trim()) return;
+          const clean = fname.trim();
+          siteData.customFonts = Array.from(new Set([...(siteData.customFonts || []), clean]));
+          if (targetId) {
+            siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), fontFamily: clean };
+          }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          loadExtraGoogleFonts();
+          hydrateMiniGdocsBars();
+          renderAll();
+          showToast(`Font "${clean}" added`);
+        });
+
+        bar.querySelector(".mini-fg-col").addEventListener("input", (ev) => {
+          if (!targetId) return;
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), textColor: ev.target.value };
+          if (inp) inp.style.color = ev.target.value;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+        });
+
+        bar.querySelector(".mini-bg-col").addEventListener("input", (ev) => {
+          if (!targetId) return;
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), bgColor: ev.target.value };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+        });
+
+        bar.querySelectorAll(".mini-gdocs-btn")[1].addEventListener("click", () => {
+          if (!targetId) return;
+          const nextBold = !(siteData.elementStyles[targetId]?.bold);
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), bold: nextBold };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+          showToast(nextBold ? "Bold ON" : "Bold OFF");
+        });
+      });
     }
 
     function createGoogleDocsEditor(initialHtml = "", placeholder = "Write here...") {
@@ -3419,6 +3572,7 @@
             const actType = card.actionType || "link";
             const a = document.createElement("a");
             a.className = `glass-portal-card glass-light-surface ${themeClass}`;
+            a.dataset.veId = `portalCard-${idx}`;
             if (isMoveEditEnabled) {
               a.href = "javascript:void(0)";
             } else if (actType === "link" && card.url) {
@@ -3438,8 +3592,8 @@
             a.innerHTML = `
               ${imgUrl ? `<img class="glass-icon-img" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(card.title)}" loading="lazy" />` : ""}
               <span class="glass-card-text">
-                <span class="glass-card-title" style="display:block;">${escapeHtml(card.title)}</span>
-                <span class="glass-card-sub" style="display:block;">${escapeHtml(card.sub || "")}</span>
+                <span class="glass-card-title ve-fit-text" style="display:block;">${escapeHtml(card.title)}</span>
+                <span class="glass-card-sub ve-fit-text" style="display:block;">${escapeHtml(card.sub || "")}</span>
               </span>
             `;
             grid.appendChild(a);
@@ -3461,11 +3615,11 @@
             <div class="banner-left">
               ${bIcon ? `<img class="glass-icon-img" src="${escapeHtml(bIcon)}" alt="Banner Icon" loading="lazy" />` : `<span style="font-size:1rem;">📁</span>`}
               <div style="min-width:0;">
-                <div class="banner-title" id="bannerTitleText">${escapeHtml(b.title || "Topic Wise Short Videos")}</div>
-                <div class="banner-sub" id="bannerSubText">${escapeHtml(b.sub || "")}</div>
+                <div class="banner-title ve-fit-text" id="bannerTitleText">${escapeHtml(b.title || "Topic Wise Short Videos")}</div>
+                <div class="banner-sub ve-fit-text" id="bannerSubText">${escapeHtml(b.sub || "")}</div>
               </div>
             </div>
-            <div class="banner-right-cta" id="bannerCtaText">${escapeHtml(b.cta || "Select Topic →")}</div>
+            <div class="banner-right-cta ve-fit-text" id="bannerCtaText">${escapeHtml(b.cta || "Select Topic →")}</div>
           `;
           stack.appendChild(div);
         } else if (secId === "quickPillButtons") {
@@ -3473,11 +3627,12 @@
           row.className = "pill-row";
           row.id = "quickPillButtons";
           row.dataset.veId = "quickPillButtons";
-          (siteData.navButtons || []).forEach(btn => {
+          (siteData.navButtons || []).forEach((btn, pIdx) => {
             if (!btn.label) return;
             const p = document.createElement("button");
             p.type = "button";
-            p.className = "glass-pill-btn glass-light-surface";
+            p.className = "glass-pill-btn glass-light-surface ve-fit-text";
+            p.dataset.veId = `quickPill-${pIdx}`;
             p.textContent = btn.label;
             p.onclick = () => executePillAction(btn);
             row.appendChild(p);
@@ -3490,8 +3645,8 @@
           hub.dataset.veId = "portalHubCard";
           hub.innerHTML = `
             <div class="hub-tag" id="hubTagText">${escapeHtml(siteData.hubTag)}</div>
-            <h2 class="hub-heading" id="hubHeadingText">${escapeHtml(siteData.hubHeading)}</h2>
-            <p class="hub-copy" id="hubDescText">${escapeHtml(siteData.hubDesc)}</p>
+            <h2 class="hub-heading ve-fit-text" id="hubHeadingText">${escapeHtml(siteData.hubHeading)}</h2>
+            <p class="hub-copy ve-fit-text" id="hubDescText">${escapeHtml(siteData.hubDesc)}</p>
           `;
           stack.appendChild(hub);
         } else if (secId === "homeFeaturedMediaBlock") {
@@ -3526,9 +3681,9 @@
                   ${imgSrc ? `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(s.title)}" loading="lazy" />` : ""}
                   <div class="showcase-overlay-scrim">
                     ${s.tag ? `<span class="showcase-pill-tag">${escapeHtml(s.tag)}</span>` : ""}
-                    <div class="showcase-slide-title">${escapeHtml(s.title)}</div>
-                    ${s.desc ? `<div class="showcase-slide-desc">${escapeHtml(s.desc)}</div>` : ""}
-                    ${s.btnText && s.btnUrl ? `<a class="btn btn-primary" style="width:fit-content; margin-top:4px;" href="${isMoveEditEnabled ? "javascript:void(0)" : escapeHtml(s.btnUrl)}" ${!isMoveEditEnabled ? 'target="_blank" rel="noopener noreferrer"' : ""}>${escapeHtml(s.btnText)}</a>` : ""}
+                    <div class="showcase-slide-title ve-fit-text">${escapeHtml(s.title)}</div>
+                    ${s.desc ? `<div class="showcase-slide-desc ve-fit-text">${escapeHtml(s.desc)}</div>` : ""}
+                    ${s.btnText && s.btnUrl ? `<a class="btn btn-primary" data-ve-id="showcaseBtn-${i}" style="width:fit-content; margin-top:4px;" href="${isMoveEditEnabled ? "javascript:void(0)" : escapeHtml(s.btnUrl)}" ${!isMoveEditEnabled ? 'target="_blank" rel="noopener noreferrer"' : ""}>${escapeHtml(s.btnText)}</a>` : ""}
                   </div>
                 </div>
               `;
@@ -3674,7 +3829,7 @@
           grid.className = "articles-grid";
           grid.id = "articlesPreviewGrid";
 
-          pageItems.forEach(art => {
+          pageItems.forEach((art, cardPos) => {
             const realIdx = (siteData.articles || []).indexOf(art);
             const isReview = art.postType === "review";
             const cover = convertDriveUrl(isReview ? (art.reviewData?.posterUrl || art.coverImage) : art.coverImage);
@@ -3686,6 +3841,7 @@
 
             const card = document.createElement("div");
             card.className = "poster-article-card glass-light-surface";
+            card.dataset.veId = `articleCard-${cardPos}`;
             card.onclick = () => { if (!isMoveEditEnabled) openArticleReader(realIdx); };
             card.innerHTML = `
               <div class="poster-thumb-box">
@@ -3693,8 +3849,8 @@
                 ${cover ? `<img src="${escapeHtml(cover)}" alt="${escapeHtml(cardTitle)}" loading="lazy" />` : ""}
               </div>
               <div class="poster-card-body">
-                <div class="poster-card-title">${escapeHtml(cardTitle)}</div>
-                <div class="poster-card-desc">${escapeHtml(cardDesc)}</div>
+                <div class="poster-card-title ve-fit-text">${escapeHtml(cardTitle)}</div>
+                <div class="poster-card-desc ve-fit-text">${escapeHtml(cardDesc)}</div>
               </div>
             `;
             grid.appendChild(card);
@@ -3819,18 +3975,19 @@
       const subFolders = allFolders.filter(f => (f.parentId || "") === currentFolderId && (!searchQuery || f.name.toLowerCase().includes(searchQuery)));
       const foldersGrid = document.getElementById("foldersExplorerGrid");
       foldersGrid.innerHTML = "";
-      subFolders.forEach(fld => {
+      subFolders.forEach((fld, fIdx) => {
         const scopeSet = getDescendantFolderIds(fld.id);
         const artCount = allArticles.filter(a => scopeSet.has(a.folderId || "")).length;
         const subCount = allFolders.filter(f => f.parentId === fld.id).length;
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "android-folder-chip glass-light-surface";
+        btn.dataset.veId = `bottomFolder-${fIdx}`;
         btn.onclick = () => openFolderView(fld.id);
         btn.innerHTML = `
           <span style="font-size:1.1rem;">📁</span>
           <span style="min-width:0; flex:1;">
-            <span style="display:block; font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(fld.name)}</span>
+            <span class="ve-fit-text" style="display:block; font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(fld.name)}</span>
             <span style="display:block; font-size:0.64rem; color:var(--neon-cyan);">${subCount} subfolder • ${artCount} article</span>
           </span>
         `;
@@ -3900,41 +4057,28 @@
       });
     }
 
-    // Auto-adjusts inner text & images proportionally to box size changes
     function autoFitBoxContents(el, baseFontSizePx) {
       if (!el) return;
       const w = el.clientWidth || el.offsetWidth || 240;
       const h = el.clientHeight || el.offsetHeight || 0;
 
       el.querySelectorAll(".ve-fit-text").forEach(node => {
-        let fs = baseFontSizePx || parseFloat(getComputedStyle(node).fontSize) || 14;
-        const minFs = h > 0 && h < 48 ? 8.5 : 9.5;
-        node.style.fontSize = `${fs}px`;
-        let guard = 0;
-        while (fs > minFs && guard < 28 && (node.scrollWidth > w - 12 || (h > 0 && node.scrollHeight > h - 10))) {
-          fs -= 0.7;
-          node.style.fontSize = `${fs.toFixed(1)}px`;
-          guard++;
+        if (baseFontSizePx) {
+          node.style.fontSize = `${baseFontSizePx}px`;
+        } else if (h > 0 && h < 42) {
+          const scaled = Math.max(9.5, Math.min(15, Math.round(h * 0.32)));
+          node.style.fontSize = `${scaled}px`;
+        }
+        if (node.scrollWidth > w - 10) {
+          const cur = parseFloat(getComputedStyle(node).fontSize) || 12;
+          const ratio = Math.max(0.72, (w - 12) / Math.max(1, node.scrollWidth));
+          node.style.fontSize = `${Math.max(8.5, cur * ratio).toFixed(1)}px`;
         }
       });
 
       el.querySelectorAll(".ve-fit-img-wrap").forEach(wrap => {
         if (h > 0) {
-          wrap.style.height = `${Math.max(32, Math.round(h * 0.55))}px`;
-        }
-      });
-
-      el.querySelectorAll("img").forEach(img => {
-        if (img.closest(".showcase-slide-item") || img.closest(".poster-thumb-box") || img.closest(".reel-media-frame") || img.closest(".brand-logo-media-box") || img.closest(".home-featured-media-frame") || img.closest(".ve-fit-img-wrap")) return;
-        if (h > 0) {
-          img.style.maxHeight = `${Math.max(24, h - 14)}px`;
-          img.style.width = "auto";
-          img.style.maxWidth = "100%";
-          img.style.margin = "0 auto";
-        } else {
-          img.style.maxHeight = "";
-          img.style.width = "100%";
-          img.style.maxWidth = "100%";
+          wrap.style.height = `${Math.max(32, Math.round(h * 0.52))}px`;
         }
       });
     }
@@ -4128,10 +4272,10 @@
       if (tabId === "tab-folders") renderAdminFileManager();
       if (tabId === "tab-reels") renderReelFolderManagerUI();
       if (tabId === "tab-sequence") renderSequenceManager();
+      hydrateMiniGdocsBars();
       refreshAllAdminPreviews();
     }
 
-    // DEDICATED FULL-PAGE THEME STUDIO WITH LIVE TOP-RIGHT MOBILE PREVIEW + BEFORE/AFTER COMPARISON
     function openThemeStudioPage() {
       beforeThemeSnapshot = structuredClone({
         themeConfig: siteData.themeConfig,
@@ -4168,10 +4312,10 @@
           }
         : siteData;
 
-      iframe.srcdoc = buildPreviewSnapshotHtml(snapToShow);
+      iframe.srcdoc = buildFullWebsiteMobilePreviewHtml(snapToShow);
     }
 
-    function buildPreviewSnapshotHtml(snap) {
+    function buildFullWebsiteMobilePreviewHtml(snap) {
       const tc = { ...DEFAULT_DATA.themeConfig, ...(snap.themeConfig || {}) };
       const preset = THEME_COLOR_PRESETS.find(p => p.id === tc.preset) || THEME_COLOR_PRESETS[0];
       const lightEff = THEME_LIGHT_EFFECTS.find(e => e.id === tc.lightEffect) || THEME_LIGHT_EFFECTS[0];
@@ -4179,9 +4323,10 @@
       const ambA = (lightEff.id === "matte-clean" || lightCol.id === "no-glow") ? "transparent" : lightCol.a;
       const ambB = (lightEff.id === "matte-clean" || lightCol.id === "no-glow") ? "transparent" : lightCol.b;
 
-      const titleStyle = (snap.elementStyles || {}).brandTitle || {};
-      const titleColor = titleStyle.textColor || "#ffffff";
-      const titleGlow = titleStyle.glowColor || lightCol.glow;
+      const styles = snap.elementStyles || {};
+      const tSt = styles.brandTitle || {};
+      const sSt = styles.brandSub || {};
+      const hSt = styles.portalHubCard || {};
 
       const cardsHtml = (snap.portalCards || []).map((c, idx) => {
         const bgGrad = [
@@ -4190,22 +4335,33 @@
           "linear-gradient(135deg, rgba(245,158,11,0.58), rgba(120,53,15,0.9))",
           "linear-gradient(135deg, rgba(14,165,233,0.55), rgba(12,74,110,0.88))"
         ][idx % 4];
+        const cSt = styles[`portalCard-${idx}`] || {};
         return `
-          <div style="background:${bgGrad}; border:1px solid rgba(255,255,255,0.22); border-radius:${tc.boxShape}; padding:6px 8px; min-width:0;">
-            <div style="font-size:0.7rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.title)}</div>
+          <div style="background:${cSt.bgColor || bgGrad}; border:1px solid rgba(255,255,255,0.22); border-radius:${cSt.radius ?? tc.boxShape}; padding:6px 8px; min-width:0;">
+            <div style="font-size:0.7rem; font-weight:800; color:${cSt.textColor || "#fff"}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.title)}</div>
             <div style="font-size:0.46rem; color:#e2e8f0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.sub || "")}</div>
           </div>
         `;
       }).join("");
 
-      const pillsHtml = (snap.navButtons || []).map(p => `
-        <span style="padding:4px 8px; border-radius:${tc.buttonShape}; background:#0d121d; border:1px solid rgba(255,255,255,0.18); font-size:0.6rem; font-weight:700; color:#e2e8f0;">${escapeHtml(p.label)}</span>
+      const pillsHtml = (snap.navButtons || []).map((p, pIdx) => {
+        const pSt = styles[`quickPill-${pIdx}`] || {};
+        return `<span style="padding:4px 8px; border-radius:${pSt.radius ?? tc.buttonShape}; background:${pSt.bgColor || "#0d121d"}; border:1px solid rgba(255,255,255,0.18); font-size:0.6rem; font-weight:700; color:${pSt.textColor || "#e2e8f0"};">${escapeHtml(p.label)}</span>`;
+      }).join("");
+
+      const artsHtml = (snap.articles || []).slice(0, 4).map(a => `
+        <div style="background:${preset.card}; border:1px solid rgba(255,255,255,0.15); border-radius:${tc.boxShape}; overflow:hidden;">
+          <div style="padding:6px 7px;">
+            <div style="font-size:0.66rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(a.title)}</div>
+            <div style="font-size:0.52rem; color:#94a3b8; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(a.excerpt || "")}</div>
+          </div>
+        </div>
       `).join("");
 
       return `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/><style>
         body { margin:0; padding:10px; font-family:'Plus Jakarta Sans',sans-serif; color:${preset.text}; background:radial-gradient(circle at 50% 0%, ${ambA}, transparent 42%), radial-gradient(circle at 82% 14%, ${ambB}, transparent 36%), ${preset.bg}; }
-        .m-title { font-family:'Montserrat',sans-serif; font-size:1.12rem; font-weight:900; letter-spacing:1.2px; text-align:center; color:${titleColor}; white-space:nowrap; text-shadow:0 0 10px ${titleGlow}; }
-        .m-sub { font-size:0.45rem; font-weight:700; letter-spacing:0.5px; text-align:center; color:#cbd5e1; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .m-title { font-family:${tSt.fontFamily || "'Montserrat',sans-serif"}; font-size:1.15rem; font-weight:900; letter-spacing:1.2px; text-align:center; color:${tSt.textColor || "#ffffff"}; white-space:nowrap; text-shadow:0 0 10px ${tSt.glowColor || lightCol.glow}; }
+        .m-sub { font-family:${sSt.fontFamily || "'Plus Jakarta Sans',sans-serif"}; font-size:0.46rem; font-weight:700; letter-spacing:0.5px; text-align:center; color:${sSt.textColor || "#cbd5e1"}; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
         .m-search { margin:8px 0; display:flex; align-items:center; background:#0b0f18; border:1px solid rgba(255,255,255,0.22); border-radius:${tc.buttonShape}; padding:2px 3px 2px 10px; }
         .m-search span { flex:1; font-size:0.62rem; color:#94a3b8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
         .m-search b { background:${preset.pink}; color:#fff; font-size:0.52rem; padding:4px 9px; border-radius:${tc.buttonShape}; }
@@ -4215,10 +4371,12 @@
         <div class="m-search"><span>${escapeHtml(snap.searchPlaceholder || "Search...")}</span><b>SEARCH</b></div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">${cardsHtml}</div>
         <div style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin-bottom:8px;">${pillsHtml}</div>
-        <div style="background:${preset.card}; border:1px solid rgba(255,42,133,0.3); border-radius:${tc.boxShape}; padding:9px;">
-          <div style="font-size:0.72rem; font-weight:800;">${escapeHtml(snap.hubHeading || "")}</div>
-          <div style="font-size:0.6rem; color:#94a3b8; margin-top:3px;">${escapeHtml((snap.hubDesc || "").slice(0, 90))}</div>
+        <div style="background:${hSt.bgMode === "clean" ? "transparent" : (hSt.bgColor || preset.card)}; border:${hSt.bgMode === "clean" ? "0" : "1px solid rgba(255,42,133,0.3)"}; border-radius:${hSt.radius ?? tc.boxShape}; padding:8px; margin-bottom:8px;">
+          <div style="font-size:0.72rem; font-weight:800; color:${hSt.textColor || "#fff"};">${escapeHtml(snap.hubHeading || "")}</div>
+          <div style="font-size:0.58rem; color:#94a3b8; margin-top:2px;">${escapeHtml((snap.hubDesc || "").slice(0, 110))}</div>
         </div>
+        <div style="font-size:0.68rem; font-weight:800; margin-bottom:5px;">${escapeHtml(snap.articlesHeading || "Latest Study Notes")}</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">${artsHtml}</div>
       </body></html>`;
     }
 
@@ -4318,7 +4476,6 @@
       refreshLiveMobileFrame();
     }
 
-    // DEDICATED REELS ANDROID FILE MANAGER (RENAME + REORDER FOLDERS & ITEMS)
     function renderReelFolderManagerUI() {
       const folders = siteData.reelsFolders || [];
       const items = siteData.reelsFeed?.items || [];
@@ -5144,6 +5301,7 @@
       renderAdminFileManager();
       renderSequenceManager();
       populateThemeSelectors();
+      hydrateMiniGdocsBars();
 
       const socialContainer = document.getElementById("socialEditorFields");
       socialContainer.innerHTML = "";
@@ -5392,11 +5550,25 @@
       document.body.classList.add("designer-mode-active");
       renderAll();
       pushAppView("designer");
-      showToast("Turn ON Move/Edit, tap box, use ✥ to move & ↘ to resize");
+      showToast("Turn ON Move/Edit, tap any box or button, drag ✥ or ↘");
     }
 
     function resetDesignerLayout() {
-      resetEntireSiteToDefault();
+      const preserved = {
+        articles: siteData.articles,
+        folders: siteData.folders,
+        reelsFolders: siteData.reelsFolders,
+        reelsFeed: siteData.reelsFeed,
+        github: siteData.github,
+        socialLinks: siteData.socialLinks
+      };
+      const fresh = structuredClone(DEFAULT_DATA);
+      Object.assign(fresh, preserved);
+      siteData = fresh;
+      selectedVeId = "";
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderAll();
+      showToast("Layout reset to default");
     }
 
     function toggleMoveEditSwitch() {
@@ -5404,7 +5576,7 @@
       if (!isMoveEditEnabled) selectedVeId = "";
       updateMoveEditUI();
       renderAll();
-      showToast(isMoveEditEnabled ? "Move/Edit ON: Tap box, drag ✥ top-right to move" : "Move/Edit OFF: Scroll active");
+      showToast(isMoveEditEnabled ? "Move/Edit ON: Tap any box/button to move & resize" : "Move/Edit OFF: Scroll active");
     }
 
     function updateMoveEditUI() {
@@ -5440,7 +5612,7 @@
     }
 
     function openSelectedElementEdit() {
-      if (!selectedVeId) { showToast("Pehle kisi box ya element par tap karke select karo"); return; }
+      if (!selectedVeId) { showToast("Pehle kisi box ya button par tap karke select karo"); return; }
       const el = document.querySelector(`[data-ve-id="${selectedVeId}"]`);
       openElementStyleInspector(selectedVeId, el);
     }
@@ -5512,13 +5684,13 @@
         resizing = true;
         sx = e.clientX;
         sy = e.clientY;
-        sw = el.offsetWidth || 200;
-        sh = el.offsetHeight || 60;
+        sw = el.offsetWidth || 160;
+        sh = el.offsetHeight || 44;
 
         const onMove = (ev) => {
           if (!resizing) return;
-          const nw = Math.max(55, Math.round(sw + (ev.clientX - sx)));
-          const nh = Math.max(26, Math.round(sh + (ev.clientY - sy)));
+          const nw = Math.max(48, Math.round(sw + (ev.clientX - sx)));
+          const nh = Math.max(24, Math.round(sh + (ev.clientY - sy)));
           el.style.width = `${nw}px`;
           el.style.height = `${nh}px`;
           el.style.overflow = "hidden";
@@ -5643,9 +5815,11 @@
 
       const veEl = e.target.closest("[data-ve-id]");
       if (!veEl) return;
+      e.preventDefault();
+      e.stopPropagation();
       selectedVeId = veEl.dataset.veId;
       attachHandlesIfSelected();
-    });
+    }, true);
 
     function openElementStyleInspector(id, domEl) {
       const styles = siteData.elementStyles || {};
