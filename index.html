@@ -23,7 +23,7 @@
       --ambient-b: transparent;
       --box-radius: 12px;
       --btn-radius: 999px;
-      --glow-color: rgba(34, 211, 238, 0.38);
+      --glow-color: rgba(34, 211, 238, 0.35);
     }
 
     * {
@@ -31,6 +31,7 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+      overflow-anchor: none;
     }
 
     body {
@@ -40,6 +41,7 @@
         var(--bg-main);
       color: var(--text-primary);
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      font-variant-numeric: tabular-nums;
       line-height: 1.45;
       min-height: 100vh;
       display: flex;
@@ -72,10 +74,10 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    /* Glass Light Effect ONLY on Hover / Active / Selected */
+    /* Glass Light Effect ONLY on Hover / Active / Selected (Zero Layout Shift) */
     .glass-light-surface {
       position: relative;
-      transition: transform 0.14s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      transition: box-shadow 0.16s ease, border-color 0.16s ease;
     }
 
     .glass-light-surface:hover,
@@ -84,29 +86,13 @@
       border-color: rgba(255, 255, 255, 0.72) !important;
       box-shadow:
         0 0 16px var(--glow-color),
-        0 0 24px rgba(255, 42, 133, 0.35),
+        0 0 24px rgba(255, 42, 133, 0.32),
         inset 0 1px 1px rgba(255, 255, 255, 0.45) !important;
     }
 
-    /* Optional Theme Effects (Applied only when chosen) */
-    @keyframes fxBorderNeonPulse {
-      0%, 100% { box-shadow: 0 0 8px var(--neon-cyan), inset 0 0 6px rgba(34, 211, 238, 0.22); border-color: var(--neon-cyan); }
-      50% { box-shadow: 0 0 18px var(--neon-pink), inset 0 0 10px rgba(255, 42, 133, 0.28); border-color: var(--neon-pink); }
-    }
-    @keyframes fxBorderRainbow {
-      0% { border-color: #ff2a85; box-shadow: 0 0 14px rgba(255, 42, 133, 0.55); }
-      33% { border-color: #22d3ee; box-shadow: 0 0 14px rgba(34, 211, 238, 0.55); }
-      66% { border-color: #10b981; box-shadow: 0 0 14px rgba(16, 185, 129, 0.55); }
-      100% { border-color: #ff2a85; box-shadow: 0 0 14px rgba(255, 42, 133, 0.55); }
-    }
-    @keyframes fxTextGlowWave {
-      0%, 100% { text-shadow: 0 0 6px var(--neon-cyan), 0 0 14px rgba(34, 211, 238, 0.45); }
-      50% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 42, 133, 0.65); }
-    }
-
-    .fx-border-pulse { animation: fxBorderNeonPulse 2.8s ease-in-out infinite !important; }
-    .fx-border-rainbow { animation: fxBorderRainbow 4s linear infinite !important; }
-    .fx-text-glow { animation: fxTextGlowWave 2.6s ease-in-out infinite !important; }
+    .fx-border-pulse { border-color: var(--neon-cyan) !important; box-shadow: 0 0 14px var(--neon-cyan) !important; }
+    .fx-border-rainbow { border-color: var(--neon-pink) !important; box-shadow: 0 0 16px rgba(255, 42, 133, 0.55) !important; }
+    .fx-text-glow { text-shadow: 0 0 10px var(--neon-cyan), 0 0 18px rgba(255, 42, 133, 0.45) !important; }
 
     /* Header + Top-Left Admin Quick Button (Visible ONLY when Admin is logged in) */
     .top-bar-wrap {
@@ -134,7 +120,6 @@
       gap: 4px;
       cursor: pointer;
       z-index: 25;
-      box-shadow: 0 0 14px rgba(255, 42, 133, 0.45);
     }
 
     .menu-float-btn {
@@ -434,25 +419,27 @@
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.65);
     }
 
-    .showcase-slide-item { position: relative; width: 100%; height: 156px; display: none; }
-    @media (min-width: 768px) { .showcase-slide-item { height: 220px; } }
+    .showcase-slide-item { position: relative; width: 100%; min-height: 158px; display: none; }
+    @media (min-width: 768px) { .showcase-slide-item { min-height: 220px; } }
     .showcase-slide-item.active { display: block; }
-    .showcase-slide-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .showcase-slide-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 
     .showcase-overlay-scrim {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(4, 6, 10, 0.92) 0%, rgba(4, 6, 10, 0.72) 56%, rgba(4, 6, 10, 0.25) 100%);
+      position: relative;
+      z-index: 2;
+      min-height: 158px;
+      background: linear-gradient(90deg, rgba(4, 6, 10, 0.92) 0%, rgba(4, 6, 10, 0.74) 60%, rgba(4, 6, 10, 0.28) 100%);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 12px 42px 14px 16px;
-      gap: 4px;
+      padding: 14px 42px 20px 16px;
+      gap: 5px;
     }
+    @media (min-width: 768px) { .showcase-overlay-scrim { min-height: 220px; } }
 
     .showcase-pill-tag { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: var(--btn-radius); background: var(--neon-pink); color: #fff; font-size: 0.56rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; }
-    .showcase-slide-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.9rem, 2.2vw, 1.4rem); font-weight: 900; color: #fff; line-height: 1.15; }
-    .showcase-slide-desc { font-size: clamp(0.64rem, 1.3vw, 0.78rem); color: #e2e8f5; max-width: 640px; line-height: 1.28; overflow: hidden; }
+    .showcase-slide-title { font-family: "Montserrat", sans-serif; font-size: clamp(0.9rem, 2.2vw, 1.4rem); font-weight: 900; color: #fff; line-height: 1.18; }
+    .showcase-slide-desc { font-size: clamp(0.64rem, 1.3vw, 0.78rem); color: #e2e8f5; max-width: 640px; line-height: 1.32; }
 
     .showcase-arrow-btn {
       position: absolute;
@@ -499,7 +486,7 @@
       cursor: pointer;
     }
 
-    /* Shorts / Reels Feed: Full Uncropped View + Tap Play/Pause + Hold 2x + Swipe/Wheel */
+    /* Shorts / Reels Feed */
     .reels-feed-section {
       background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -696,6 +683,42 @@
       display: block;
     }
 
+    /* Mini Google Docs Toolbar attached to Editable Text Fields */
+    .mini-gdocs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+      padding: 4px 6px;
+      border-radius: 7px;
+      background: #0d121d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mini-gdocs-bar select {
+      width: auto !important;
+      padding: 2px 5px !important;
+      font-size: 0.66rem !important;
+      border-radius: 5px !important;
+    }
+    .mini-gdocs-bar input[type="color"] {
+      width: 22px !important;
+      height: 22px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+    .mini-gdocs-btn {
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #182032;
+      color: #fff;
+      font-size: 0.64rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     /* Articles + Notice Board Split */
     .articles-notice-split {
       display: grid;
@@ -850,7 +873,7 @@
     .related-links-list { margin-top: 8px; display: flex; flex-direction: column; gap: 7px; }
     .related-embedded-link { font-size: 0.86rem; font-weight: 700; color: var(--neon-cyan); text-decoration: underline !important; display: inline-block; }
 
-    .site-footer { background: #06080f; border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
+    .site-footer { background: #000000; border-top: 1px solid rgba(255, 255, 255, 0.09); padding: 18px 16px; margin-top: auto; }
     .footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
     .social-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
     .social-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--btn-radius); background: #0d121d; border: 1px solid rgba(255, 255, 255, 0.14); color: #fff; font-size: 0.76rem; font-weight: 700; text-decoration: none !important; }
@@ -886,7 +909,7 @@
     @media (min-width: 680px) { .android-segment-bar { grid-template-columns: repeat(3, 1fr); } }
     .android-tile-card { background: #111622; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 11px; margin-bottom: 10px; }
 
-    /* Dedicated Full-Page Homepage Theme Studio with Top-Right Live Mobile Preview */
+    /* Dedicated Full-Page Homepage Theme Studio with Full Live Mobile Preview */
     .theme-studio-page {
       display: none;
       position: fixed;
@@ -927,7 +950,7 @@
 
     .live-mobile-screen-frame {
       width: 100%;
-      height: 360px;
+      height: 440px;
       border: 0;
       border-radius: 16px;
       background: #000000;
@@ -1118,14 +1141,14 @@
     </div>
   </div>
 
-  <!-- DEDICATED FULL-PAGE HOMEPAGE THEME STUDIO WITH TOP-RIGHT LIVE MOBILE PREVIEW + BEFORE/AFTER TOGGLE -->
+  <!-- DEDICATED FULL-PAGE HOMEPAGE THEME STUDIO WITH FULL LIVE MOBILE PREVIEW -->
   <section class="theme-studio-page" id="themeStudioPage">
     <div class="android-top-appbar">
       <div style="display:flex; align-items:center; gap:8px;">
         <button class="btn" onclick="closeThemeStudioPage(true)">← Admin</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">🎨 Homepage Theme & Element Effects</div>
-          <div style="font-size:0.64rem; color:var(--neon-cyan);">Live Preview + Before/After Toggle • Clean/Box Mode</div>
+          <div style="font-size:0.64rem; color:var(--neon-cyan);">Full Live Preview + Before/After Toggle • Clean/Box Mode</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1223,16 +1246,16 @@
         </div>
       </div>
 
-      <!-- Top-Right Live Small Mobile Preview Screen with Before/After Toggle -->
+      <!-- Top-Right Full Live Mobile Preview Screen with Before/After Toggle -->
       <div class="live-mobile-preview-card">
         <div style="display:flex; justify-content:space-between; align-items:center; padding:2px 4px 6px; gap:4px;">
-          <span style="font-size:0.66rem; font-weight:800; color:var(--neon-cyan);">📱 Preview</span>
+          <span style="font-size:0.66rem; font-weight:800; color:var(--neon-cyan);">📱 Full Preview</span>
           <div style="display:flex; gap:4px;">
             <button type="button" class="btn" id="previewCompareBtn" style="padding:2px 7px; font-size:0.6rem;" onclick="toggleBeforeAfterPreview()">Before/After: After</button>
             <button type="button" class="btn" style="padding:2px 7px; font-size:0.6rem;" onclick="refreshLiveMobileFrame()">↻</button>
           </div>
         </div>
-        <iframe id="liveMobilePreviewIframe" class="live-mobile-screen-frame" title="Live Mobile Preview"></iframe>
+        <iframe id="liveMobilePreviewIframe" class="live-mobile-screen-frame" title="Full Live Mobile Preview"></iframe>
       </div>
     </div>
   </section>
@@ -1244,7 +1267,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Pure Black UI • Tap Pause/Hold 2x Shorts • Theme Studio • Fonts</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Stable Layout • Per-Field Fonts & Colors • Individual Designer</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1274,28 +1297,60 @@
           <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('general')">Default</button>
         </div>
         <div class="android-tile-card form-grid two-col">
-          <div class="field-group"><label>Brand Logo Text</label><input type="text" id="cfgBrandTitle" /></div>
+          <div class="field-group" data-style-target="brandTitle">
+            <label>Brand Logo Text</label>
+            <input type="text" id="cfgBrandTitle" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div class="field-group">
             <label>Brand Logo Image / GIF URL (Fits Box Without Cropping)</label>
             <input type="text" id="cfgBrandLogoUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
             <div class="live-media-preview-box"></div>
           </div>
-          <div class="field-group"><label>Single-Line Subtitle</label><input type="text" id="cfgBrandSub" /></div>
-          <div class="field-group"><label>Search Box Suggestion Text</label><input type="text" id="cfgSearchPlaceholder" placeholder="Search History, Topics, Reviews or Articles..." /></div>
+          <div class="field-group" data-style-target="brandSub">
+            <label>Single-Line Subtitle</label>
+            <input type="text" id="cfgBrandSub" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="searchWrap">
+            <label>Search Box Suggestion Text</label>
+            <input type="text" id="cfgSearchPlaceholder" placeholder="Search History, Topics, Reviews or Articles..." />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div class="field-group">
             <label>Website Favicon Link (Google Drive / Image URL)</label>
             <input type="text" id="cfgFaviconUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
             <div class="live-media-preview-box"></div>
           </div>
-          <div class="field-group"><label>Articles Section Title</label><input type="text" id="cfgArticlesHeading" /></div>
-          <div class="field-group"><label>Hub Tag</label><input type="text" id="cfgHubTag" /></div>
-          <div class="field-group"><label>Hub Heading</label><input type="text" id="cfgHubHeading" /></div>
-          <div class="field-group" style="grid-column:1 / -1;"><label>Hub Description</label><textarea id="cfgHubDesc" style="min-height:58px;"></textarea></div>
+          <div class="field-group" data-style-target="articlesSection">
+            <label>Articles Section Title</label>
+            <input type="text" id="cfgArticlesHeading" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="portalHubCard">
+            <label>Hub Tag</label>
+            <input type="text" id="cfgHubTag" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="portalHubCard">
+            <label>Hub Heading</label>
+            <input type="text" id="cfgHubHeading" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" style="grid-column:1 / -1;" data-style-target="portalHubCard">
+            <label>Hub Description</label>
+            <textarea id="cfgHubDesc" style="min-height:58px;"></textarea>
+            <div class="mini-gdocs-bar"></div>
+          </div>
         </div>
 
         <div class="android-tile-card form-grid">
           <strong style="font-size:0.86rem; color:var(--neon-cyan);">ℹ️ Full-Page About Section Content (Shown When User Clicks "About" in Menu)</strong>
-          <div class="field-group"><label>About Page Heading</label><input type="text" id="cfgAboutHeading" /></div>
+          <div class="field-group" data-style-target="aboutPageContentHost">
+            <label>About Page Heading</label>
+            <input type="text" id="cfgAboutHeading" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div id="aboutWysiwygHost"></div>
         </div>
 
@@ -1325,6 +1380,7 @@
           <div class="field-group">
             <label>Movie Review Menu Header Title</label>
             <input type="text" id="cfgMovieMenuHeading" placeholder="Browse Reviews" />
+            <div class="mini-gdocs-bar"></div>
           </div>
         </div>
 
@@ -1353,9 +1409,21 @@
         </div>
         <div class="android-tile-card form-grid two-col">
           <div style="grid-column:1 / -1;"><strong style="font-size:0.86rem;">Education Content Folder Banner</strong></div>
-          <div class="field-group"><label>Banner Title</label><input type="text" id="cfgBannerTitle" /></div>
-          <div class="field-group"><label>Banner Subtitle</label><input type="text" id="cfgBannerSub" /></div>
-          <div class="field-group"><label>Banner Right CTA</label><input type="text" id="cfgBannerCta" /></div>
+          <div class="field-group" data-style-target="mainNeonBanner">
+            <label>Banner Title</label>
+            <input type="text" id="cfgBannerTitle" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="mainNeonBanner">
+            <label>Banner Subtitle</label>
+            <input type="text" id="cfgBannerSub" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
+          <div class="field-group" data-style-target="mainNeonBanner">
+            <label>Banner Right CTA</label>
+            <input type="text" id="cfgBannerCta" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div class="field-group">
             <label>Banner Icon / Google Drive Image or GIF Link</label>
             <input type="text" id="cfgBannerIconUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
@@ -1533,7 +1601,11 @@
 
         <div class="android-tile-card form-grid">
           <strong style="font-size:0.86rem; color:var(--neon-cyan);">📌 Notice Board Editor (with Table Add/Remove/Sub-Table Controls)</strong>
-          <div class="field-group"><label>Notice Board Heading</label><input type="text" id="cfgNoticeTitle" /></div>
+          <div class="field-group" data-style-target="noticeBoardPanel">
+            <label>Notice Board Heading</label>
+            <input type="text" id="cfgNoticeTitle" />
+            <div class="mini-gdocs-bar"></div>
+          </div>
           <div id="noticeWysiwygHost"></div>
         </div>
 
@@ -1588,7 +1660,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V29";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V30";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -2121,7 +2193,6 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Full-Page Android File Manager for "Open Reels Folder" (Strictly Reels folders & reels items)
     function openFullReelsFolderExplorer(targetPathOrId = "") {
       const folders = siteData.reelsFolders || [];
       let startId = "";
@@ -2228,23 +2299,6 @@
       showHomeUI();
       if (resetHistory) activeStack = [];
       renderAll();
-    }
-
-    function resetEntireSiteToDefault() {
-      const preserved = {
-        articles: siteData.articles,
-        folders: siteData.folders,
-        reelsFolders: siteData.reelsFolders,
-        reelsFeed: siteData.reelsFeed,
-        github: siteData.github,
-        socialLinks: siteData.socialLinks
-      };
-      const fresh = structuredClone(DEFAULT_DATA);
-      Object.assign(fresh, preserved);
-      siteData = fresh;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
-      renderAll();
-      showToast("Design reset to default");
     }
 
     function resetSectionToDefault(sectionKey) {
@@ -2523,7 +2577,6 @@
       } catch (e) {}
     }
 
-    // 1:1 Finger Swipe + Mouse Wheel + Tap Play/Pause + Hold 2x Speed
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
@@ -2734,6 +2787,77 @@
       const base = ["Plus Jakarta Sans", "Montserrat", "Poppins", "Roboto"];
       const extra = Array.isArray(siteData.customFonts) ? siteData.customFonts : [];
       return Array.from(new Set([...base, ...extra]));
+    }
+
+    // Populates mini Google Docs font & color controls on editable text fields in Admin Studio
+    function hydrateMiniGdocsBars() {
+      const fontNames = getAllAvailableFontNames();
+      const optsHtml = `<option value="">Font</option>` + fontNames.map(fn => `<option value="${escapeHtml(fn)}">${escapeHtml(fn)}</option>`).join("");
+
+      document.querySelectorAll(".mini-gdocs-bar").forEach(bar => {
+        const group = bar.closest(".field-group");
+        const targetId = group?.dataset?.styleTarget || "";
+        const inp = group?.querySelector("input, textarea");
+        const curStyle = (siteData.elementStyles || {})[targetId] || {};
+
+        bar.innerHTML = `
+          <select class="mini-font-sel" title="Font Family">${optsHtml}</select>
+          <button type="button" class="mini-gdocs-btn" title="Download Free Google Font">+ Font</button>
+          <input type="color" class="mini-fg-col" title="Text Color" value="${escapeHtml(curStyle.textColor || "#ffffff")}" />
+          <input type="color" class="mini-bg-col" title="Highlight / Box Color" value="${escapeHtml(curStyle.bgColor || "#0b0e16")}" />
+          <button type="button" class="mini-gdocs-btn" title="Bold"><strong>B</strong></button>
+        `;
+
+        const fSel = bar.querySelector(".mini-font-sel");
+        if (curStyle.fontFamily) fSel.value = curStyle.fontFamily;
+
+        fSel.addEventListener("change", () => {
+          if (!targetId) return;
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), fontFamily: fSel.value };
+          if (inp && fSel.value) inp.style.fontFamily = fSel.value;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+        });
+
+        bar.querySelectorAll(".mini-gdocs-btn")[0].addEventListener("click", () => {
+          const fname = prompt("Enter Free Google Font Name (e.g. Outfit, Cinzel, Oswald, Lora, Caveat):");
+          if (!fname || !fname.trim()) return;
+          const clean = fname.trim();
+          siteData.customFonts = Array.from(new Set([...(siteData.customFonts || []), clean]));
+          if (targetId) {
+            siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), fontFamily: clean };
+          }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          loadExtraGoogleFonts();
+          hydrateMiniGdocsBars();
+          renderAll();
+          showToast(`Font "${clean}" added`);
+        });
+
+        bar.querySelector(".mini-fg-col").addEventListener("input", (ev) => {
+          if (!targetId) return;
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), textColor: ev.target.value };
+          if (inp) inp.style.color = ev.target.value;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+        });
+
+        bar.querySelector(".mini-bg-col").addEventListener("input", (ev) => {
+          if (!targetId) return;
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), bgColor: ev.target.value };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+        });
+
+        bar.querySelectorAll(".mini-gdocs-btn")[1].addEventListener("click", () => {
+          if (!targetId) return;
+          const nextBold = !(siteData.elementStyles[targetId]?.bold);
+          siteData.elementStyles[targetId] = { ...(siteData.elementStyles[targetId] || {}), bold: nextBold };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+          renderAll();
+          showToast(nextBold ? "Bold ON" : "Bold OFF");
+        });
+      });
     }
 
     function createGoogleDocsEditor(initialHtml = "", placeholder = "Write here...") {
@@ -3419,6 +3543,7 @@
             const actType = card.actionType || "link";
             const a = document.createElement("a");
             a.className = `glass-portal-card glass-light-surface ${themeClass}`;
+            a.dataset.veId = `portalCard-${idx}`;
             if (isMoveEditEnabled) {
               a.href = "javascript:void(0)";
             } else if (actType === "link" && card.url) {
@@ -3438,8 +3563,8 @@
             a.innerHTML = `
               ${imgUrl ? `<img class="glass-icon-img" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(card.title)}" loading="lazy" />` : ""}
               <span class="glass-card-text">
-                <span class="glass-card-title" style="display:block;">${escapeHtml(card.title)}</span>
-                <span class="glass-card-sub" style="display:block;">${escapeHtml(card.sub || "")}</span>
+                <span class="glass-card-title ve-fit-text" style="display:block;">${escapeHtml(card.title)}</span>
+                <span class="glass-card-sub ve-fit-text" style="display:block;">${escapeHtml(card.sub || "")}</span>
               </span>
             `;
             grid.appendChild(a);
@@ -3461,11 +3586,11 @@
             <div class="banner-left">
               ${bIcon ? `<img class="glass-icon-img" src="${escapeHtml(bIcon)}" alt="Banner Icon" loading="lazy" />` : `<span style="font-size:1rem;">📁</span>`}
               <div style="min-width:0;">
-                <div class="banner-title" id="bannerTitleText">${escapeHtml(b.title || "Topic Wise Short Videos")}</div>
-                <div class="banner-sub" id="bannerSubText">${escapeHtml(b.sub || "")}</div>
+                <div class="banner-title ve-fit-text" id="bannerTitleText">${escapeHtml(b.title || "Topic Wise Short Videos")}</div>
+                <div class="banner-sub ve-fit-text" id="bannerSubText">${escapeHtml(b.sub || "")}</div>
               </div>
             </div>
-            <div class="banner-right-cta" id="bannerCtaText">${escapeHtml(b.cta || "Select Topic →")}</div>
+            <div class="banner-right-cta ve-fit-text" id="bannerCtaText">${escapeHtml(b.cta || "Select Topic →")}</div>
           `;
           stack.appendChild(div);
         } else if (secId === "quickPillButtons") {
@@ -3473,11 +3598,12 @@
           row.className = "pill-row";
           row.id = "quickPillButtons";
           row.dataset.veId = "quickPillButtons";
-          (siteData.navButtons || []).forEach(btn => {
+          (siteData.navButtons || []).forEach((btn, pIdx) => {
             if (!btn.label) return;
             const p = document.createElement("button");
             p.type = "button";
-            p.className = "glass-pill-btn glass-light-surface";
+            p.className = "glass-pill-btn glass-light-surface ve-fit-text";
+            p.dataset.veId = `quickPill-${pIdx}`;
             p.textContent = btn.label;
             p.onclick = () => executePillAction(btn);
             row.appendChild(p);
@@ -3490,8 +3616,8 @@
           hub.dataset.veId = "portalHubCard";
           hub.innerHTML = `
             <div class="hub-tag" id="hubTagText">${escapeHtml(siteData.hubTag)}</div>
-            <h2 class="hub-heading" id="hubHeadingText">${escapeHtml(siteData.hubHeading)}</h2>
-            <p class="hub-copy" id="hubDescText">${escapeHtml(siteData.hubDesc)}</p>
+            <h2 class="hub-heading ve-fit-text" id="hubHeadingText">${escapeHtml(siteData.hubHeading)}</h2>
+            <p class="hub-copy ve-fit-text" id="hubDescText">${escapeHtml(siteData.hubDesc)}</p>
           `;
           stack.appendChild(hub);
         } else if (secId === "homeFeaturedMediaBlock") {
@@ -3526,9 +3652,9 @@
                   ${imgSrc ? `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(s.title)}" loading="lazy" />` : ""}
                   <div class="showcase-overlay-scrim">
                     ${s.tag ? `<span class="showcase-pill-tag">${escapeHtml(s.tag)}</span>` : ""}
-                    <div class="showcase-slide-title">${escapeHtml(s.title)}</div>
-                    ${s.desc ? `<div class="showcase-slide-desc">${escapeHtml(s.desc)}</div>` : ""}
-                    ${s.btnText && s.btnUrl ? `<a class="btn btn-primary" style="width:fit-content; margin-top:4px;" href="${isMoveEditEnabled ? "javascript:void(0)" : escapeHtml(s.btnUrl)}" ${!isMoveEditEnabled ? 'target="_blank" rel="noopener noreferrer"' : ""}>${escapeHtml(s.btnText)}</a>` : ""}
+                    <div class="showcase-slide-title ve-fit-text">${escapeHtml(s.title)}</div>
+                    ${s.desc ? `<div class="showcase-slide-desc ve-fit-text">${escapeHtml(s.desc)}</div>` : ""}
+                    ${s.btnText && s.btnUrl ? `<a class="btn btn-primary" data-ve-id="showcaseBtn-${i}" style="width:fit-content; margin-top:4px;" href="${isMoveEditEnabled ? "javascript:void(0)" : escapeHtml(s.btnUrl)}" ${!isMoveEditEnabled ? 'target="_blank" rel="noopener noreferrer"' : ""}>${escapeHtml(s.btnText)}</a>` : ""}
                   </div>
                 </div>
               `;
@@ -3674,7 +3800,7 @@
           grid.className = "articles-grid";
           grid.id = "articlesPreviewGrid";
 
-          pageItems.forEach(art => {
+          pageItems.forEach((art, cardPos) => {
             const realIdx = (siteData.articles || []).indexOf(art);
             const isReview = art.postType === "review";
             const cover = convertDriveUrl(isReview ? (art.reviewData?.posterUrl || art.coverImage) : art.coverImage);
@@ -3686,6 +3812,7 @@
 
             const card = document.createElement("div");
             card.className = "poster-article-card glass-light-surface";
+            card.dataset.veId = `articleCard-${cardPos}`;
             card.onclick = () => { if (!isMoveEditEnabled) openArticleReader(realIdx); };
             card.innerHTML = `
               <div class="poster-thumb-box">
@@ -3693,8 +3820,8 @@
                 ${cover ? `<img src="${escapeHtml(cover)}" alt="${escapeHtml(cardTitle)}" loading="lazy" />` : ""}
               </div>
               <div class="poster-card-body">
-                <div class="poster-card-title">${escapeHtml(cardTitle)}</div>
-                <div class="poster-card-desc">${escapeHtml(cardDesc)}</div>
+                <div class="poster-card-title ve-fit-text">${escapeHtml(cardTitle)}</div>
+                <div class="poster-card-desc ve-fit-text">${escapeHtml(cardDesc)}</div>
               </div>
             `;
             grid.appendChild(card);
@@ -3819,18 +3946,19 @@
       const subFolders = allFolders.filter(f => (f.parentId || "") === currentFolderId && (!searchQuery || f.name.toLowerCase().includes(searchQuery)));
       const foldersGrid = document.getElementById("foldersExplorerGrid");
       foldersGrid.innerHTML = "";
-      subFolders.forEach(fld => {
+      subFolders.forEach((fld, fIdx) => {
         const scopeSet = getDescendantFolderIds(fld.id);
         const artCount = allArticles.filter(a => scopeSet.has(a.folderId || "")).length;
         const subCount = allFolders.filter(f => f.parentId === fld.id).length;
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "android-folder-chip glass-light-surface";
+        btn.dataset.veId = `bottomFolder-${fIdx}`;
         btn.onclick = () => openFolderView(fld.id);
         btn.innerHTML = `
           <span style="font-size:1.1rem;">📁</span>
           <span style="min-width:0; flex:1;">
-            <span style="display:block; font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(fld.name)}</span>
+            <span class="ve-fit-text" style="display:block; font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(fld.name)}</span>
             <span style="display:block; font-size:0.64rem; color:var(--neon-cyan);">${subCount} subfolder • ${artCount} article</span>
           </span>
         `;
@@ -3900,41 +4028,28 @@
       });
     }
 
-    // Auto-adjusts inner text & images proportionally to box size changes
     function autoFitBoxContents(el, baseFontSizePx) {
       if (!el) return;
       const w = el.clientWidth || el.offsetWidth || 240;
       const h = el.clientHeight || el.offsetHeight || 0;
 
       el.querySelectorAll(".ve-fit-text").forEach(node => {
-        let fs = baseFontSizePx || parseFloat(getComputedStyle(node).fontSize) || 14;
-        const minFs = h > 0 && h < 48 ? 8.5 : 9.5;
-        node.style.fontSize = `${fs}px`;
-        let guard = 0;
-        while (fs > minFs && guard < 28 && (node.scrollWidth > w - 12 || (h > 0 && node.scrollHeight > h - 10))) {
-          fs -= 0.7;
-          node.style.fontSize = `${fs.toFixed(1)}px`;
-          guard++;
+        if (baseFontSizePx) {
+          node.style.fontSize = `${baseFontSizePx}px`;
+        } else if (h > 0 && h < 54) {
+          const scaled = Math.max(9.5, Math.min(16, Math.round(h * 0.34)));
+          node.style.fontSize = `${scaled}px`;
+        }
+        if (node.scrollWidth > w - 10) {
+          const cur = parseFloat(getComputedStyle(node).fontSize) || 12;
+          const ratio = Math.max(0.68, (w - 12) / Math.max(1, node.scrollWidth));
+          node.style.fontSize = `${Math.max(8.5, cur * ratio).toFixed(1)}px`;
         }
       });
 
       el.querySelectorAll(".ve-fit-img-wrap").forEach(wrap => {
         if (h > 0) {
-          wrap.style.height = `${Math.max(32, Math.round(h * 0.55))}px`;
-        }
-      });
-
-      el.querySelectorAll("img").forEach(img => {
-        if (img.closest(".showcase-slide-item") || img.closest(".poster-thumb-box") || img.closest(".reel-media-frame") || img.closest(".brand-logo-media-box") || img.closest(".home-featured-media-frame") || img.closest(".ve-fit-img-wrap")) return;
-        if (h > 0) {
-          img.style.maxHeight = `${Math.max(24, h - 14)}px`;
-          img.style.width = "auto";
-          img.style.maxWidth = "100%";
-          img.style.margin = "0 auto";
-        } else {
-          img.style.maxHeight = "";
-          img.style.width = "100%";
-          img.style.maxWidth = "100%";
+          wrap.style.height = `${Math.max(32, Math.round(h * 0.52))}px`;
         }
       });
     }
@@ -4128,10 +4243,11 @@
       if (tabId === "tab-folders") renderAdminFileManager();
       if (tabId === "tab-reels") renderReelFolderManagerUI();
       if (tabId === "tab-sequence") renderSequenceManager();
+      hydrateMiniGdocsBars();
       refreshAllAdminPreviews();
     }
 
-    // DEDICATED FULL-PAGE THEME STUDIO WITH LIVE TOP-RIGHT MOBILE PREVIEW + BEFORE/AFTER COMPARISON
+    // DEDICATED FULL-PAGE THEME STUDIO WITH FULL MOBILE WEBSITE PREVIEW + BEFORE/AFTER TOGGLE
     function openThemeStudioPage() {
       beforeThemeSnapshot = structuredClone({
         themeConfig: siteData.themeConfig,
@@ -4168,10 +4284,11 @@
           }
         : siteData;
 
-      iframe.srcdoc = buildPreviewSnapshotHtml(snapToShow);
+      iframe.srcdoc = buildFullWebsiteMobilePreviewHtml(snapToShow);
     }
 
-    function buildPreviewSnapshotHtml(snap) {
+    // Builds full homepage preview scaled cleanly inside the compact mobile preview frame
+    function buildFullWebsiteMobilePreviewHtml(snap) {
       const tc = { ...DEFAULT_DATA.themeConfig, ...(snap.themeConfig || {}) };
       const preset = THEME_COLOR_PRESETS.find(p => p.id === tc.preset) || THEME_COLOR_PRESETS[0];
       const lightEff = THEME_LIGHT_EFFECTS.find(e => e.id === tc.lightEffect) || THEME_LIGHT_EFFECTS[0];
@@ -4179,9 +4296,10 @@
       const ambA = (lightEff.id === "matte-clean" || lightCol.id === "no-glow") ? "transparent" : lightCol.a;
       const ambB = (lightEff.id === "matte-clean" || lightCol.id === "no-glow") ? "transparent" : lightCol.b;
 
-      const titleStyle = (snap.elementStyles || {}).brandTitle || {};
-      const titleColor = titleStyle.textColor || "#ffffff";
-      const titleGlow = titleStyle.glowColor || lightCol.glow;
+      const styles = snap.elementStyles || {};
+      const tSt = styles.brandTitle || {};
+      const sSt = styles.brandSub || {};
+      const hSt = styles.portalHubCard || {};
 
       const cardsHtml = (snap.portalCards || []).map((c, idx) => {
         const bgGrad = [
@@ -4190,22 +4308,33 @@
           "linear-gradient(135deg, rgba(245,158,11,0.58), rgba(120,53,15,0.9))",
           "linear-gradient(135deg, rgba(14,165,233,0.55), rgba(12,74,110,0.88))"
         ][idx % 4];
+        const cSt = styles[`portalCard-${idx}`] || {};
         return `
-          <div style="background:${bgGrad}; border:1px solid rgba(255,255,255,0.22); border-radius:${tc.boxShape}; padding:6px 8px; min-width:0;">
-            <div style="font-size:0.7rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.title)}</div>
-            <div style="font-size:0.46rem; color:#e2e8f0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.sub || "")}</div>
+          <div style="background:${cSt.bgColor || bgGrad}; border:1px solid rgba(255,255,255,0.22); border-radius:${cSt.radius ?? tc.boxShape}; padding:6px 8px; min-width:0;">
+            <div style="font-size:0.72rem; font-weight:800; color:${cSt.textColor || "#fff"}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.title)}</div>
+            <div style="font-size:0.48rem; color:#e2e8f0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(c.sub || "")}</div>
           </div>
         `;
       }).join("");
 
-      const pillsHtml = (snap.navButtons || []).map(p => `
-        <span style="padding:4px 8px; border-radius:${tc.buttonShape}; background:#0d121d; border:1px solid rgba(255,255,255,0.18); font-size:0.6rem; font-weight:700; color:#e2e8f0;">${escapeHtml(p.label)}</span>
+      const pillsHtml = (snap.navButtons || []).map((p, pIdx) => {
+        const pSt = styles[`quickPill-${pIdx}`] || {};
+        return `<span style="padding:4px 9px; border-radius:${pSt.radius ?? tc.buttonShape}; background:${pSt.bgColor || "#0d121d"}; border:1px solid rgba(255,255,255,0.18); font-size:0.62rem; font-weight:700; color:${pSt.textColor || "#e2e8f0"};">${escapeHtml(p.label)}</span>`;
+      }).join("");
+
+      const artsHtml = (snap.articles || []).slice(0, 4).map(a => `
+        <div style="background:${preset.card}; border:1px solid rgba(255,255,255,0.15); border-radius:${tc.boxShape}; overflow:hidden;">
+          <div style="padding:6px 7px;">
+            <div style="font-size:0.66rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(a.title)}</div>
+            <div style="font-size:0.52rem; color:#94a3b8; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(a.excerpt || "")}</div>
+          </div>
+        </div>
       `).join("");
 
       return `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/><style>
         body { margin:0; padding:10px; font-family:'Plus Jakarta Sans',sans-serif; color:${preset.text}; background:radial-gradient(circle at 50% 0%, ${ambA}, transparent 42%), radial-gradient(circle at 82% 14%, ${ambB}, transparent 36%), ${preset.bg}; }
-        .m-title { font-family:'Montserrat',sans-serif; font-size:1.12rem; font-weight:900; letter-spacing:1.2px; text-align:center; color:${titleColor}; white-space:nowrap; text-shadow:0 0 10px ${titleGlow}; }
-        .m-sub { font-size:0.45rem; font-weight:700; letter-spacing:0.5px; text-align:center; color:#cbd5e1; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .m-title { font-family:${tSt.fontFamily || "'Montserrat',sans-serif"}; font-size:1.15rem; font-weight:900; letter-spacing:1.2px; text-align:center; color:${tSt.textColor || "#ffffff"}; white-space:nowrap; text-shadow:0 0 10px ${tSt.glowColor || lightCol.glow}; }
+        .m-sub { font-family:${sSt.fontFamily || "'Plus Jakarta Sans',sans-serif"}; font-size:0.46rem; font-weight:700; letter-spacing:0.5px; text-align:center; color:${sSt.textColor || "#cbd5e1"}; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
         .m-search { margin:8px 0; display:flex; align-items:center; background:#0b0f18; border:1px solid rgba(255,255,255,0.22); border-radius:${tc.buttonShape}; padding:2px 3px 2px 10px; }
         .m-search span { flex:1; font-size:0.62rem; color:#94a3b8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
         .m-search b { background:${preset.pink}; color:#fff; font-size:0.52rem; padding:4px 9px; border-radius:${tc.buttonShape}; }
@@ -4215,10 +4344,12 @@
         <div class="m-search"><span>${escapeHtml(snap.searchPlaceholder || "Search...")}</span><b>SEARCH</b></div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">${cardsHtml}</div>
         <div style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin-bottom:8px;">${pillsHtml}</div>
-        <div style="background:${preset.card}; border:1px solid rgba(255,42,133,0.3); border-radius:${tc.boxShape}; padding:9px;">
-          <div style="font-size:0.72rem; font-weight:800;">${escapeHtml(snap.hubHeading || "")}</div>
-          <div style="font-size:0.6rem; color:#94a3b8; margin-top:3px;">${escapeHtml((snap.hubDesc || "").slice(0, 90))}</div>
+        <div style="background:${hSt.bgMode === "clean" ? "transparent" : (hSt.bgColor || preset.card)}; border:${hSt.bgMode === "clean" ? "0" : "1px solid rgba(255,42,133,0.3)"}; border-radius:${hSt.radius ?? tc.boxShape}; padding:8px; margin-bottom:8px;">
+          <div style="font-size:0.72rem; font-weight:800; color:${hSt.textColor || "#fff"};">${escapeHtml(snap.hubHeading || "")}</div>
+          <div style="font-size:0.58rem; color:#94a3b8; margin-top:2px;">${escapeHtml((snap.hubDesc || "").slice(0, 110))}</div>
         </div>
+        <div style="font-size:0.68rem; font-weight:800; margin-bottom:5px;">${escapeHtml(snap.articlesHeading || "Latest Study Notes")}</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">${artsHtml}</div>
       </body></html>`;
     }
 
@@ -4318,7 +4449,7 @@
       refreshLiveMobileFrame();
     }
 
-    // DEDICATED REELS ANDROID FILE MANAGER (RENAME + REORDER FOLDERS & ITEMS)
+    // DEDICATED REELS ANDROID FILE MANAGER
     function renderReelFolderManagerUI() {
       const folders = siteData.reelsFolders || [];
       const items = siteData.reelsFeed?.items || [];
@@ -5144,6 +5275,7 @@
       renderAdminFileManager();
       renderSequenceManager();
       populateThemeSelectors();
+      hydrateMiniGdocsBars();
 
       const socialContainer = document.getElementById("socialEditorFields");
       socialContainer.innerHTML = "";
@@ -5392,11 +5524,25 @@
       document.body.classList.add("designer-mode-active");
       renderAll();
       pushAppView("designer");
-      showToast("Turn ON Move/Edit, tap box, use ✥ to move & ↘ to resize");
+      showToast("Turn ON Move/Edit, tap any box or button, drag ✥ or ↘");
     }
 
     function resetDesignerLayout() {
-      resetEntireSiteToDefault();
+      const preserved = {
+        articles: siteData.articles,
+        folders: siteData.folders,
+        reelsFolders: siteData.reelsFolders,
+        reelsFeed: siteData.reelsFeed,
+        github: siteData.github,
+        socialLinks: siteData.socialLinks
+      };
+      const fresh = structuredClone(DEFAULT_DATA);
+      Object.assign(fresh, preserved);
+      siteData = fresh;
+      selectedVeId = "";
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderAll();
+      showToast("Layout reset to default");
     }
 
     function toggleMoveEditSwitch() {
@@ -5404,7 +5550,7 @@
       if (!isMoveEditEnabled) selectedVeId = "";
       updateMoveEditUI();
       renderAll();
-      showToast(isMoveEditEnabled ? "Move/Edit ON: Tap box, drag ✥ top-right to move" : "Move/Edit OFF: Scroll active");
+      showToast(isMoveEditEnabled ? "Move/Edit ON: Tap any box/button to move & resize" : "Move/Edit OFF: Scroll active");
     }
 
     function updateMoveEditUI() {
@@ -5440,7 +5586,7 @@
     }
 
     function openSelectedElementEdit() {
-      if (!selectedVeId) { showToast("Pehle kisi box ya element par tap karke select karo"); return; }
+      if (!selectedVeId) { showToast("Pehle kisi box ya button par tap karke select karo"); return; }
       const el = document.querySelector(`[data-ve-id="${selectedVeId}"]`);
       openElementStyleInspector(selectedVeId, el);
     }
@@ -5512,13 +5658,13 @@
         resizing = true;
         sx = e.clientX;
         sy = e.clientY;
-        sw = el.offsetWidth || 200;
-        sh = el.offsetHeight || 60;
+        sw = el.offsetWidth || 160;
+        sh = el.offsetHeight || 44;
 
         const onMove = (ev) => {
           if (!resizing) return;
-          const nw = Math.max(55, Math.round(sw + (ev.clientX - sx)));
-          const nh = Math.max(26, Math.round(sh + (ev.clientY - sy)));
+          const nw = Math.max(48, Math.round(sw + (ev.clientX - sx)));
+          const nh = Math.max(24, Math.round(sh + (ev.clientY - sy)));
           el.style.width = `${nw}px`;
           el.style.height = `${nh}px`;
           el.style.overflow = "hidden";
@@ -5632,6 +5778,7 @@
       overlay.addEventListener("pointerup", onUp);
     }
 
+    // Selects innermost individual button/element first when in Move/Edit mode
     document.addEventListener("pointerdown", (e) => {
       if (!isMoveEditEnabled) return;
       if (
@@ -5643,9 +5790,11 @@
 
       const veEl = e.target.closest("[data-ve-id]");
       if (!veEl) return;
+      e.preventDefault();
+      e.stopPropagation();
       selectedVeId = veEl.dataset.veId;
       attachHandlesIfSelected();
-    });
+    }, true);
 
     function openElementStyleInspector(id, domEl) {
       const styles = siteData.elementStyles || {};
