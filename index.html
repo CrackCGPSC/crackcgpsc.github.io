@@ -485,7 +485,7 @@
       cursor: pointer;
     }
 
-    /* Shorts / Reels Feed: Smooth Scroll + Center Play/Pause + 2x Hold + Full Fit */
+    /* Shorts / Reels Feed: Legacy Full-Screen Fit + Center Play/Pause + 2x Hold + Smooth Scroll */
     .reels-feed-section {
       background: var(--bg-card);
       border: 1px solid rgba(255, 42, 133, 0.3);
@@ -511,7 +511,7 @@
 
     .reels-feed-section.full-tab-reels-mode .section-header-row {
       margin-bottom: 0;
-      min-height: 30px;
+      min-height: 28px;
       padding: 0 4px;
     }
 
@@ -532,7 +532,6 @@
       height: 540px;
       overflow: hidden;
       border-radius: var(--box-radius);
-      touch-action: none;
       user-select: none;
     }
 
@@ -563,11 +562,12 @@
       background: #000000;
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--box-radius);
-      padding: 2px;
+      padding: 0;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       gap: 0;
+      overflow: hidden;
     }
 
     .reel-single-meta-line {
@@ -575,9 +575,11 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding: 2px 4px;
+      padding: 2px 6px;
       min-width: 0;
       flex-shrink: 0;
+      background: #000000;
+      z-index: 4;
     }
 
     .reel-folder-path-link {
@@ -607,8 +609,8 @@
       position: relative;
       width: 100%;
       height: 100%;
-      margin: 0 auto;
-      border-radius: 6px;
+      margin: 0;
+      border-radius: 0;
       overflow: hidden;
       background: #000000;
       flex: 1;
@@ -637,10 +639,10 @@
       border: 0;
       object-fit: contain;
       display: block;
-      margin: 0 auto;
+      margin: 0;
     }
 
-    /* Dedicated Center Play/Pause Button + 2x Hold Badge */
+    /* Center Play/Pause Button + 2x Hold Badge */
     .reel-center-controls-layer {
       position: absolute;
       inset: 0;
@@ -1289,7 +1291,7 @@
         <button class="btn" onclick="handleBackAction()">← Site</button>
         <div>
           <div style="font-size:0.9rem; font-weight:800;">Admin Studio</div>
-          <div style="font-size:0.66rem; color:var(--neon-cyan);">Smooth Shorts • Center Play/Pause • 2x Hold • Captions OFF</div>
+          <div style="font-size:0.66rem; color:var(--neon-cyan);">Classic Fit Shorts • Center Play/Pause • 2x Hold</div>
         </div>
       </div>
       <div style="display:flex; gap:6px;">
@@ -1682,7 +1684,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V37";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V38";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -2558,7 +2560,6 @@
       return { videoId: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}`, isShorts };
     }
 
-    // Renders video/YouTube frame with captions off by default + center play/pause + 2x hold indicator
     function renderReelMediaSlot(rawUrl, caption, index) {
       const clean = (rawUrl || "").trim();
       if (!clean) return "";
@@ -2602,7 +2603,7 @@
       } catch (e) {}
     }
 
-    // Smooth vertical swipe/wheel slide + dedicated center play/pause button + hold for 2x speed
+    // Smooth vertical slide + center play/pause + hold for 2x speed without blocking swipe movement
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
@@ -2700,8 +2701,8 @@
       }, { passive: false });
 
       let startY = 0;
-      let deltaY = 0;
-      let dragging = false;
+      let curY = 0;
+      let tracking = false;
       let holdTimer = null;
       let is2xActive = false;
 
@@ -2710,17 +2711,16 @@
         if (badge) badge.classList.toggle("visible", active);
       };
 
-      viewportEl.addEventListener("pointerdown", (e) => {
-        if (e.target.closest(".reel-folder-path-link") || e.target.closest(".reel-center-playpause-btn")) return;
-        dragging = true;
+      const onGestureStart = (clientY) => {
+        tracking = true;
         is2xActive = false;
-        startY = e.clientY;
-        deltaY = 0;
+        startY = clientY;
+        curY = clientY;
         trackEl.classList.add("dragging");
 
         clearTimeout(holdTimer);
         holdTimer = setTimeout(() => {
-          if (dragging && Math.abs(deltaY) < 10) {
+          if (tracking && Math.abs(curY - startY) < 10) {
             is2xActive = true;
             const vid = cards[currentIndex]?.querySelector("video.auto-scroll-reel-video");
             if (vid) vid.playbackRate = 2.0;
@@ -2728,23 +2728,24 @@
             if (ifr) sendYtCommand(ifr, "setPlaybackRate", [2]);
             show2xBadge(currentIndex, true);
           }
-        }, 400);
-      });
+        }, 350);
+      };
 
-      viewportEl.addEventListener("pointermove", (e) => {
-        if (!dragging) return;
-        deltaY = e.clientY - startY;
-        if (Math.abs(deltaY) > 10) clearTimeout(holdTimer);
+      const onGestureMove = (clientY) => {
+        if (!tracking) return;
+        curY = clientY;
+        const dy = curY - startY;
+        if (Math.abs(dy) > 10) clearTimeout(holdTimer);
         const h = viewportEl.clientHeight || 540;
         const baseOffset = -currentIndex * h;
-        const resistance = ((currentIndex === 0 && deltaY > 0) || (currentIndex === cards.length - 1 && deltaY < 0)) ? 0.3 : 1;
-        trackEl.style.transform = `translate3d(0px, ${baseOffset + deltaY * resistance}px, 0px)`;
-      });
+        const resistance = ((currentIndex === 0 && dy > 0) || (currentIndex === cards.length - 1 && dy < 0)) ? 0.3 : 1;
+        trackEl.style.transform = `translate3d(0px, ${baseOffset + dy * resistance}px, 0px)`;
+      };
 
-      const finishGesture = () => {
+      const onGestureEnd = () => {
         clearTimeout(holdTimer);
-        if (!dragging) return;
-        dragging = false;
+        if (!tracking) return;
+        tracking = false;
 
         if (is2xActive) {
           is2xActive = false;
@@ -2759,19 +2760,41 @@
           return;
         }
 
+        const dy = curY - startY;
         const h = viewportEl.clientHeight || 540;
-        const threshold = Math.min(60, h * 0.11);
-        if (deltaY <= -threshold && currentIndex < cards.length - 1) {
+        const threshold = Math.min(48, h * 0.08);
+        if (dy <= -threshold && currentIndex < cards.length - 1) {
           goToSlide(currentIndex + 1, true);
-        } else if (deltaY >= threshold && currentIndex > 0) {
+        } else if (dy >= threshold && currentIndex > 0) {
           goToSlide(currentIndex - 1, true);
         } else {
           goToSlide(currentIndex, true);
         }
       };
 
-      viewportEl.addEventListener("pointerup", finishGesture);
-      viewportEl.addEventListener("pointercancel", finishGesture);
+      viewportEl.addEventListener("touchstart", (e) => {
+        if (e.target.closest(".reel-folder-path-link") || e.target.closest(".reel-center-playpause-btn") || !e.touches.length) return;
+        onGestureStart(e.touches[0].clientY);
+      }, { passive: true });
+
+      viewportEl.addEventListener("touchmove", (e) => {
+        if (!tracking || !e.touches.length) return;
+        onGestureMove(e.touches[0].clientY);
+      }, { passive: true });
+
+      viewportEl.addEventListener("touchend", onGestureEnd, { passive: true });
+
+      viewportEl.addEventListener("mousedown", (e) => {
+        if (e.button !== 0 || e.target.closest(".reel-folder-path-link") || e.target.closest(".reel-center-playpause-btn")) return;
+        onGestureStart(e.clientY);
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (!tracking) return;
+        onGestureMove(e.clientY);
+      });
+
+      window.addEventListener("mouseup", onGestureEnd);
 
       window.addEventListener("resize", () => goToSlide(currentIndex, false));
       setTimeout(() => goToSlide(0, false), 60);
