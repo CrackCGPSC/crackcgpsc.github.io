@@ -1684,7 +1684,7 @@
   <div class="status-toast" id="statusToast"></div>
 
   <script>
-    const STORAGE_KEY = "CRACK_CGPSC_NEON_V38";
+    const STORAGE_KEY = "CRACK_CGPSC_NEON_V39";
     const ADMIN_AUTH_KEY = "CRACK_CGPSC_ADMIN_AUTH_V1";
     const ADMIN_ID = "Adminsaket";
     const ADMIN_PASS = "qwertypad1";
@@ -2401,9 +2401,13 @@
     function mergeDeep(target, source) {
       for (const key of Object.keys(source || {})) {
         if (source[key] === null || source[key] === undefined) continue;
-        if (Array.isArray(source[key])) target[key] = source[key];
-        else if (typeof source[key] === "object") target[key] = mergeDeep(target[key] || {}, source[key]);
-        else target[key] = source[key];
+        if (Array.isArray(source[key])) {
+          if (key === "reelsFeed" || Array.isArray(source[key])) target[key] = source[key];
+        } else if (typeof source[key] === "object") {
+          target[key] = mergeDeep(target[key] || {}, source[key]);
+        } else {
+          target[key] = source[key];
+        }
       }
       return target;
     }
@@ -2416,7 +2420,15 @@
         const res = await fetch(rawUrl, { cache: "no-store" });
         if (!res.ok) return;
         const remote = await res.json();
+        const prevReelsItems = siteData.reelsFeed?.items || [];
+        const prevReelsFolders = siteData.reelsFolders || [];
         const merged = mergeDeep(structuredClone(DEFAULT_DATA), remote);
+        if ((!merged.reelsFeed?.items || merged.reelsFeed.items.length === 0) && prevReelsItems.length > 0) {
+          merged.reelsFeed.items = prevReelsItems;
+        }
+        if ((!merged.reelsFolders || merged.reelsFolders.length === 0) && prevReelsFolders.length > 0) {
+          merged.reelsFolders = prevReelsFolders;
+        }
         merged.github.token = siteData.github?.token || "";
         siteData = merged;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
@@ -2603,7 +2615,6 @@
       } catch (e) {}
     }
 
-    // Smooth vertical slide + center play/pause + hold for 2x speed without blocking swipe movement
     function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
@@ -2762,7 +2773,7 @@
 
         const dy = curY - startY;
         const h = viewportEl.clientHeight || 540;
-        const threshold = Math.min(48, h * 0.08);
+        const threshold = Math.min(42, h * 0.07);
         if (dy <= -threshold && currentIndex < cards.length - 1) {
           goToSlide(currentIndex + 1, true);
         } else if (dy >= threshold && currentIndex > 0) {
