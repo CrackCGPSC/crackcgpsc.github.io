@@ -138,26 +138,52 @@
 
     .menu-float-btn {
       position: absolute;
-      top: 16px;
-      right: 16px;
+      top: 14px;
+      right: 12px;
       width: 36px;
-      height: 34px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: #0c1018;
-      color: #fff;
-      font-size: 1.08rem;
+      height: 36px;
+      padding: 0;
+      border-radius: 0;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #f8fafc;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 25;
+      transition: transform 0.18s ease, color 0.18s ease, filter 0.22s ease;
+    }
+
+    .menu-float-btn:hover,
+    .menu-float-btn:active {
+      color: var(--neon-cyan);
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.7));
+    }
+
+    .menu-float-btn svg {
+      width: 22px;
+      height: 22px;
+      display: block;
     }
 
     .hero-brand-center {
       text-align: center;
       padding: 2px 68px 2px;
       cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.18s ease, filter 0.22s ease;
+    }
+
+    .hero-brand-center:hover {
+      filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.35));
+    }
+
+    .hero-brand-center:active {
+      transform: scale(0.97);
     }
 
     .neon-brand-title {
@@ -1352,26 +1378,11 @@
       aspect-ratio: 3 / 4;
       background: #070a12;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .poster-thumb-box .poster-thumb-bg {
-      position: absolute;
-      inset: 0;
+    .poster-thumb-box .poster-thumb-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: blur(18px) brightness(0.45) saturate(1.2);
-      transform: scale(1.16);
-      pointer-events: none;
-    }
-    .poster-thumb-box .poster-thumb-fg {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
       object-position: center;
       display: block;
     }
@@ -1473,16 +1484,226 @@
     .social-chip svg { width: 14px; height: 14px; fill: currentColor; }
     .footer-copy { font-size: 0.74rem; color: var(--text-secondary); }
 
-    .drawer-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.68); z-index: 60; display: none; }
+    .drawer-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.66); backdrop-filter: blur(4px); z-index: 60; display: none; }
     .drawer-backdrop.open { display: block; }
-    .drawer-panel { position: fixed; top: 0; right: -310px; width: min(290px, 84vw); height: 100vh; background: #0d121c; border-left: 1px solid rgba(255, 255, 255, 0.14); z-index: 70; padding: 16px; display: flex; flex-direction: column; gap: 8px; transition: right 0.2s ease; overflow-y: auto; }
+    .drawer-panel {
+      position: fixed;
+      top: 0;
+      right: -310px;
+      width: min(290px, 84vw);
+      height: 100vh;
+      background: rgba(8, 12, 20, 0.96);
+      backdrop-filter: blur(18px);
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 70;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: right 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow-y: auto;
+    }
     .drawer-panel.open { right: 0; }
 
-    .subject-dropdown-list { display: none; flex-direction: column; gap: 5px; background: #080b12; border: 1px solid rgba(34, 211, 238, 0.3); border-radius: 9px; padding: 8px; }
+    .drawer-close-clean {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #cbd5e1;
+      font-size: 1.15rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.18s ease, text-shadow 0.22s ease;
+    }
+    .drawer-close-clean:hover,
+    .drawer-close-clean:active {
+      color: var(--neon-cyan);
+      transform: scale(1.1);
+      text-shadow: 0 0 12px rgba(34, 211, 238, 0.8);
+    }
+
+    .drawer-menu-option {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #e2e8f0;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      text-align: left;
+      text-decoration: none !important;
+      transition: color 0.24s ease, background 0.28s ease, text-shadow 0.28s ease, box-shadow 0.28s ease, transform 0.2s ease;
+    }
+    .drawer-menu-option:hover,
+    .drawer-menu-option:focus-visible,
+    .drawer-menu-option:active,
+    .drawer-menu-option.active,
+    .drawer-menu-option.neon-selected {
+      color: #ffffff;
+      background: radial-gradient(125% 150% at 12% 50%, rgba(34, 211, 238, 0.20) 0%, rgba(255, 42, 133, 0.12) 52%, transparent 100%) !important;
+      text-shadow: 0 0 10px rgba(34, 211, 238, 0.85), 0 0 22px rgba(255, 42, 133, 0.45);
+      box-shadow: inset 3px 0 0 0 var(--neon-cyan), 0 0 18px rgba(34, 211, 238, 0.14) !important;
+      transform: translateX(3px);
+    }
+
+    .subject-dropdown-list {
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      background: transparent !important;
+      border: 0 !important;
+      border-left: 1px solid rgba(34, 211, 238, 0.22) !important;
+      border-radius: 0;
+      padding: 4px 0 4px 10px;
+      margin: 2px 0 6px 10px;
+    }
     .subject-dropdown-list.open { display: flex; }
 
-    .subject-filter-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 9px; border-radius: 7px; background: #121826; border: 1px solid rgba(255, 255, 255, 0.08); color: #fff; font-size: 0.78rem; font-weight: 700; cursor: pointer; text-align: left; }
-    .subject-filter-item:hover, .subject-filter-item.active { border-color: var(--neon-pink); background: rgba(255, 42, 133, 0.16); }
+    .subject-filter-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 9px;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      color: #cbd5e1;
+      font-size: 0.79rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+      transition: color 0.24s ease, background 0.28s ease, text-shadow 0.28s ease, box-shadow 0.28s ease, transform 0.2s ease;
+    }
+    .subject-filter-item:hover,
+    .subject-filter-item:focus-visible,
+    .subject-filter-item:active,
+    .subject-filter-item.active,
+    .subject-filter-item.neon-selected {
+      color: #ffffff;
+      background: radial-gradient(125% 150% at 12% 50%, rgba(255, 42, 133, 0.18) 0%, rgba(34, 211, 238, 0.12) 55%, transparent 100%) !important;
+      text-shadow: 0 0 10px rgba(255, 42, 133, 0.8), 0 0 18px rgba(34, 211, 238, 0.45);
+      box-shadow: inset 2.5px 0 0 0 var(--neon-pink), 0 0 14px rgba(255, 42, 133, 0.14) !important;
+      transform: translateX(3px);
+    }
+
+    /* Related Posts Searchable Checkbox Picker (Admin Studio) */
+    .rel-picker-wrap {
+      background: #080c15;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rel-selected-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .rel-selected-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.14);
+      border: 1px solid rgba(34, 211, 238, 0.42);
+      color: #e0f2fe;
+      font-size: 0.72rem;
+      font-weight: 700;
+      max-width: 100%;
+    }
+    .rel-selected-chip button {
+      border: 0;
+      background: transparent;
+      color: #fca5a5;
+      font-weight: 900;
+      cursor: pointer;
+      padding: 0 2px;
+      font-size: 0.82rem;
+      line-height: 1;
+    }
+    .rel-checklist-box {
+      max-height: 220px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-right: 2px;
+    }
+    .rel-check-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 9px;
+      border-radius: 9px;
+      background: #0e1422;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+    .rel-check-row:hover {
+      border-color: rgba(34, 211, 238, 0.45);
+      background: rgba(34, 211, 238, 0.08);
+    }
+    .rel-check-row.is-checked {
+      border-color: rgba(34, 211, 238, 0.65);
+      background: rgba(34, 211, 238, 0.13);
+    }
+    .rel-check-row input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--neon-cyan);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .rel-check-thumb {
+      width: 30px;
+      height: 38px;
+      border-radius: 5px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #070a12;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .rel-check-meta {
+      min-width: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .rel-check-title {
+      font-size: 0.77rem;
+      font-weight: 700;
+      color: #f8fafc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rel-check-sub {
+      font-size: 0.66rem;
+      color: var(--neon-cyan);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 10px; border-radius: var(--btn-radius); border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(22, 28, 41, 0.92); color: #fff; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-decoration: none !important; white-space: nowrap; }
     .btn-primary { background: linear-gradient(135deg, var(--neon-pink), #ff2a85); border-color: transparent; }
@@ -1777,8 +1998,14 @@
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
         </svg>
       </button>
-      <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu">☰</button>
-      <div class="hero-brand-center" onclick="handleBrandClick()">
+      <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu" title="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3.5" y1="6.5" x2="20.5" y2="6.5"></line>
+          <line x1="3.5" y1="12" x2="20.5" y2="12"></line>
+          <line x1="3.5" y1="17.5" x2="15.5" y2="17.5"></line>
+        </svg>
+      </button>
+      <div class="hero-brand-center" role="button" tabindex="0" aria-label="Go to Home Page" title="Go to Home Page" onclick="handleBrandClick()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();handleBrandClick();}">
         <div id="headerBrandLogoHost" data-ve-id="brandTitle"></div>
         <div class="neon-brand-sub" id="headerBrandSub" data-ve-id="brandSub">TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL</div>
       </div>
@@ -1857,14 +2084,14 @@
   <!-- Right Slide Menu -->
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="handleBackAction()"></div>
   <aside class="drawer-panel" id="drawerPanel">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.12);">
-      <strong style="font-size:0.86rem;">MENU</strong>
-      <button class="btn" onclick="handleBackAction()">✕</button>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:2px 4px 10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:4px;">
+      <strong style="font-size:0.84rem; letter-spacing:1.4px; color:var(--neon-cyan);">MENU</strong>
+      <button class="drawer-close-clean" onclick="handleBackAction()" aria-label="Close Menu">✕</button>
     </div>
-    <button class="btn" onclick="navigateToHome(true)">🏠 Home</button>
-    <div id="drawerDynamicItemsContainer" style="display:flex; flex-direction:column; gap:7px;"></div>
-    <hr style="border:0; border-top:1px solid rgba(255,255,255,0.12); margin:4px 0;" />
-    <button class="btn" onclick="openAboutFullPage()">ℹ️ About</button>
+    <button type="button" class="drawer-menu-option" id="drawerHomeOptionBtn" onclick="markDrawerOptionSelected(this); navigateToHome(true)"><span>🏠 Home</span></button>
+    <div id="drawerDynamicItemsContainer" style="display:flex; flex-direction:column; gap:3px;"></div>
+    <hr style="border:0; border-top:1px solid rgba(255,255,255,0.08); margin:8px 0;" />
+    <button type="button" class="drawer-menu-option" id="drawerAboutOptionBtn" onclick="markDrawerOptionSelected(this); openAboutFullPage()"><span>ℹ️ About</span></button>
   </aside>
 
   <!-- Login Modal -->
@@ -3208,6 +3435,13 @@
       document.getElementById("loginModal").classList.remove("open");
       document.getElementById("adminStudio").classList.remove("open");
       document.getElementById("themeStudioPage").classList.remove("open");
+      const fullOverlay = document.getElementById("fullReelsOverlay");
+      if (fullOverlay && fullOverlay.classList.contains("open")) {
+        fullOverlay.classList.remove("open");
+        const feed = document.getElementById("fullReelsFeed");
+        if (feed) feed.innerHTML = "";
+        document.body.style.overflow = "";
+      }
       closeEduExplorerModal();
       teardownDesignerBar(false);
       isFullReelsTabOpen = false;
@@ -3217,11 +3451,20 @@
       selectedReelFolderId = "";
       selectedReelFolderPath = "";
       pendingStartReelId = "";
+      searchQuery = "";
+      const searchInp = document.getElementById("quickSearchInput");
+      if (searchInp) searchInp.value = "";
       currentArticlePage = 1;
       reshuffleGeneralShortsFeed();
       showHomeUI();
       if (resetHistory) activeStack = [];
+      try {
+        if (window.location && /^https?:$/i.test(window.location.protocol) && window.location.search) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      } catch (e) {}
       renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function resetSectionToDefault(sectionKey) {
@@ -4661,15 +4904,28 @@
       if (sec) sec.scrollIntoView({ behavior: "smooth" });
     }
 
+    function markDrawerOptionSelected(btnEl) {
+      document.querySelectorAll("#drawerPanel .drawer-menu-option, #drawerPanel .subject-filter-item")
+        .forEach(el => el.classList.remove("neon-selected"));
+      if (btnEl) btnEl.classList.add("neon-selected");
+    }
+
     function renderDrawerMenu() {
       const host = document.getElementById("drawerDynamicItemsContainer");
       host.innerHTML = "";
+
+      const homeOptBtn = document.getElementById("drawerHomeOptionBtn");
+      const aboutOptBtn = document.getElementById("drawerAboutOptionBtn");
+      const isHomeVisible = document.getElementById("homeView")?.style.display !== "none" && !selectedSubjectFolderId && !movieFilterTag;
+      const isAboutVisible = document.getElementById("aboutPageView")?.style.display === "block";
+      if (homeOptBtn) homeOptBtn.classList.toggle("active", Boolean(isHomeVisible));
+      if (aboutOptBtn) aboutOptBtn.classList.toggle("active", Boolean(isAboutVisible));
 
       if ((siteData.menuDrawerMode || "standard") === "movieReview") {
         const ext = extractMovieFilterOptionsFromPosts();
         const headLbl = document.createElement("div");
         headLbl.dataset.veId = "movieMenuHeadingText";
-        headLbl.style.cssText = "font-size:0.72rem; font-weight:800; color:var(--neon-cyan); padding:2px 4px;";
+        headLbl.style.cssText = "font-size:0.72rem; font-weight:800; color:var(--neon-cyan); padding:6px 12px 2px; letter-spacing:0.6px; text-transform:uppercase;";
         headLbl.textContent = siteData.movieMenuHeading || "Browse Reviews";
         host.appendChild(headLbl);
 
@@ -4683,19 +4939,25 @@
           if (!grp.values.length) return;
           const tBtn = document.createElement("button");
           tBtn.type = "button";
-          tBtn.className = "btn btn-cyan";
-          tBtn.textContent = `${grp.title} ▾`;
+          tBtn.className = "drawer-menu-option";
+          tBtn.innerHTML = `<span>${escapeHtml(grp.title)}</span><span style="color:var(--neon-cyan); font-size:0.76rem;">▾</span>`;
 
           const dd = document.createElement("div");
           dd.className = "subject-dropdown-list";
-          tBtn.onclick = () => dd.classList.toggle("open");
+          tBtn.onclick = () => {
+            const opened = dd.classList.toggle("open");
+            tBtn.classList.toggle("active", opened);
+          };
 
           grp.values.forEach(val => {
             const b = document.createElement("button");
             b.type = "button";
             b.className = `subject-filter-item ${movieFilterTag.toLowerCase() === val.toLowerCase() ? "active" : ""}`;
-            b.innerHTML = `<span>${escapeHtml(val)}</span><span>→</span>`;
-            b.onclick = () => applyMovieMenuFilter(val);
+            b.innerHTML = `<span>${escapeHtml(val)}</span><span style="opacity:0.7;">›</span>`;
+            b.onclick = () => {
+              markDrawerOptionSelected(b);
+              applyMovieMenuFilter(val);
+            };
             dd.appendChild(b);
           });
 
@@ -4714,19 +4976,25 @@
         if (item.mode === "dropdown") {
           const toggleBtn = document.createElement("button");
           toggleBtn.type = "button";
-          toggleBtn.className = "btn btn-cyan";
-          toggleBtn.textContent = `${item.label} ▾`;
+          toggleBtn.className = "drawer-menu-option";
+          toggleBtn.innerHTML = `<span>${escapeHtml(item.label)}</span><span style="color:var(--neon-cyan); font-size:0.76rem;">▾</span>`;
 
           const ddList = document.createElement("div");
           ddList.className = "subject-dropdown-list";
-          toggleBtn.onclick = () => ddList.classList.toggle("open");
+          toggleBtn.onclick = () => {
+            const opened = ddList.classList.toggle("open");
+            toggleBtn.classList.toggle("active", opened);
+          };
 
           if (item.dropdownSource === "folders") {
             const allOpt = document.createElement("button");
             allOpt.type = "button";
             allOpt.className = `subject-filter-item ${selectedSubjectFolderId === "" ? "active" : ""}`;
             allOpt.innerHTML = `<span>All (${articles.length})</span><span>✓</span>`;
-            allOpt.onclick = () => selectSubjectFilter("");
+            allOpt.onclick = () => {
+              markDrawerOptionSelected(allOpt);
+              selectSubjectFilter("");
+            };
             ddList.appendChild(allOpt);
 
             folders.forEach(f => {
@@ -4736,8 +5004,11 @@
               const opt = document.createElement("button");
               opt.type = "button";
               opt.className = `subject-filter-item ${selectedSubjectFolderId === f.id ? "active" : ""}`;
-              opt.innerHTML = `<span>${prefix}${escapeHtml(f.name)}</span><span>${count}</span>`;
-              opt.onclick = () => selectSubjectFilter(f.id);
+              opt.innerHTML = `<span>${prefix}${escapeHtml(f.name)}</span><span style="opacity:0.75;">${count}</span>`;
+              opt.onclick = () => {
+                markDrawerOptionSelected(opt);
+                selectSubjectFilter(f.id);
+              };
               ddList.appendChild(opt);
             });
           } else {
@@ -4746,8 +5017,9 @@
               const opt = document.createElement("button");
               opt.type = "button";
               opt.className = "subject-filter-item";
-              opt.innerHTML = `<span>${escapeHtml(sub.label)}</span><span>→</span>`;
+              opt.innerHTML = `<span>${escapeHtml(sub.label)}</span><span style="opacity:0.7;">›</span>`;
               opt.onclick = () => {
+                markDrawerOptionSelected(opt);
                 handleBackAction();
                 executePillAction({ actionType: sub.actionType || "link", target: sub.target || "" });
               };
@@ -4760,9 +5032,10 @@
         } else {
           const btn = document.createElement("button");
           btn.type = "button";
-          btn.className = "btn";
-          btn.textContent = item.label;
+          btn.className = "drawer-menu-option";
+          btn.innerHTML = `<span>${escapeHtml(item.label)}</span>`;
           btn.onclick = () => {
+            markDrawerOptionSelected(btn);
             handleBackAction();
             executePillAction({ actionType: item.actionType || "link", target: item.target || "" });
           };
@@ -5289,7 +5562,7 @@
             card.innerHTML = `
               <div class="poster-thumb-box">
                 ${badgeText ? `<span class="poster-top-badge">${escapeHtml(badgeText)}</span>` : ""}
-                ${cover ? `<img class="poster-thumb-bg" src="${escapeHtml(cover)}" alt="" aria-hidden="true" loading="lazy" /><img class="poster-thumb-fg" src="${escapeHtml(cover)}" alt="${escapeHtml(cardTitle)}" loading="lazy" />` : ""}
+                ${cover ? `<img class="poster-thumb-img" src="${escapeHtml(cover)}" alt="${escapeHtml(cardTitle)}" loading="lazy" />` : ""}
               </div>
               <div class="poster-card-body">
                 <div class="poster-card-title ve-fit-text">${escapeHtml(cardTitle)}</div>
@@ -6786,8 +7059,16 @@
           </div>
 
           <div class="field-group">
-            <label>Related Posts Embedded Links (One per line: Link Text | https://... or #article-id)</label>
-            <textarea class="art-related-inp" style="min-height:56px;">${escapeHtml(data.relatedLinks || "")}</textarea>
+            <label>Related Articles (Search by Topic / Title & Tick Multiple Checkboxes)</label>
+            <div class="rel-picker-wrap" id="relatedArticlesPicker">
+              <div class="rel-selected-chips" id="relSelectedChipsHost"></div>
+              <input type="text" class="rel-search-inp" placeholder="🔍 Search topic, title, category or folder..." oninput="filterRelatedArticlesPicker(this)" />
+              <div class="rel-checklist-box" id="relChecklistHost"></div>
+              <details style="margin-top:2px;">
+                <summary style="font-size:0.72rem; color:var(--text-secondary); cursor:pointer;">+ Optional Custom External Related Links</summary>
+                <textarea class="art-related-custom-inp" style="min-height:46px; margin-top:6px;" placeholder="Optional external URLs (One per line: Link Text | https://...)"></textarea>
+              </details>
+            </div>
           </div>
 
           <div style="display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;">
@@ -6797,7 +7078,119 @@
       `;
 
       document.getElementById("composerWysiwygMount").appendChild(createGoogleDocsEditor(data.body || "", "Start writing here..."));
+      initRelatedArticlesPicker(artId, data.relatedLinks || "");
       refreshAllAdminPreviews();
+    }
+
+    function initRelatedArticlesPicker(currentArtId, rawRelatedLinks) {
+      const card = document.getElementById("activeComposerCard");
+      if (!card) return;
+      const listHost = card.querySelector("#relChecklistHost");
+      const customInp = card.querySelector(".art-related-custom-inp");
+      if (!listHost) return;
+
+      const parsed = parseRelatedLinks(rawRelatedLinks || "");
+      const preselectedIds = new Set();
+      const customLines = [];
+      parsed.forEach(item => {
+        if (item.url && item.url.startsWith("#article-")) {
+          preselectedIds.add(item.url.replace("#article-", "").trim());
+        } else if (item.url) {
+          customLines.push(`${item.text} | ${item.url}`);
+        }
+      });
+      if (customInp) customInp.value = customLines.join("\n");
+
+      const allArts = (siteData.articles || []).filter(a => a.id !== currentArtId);
+      const folderMap = {};
+      (siteData.folders || []).forEach(f => { folderMap[f.id] = f.name; });
+
+      if (!allArts.length) {
+        listHost.innerHTML = `<div style="font-size:0.75rem; color:var(--text-secondary); padding:8px;">No other articles available yet. Save more articles to link them here.</div>`;
+      } else {
+        listHost.innerHTML = allArts.map(a => {
+          const isChecked = preselectedIds.has(a.id);
+          const fName = folderMap[a.folderId] || "Root";
+          const cat = a.category || "Article";
+          const thumb = convertDriveUrl(a.postType === "review" ? (a.reviewData?.posterUrl || a.coverImage) : a.coverImage);
+          const searchBlob = `${a.title || ""} ${cat} ${fName} ${a.excerpt || ""}`.toLowerCase();
+          return `
+            <label class="rel-check-row ${isChecked ? "is-checked" : ""}" data-search="${escapeHtml(searchBlob)}" data-art-id="${escapeHtml(a.id)}">
+              <input type="checkbox" class="rel-art-chk" value="${escapeHtml(a.id)}" data-title="${escapeHtml(a.title || "Untitled")}" ${isChecked ? "checked" : ""} onchange="onRelatedArticleCheckboxToggle(this)" />
+              ${thumb ? `<img class="rel-check-thumb" src="${escapeHtml(thumb)}" alt="" loading="lazy" />` : ""}
+              <div class="rel-check-meta">
+                <span class="rel-check-title">${escapeHtml(a.title || "Untitled")}</span>
+                <span class="rel-check-sub">${escapeHtml(cat)} • 📁 ${escapeHtml(fName)}</span>
+              </div>
+            </label>
+          `;
+        }).join("");
+      }
+
+      refreshRelatedSelectedChips();
+    }
+
+    function filterRelatedArticlesPicker(inpEl) {
+      const card = inpEl.closest("#activeComposerCard");
+      if (!card) return;
+      const q = (inpEl.value || "").trim().toLowerCase();
+      card.querySelectorAll("#relChecklistHost .rel-check-row").forEach(row => {
+        const hay = row.dataset.search || "";
+        row.style.display = (!q || hay.includes(q)) ? "flex" : "none";
+      });
+    }
+
+    function onRelatedArticleCheckboxToggle(chkEl) {
+      const row = chkEl.closest(".rel-check-row");
+      if (row) row.classList.toggle("is-checked", chkEl.checked);
+      refreshRelatedSelectedChips();
+    }
+
+    function removeSelectedRelatedArticleChip(artId) {
+      const card = document.getElementById("activeComposerCard");
+      if (!card) return;
+      const chk = Array.from(card.querySelectorAll(".rel-art-chk")).find(c => c.value === artId);
+      if (chk) {
+        chk.checked = false;
+        const row = chk.closest(".rel-check-row");
+        if (row) row.classList.remove("is-checked");
+      }
+      refreshRelatedSelectedChips();
+    }
+
+    function refreshRelatedSelectedChips() {
+      const card = document.getElementById("activeComposerCard");
+      if (!card) return;
+      const chipsHost = card.querySelector("#relSelectedChipsHost");
+      if (!chipsHost) return;
+      const checked = Array.from(card.querySelectorAll(".rel-art-chk:checked"));
+      if (!checked.length) {
+        chipsHost.innerHTML = `<span style="font-size:0.72rem; color:var(--text-secondary);">No related articles selected yet — search & tick checkboxes below.</span>`;
+        return;
+      }
+      chipsHost.innerHTML = `
+        <span style="font-size:0.7rem; font-weight:800; color:var(--neon-pink);">${checked.length} Selected:</span>
+        ${checked.map(c => `
+          <span class="rel-selected-chip">
+            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:190px;">${escapeHtml(c.dataset.title || c.value)}</span>
+            <button type="button" onclick="removeSelectedRelatedArticleChip('${escapeHtml(c.value).replace(/'/g, "\\'")}')" aria-label="Remove">×</button>
+          </span>
+        `).join("")}
+      `;
+    }
+
+    function collectRelatedLinksFromComposer(card) {
+      const lines = [];
+      card.querySelectorAll(".rel-art-chk:checked").forEach(chk => {
+        const id = (chk.value || "").trim();
+        const title = (chk.dataset.title || id).trim();
+        if (id) lines.push(`${title} | #article-${id}`);
+      });
+      const customRaw = (card.querySelector(".art-related-custom-inp")?.value || "").trim();
+      if (customRaw) {
+        customRaw.split("\n").map(l => l.trim()).filter(Boolean).forEach(l => lines.push(l));
+      }
+      return lines.join("\n");
     }
 
     function switchPostTemplateMode(btnEl, mode) {
@@ -6859,7 +7252,7 @@
         coverImage,
         excerpt: card.querySelector(".art-excerpt-inp").value.trim(),
         body: bodyHtml,
-        relatedLinks: card.querySelector(".art-related-inp").value,
+        relatedLinks: collectRelatedLinksFromComposer(card),
         reviewData: {
           posterUrl,
           movieName: card.querySelector(".rev-movie-name").value.trim(),
