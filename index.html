@@ -105,21 +105,35 @@
 
     .admin-quick-corner-btn {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      height: 30px;
-      padding: 0 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 211, 238, 0.55);
-      background: linear-gradient(135deg, rgba(14, 22, 38, 0.95), rgba(201, 24, 91, 0.85));
-      color: #fff;
-      font-size: 0.66rem;
-      font-weight: 800;
+      top: 14px;
+      left: 12px;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 0;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #f8fafc;
       display: none;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
       cursor: pointer;
       z-index: 25;
+      transition: transform 0.16s ease, color 0.16s ease;
+    }
+
+    .admin-quick-corner-btn:hover,
+    .admin-quick-corner-btn:active {
+      color: var(--neon-cyan);
+      transform: scale(1.1);
+    }
+
+    .admin-quick-corner-btn svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+      filter: drop-shadow(0 1px 6px rgba(34, 211, 238, 0.45));
     }
 
     .menu-float-btn {
@@ -1012,35 +1026,89 @@
     .afm-actions {
       display: flex;
       align-items: center;
-      gap: 5px;
-      flex-wrap: wrap;
+      gap: 6px;
+      flex-wrap: nowrap;
+      flex-shrink: 0;
     }
 
     .afm-watch-btn {
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-radius: 999px;
       border: 0;
-      background: linear-gradient(135deg, var(--neon-pink), #ff2a85);
+      background: linear-gradient(135deg, #ff2a85, #e11d48);
       color: #fff;
-      font-size: 0.7rem;
+      font-size: 0.66rem;
       font-weight: 800;
+      letter-spacing: 0.01em;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 4px;
       white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(255, 42, 133, 0.3);
+      transition: transform 0.14s ease, filter 0.14s ease;
+    }
+
+    .afm-watch-btn:active {
+      transform: scale(0.95);
     }
 
     .afm-open-btn {
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(34, 211, 238, 0.45);
-      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid rgba(34, 211, 238, 0.42);
+      background: rgba(34, 211, 238, 0.1);
       color: var(--neon-cyan);
-      font-size: 0.7rem;
+      font-size: 0.66rem;
       font-weight: 800;
+      letter-spacing: 0.01em;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
       white-space: nowrap;
+      transition: transform 0.14s ease, background 0.14s ease;
+    }
+
+    .afm-open-btn:active {
+      transform: scale(0.95);
+    }
+
+    .article-top-bar {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .article-share-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 4px;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #e2e8f0;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .article-share-icon-btn:hover,
+    .article-share-icon-btn:active {
+      color: var(--neon-cyan);
+      transform: scale(1.06);
+    }
+
+    .article-share-icon-btn svg {
+      width: 20px;
+      height: 20px;
+      display: block;
     }
 
     .afm-dest-item {
@@ -1264,7 +1332,7 @@
       cursor: pointer;
     }
 
-    .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-items: start; }
+    .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-items: stretch; }
     @media (min-width: 960px) { .articles-grid { grid-template-columns: repeat(4, 1fr); } }
 
     .poster-article-card {
@@ -1274,12 +1342,40 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      height: 100%;
       cursor: pointer;
     }
 
-    .poster-thumb-box { position: relative; width: 100%; background: transparent; overflow: hidden; line-height: 0; }
-    .poster-thumb-box img { width: 100%; height: auto; object-fit: contain; display: block; }
-    .poster-top-badge { position: absolute; top: 6px; left: 6px; background: rgba(20, 26, 38, 0.9); border: 1px solid rgba(255, 255, 255, 0.22); color: #fff; font-size: 0.52rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: var(--btn-radius); text-transform: uppercase; line-height: 1.3; }
+    .poster-thumb-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #070a12;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .poster-thumb-box .poster-thumb-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(18px) brightness(0.45) saturate(1.2);
+      transform: scale(1.16);
+      pointer-events: none;
+    }
+    .poster-thumb-box .poster-thumb-fg {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    .poster-top-badge { position: absolute; z-index: 2; top: 6px; left: 6px; background: rgba(20, 26, 38, 0.9); border: 1px solid rgba(255, 255, 255, 0.22); color: #fff; font-size: 0.52rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: var(--btn-radius); text-transform: uppercase; line-height: 1.3; }
 
     .poster-card-body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
     .poster-card-title { font-size: clamp(0.75rem, 1.35vw, 0.86rem); font-weight: 800; color: #fff; line-height: 1.24; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -1675,7 +1771,12 @@
   <div class="site-viewport-shell">
     <!-- Header -->
     <div class="top-bar-wrap glass-light-surface" data-ve-id="headerWrap">
-      <button class="admin-quick-corner-btn" id="adminTopLeftQuickBtn" onclick="openAdminStudio()">⚙️ Studio</button>
+      <button class="admin-quick-corner-btn" id="adminTopLeftQuickBtn" onclick="openAdminStudio()" aria-label="Admin Studio" title="Admin Studio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3.2"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
       <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu">☰</button>
       <div class="hero-brand-center" onclick="handleBrandClick()">
         <div id="headerBrandLogoHost" data-ve-id="brandTitle"></div>
@@ -1711,8 +1812,18 @@
       </div>
 
       <div id="articleView" style="display:none;">
-        <div style="margin-bottom:10px;">
+        <div class="article-top-bar">
           <button class="btn" onclick="handleBackAction()">← Back</button>
+          <button type="button" class="article-share-icon-btn" id="articleShareBtn" onclick="shareCurrentArticle()" aria-label="Share Article" title="Share Article">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span>Share</span>
+          </button>
         </div>
         <article class="article-reader" id="articleReaderContainer"></article>
       </div>
@@ -3059,8 +3170,8 @@
             </div>
           </div>
           <div class="afm-actions">
-            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); watchAllShortsInFolder('${escapeHtml(f.id)}');">▶ Watch All Shorts</button>
-            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); reelsExplorerFolderId='${escapeHtml(f.id)}'; renderFullReelsFolderPage();">Open →</button>
+            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); watchAllShortsInFolder('${escapeHtml(f.id)}');">▶ Watch All</button>
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); reelsExplorerFolderId='${escapeHtml(f.id)}'; renderFullReelsFolderPage();">Open ›</button>
           </div>
         `;
         body.appendChild(row);
@@ -3218,6 +3329,7 @@
         siteData = merged;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
         renderAll();
+        handleUrlDeepLinkOnLoad();
       } catch (e) {}
     }
 
@@ -4477,8 +4589,8 @@
             </div>
           </div>
           <div class="afm-actions">
-            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); closeEduExplorerModal(); watchAllShortsInFolder('${escapeHtml(f.id)}');">▶ Watch All Shorts</button>
-            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); eduModalFolderId='${escapeHtml(f.id)}'; renderEduExplorerModal();">Open →</button>
+            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); closeEduExplorerModal(); watchAllShortsInFolder('${escapeHtml(f.id)}');">▶ Watch All</button>
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); eduModalFolderId='${escapeHtml(f.id)}'; renderEduExplorerModal();">Open ›</button>
           </div>
         `;
         body.appendChild(row);
@@ -5019,7 +5131,7 @@
             }
 
             filteredReels.forEach((item, idx) => {
-              const pathLabel = item.folderPath || getReelFolderPathString(item.folderId) || "Root";
+              const immediateFolderName = getImmediateReelFolderName(item);
               const card = document.createElement("div");
               card.className = "reel-feed-card";
 
@@ -5054,11 +5166,14 @@
               };
               rail.querySelector(".reel-share-btn").onclick = (e) => {
                 e.stopPropagation();
-                const shareUrl = item.url || window.location.href;
+                const shareUrl = buildShortShareUrl(item);
+                const shareTitle = item.caption || "Crack CGPSC Edu Short";
                 if (navigator.share) {
-                  navigator.share({ title: item.caption || "Crack CGPSC Short", url: shareUrl }).catch(() => {});
+                  navigator.share({ title: shareTitle, text: shareTitle, url: shareUrl }).catch(() => {});
                 } else if (navigator.clipboard) {
                   navigator.clipboard.writeText(shareUrl).then(() => showToast("Short link copied!")).catch(() => {});
+                } else {
+                  prompt("Copy Short Link:", shareUrl);
                 }
               };
               card.appendChild(rail);
@@ -5070,7 +5185,7 @@
               const pathSpan = document.createElement("button");
               pathSpan.type = "button";
               pathSpan.className = "reel-folder-path-link";
-              pathSpan.textContent = `📁 ${pathLabel}`;
+              pathSpan.textContent = `📁 ${immediateFolderName}`;
               pathSpan.onclick = (e) => {
                 e.stopPropagation();
                 openFullReelsFolderExplorer(item.folderId || "");
@@ -5174,7 +5289,7 @@
             card.innerHTML = `
               <div class="poster-thumb-box">
                 ${badgeText ? `<span class="poster-top-badge">${escapeHtml(badgeText)}</span>` : ""}
-                ${cover ? `<img src="${escapeHtml(cover)}" alt="${escapeHtml(cardTitle)}" loading="lazy" />` : ""}
+                ${cover ? `<img class="poster-thumb-bg" src="${escapeHtml(cover)}" alt="" aria-hidden="true" loading="lazy" /><img class="poster-thumb-fg" src="${escapeHtml(cover)}" alt="${escapeHtml(cardTitle)}" loading="lazy" />` : ""}
               </div>
               <div class="poster-card-body">
                 <div class="poster-card-title ve-fit-text">${escapeHtml(cardTitle)}</div>
@@ -5323,7 +5438,7 @@
             </div>
           </div>
           <div class="afm-actions">
-            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); openFolderView('${escapeHtml(fld.id)}');">Open →</button>
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); openFolderView('${escapeHtml(fld.id)}');">Open ›</button>
           </div>
         `;
         foldersGrid.appendChild(row);
@@ -5343,7 +5458,7 @@
             </div>
           </div>
           <div class="afm-actions">
-            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); openArticleReader(${realIdx});">Read →</button>
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); openArticleReader(${realIdx});">Read ›</button>
           </div>
         `;
         foldersGrid.appendChild(aRow);
@@ -5498,9 +5613,110 @@
       return `<img class="review-row-icon" src="${escapeHtml(src)}" alt="" loading="lazy" />`;
     }
 
+    let activeReadingArticleId = "";
+    let deepLinkHandled = false;
+
+    function buildPortalBaseUrl() {
+      const gh = siteData.github || DEFAULT_DATA.github;
+      const fallbackOwner = (gh.owner || "crackcgpsc").trim();
+      const fallbackRepo = (gh.repo || `${fallbackOwner}.github.io`).trim();
+      const ghBase = fallbackRepo.toLowerCase() === `${fallbackOwner}.github.io`.toLowerCase()
+        ? `https://${fallbackOwner}.github.io/`
+        : `https://${fallbackOwner}.github.io/${fallbackRepo}/`;
+      try {
+        if (/^https?:$/i.test(window.location.protocol) && window.location.host && !/^(localhost|127\.0\.0\.1)/i.test(window.location.hostname)) {
+          return `${window.location.origin}${window.location.pathname}`;
+        }
+      } catch (e) {}
+      return ghBase;
+    }
+
+    function buildShortShareUrl(item) {
+      const base = buildPortalBaseUrl();
+      const id = (item && item.id) ? String(item.id) : "";
+      if (!id) return base;
+      return `${base}?short=${encodeURIComponent(id)}`;
+    }
+
+    function buildArticleShareUrl(art) {
+      const base = buildPortalBaseUrl();
+      const id = (art && art.id) ? String(art.id) : "";
+      if (!id) return base;
+      return `${base}?article=${encodeURIComponent(id)}`;
+    }
+
+    function getImmediateReelFolderName(item) {
+      const folders = siteData.reelsFolders || [];
+      if (item && item.folderId) {
+        const direct = folders.find(f => f.id === item.folderId);
+        if (direct && direct.name) return direct.name.trim();
+      }
+      const rawPath = (item?.folderPath || getReelFolderPathString(item?.folderId || "") || "").trim();
+      const leaf = rawPath.split(">").pop().trim();
+      return leaf || "Edu Shorts";
+    }
+
+    function shareCurrentArticle() {
+      const art = (siteData.articles || []).find(a => a.id === activeReadingArticleId);
+      if (!art) return;
+      const shareUrl = buildArticleShareUrl(art);
+      const title = art.title || "Crack CGPSC Article";
+      if (navigator.share) {
+        navigator.share({ title, text: title, url: shareUrl }).catch(() => {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(() => showToast("Article link copied!")).catch(() => {});
+      } else {
+        prompt("Copy Article Link:", shareUrl);
+      }
+    }
+
+    function handleUrlDeepLinkOnLoad() {
+      if (deepLinkHandled) return;
+      let shortId = "";
+      let articleId = "";
+      try {
+        const params = new URLSearchParams(window.location.search || "");
+        shortId = (params.get("short") || "").trim();
+        articleId = (params.get("article") || "").trim();
+        if (!shortId && !articleId && window.location.hash) {
+          const h = window.location.hash.replace(/^#/, "");
+          if (h.startsWith("short=")) shortId = decodeURIComponent(h.slice(6)).trim();
+          else if (h.startsWith("article=")) articleId = decodeURIComponent(h.slice(8)).trim();
+        }
+      } catch (e) {}
+
+      if (shortId) {
+        const allItems = siteData.reelsFeed?.items || [];
+        const target = allItems.find(it => it.id === shortId);
+        if (target) {
+          deepLinkHandled = true;
+          const restIds = shuffleArrayCopy(allItems.filter(it => it.id !== shortId).map(it => it.id));
+          shortsShuffleOrder = [shortId, ...restIds];
+          selectedReelFolderId = "";
+          selectedReelFolderPath = "";
+          pendingStartReelId = shortId;
+          showHomeUI();
+          isFullReelsTabOpen = true;
+          document.body.classList.add("shorts-fullscreen-lock");
+          renderAll();
+          pushAppView("reelsTab");
+        }
+        return;
+      }
+
+      if (articleId) {
+        const idx = (siteData.articles || []).findIndex(a => a.id === articleId);
+        if (idx >= 0) {
+          deepLinkHandled = true;
+          openArticleReader(idx);
+        }
+      }
+    }
+
     function openArticleReader(index) {
       const art = siteData.articles[index];
       if (!art) return;
+      activeReadingArticleId = art.id || "";
       document.getElementById("homeView").style.display = "none";
       document.getElementById("aboutPageView").style.display = "none";
       document.getElementById("reelsFolderPageView").style.display = "none";
@@ -7862,6 +8078,7 @@
     })();
 
     renderAll();
+    handleUrlDeepLinkOnLoad();
     fetchRemoteSiteData();
   </script>
 </body>
