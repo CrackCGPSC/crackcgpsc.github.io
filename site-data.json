@@ -10,7 +10,7 @@
   "hubHeading": "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
   "hubDesc": "Welcome to Crack CGPSC -- your central portal for Free Test Series, Topic-Wise Quiz, Previous Year Question Papers (PYQs), CBT Practice, and detailed exam study notes.",
   "aboutHeading": "About Crack CGPSC",
-  "aboutBody": "<h2>Welcome to Crack CGPSC</h2><p><strong>Crack CGPSC</strong> is a dedicated digital learning &amp; exam preparation portal crafted for <strong>CGPSC</strong> and <strong>CGVYAPAM</strong> aspirants across Chhattisgarh.</p><ul><li><strong>Free Test Series &amp; CBT Practice:</strong> Real exam-like mock tests and topic-wise quizzes.</li><li><strong>PYQ Papers Archive:</strong> Structured previous year question papers and analytical study notes.</li><li><strong>Visual &amp; Quick Revision Feed:</strong> Bite-sized maps, tricks, and concept reels for fast retention.</li></ul>",
+  "aboutBody": "<h2>Welcome to Crack CGPSC</h2><p><strong>Crack CGPSC</strong> is a dedicated digital learning &amp; exam preparation portal crafted for <strong>CGPSC</strong> and <strong>CGVYAPAM</strong> aspirants across Chhattisgarh.</p><ul><li><strong><font color=\"#00ffff\">Free Test Series &amp; CBT Practice:</font></strong> Real exam-like mock tests and topic-wise quizzes.</li><li><strong><font color=\"#ffff00\">PYQ Papers Archive:</font></strong> Structured previous year question papers and analytical study notes.</li><li><strong><font color=\"#00ffff\">Visual &amp; Quick Revision Feed:</font></strong> Bite-sized maps, tricks, and concept reels for fast retention.</li></ul>",
   "homeFeaturedMedia": {
     "mediaUrl": "",
     "articleHtml": ""
@@ -351,6 +351,56 @@
       "id": "fld-modern-history",
       "name": "Modern India",
       "parentId": "fld-history"
+    },
+    {
+      "id": "fld-1795752297129-155",
+      "name": "Geography",
+      "parentId": ""
+    },
+    {
+      "id": "fld-1795752324940-860",
+      "name": "Polity",
+      "parentId": ""
+    },
+    {
+      "id": "fld-1795752334039-39",
+      "name": "Economics",
+      "parentId": ""
+    },
+    {
+      "id": "fld-1795752348716-474",
+      "name": "Chhattisgarh GS",
+      "parentId": ""
+    },
+    {
+      "id": "fld-1795752360862-656",
+      "name": "CG History",
+      "parentId": "fld-1795752348716-474"
+    },
+    {
+      "id": "fld-1795752368222-761",
+      "name": "CG Geography",
+      "parentId": "fld-1795752348716-474"
+    },
+    {
+      "id": "fld-1795752375373-877",
+      "name": "CG Economy",
+      "parentId": "fld-1795752348716-474"
+    },
+    {
+      "id": "fld-1795752382620-595",
+      "name": "CG Administration",
+      "parentId": "fld-1795752348716-474"
+    },
+    {
+      "id": "fld-1795752412072-708",
+      "name": "CG Art & Culture",
+      "parentId": "fld-1795752348716-474"
+    },
+    {
+      "id": "fld-1795752424110-449",
+      "name": "CG Tribes",
+      "parentId": "fld-1795752348716-474"
     }
   ],
   "articles": [
