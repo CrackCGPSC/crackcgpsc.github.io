@@ -302,8 +302,8 @@
     }
   ],
   "banner": {
-    "title": "Topic Wise Short Videos",
-    "sub": "WATCH TRICKS, CONCEPTS, TOPIC WISE",
+    "title": "Edu Shorts Folders",
+    "sub": "SELECT TOPIC TO WATCH & LEARN",
     "cta": "Select Topic→",
     "iconUrl": "",
     "actionType": "reelsFolder",
@@ -334,7 +334,7 @@
   "portalCards": [
     {
       "title": "Free Test Series",
-      "sub": "FULL LENGTH & MOCKS",
+      "sub": "FULL LENGTH & TOPIC MOCKS",
       "image": "https://drive.google.com/file/d/1fLDzRW8tJ4ROZ05IQGNVVecjpupAVLqG/view?usp=drivesdk",
       "actionType": "link",
       "url": "https://crackcgpsc.github.io/Testseries/"
@@ -347,7 +347,7 @@
       "url": "https://crackcgpsc.github.io/PYQPapers/"
     },
     {
-      "title": "Short Video Tab",
+      "title": "Edu Shorts Tab",
       "sub": "Short Topic Videos",
       "image": "https://drive.google.com/file/d/1fG3dGwbcOSLiMQAXNoqPupY8QxC4dfL7/view?usp=drivesdk",
       "actionType": "reelsTab",
