@@ -4,6 +4,7 @@
   "brandSub": "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
   "searchPlaceholder": "Search History, Topics, Reviews or Articles...",
   "faviconUrl": "https://drive.google.com/file/d/1s9FfwRpIO5UlNuXLfnKtM7Qt507hzSNX/view?usp=drivesdk",
+  "customFonts": [],
   "articlesHeading": "Latest Study Notes & Reviews",
   "hubTag": "● OFFICIAL PORTAL HUB",
   "hubHeading": "Crack CGPSC - CGPSC & CGVYAPAM Preparation Hub",
@@ -184,6 +185,7 @@
     "title": "Topic Wise Short Videos",
     "sub": "WATCH TRICKS, CONCEPTS, TOPIC WISE",
     "cta": "Select Topic→",
+    "iconUrl": "",
     "actionType": "reelsFolder",
     "url": "Root"
   },
@@ -375,13 +377,89 @@
     {
       "id": "hist-11-modern-freedom",
       "postType": "article",
+      "title": "11. Modern History: 1857 Revolt & Indian Freedom Movement (Page 2)",
       "folderId": "fld-modern-history",
       "category": "MODERN HISTORY",
-      "title": "11. Modern History: 1857 Revolt & Indian Freedom Movement (Page 2)",
-      "coverImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=75",
+      "coverImage": "https://drive.google.com/file/d/1EHr8_mO0EKNcZR2axBt0OahVvgyMkVuj/view?usp=drivesdk",
       "excerpt": "1857 Uprising, INC 1885, Swadeshi, Non-Cooperation, Civil Disobedience, Quit India & 1947.",
-      "body": "<h2>Freedom Movement Milestones (Page 2 Demo)</h2><p>Ek page mein <strong>10 articles</strong> ke baad yeh <strong>11th article</strong> Page 2 / Next par open hota hai.</p><ul><li><strong>Revolt of 1857:</strong> Began at Meerut (10 May 1857); Rani Lakshmibai (Jhansi), Kunwar Singh (Bihar), Begum Hazrat Mahal (Lucknow)</li><li><strong>Gandhian Era:</strong> Champaran (1917), Non-Cooperation (1920), Dandi March (1930), Quit India (1942 -- 'Do or Die')</li><li><strong>Independence:</strong> Cabinet Mission (1946), Mountbatten Plan & Indian Independence Act (1947)</li></ul>",
-      "relatedLinks": "1. Indus Valley Civilization (Harappan Culture) | #article-hist-1-indus-valley"
+      "body": "<h2>Freedom Movement Milestones (Page 2 Demo)</h2><p>Ek page mein <strong>10 articles</strong> ke baad yeh <strong>11th article</strong> Page 2 / Next par open hota hai.</p><ul><li><strong>Revolt of 1857:</strong> Began at Meerut (10 May 1857); Rani Lakshmibai (Jhansi), Kunwar Singh (Bihar), Begum Hazrat Mahal (Lucknow)</li><li><strong>Gandhian Era:</strong> Champaran (1917), Non-Cooperation (1920), Dandi March (1930), Quit India (1942 -- 'Do or Die')</li><li><strong>Independence:</strong> Cabinet Mission (1946), Mountbatten Plan &amp; Indian Independence Act (1947)</li></ul>",
+      "relatedLinks": "1. Indus Valley Civilization (Harappan Culture) | #article-hist-1-indus-valley",
+      "reviewData": {
+        "posterUrl": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=75",
+        "movieName": "",
+        "releaseYear": "",
+        "streamingPlatform": "",
+        "imdbRating": "",
+        "buffRating": "",
+        "categories": [],
+        "languages": "",
+        "parental": [
+          {
+            "name": "Kiss on Cheeks",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Lip kiss Short",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Long Lip kiss",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Nudity Male",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Nudity Female",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Bedroom Scenes",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Abusive language Hindi",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Abusive language English",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Sexual Awkward Dialogue",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Family Friendly",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          }
+        ],
+        "canWatchWithFamily": "Yes",
+        "detailedYtUrl": "",
+        "telegramFileUrl": "",
+        "trailerYtUrl": ""
+      }
     }
   ],
   "customElements": [],
