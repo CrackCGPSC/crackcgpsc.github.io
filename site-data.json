@@ -639,7 +639,12 @@
     }
   ],
   "customElements": [],
-  "elementStyles": {},
+  "elementStyles": {
+    "brandTitle": {
+      "posX": -8,
+      "posY": -1
+    }
+  },
   "socialLinks": {
     "youtube": "https://youtube.com/@crackcgpsc",
     "telegram": "https://t.me/crackcgpsc",
