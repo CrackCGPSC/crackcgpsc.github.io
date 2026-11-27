@@ -888,18 +888,181 @@
       color: #ff4d97;
     }
 
-    .reel-cc-btn {
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.76rem;
-      font-weight: 900;
-      letter-spacing: 0.03em;
+    /* Android-Style File Manager (User-Facing & Admin Studio) */
+    .afm-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
     }
 
-    .reel-cc-btn.cc-active {
-      background: rgba(34, 211, 238, 0.26);
+    .afm-batch-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      border-radius: 10px;
+      background: rgba(34, 211, 238, 0.14);
+      border: 1px solid rgba(34, 211, 238, 0.45);
+    }
+
+    .afm-batch-bar.visible {
+      display: flex;
+    }
+
+    .afm-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .afm-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #0b101b;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .afm-row:hover {
+      border-color: rgba(34, 211, 238, 0.4);
+    }
+
+    .afm-row.selected {
+      background: rgba(34, 211, 238, 0.12);
       border-color: var(--neon-cyan);
+    }
+
+    .afm-row-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 170px;
+      cursor: pointer;
+    }
+
+    .afm-chk {
+      width: 18px !important;
+      height: 18px !important;
+      accent-color: var(--neon-cyan);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .afm-icon-slot {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      padding: 0;
+      flex-shrink: 0;
+      overflow: visible;
+    }
+
+    .afm-icon-clean {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .afm-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .afm-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .afm-sub {
+      font-size: 0.68rem;
       color: var(--neon-cyan);
-      box-shadow: 0 0 12px rgba(34, 211, 238, 0.35);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .afm-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .afm-watch-btn {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 0;
+      background: linear-gradient(135deg, var(--neon-pink), #ff2a85);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .afm-open-btn {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 211, 238, 0.45);
+      background: rgba(34, 211, 238, 0.12);
+      color: var(--neon-cyan);
+      font-size: 0.7rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .afm-dest-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #0b101b;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .afm-dest-item.active {
+      border-color: var(--neon-cyan);
+      background: rgba(34, 211, 238, 0.18);
+      color: var(--neon-cyan);
     }
 
     .reel-rail-item {
@@ -1101,7 +1264,7 @@
       cursor: pointer;
     }
 
-    .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-items: start; }
     @media (min-width: 960px) { .articles-grid { grid-template-columns: repeat(4, 1fr); } }
 
     .poster-article-card {
@@ -1114,9 +1277,9 @@
       cursor: pointer;
     }
 
-    .poster-thumb-box { position: relative; width: 100%; aspect-ratio: 3 / 4; background: #06080f; overflow: hidden; }
-    .poster-thumb-box img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-    .poster-top-badge { position: absolute; top: 6px; left: 6px; background: rgba(20, 26, 38, 0.9); border: 1px solid rgba(255, 255, 255, 0.22); color: #fff; font-size: 0.52rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: var(--btn-radius); text-transform: uppercase; }
+    .poster-thumb-box { position: relative; width: 100%; background: transparent; overflow: hidden; line-height: 0; }
+    .poster-thumb-box img { width: 100%; height: auto; object-fit: contain; display: block; }
+    .poster-top-badge { position: absolute; top: 6px; left: 6px; background: rgba(20, 26, 38, 0.9); border: 1px solid rgba(255, 255, 255, 0.22); color: #fff; font-size: 0.52rem; font-weight: 800; letter-spacing: 0.4px; padding: 2px 7px; border-radius: var(--btn-radius); text-transform: uppercase; line-height: 1.3; }
 
     .poster-card-body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
     .poster-card-title { font-size: clamp(0.75rem, 1.35vw, 0.86rem); font-weight: 800; color: #fff; line-height: 1.24; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -1178,7 +1341,7 @@
     .custom-canvas-element { position: relative; padding: 8px; border-radius: var(--box-radius); border: 1px solid rgba(255, 255, 255, 0.18); min-height: 44px; overflow: hidden; }
 
     .article-reader { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: var(--box-radius); padding: 16px; }
-    .article-hero-img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 12px 0 16px; }
+    .article-hero-img { width: 100%; height: auto; max-height: none; object-fit: contain; display: block; border-radius: 12px; margin: 12px 0 16px; }
     .review-meta-list { display: flex; flex-direction: column; gap: 9px; margin: 14px 0 18px; background: #0b0f18; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px; }
     .review-meta-row { display: flex; align-items: flex-start; gap: 9px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.86rem; }
     .review-meta-row:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -1198,10 +1361,11 @@
     .article-body-content h1, .article-body-content h2, .article-body-content h3 { color: var(--neon-cyan); margin-top: 4px; }
     .article-body-content ul, .article-body-content ol { padding-left: 20px; display: flex; flex-direction: column; gap: 5px; }
     .article-body-content hr { border: 0; border-top: 1px solid rgba(255, 255, 255, 0.16); margin: 6px 0; }
-    .article-media-embed { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.13); background: #05070a; margin-top: 8px; }
-    .article-media-embed iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }
+    .article-body-content img { width: 100%; height: auto !important; max-height: none !important; object-fit: contain; display: block; border-radius: 10px; margin: 6px 0; }
+    .article-media-embed { border-radius: 10px; overflow: hidden; border: 0; background: transparent; margin-top: 8px; }
+    .article-media-embed iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; border-radius: 10px; }
     .article-media-embed.shorts-frame iframe { max-width: 340px; margin: 0 auto; aspect-ratio: 9 / 16; }
-    .article-media-embed img { width: 100%; max-height: 380px; object-fit: contain; display: block; }
+    .article-media-embed img { width: 100%; height: auto; max-height: none; object-fit: contain; display: block; border-radius: 10px; }
     .related-articles-box { margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.12); }
     .related-links-list { margin-top: 8px; display: flex; flex-direction: column; gap: 7px; }
     .related-embedded-link { font-size: 0.86rem; font-weight: 700; color: var(--neon-cyan); text-decoration: underline !important; display: inline-block; }
@@ -1426,13 +1590,85 @@
 
   <!-- Android File Explorer Modal for "Education Content Folder" Banner -->
   <div class="modal-backdrop" id="eduExplorerModal" onclick="closeEduExplorerModal()">
-    <div class="modal-box" onclick="event.stopPropagation()">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <div class="modal-box" style="max-width:560px; width:94%;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;">
         <strong style="font-size:0.92rem; color:var(--neon-cyan);">📁 Education Content Folder</strong>
-        <button class="btn" onclick="closeEduExplorerModal()">✕</button>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <button type="button" class="afm-watch-btn" id="eduModalWatchAllBtn" onclick="closeEduExplorerModal(); watchAllShortsInFolder(eduModalFolderId);">▶ Watch All Shorts</button>
+          <button type="button" class="btn" onclick="closeEduExplorerModal()">✕</button>
+        </div>
       </div>
       <div class="folder-path-bar" id="eduExplorerBreadcrumb"></div>
-      <div id="eduExplorerBody" style="display:flex; flex-direction:column; gap:7px; margin-top:8px;"></div>
+      <div id="eduExplorerBody" class="afm-list" style="margin-top:8px; max-height:62vh; overflow-y:auto;"></div>
+    </div>
+  </div>
+
+  <!-- Admin File Manager: Move Destination Picker Modal -->
+  <div class="modal-backdrop" id="afmMoveModal" style="z-index:260;" onclick="closeAfmMoveModal()">
+    <div class="modal-box" style="max-width:460px; width:94%;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong id="afmMoveModalTitle" style="font-size:0.9rem; color:var(--neon-cyan);">📦 Move Selected Items</strong>
+        <button type="button" class="btn" onclick="closeAfmMoveModal()">✕</button>
+      </div>
+      <div id="afmMoveSummary" style="font-size:0.74rem; color:var(--text-secondary); margin-bottom:10px;"></div>
+      <div id="afmMoveDestList" style="display:flex; flex-direction:column; gap:6px; max-height:50vh; overflow-y:auto;"></div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px;">
+        <button type="button" class="btn" onclick="closeAfmMoveModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="confirmAfmMove()">✓ Move Here</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin File Manager: Clean Transparent Folder Icon Modal -->
+  <div class="modal-backdrop" id="afmFolderIconModal" style="z-index:260;" onclick="closeAfmFolderIconModal()">
+    <div class="modal-box" style="max-width:440px; width:94%;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong id="afmIconModalTitle" style="font-size:0.9rem; color:var(--neon-cyan);">🖼️ Folder Custom Icon</strong>
+        <button type="button" class="btn" onclick="closeAfmFolderIconModal()">✕</button>
+      </div>
+      <div class="field-group" style="margin-bottom:10px;">
+        <label>Google Drive Image Link / Direct PNG-SVG-WebP URL</label>
+        <input type="text" id="afmFolderIconUrlInp" placeholder="https://drive.google.com/file/d/.../view" oninput="previewAfmFolderIcon()" />
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:10px; background:#090d16; border:1px dashed rgba(255,255,255,0.16); margin-bottom:12px;">
+        <div id="afmFolderIconPreview" class="afm-icon-slot"></div>
+        <div style="font-size:0.72rem; color:var(--text-secondary);">Auto-adjusted clean transparent icon (no background box or border).</div>
+      </div>
+      <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-danger" onclick="clearAfmFolderIcon()">Remove Icon</button>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn" onclick="closeAfmFolderIconModal()">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="saveAfmFolderIcon()">Save Icon</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin File Manager: Edit Reel / Short Link Modal -->
+  <div class="modal-backdrop" id="afmEditReelModal" style="z-index:260;" onclick="closeAfmEditReelModal()">
+    <div class="modal-box" style="max-width:480px; width:94%;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong style="font-size:0.9rem; color:var(--neon-cyan);">✏️ Edit Short / Video Link</strong>
+        <button type="button" class="btn" onclick="closeAfmEditReelModal()">✕</button>
+      </div>
+      <div class="form-grid" style="gap:10px;">
+        <div class="field-group">
+          <label>Title / Caption</label>
+          <input type="text" id="afmEditReelCaptionInp" placeholder="Enter Short title or caption" />
+        </div>
+        <div class="field-group">
+          <label>YouTube Shorts / Direct MP4 / Google Drive Video Link</label>
+          <input type="text" id="afmEditReelUrlInp" placeholder="https://youtube.com/shorts/..." />
+        </div>
+        <div class="field-group">
+          <label>Folder Location</label>
+          <select id="afmEditReelFolderSel"></select>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:14px;">
+        <button type="button" class="btn" onclick="closeAfmEditReelModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="saveAfmEditReel()">Save Changes</button>
+      </div>
     </div>
   </div>
 
@@ -1463,14 +1699,14 @@
       </div>
 
       <div id="reelsFolderPageView" style="display:none;">
-        <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+        <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
           <button class="btn" onclick="handleBackAction()">← Back</button>
-          <button class="btn btn-primary" onclick="openFullReelsTab()">▶ Watch All Shorts</button>
+          <button class="btn btn-primary" id="reelsPageWatchAllBtn" onclick="watchAllShortsInFolder(reelsExplorerFolderId)">▶ Watch All Shorts</button>
         </div>
         <section class="android-reels-explorer-page">
-          <h2 class="section-title" style="margin-bottom:8px;">📁 Reels Folder Manager</h2>
+          <h2 class="section-title" style="margin-bottom:8px;">📱 Shorts File Manager</h2>
           <div class="folder-path-bar" id="reelsPageBreadcrumb"></div>
-          <div id="reelsPageExplorerBody" style="display:flex; flex-direction:column; gap:8px; margin-top:8px;"></div>
+          <div id="reelsPageExplorerBody" class="afm-list" style="margin-top:8px;"></div>
         </section>
       </div>
 
@@ -1491,9 +1727,11 @@
 
     <!-- Bottom Android Folders & Subfolders Explorer Above Footer -->
     <section class="bottom-folders-section" id="dest-folders-section" data-ve-id="bottomFoldersSection">
-      <h2 class="section-title" id="foldersSectionTitle">Study Folders & Subfolders</h2>
+      <div class="afm-toolbar">
+        <h2 class="section-title" id="foldersSectionTitle" style="margin:0;">📱 Articles File Manager</h2>
+      </div>
       <div class="folder-path-bar" id="folderBreadcrumbBar"></div>
-      <div class="folders-grid" id="foldersExplorerGrid"></div>
+      <div class="afm-list" id="foldersExplorerGrid"></div>
     </section>
 
     <!-- Footer -->
@@ -1941,13 +2179,27 @@
         </div>
 
         <div class="android-tile-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
-            <strong style="font-size:0.86rem;">📂 Reels Folders & Files (Rename & Reorder)</strong>
-            <button type="button" class="btn btn-cyan" onclick="createReelFolderInManager()">+ New Folder</button>
+          <div class="afm-toolbar">
+            <div>
+              <strong style="font-size:0.86rem;">📱 Android File Manager (Shorts & Reels)</strong>
+              <div style="font-size:0.68rem; color:var(--text-secondary);">Select multiple folders/links to Move or Delete • Tap 🖼️ Icon for transparent Drive icon • Tap ✏️ Edit to change title & link.</div>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn" style="padding:5px 9px; font-size:0.72rem;" onclick="toggleSelectAllReelsManager()">☑ Select All</button>
+              <button type="button" class="btn btn-cyan" onclick="createReelFolderInManager()">+ New Folder</button>
+            </div>
+          </div>
+          <div class="afm-batch-bar" id="reelManagerBatchBar">
+            <span id="reelManagerSelCount" style="font-size:0.76rem; font-weight:800; color:var(--neon-cyan);">0 selected</span>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-cyan" style="padding:4px 10px; font-size:0.72rem;" onclick="openAfmMoveModal('reels', null)">📦 Move Selected</button>
+              <button type="button" class="btn btn-danger" style="padding:4px 10px; font-size:0.72rem;" onclick="batchDeleteSelectedReels()">🗑️ Delete Selected</button>
+              <button type="button" class="btn" style="padding:4px 9px; font-size:0.72rem;" onclick="clearReelsManagerSelection()">Clear</button>
+            </div>
           </div>
           <div class="folder-path-bar" id="reelManagerPathBar"></div>
-          <div id="reelManagerFoldersList"></div>
-          <div id="reelsFeedEditorList" style="margin-top:8px;"></div>
+          <div id="reelManagerFoldersList" class="afm-list"></div>
+          <div id="reelsFeedEditorList" class="afm-list" style="margin-top:8px;"></div>
         </div>
       </div>
 
@@ -1958,15 +2210,26 @@
           <button type="button" class="btn" style="padding:4px 8px; font-size:0.68rem;" onclick="resetSectionToDefault('folders')">Default</button>
         </div>
         <div class="android-tile-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+          <div class="afm-toolbar">
             <div>
               <strong style="font-size:0.86rem;">📱 Android File Manager (Articles)</strong>
-              <div style="font-size:0.7rem; color:var(--text-secondary);">Tap a folder to open • Tap <strong>✏️ Edit</strong> beside any article to edit it • Use ↑/↓ to reorder.</div>
+              <div style="font-size:0.68rem; color:var(--text-secondary);">Select multiple folders/articles to Move or Delete • Tap 🖼️ Icon for transparent Drive icon • Tap ✏️ Edit to open in Docs editor.</div>
             </div>
-            <button class="btn btn-cyan" onclick="createFolderInManager()">+ New Folder</button>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn" style="padding:5px 9px; font-size:0.72rem;" onclick="toggleSelectAllArticlesManager()">☑ Select All</button>
+              <button type="button" class="btn btn-cyan" onclick="createFolderInManager()">+ New Folder</button>
+            </div>
+          </div>
+          <div class="afm-batch-bar" id="articleManagerBatchBar">
+            <span id="articleManagerSelCount" style="font-size:0.76rem; font-weight:800; color:var(--neon-cyan);">0 selected</span>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-cyan" style="padding:4px 10px; font-size:0.72rem;" onclick="openAfmMoveModal('articles', null)">📦 Move Selected</button>
+              <button type="button" class="btn btn-danger" style="padding:4px 10px; font-size:0.72rem;" onclick="batchDeleteSelectedArticles()">🗑️ Delete Selected</button>
+              <button type="button" class="btn" style="padding:4px 9px; font-size:0.72rem;" onclick="clearArticlesManagerSelection()">Clear</button>
+            </div>
           </div>
           <div class="folder-path-bar" id="adminFileManagerPath"></div>
-          <div id="adminFileManagerItems"></div>
+          <div id="adminFileManagerItems" class="afm-list"></div>
         </div>
       </div>
 
@@ -2493,7 +2756,10 @@
     let searchQuery = "";
     let movieFilterTag = "";
     let selectedSubjectFolderId = "";
+    let selectedReelFolderId = "";
     let selectedReelFolderPath = "";
+    let pendingStartReelId = "";
+    let shortsShuffleOrder = [];
     let reelsExplorerFolderId = "";
     let activeReelFolderId = "";
     let eduModalFolderId = "";
@@ -2509,6 +2775,13 @@
     let isMoveEditEnabled = false;
     let selectedVeId = "";
     let activeStack = [];
+    const selectedAdminReelFolders = new Set();
+    const selectedAdminReelItems = new Set();
+    const selectedAdminArticleFolders = new Set();
+    const selectedAdminArticles = new Set();
+    let afmMoveContext = null;
+    let afmIconEditContext = null;
+    let afmEditReelIndex = -1;
 
     if (!history.state || !history.state.cgpscBase) {
       history.replaceState({ cgpscBase: true }, "");
@@ -2617,17 +2890,141 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function renderCleanFolderIconHtml(iconUrl, sizePx = 34) {
+      const clean = convertDriveUrl(iconUrl || "");
+      if (clean) {
+        return `<span class="afm-icon-slot" style="width:${sizePx}px;height:${sizePx}px;"><img class="afm-icon-clean" src="${escapeHtml(clean)}" alt="" style="width:${sizePx}px;height:${sizePx}px;" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=&quot;font-size:${Math.round(sizePx * 0.72)}px;line-height:1;&quot;>📁</span>';" /></span>`;
+      }
+      return `<span class="afm-icon-slot" style="width:${sizePx}px;height:${sizePx}px;"><svg viewBox="0 0 24 24" width="${Math.round(sizePx * 0.85)}" height="${Math.round(sizePx * 0.85)}" fill="none"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H9.6c.66 0 1.3.26 1.77.73l1.1 1.1c.28.28.66.44 1.06.44H18.5A2.5 2.5 0 0 1 21 8.77V17.5A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5v-11Z" fill="#22d3ee" fill-opacity="0.92"/><path d="M3 9.2h18v8.3A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5V9.2Z" fill="#06b6d4" fill-opacity="0.65"/></svg></span>`;
+    }
+
+    function getDescendantReelFolderIds(rootFolderId) {
+      const result = new Set([rootFolderId]);
+      let added = true;
+      while (added) {
+        added = false;
+        (siteData.reelsFolders || []).forEach(f => {
+          if (f.parentId && result.has(f.parentId) && !result.has(f.id)) {
+            result.add(f.id);
+            added = true;
+          }
+        });
+      }
+      return result;
+    }
+
+    function getDeterministicShortLikes(item) {
+      const key = `${item?.id || ""}|${item?.url || ""}|${item?.caption || ""}`;
+      let h = 2166136261;
+      for (let i = 0; i < key.length; i++) {
+        h ^= key.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      const norm = ((h >>> 0) % 1000000) / 1000000;
+      // Spread uniquely across 10,000 (10K) to 1,200,000 (1.2M)
+      const minLikes = 10400;
+      const maxLikes = 1196000;
+      return Math.round(minLikes + Math.pow(norm, 1.45) * (maxLikes - minLikes));
+    }
+
+    function formatCompactLikes(count) {
+      const n = Number(count) || 0;
+      if (n >= 1000000) {
+        const m = Math.min(1.2, n / 1000000);
+        return `${m.toFixed(1)}M`;
+      }
+      if (n >= 100000) return `${Math.round(n / 1000)}K`;
+      if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
+      return String(n);
+    }
+
+    function shuffleArrayCopy(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function reshuffleGeneralShortsFeed() {
+      const ids = (siteData.reelsFeed?.items || []).map(it => it.id);
+      shortsShuffleOrder = shuffleArrayCopy(ids);
+    }
+
+    function getShuffledGeneralReels(items) {
+      if (!items.length) return [];
+      const existingIds = new Set(items.map(it => it.id));
+      const validOrder = shortsShuffleOrder.filter(id => existingIds.has(id));
+      const missing = items.filter(it => !validOrder.includes(it.id)).map(it => it.id);
+      if (!validOrder.length) {
+        shortsShuffleOrder = shuffleArrayCopy(items.map(it => it.id));
+      } else if (missing.length) {
+        shortsShuffleOrder = shuffleArrayCopy([...validOrder, ...missing]);
+      }
+      const mapById = new Map(items.map(it => [it.id, it]));
+      return shortsShuffleOrder.map(id => mapById.get(id)).filter(Boolean);
+    }
+
+    function getOrderedReelsForFolderScope(folderId) {
+      const items = siteData.reelsFeed?.items || [];
+      if (!folderId) return items;
+      const scopeIds = getDescendantReelFolderIds(folderId);
+      const folders = siteData.reelsFolders || [];
+      const folderOrder = new Map();
+      const visit = (parentId) => {
+        if (!folderOrder.has(parentId)) folderOrder.set(parentId, folderOrder.size);
+        folders.filter(f => (f.parentId || "") === parentId).forEach(ch => visit(ch.id));
+      };
+      visit(folderId);
+      const matched = items.filter(it => scopeIds.has(it.folderId || ""));
+      return matched.sort((a, b) => {
+        const oa = folderOrder.has(a.folderId || "") ? folderOrder.get(a.folderId || "") : 9999;
+        const ob = folderOrder.has(b.folderId || "") ? folderOrder.get(b.folderId || "") : 9999;
+        return oa - ob;
+      });
+    }
+
+    function watchAllShortsInFolder(folderId = "", startReelId = "") {
+      const targetId = (folderId || "").trim();
+      if (!targetId) {
+        selectedReelFolderId = "";
+        selectedReelFolderPath = "";
+        pendingStartReelId = startReelId || "";
+        openFullReelsTab({ preserveFolderFilter: false });
+        return;
+      }
+      const matched = getOrderedReelsForFolderScope(targetId);
+      if (!matched.length) {
+        showToast("Is folder mein abhi koi Short video nahi hai");
+        return;
+      }
+      selectedReelFolderId = targetId;
+      selectedReelFolderPath = getReelFolderPathString(targetId) || "";
+      pendingStartReelId = startReelId || "";
+      openFullReelsTab({ preserveFolderFilter: true });
+    }
+
+    function clearShortsFolderFilter() {
+      selectedReelFolderId = "";
+      selectedReelFolderPath = "";
+      pendingStartReelId = "";
+      reshuffleGeneralShortsFeed();
+      renderAll();
+    }
+
     function renderFullReelsFolderPage() {
       const folders = siteData.reelsFolders || [];
       const items = siteData.reelsFeed?.items || [];
       const crumb = document.getElementById("reelsPageBreadcrumb");
       const body = document.getElementById("reelsPageExplorerBody");
+      const topWatchBtn = document.getElementById("reelsPageWatchAllBtn");
 
-      const trail = [{ id: "", name: "📁 Root" }];
+      const trail = [{ id: "", name: "📱 Root" }];
       let walk = folders.find(f => f.id === reelsExplorerFolderId);
       const chain = [];
       while (walk) {
-        chain.unshift({ id: walk.id, name: `📂 ${walk.name}` });
+        chain.unshift({ id: walk.id, name: walk.name });
         walk = folders.find(f => f.id === walk.parentId);
       }
       trail.push(...chain);
@@ -2637,46 +3034,56 @@
         return `${sep}<button type="button" class="btn" style="padding:3px 8px; font-size:0.7rem;" onclick="reelsExplorerFolderId='${escapeHtml(n.id)}'; renderFullReelsFolderPage();">${escapeHtml(n.name)}</button>`;
       }).join("");
 
+      const scopeCount = reelsExplorerFolderId ? getOrderedReelsForFolderScope(reelsExplorerFolderId).length : items.length;
+      if (topWatchBtn) {
+        topWatchBtn.textContent = reelsExplorerFolderId
+          ? `▶ Watch All Shorts (${scopeCount})`
+          : `▶ Watch All Shorts`;
+      }
+
       const childFolders = folders.filter(f => (f.parentId || "") === reelsExplorerFolderId);
       const directItems = items.filter(it => (it.folderId || "") === reelsExplorerFolderId);
 
       body.innerHTML = "";
       childFolders.forEach(f => {
         const subCount = folders.filter(x => x.parentId === f.id).length;
-        const vidCount = items.filter(x => x.folderId === f.id).length;
-        const tile = document.createElement("div");
-        tile.className = "explorer-folder-tile glass-light-surface";
-        tile.onclick = () => { reelsExplorerFolderId = f.id; renderFullReelsFolderPage(); };
-        tile.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px; min-width:0;">
-            <span style="font-size:1.3rem;">📁</span>
-            <div style="min-width:0;">
-              <div style="font-size:0.88rem; font-weight:800; color:#fff;">${escapeHtml(f.name)}</div>
-              <div style="font-size:0.68rem; color:var(--neon-cyan);">${subCount} subfolder • ${vidCount} short video</div>
+        const vidCount = getOrderedReelsForFolderScope(f.id).length;
+        const row = document.createElement("div");
+        row.className = "afm-row glass-light-surface";
+        row.innerHTML = `
+          <div class="afm-row-main" onclick="reelsExplorerFolderId='${escapeHtml(f.id)}'; renderFullReelsFolderPage();">
+            ${renderCleanFolderIconHtml(f.iconUrl, 34)}
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(f.name)}</div>
+              <div class="afm-sub">${subCount} subfolder • ${vidCount} short video</div>
             </div>
           </div>
-          <span style="font-size:0.78rem; font-weight:800; color:var(--neon-pink);">Open →</span>
+          <div class="afm-actions">
+            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); watchAllShortsInFolder('${escapeHtml(f.id)}');">▶ Watch All Shorts</button>
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); reelsExplorerFolderId='${escapeHtml(f.id)}'; renderFullReelsFolderPage();">Open →</button>
+          </div>
         `;
-        body.appendChild(tile);
+        body.appendChild(row);
       });
 
       directItems.forEach((it, idx) => {
         const title = it.caption || `Short Video #${idx + 1}`;
-        const vTile = document.createElement("div");
-        vTile.className = "explorer-folder-tile glass-light-surface";
-        vTile.style.borderColor = "rgba(255, 42, 133, 0.45)";
-        vTile.onclick = () => {
-          selectedReelFolderPath = it.folderPath || getReelFolderPathString(it.folderId) || "";
-          openFullReelsTab();
-        };
-        vTile.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px; min-width:0;">
-            <span style="font-size:1.2rem;">🎬</span>
-            <div style="font-size:0.84rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(title)}</div>
+        const vRow = document.createElement("div");
+        vRow.className = "afm-row glass-light-surface";
+        vRow.style.borderColor = "rgba(255, 42, 133, 0.42)";
+        vRow.innerHTML = `
+          <div class="afm-row-main" onclick="watchAllShortsInFolder('${escapeHtml(it.folderId || "")}', '${escapeHtml(it.id || "")}');">
+            <span class="afm-icon-slot" style="font-size:1.35rem;">🎬</span>
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(title)}</div>
+              <div class="afm-sub">${escapeHtml(it.folderPath || getReelFolderPathString(it.folderId) || "Root")}</div>
+            </div>
           </div>
-          <span class="btn btn-primary" style="padding:4px 10px; font-size:0.7rem;">▶ Play</span>
+          <div class="afm-actions">
+            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); watchAllShortsInFolder('${escapeHtml(it.folderId || "")}', '${escapeHtml(it.id || "")}');">▶ Play</button>
+          </div>
         `;
-        body.appendChild(vTile);
+        body.appendChild(vRow);
       });
 
       if (childFolders.length === 0 && directItems.length === 0) {
@@ -2696,8 +3103,11 @@
       currentFolderId = "";
       selectedSubjectFolderId = "";
       movieFilterTag = "";
+      selectedReelFolderId = "";
       selectedReelFolderPath = "";
+      pendingStartReelId = "";
       currentArticlePage = 1;
+      reshuffleGeneralShortsFeed();
       showHomeUI();
       if (resetHistory) activeStack = [];
       renderAll();
@@ -2750,7 +3160,14 @@
       showToast("Section restored to default");
     }
 
-    function openFullReelsTab() {
+    function openFullReelsTab(options = {}) {
+      const preserveFilter = Boolean(options && options.preserveFolderFilter);
+      if (!preserveFilter) {
+        selectedReelFolderId = "";
+        selectedReelFolderPath = "";
+        pendingStartReelId = "";
+        reshuffleGeneralShortsFeed();
+      }
       showHomeUI();
       isFullReelsTabOpen = true;
       document.body.classList.add("shorts-fullscreen-lock");
@@ -3023,47 +3440,20 @@
     }
 
     // YouTube Shorts Scroll-Snap Engine + Adjacent Preloading + Center Tap + Double-Tap Like + 2x Hold + Progress Scrubber
-    function bindSmoothFingerDeckController(secEl, viewportEl, trackEl) {
+    function bindSmoothFingerDeckController(secEl, viewportEl, trackEl, initialSlideIdx = 0) {
       const cards = Array.from(trackEl.querySelectorAll(".reel-feed-card"));
       if (!cards.length) return;
 
-      let currentIndex = 0;
+      let currentIndex = Math.max(0, Math.min(cards.length - 1, initialSlideIdx || 0));
       let isSectionVisible = isFullReelsTabOpen;
       let globalMuted = false;
-      let globalCaptionsOn = false;
       const playStateByIdx = new Map();
 
       const buildYtSrcForState = (baseSrc, autoplay) => {
         let s = baseSrc || "";
         s = s.replace(/autoplay=[01]/, `autoplay=${autoplay ? 1 : 0}`);
         s = s.replace(/mute=[01]/, `mute=${globalMuted ? 1 : 0}`);
-        s = s.replace(/cc_load_policy=[01]/, `cc_load_policy=${globalCaptionsOn ? 1 : 0}`);
         return s;
-      };
-
-      const applyCaptionsToCard = (card, reloadYoutube = false) => {
-        if (!card) return;
-        const vid = card.querySelector("video.auto-scroll-reel-video");
-        if (vid && vid.textTracks) {
-          for (let i = 0; i < vid.textTracks.length; i++) {
-            vid.textTracks[i].mode = globalCaptionsOn ? "showing" : "disabled";
-          }
-        }
-        const iframe = card.querySelector("iframe.inpage-shorts-iframe");
-        if (iframe && iframe.dataset.src) {
-          if (iframe.getAttribute("src")) {
-            if (globalCaptionsOn) {
-              sendYtCommand(iframe, "loadModule", ["captions"]);
-              sendYtCommand(iframe, "setOption", ["captions", "track", { languageCode: "en" }]);
-            } else {
-              sendYtCommand(iframe, "unloadModule", ["captions"]);
-            }
-            if (reloadYoutube) {
-              const isCur = cards.indexOf(card) === currentIndex;
-              iframe.src = buildYtSrcForState(iframe.dataset.src, isCur && (isSectionVisible || isFullReelsTabOpen));
-            }
-          }
-        }
       };
 
       const ensureHydratedWindow = (centerIdx) => {
@@ -3091,11 +3481,6 @@
                 if (poster) poster.style.opacity = "0";
                 if (idx === currentIndex && (isSectionVisible || isFullReelsTabOpen)) {
                   sendYtCommand(ytIframe, globalMuted ? "mute" : "unMute");
-                  if (globalCaptionsOn) {
-                    sendYtCommand(ytIframe, "loadModule", ["captions"]);
-                  } else {
-                    sendYtCommand(ytIframe, "unloadModule", ["captions"]);
-                  }
                   sendYtCommand(ytIframe, "playVideo");
                   setCardPlayVisual(idx, true);
                 }
@@ -3136,16 +3521,6 @@
         });
       };
 
-      const syncCaptionButtons = () => {
-        secEl.querySelectorAll(".reel-cc-btn").forEach(btn => {
-          btn.classList.toggle("cc-active", globalCaptionsOn);
-          btn.setAttribute("aria-pressed", String(globalCaptionsOn));
-          btn.setAttribute("aria-label", globalCaptionsOn ? "Turn Captions Off" : "Turn Captions On");
-          const lbl = btn.parentElement?.querySelector(".reel-cc-label");
-          if (lbl) lbl.textContent = globalCaptionsOn ? "CC On" : "CC Off";
-        });
-      };
-
       const pauseAllMedia = () => {
         cards.forEach((card, i) => {
           const v = card.querySelector("video.auto-scroll-reel-video");
@@ -3171,7 +3546,6 @@
         if (vid) {
           vid.muted = globalMuted;
           vid.volume = 1;
-          applyCaptionsToCard(card, false);
           vid.play().then(() => {
             setCardPlayVisual(idx, true);
           }).catch(() => {
@@ -3183,11 +3557,6 @@
         }
         const iframe = card.querySelector("iframe.inpage-shorts-iframe");
         if (iframe && iframe.getAttribute("src")) {
-          if (globalCaptionsOn) {
-            sendYtCommand(iframe, "loadModule", ["captions"]);
-          } else {
-            sendYtCommand(iframe, "unloadModule", ["captions"]);
-          }
           sendYtCommand(iframe, globalMuted ? "mute" : "unMute");
           sendYtCommand(iframe, "playVideo");
           setCardPlayVisual(idx, true);
@@ -3233,7 +3602,6 @@
         const likeBtn = card.querySelector(".reel-like-btn");
         const likeLbl = card.querySelector(".reel-like-count");
         const muteBtn = card.querySelector(".reel-mute-btn");
-        const ccBtn = card.querySelector(".reel-cc-btn");
         const progWrap = card.querySelector(".reel-progress-wrap");
         const progFill = card.querySelector(".reel-progress-fill");
 
@@ -3244,8 +3612,10 @@
           if (nextLiked !== already) {
             likeBtn.classList.toggle("liked", nextLiked);
             if (likeLbl) {
-              const curNum = parseInt(likeLbl.textContent || "0", 10) || 0;
-              likeLbl.textContent = String(nextLiked ? curNum + 1 : Math.max(0, curNum - 1));
+              const curRaw = parseInt(likeLbl.dataset.likeRaw || "10000", 10) || 10000;
+              const nextRaw = nextLiked ? curRaw + 1 : Math.max(0, curRaw - 1);
+              likeLbl.dataset.likeRaw = String(nextRaw);
+              likeLbl.textContent = formatCompactLikes(nextRaw);
             }
           }
           if (nextLiked && heartEl) {
@@ -3271,16 +3641,6 @@
             if (curVid) curVid.muted = globalMuted;
             const curIfr = cards[currentIndex]?.querySelector("iframe.inpage-shorts-iframe");
             if (curIfr && curIfr.getAttribute("src")) sendYtCommand(curIfr, globalMuted ? "mute" : "unMute");
-          });
-        }
-
-        if (ccBtn) {
-          ccBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            globalCaptionsOn = !globalCaptionsOn;
-            syncCaptionButtons();
-            applyCaptionsToCard(cards[currentIndex], true);
-            showToast(globalCaptionsOn ? "Captions ON" : "Captions OFF");
           });
         }
 
@@ -3452,10 +3812,12 @@
       window.addEventListener("keydown", onKeyDown);
 
       syncMuteButtons();
-      syncCaptionButtons();
-      ensureHydratedWindow(0);
+      if (currentIndex > 0) {
+        scrollToSlide(currentIndex, false);
+      }
+      ensureHydratedWindow(currentIndex);
       setTimeout(() => {
-        if (isSectionVisible || isFullReelsTabOpen) playCardAt(0);
+        if (isSectionVisible || isFullReelsTabOpen) playCardAt(currentIndex);
       }, 90);
     }
 
@@ -4076,12 +4438,13 @@
       const items = siteData.reelsFeed?.items || [];
       const crumb = document.getElementById("eduExplorerBreadcrumb");
       const body = document.getElementById("eduExplorerBody");
+      const watchAllBtn = document.getElementById("eduModalWatchAllBtn");
 
-      const trail = [{ id: "", name: "📁 Root" }];
+      const trail = [{ id: "", name: "📱 Root" }];
       let walk = folders.find(f => f.id === eduModalFolderId);
       const chain = [];
       while (walk) {
-        chain.unshift({ id: walk.id, name: `📂 ${walk.name}` });
+        chain.unshift({ id: walk.id, name: walk.name });
         walk = folders.find(f => f.id === walk.parentId);
       }
       trail.push(...chain);
@@ -4091,31 +4454,54 @@
         return `${sep}<button type="button" class="btn" style="padding:2px 7px; font-size:0.68rem;" onclick="eduModalFolderId='${escapeHtml(n.id)}'; renderEduExplorerModal();">${escapeHtml(n.name)}</button>`;
       }).join("");
 
+      const scopeCount = eduModalFolderId ? getOrderedReelsForFolderScope(eduModalFolderId).length : items.length;
+      if (watchAllBtn) {
+        watchAllBtn.textContent = eduModalFolderId ? `▶ Watch All Shorts (${scopeCount})` : `▶ Watch All Shorts`;
+      }
+
       const childFolders = folders.filter(f => (f.parentId || "") === eduModalFolderId);
       const directItems = items.filter(it => (it.folderId || "") === eduModalFolderId);
 
       body.innerHTML = "";
       childFolders.forEach(f => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "android-folder-chip";
-        b.innerHTML = `<span>📁</span><strong style="font-size:0.82rem; color:#fff;">${escapeHtml(f.name)}</strong>`;
-        b.onclick = () => { eduModalFolderId = f.id; renderEduExplorerModal(); };
-        body.appendChild(b);
+        const subCount = folders.filter(x => x.parentId === f.id).length;
+        const vidCount = getOrderedReelsForFolderScope(f.id).length;
+        const row = document.createElement("div");
+        row.className = "afm-row";
+        row.innerHTML = `
+          <div class="afm-row-main" onclick="eduModalFolderId='${escapeHtml(f.id)}'; renderEduExplorerModal();">
+            ${renderCleanFolderIconHtml(f.iconUrl, 32)}
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(f.name)}</div>
+              <div class="afm-sub">${subCount} subfolder • ${vidCount} short video</div>
+            </div>
+          </div>
+          <div class="afm-actions">
+            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); closeEduExplorerModal(); watchAllShortsInFolder('${escapeHtml(f.id)}');">▶ Watch All Shorts</button>
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); eduModalFolderId='${escapeHtml(f.id)}'; renderEduExplorerModal();">Open →</button>
+          </div>
+        `;
+        body.appendChild(row);
       });
 
       directItems.forEach((it, idx) => {
         const title = it.caption || `Content #${idx + 1}`;
-        const cBtn = document.createElement("button");
-        cBtn.type = "button";
-        cBtn.className = "subject-filter-item";
-        cBtn.innerHTML = `<span>🎬 ${escapeHtml(title)}</span><span>Scroll →</span>`;
-        cBtn.onclick = () => {
-          closeEduExplorerModal();
-          selectedReelFolderPath = it.folderPath || getReelFolderPathString(it.folderId) || "";
-          openFullReelsTab();
-        };
-        body.appendChild(cBtn);
+        const vRow = document.createElement("div");
+        vRow.className = "afm-row";
+        vRow.style.borderColor = "rgba(255, 42, 133, 0.35)";
+        vRow.innerHTML = `
+          <div class="afm-row-main" onclick="closeEduExplorerModal(); watchAllShortsInFolder('${escapeHtml(it.folderId || "")}', '${escapeHtml(it.id || "")}');">
+            <span class="afm-icon-slot" style="font-size:1.25rem;">🎬</span>
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(title)}</div>
+              <div class="afm-sub">${escapeHtml(it.folderPath || getReelFolderPathString(it.folderId) || "Root")}</div>
+            </div>
+          </div>
+          <div class="afm-actions">
+            <button type="button" class="afm-watch-btn" onclick="event.stopPropagation(); closeEduExplorerModal(); watchAllShortsInFolder('${escapeHtml(it.folderId || "")}', '${escapeHtml(it.id || "")}');">▶ Play</button>
+          </div>
+        `;
+        body.appendChild(vRow);
       });
 
       if (childFolders.length === 0 && directItems.length === 0) {
@@ -4530,12 +4916,26 @@
           }
         } else if (secId === "reelsFeedSection") {
           const rf = siteData.reelsFeed || DEFAULT_DATA.reelsFeed;
-          const rawReels = [...(rf.items || [])].reverse();
-          if (rf.enabled !== false && rawReels.length > 0) {
-            const filteredReels = rawReels.filter(r => {
-              const pStr = (r.folderPath || getReelFolderPathString(r.folderId) || "").trim();
-              if (selectedReelFolderPath && pStr !== selectedReelFolderPath && !pStr.startsWith(selectedReelFolderPath + " >")) return false;
+          const allDbReels = [...(rf.items || [])];
+          if (rf.enabled !== false && allDbReels.length > 0) {
+            const isFolderFiltered = Boolean(selectedReelFolderId || selectedReelFolderPath);
+            let orderedOrShuffled = [];
+            if (selectedReelFolderId) {
+              // Watching a specific folder/subfolder -> play topic-wise in ordered sequence (NO shuffle)
+              orderedOrShuffled = getOrderedReelsForFolderScope(selectedReelFolderId);
+            } else if (selectedReelFolderPath) {
+              orderedOrShuffled = allDbReels.filter(r => {
+                const pStr = (r.folderPath || getReelFolderPathString(r.folderId) || "").trim();
+                return pStr === selectedReelFolderPath || pStr.startsWith(selectedReelFolderPath + " >");
+              });
+            } else {
+              // General Shorts Feed -> random shuffle across entire database
+              orderedOrShuffled = getShuffledGeneralReels(allDbReels);
+            }
+
+            const filteredReels = orderedOrShuffled.filter(r => {
               if (!searchQuery) return true;
+              const pStr = (r.folderPath || getReelFolderPathString(r.folderId) || "").trim();
               return `${pStr} ${r.caption || ""}`.toLowerCase().includes(searchQuery);
             });
 
@@ -4574,11 +4974,23 @@
             const headerActions = document.createElement("div");
             headerActions.className = "reels-header-actions";
 
+            if (isFolderFiltered) {
+              const activeLabel = selectedReelFolderPath || getReelFolderPathString(selectedReelFolderId) || "Topic Playlist";
+              const clearPill = document.createElement("button");
+              clearPill.type = "button";
+              clearPill.className = "active-filter-chip";
+              clearPill.style.cssText = "font-size:0.65rem; padding:4px 9px; max-width:165px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;";
+              clearPill.textContent = `📁 ${activeLabel.split(">").pop().trim()} ✕`;
+              clearPill.title = "Exit folder playlist & shuffle all Shorts";
+              clearPill.onclick = (e) => { e.stopPropagation(); clearShortsFolderFilter(); };
+              headerActions.appendChild(clearPill);
+            }
+
             const fullScreenBtn = document.createElement("button");
             fullScreenBtn.type = "button";
             fullScreenBtn.className = "reels-fullscreen-toggle-btn";
             fullScreenBtn.textContent = "⛶ Full Screen";
-            fullScreenBtn.onclick = () => openFullReelsTab();
+            fullScreenBtn.onclick = () => openFullReelsTab({ preserveFolderFilter: isFolderFiltered });
             headerActions.appendChild(fullScreenBtn);
 
             const homeTabBtn = document.createElement("button");
@@ -4599,6 +5011,13 @@
             const track = document.createElement("div");
             track.className = "reels-deck-track";
 
+            let startSlideIdx = 0;
+            if (pendingStartReelId) {
+              const foundIdx = filteredReels.findIndex(r => r.id === pendingStartReelId);
+              if (foundIdx >= 0) startSlideIdx = foundIdx;
+              pendingStartReelId = "";
+            }
+
             filteredReels.forEach((item, idx) => {
               const pathLabel = item.folderPath || getReelFolderPathString(item.folderId) || "Root";
               const card = document.createElement("div");
@@ -4607,22 +5026,18 @@
               card.insertAdjacentHTML("beforeend", `<div class="reel-top-scrim"></div>`);
               card.insertAdjacentHTML("beforeend", renderReelMediaSlot(item.url, item.caption, idx));
 
-              // Right-side YouTube Shorts Floating Action Rail
-              const baseLikes = 140 + ((idx * 37) % 480);
+              // Right-side YouTube Shorts Floating Action Rail (Unique 10K - 1.2M likes, CC button removed)
+              const baseLikes = getDeterministicShortLikes(item);
               const rail = document.createElement("div");
               rail.className = "reel-side-rail";
               rail.innerHTML = `
                 <div class="reel-rail-item">
                   <button type="button" class="reel-rail-btn reel-like-btn" aria-label="Like Short">♥</button>
-                  <span class="reel-rail-label reel-like-count">${baseLikes}</span>
+                  <span class="reel-rail-label reel-like-count" data-like-raw="${baseLikes}">${formatCompactLikes(baseLikes)}</span>
                 </div>
                 <div class="reel-rail-item">
                   <button type="button" class="reel-rail-btn reel-mute-btn" aria-label="Mute or Unmute">🔊</button>
                   <span class="reel-rail-label">Sound</span>
-                </div>
-                <div class="reel-rail-item">
-                  <button type="button" class="reel-rail-btn reel-cc-btn" aria-label="Toggle Captions">CC</button>
-                  <span class="reel-rail-label reel-cc-label">CC Off</span>
                 </div>
                 <div class="reel-rail-item">
                   <button type="button" class="reel-rail-btn reel-folder-btn" aria-label="Open Topic Folder">📁</button>
@@ -4677,7 +5092,7 @@
             viewport.appendChild(track);
             sec.appendChild(viewport);
             stack.appendChild(sec);
-            bindSmoothFingerDeckController(sec, viewport, track);
+            bindSmoothFingerDeckController(sec, viewport, track, startSlideIdx);
           }
         } else if (secId === "articlesSection" && !isFullReelsTabOpen) {
           const showNotice = isSectionVisible("noticeBoardPanel");
@@ -4871,11 +5286,11 @@
       const allArticles = siteData.articles || [];
 
       const crumbEl = document.getElementById("folderBreadcrumbBar");
-      const trail = [{ id: "", name: "📁 Root" }];
+      const trail = [{ id: "", name: "📱 Root" }];
       let walk = allFolders.find(f => f.id === currentFolderId);
       const chain = [];
       while (walk) {
-        chain.unshift({ id: walk.id, name: `📂 ${walk.name}` });
+        chain.unshift({ id: walk.id, name: walk.name });
         walk = allFolders.find(f => f.id === walk.parentId);
       }
       trail.push(...chain);
@@ -4886,26 +5301,57 @@
       }).join("");
 
       const subFolders = allFolders.filter(f => (f.parentId || "") === currentFolderId && (!searchQuery || f.name.toLowerCase().includes(searchQuery)));
+      const directArticles = currentFolderId
+        ? allArticles.filter(a => (a.folderId || "") === currentFolderId && (!searchQuery || `${a.title} ${a.excerpt || ""}`.toLowerCase().includes(searchQuery)))
+        : [];
       const foldersGrid = document.getElementById("foldersExplorerGrid");
       foldersGrid.innerHTML = "";
+
       subFolders.forEach((fld, fIdx) => {
         const scopeSet = getDescendantFolderIds(fld.id);
         const artCount = allArticles.filter(a => scopeSet.has(a.folderId || "")).length;
         const subCount = allFolders.filter(f => f.parentId === fld.id).length;
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "android-folder-chip glass-light-surface";
-        btn.dataset.veId = `bottomFolder-${fIdx}`;
-        btn.onclick = () => openFolderView(fld.id);
-        btn.innerHTML = `
-          <span style="font-size:1.1rem;">📁</span>
-          <span style="min-width:0; flex:1;">
-            <span class="ve-fit-text" style="display:block; font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(fld.name)}</span>
-            <span style="display:block; font-size:0.64rem; color:var(--neon-cyan);">${subCount} subfolder • ${artCount} article</span>
-          </span>
+        const row = document.createElement("div");
+        row.className = "afm-row glass-light-surface";
+        row.dataset.veId = `bottomFolder-${fIdx}`;
+        row.innerHTML = `
+          <div class="afm-row-main" onclick="openFolderView('${escapeHtml(fld.id)}')">
+            ${renderCleanFolderIconHtml(fld.iconUrl, 34)}
+            <div class="afm-meta">
+              <div class="afm-title ve-fit-text">${escapeHtml(fld.name)}</div>
+              <div class="afm-sub">${subCount} subfolder • ${artCount} article</div>
+            </div>
+          </div>
+          <div class="afm-actions">
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); openFolderView('${escapeHtml(fld.id)}');">Open →</button>
+          </div>
         `;
-        foldersGrid.appendChild(btn);
+        foldersGrid.appendChild(row);
       });
+
+      directArticles.forEach((art) => {
+        const realIdx = allArticles.indexOf(art);
+        const aRow = document.createElement("div");
+        aRow.className = "afm-row glass-light-surface";
+        aRow.style.borderColor = "rgba(34, 211, 238, 0.25)";
+        aRow.innerHTML = `
+          <div class="afm-row-main" onclick="openArticleReader(${realIdx})">
+            <span class="afm-icon-slot" style="font-size:1.3rem;">${art.postType === "review" ? "🎬" : "📄"}</span>
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(art.title)}</div>
+              <div class="afm-sub">${escapeHtml(art.category || "Article")}</div>
+            </div>
+          </div>
+          <div class="afm-actions">
+            <button type="button" class="afm-open-btn" onclick="event.stopPropagation(); openArticleReader(${realIdx});">Read →</button>
+          </div>
+        `;
+        foldersGrid.appendChild(aRow);
+      });
+
+      if (subFolders.length === 0 && directArticles.length === 0) {
+        foldersGrid.innerHTML = `<div style="font-size:0.78rem; color:var(--text-secondary); padding:10px;">Is folder mein abhi koi subfolder ya article nahi hai.</div>`;
+      }
     }
 
     function openFolderView(folderId) {
@@ -5405,6 +5851,263 @@
       refreshLiveMobileFrame();
     }
 
+    function syncAllReelFolderPaths() {
+      (siteData.reelsFeed?.items || []).forEach(it => {
+        it.folderPath = getReelFolderPathString(it.folderId || "");
+      });
+    }
+
+    function updateReelsManagerBatchBar() {
+      const total = selectedAdminReelFolders.size + selectedAdminReelItems.size;
+      const bar = document.getElementById("reelManagerBatchBar");
+      const lbl = document.getElementById("reelManagerSelCount");
+      if (bar) bar.classList.toggle("visible", total > 0);
+      if (lbl) lbl.textContent = `${total} selected (${selectedAdminReelFolders.size} folder, ${selectedAdminReelItems.size} video)`;
+    }
+
+    function toggleReelFolderSelect(id, checked) {
+      if (checked) selectedAdminReelFolders.add(id);
+      else selectedAdminReelFolders.delete(id);
+      renderReelFolderManagerUI();
+    }
+
+    function toggleReelItemSelect(id, checked) {
+      if (checked) selectedAdminReelItems.add(id);
+      else selectedAdminReelItems.delete(id);
+      renderReelFolderManagerUI();
+    }
+
+    function clearReelsManagerSelection() {
+      selectedAdminReelFolders.clear();
+      selectedAdminReelItems.clear();
+      renderReelFolderManagerUI();
+    }
+
+    function toggleSelectAllReelsManager() {
+      const childFolders = (siteData.reelsFolders || []).filter(f => (f.parentId || "") === activeReelFolderId);
+      const folderReels = (siteData.reelsFeed?.items || []).filter(it => (it.folderId || "") === activeReelFolderId);
+      const allSelected = childFolders.every(f => selectedAdminReelFolders.has(f.id)) && folderReels.every(it => selectedAdminReelItems.has(it.id)) && (childFolders.length + folderReels.length > 0);
+      if (allSelected) {
+        childFolders.forEach(f => selectedAdminReelFolders.delete(f.id));
+        folderReels.forEach(it => selectedAdminReelItems.delete(it.id));
+      } else {
+        childFolders.forEach(f => selectedAdminReelFolders.add(f.id));
+        folderReels.forEach(it => selectedAdminReelItems.add(it.id));
+      }
+      renderReelFolderManagerUI();
+    }
+
+    function batchDeleteSelectedReels() {
+      const fCount = selectedAdminReelFolders.size;
+      const iCount = selectedAdminReelItems.size;
+      if (fCount + iCount === 0) return;
+      if (!confirm(`Delete ${fCount} folder(s) and ${iCount} short video(s)?`)) return;
+      const allRemovedFolderIds = new Set();
+      selectedAdminReelFolders.forEach(fid => {
+        getDescendantReelFolderIds(fid).forEach(d => allRemovedFolderIds.add(d));
+      });
+      if (allRemovedFolderIds.size > 0) {
+        siteData.reelsFolders = (siteData.reelsFolders || []).filter(f => !allRemovedFolderIds.has(f.id));
+        (siteData.reelsFeed?.items || []).forEach(it => {
+          if (allRemovedFolderIds.has(it.folderId || "")) {
+            it.folderId = "";
+            it.folderPath = "Root";
+          }
+        });
+        if (allRemovedFolderIds.has(activeReelFolderId)) activeReelFolderId = "";
+      }
+      if (selectedAdminReelItems.size > 0) {
+        siteData.reelsFeed.items = (siteData.reelsFeed?.items || []).filter(it => !selectedAdminReelItems.has(it.id));
+      }
+      selectedAdminReelFolders.clear();
+      selectedAdminReelItems.clear();
+      syncAllReelFolderPaths();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderReelFolderManagerUI();
+      renderAll();
+      showToast("Selected items deleted");
+    }
+
+    function openAfmFolderIconModal(kind, folderId) {
+      const list = kind === "reels" ? (siteData.reelsFolders || []) : (siteData.folders || []);
+      const folder = list.find(f => f.id === folderId);
+      if (!folder) return;
+      afmIconEditContext = { kind, folderId };
+      document.getElementById("afmIconModalTitle").textContent = `🖼️ Folder Icon: ${folder.name}`;
+      document.getElementById("afmFolderIconUrlInp").value = folder.iconUrl || "";
+      previewAfmFolderIcon();
+      document.getElementById("afmFolderIconModal").classList.add("open");
+    }
+
+    function closeAfmFolderIconModal() {
+      document.getElementById("afmFolderIconModal").classList.remove("open");
+      afmIconEditContext = null;
+    }
+
+    function previewAfmFolderIcon() {
+      const url = (document.getElementById("afmFolderIconUrlInp").value || "").trim();
+      const host = document.getElementById("afmFolderIconPreview");
+      if (host) host.innerHTML = renderCleanFolderIconHtml(url, 38);
+    }
+
+    function clearAfmFolderIcon() {
+      document.getElementById("afmFolderIconUrlInp").value = "";
+      previewAfmFolderIcon();
+    }
+
+    function saveAfmFolderIcon() {
+      if (!afmIconEditContext) return;
+      const { kind, folderId } = afmIconEditContext;
+      const list = kind === "reels" ? (siteData.reelsFolders || []) : (siteData.folders || []);
+      const folder = list.find(f => f.id === folderId);
+      if (folder) {
+        folder.iconUrl = (document.getElementById("afmFolderIconUrlInp").value || "").trim();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+        if (kind === "reels") renderReelFolderManagerUI();
+        else { renderAdminFileManager(); renderBottomFolders(); }
+        renderAll();
+        showToast(folder.iconUrl ? "Folder icon updated" : "Folder icon removed");
+      }
+      closeAfmFolderIconModal();
+    }
+
+    function openAfmEditReelModal(idx) {
+      const it = (siteData.reelsFeed?.items || [])[idx];
+      if (!it) return;
+      afmEditReelIndex = idx;
+      document.getElementById("afmEditReelCaptionInp").value = it.caption || "";
+      document.getElementById("afmEditReelUrlInp").value = it.url || "";
+      const sel = document.getElementById("afmEditReelFolderSel");
+      const folders = siteData.reelsFolders || [];
+      sel.innerHTML = `<option value="">📁 Root</option>` + folders.map(f =>
+        `<option value="${escapeHtml(f.id)}">${escapeHtml(getReelFolderPathString(f.id))}</option>`
+      ).join("");
+      sel.value = it.folderId || "";
+      document.getElementById("afmEditReelModal").classList.add("open");
+    }
+
+    function closeAfmEditReelModal() {
+      document.getElementById("afmEditReelModal").classList.remove("open");
+      afmEditReelIndex = -1;
+    }
+
+    function saveAfmEditReel() {
+      const it = (siteData.reelsFeed?.items || [])[afmEditReelIndex];
+      if (!it) return;
+      const nextUrl = (document.getElementById("afmEditReelUrlInp").value || "").trim();
+      if (!nextUrl) { showToast("Video/Shorts link khaali nahi ho sakta"); return; }
+      it.caption = (document.getElementById("afmEditReelCaptionInp").value || "").trim();
+      it.url = nextUrl;
+      it.folderId = document.getElementById("afmEditReelFolderSel").value || "";
+      it.folderPath = getReelFolderPathString(it.folderId);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      closeAfmEditReelModal();
+      renderReelFolderManagerUI();
+      renderAll();
+      showToast("Short link & details updated");
+    }
+
+    function openAfmMoveModal(kind, singleTarget = null) {
+      let folderIds = [];
+      let itemIds = [];
+      if (singleTarget) {
+        if (singleTarget.type === "folder") folderIds = [singleTarget.id];
+        else itemIds = [singleTarget.id];
+      } else if (kind === "reels") {
+        folderIds = Array.from(selectedAdminReelFolders);
+        itemIds = Array.from(selectedAdminReelItems);
+      } else {
+        folderIds = Array.from(selectedAdminArticleFolders);
+        itemIds = Array.from(selectedAdminArticles);
+      }
+      if (folderIds.length + itemIds.length === 0) {
+        showToast("Select at least one folder or file first");
+        return;
+      }
+
+      const forbiddenFolderIds = new Set();
+      folderIds.forEach(fid => {
+        const desc = kind === "reels" ? getDescendantReelFolderIds(fid) : getDescendantFolderIds(fid);
+        desc.forEach(d => forbiddenFolderIds.add(d));
+      });
+
+      afmMoveContext = { kind, folderIds, itemIds, targetFolderId: "", forbiddenFolderIds };
+      document.getElementById("afmMoveModalTitle").textContent = kind === "reels" ? "📦 Move Shorts Folders / Videos" : "📦 Move Article Folders / Posts";
+      document.getElementById("afmMoveSummary").textContent = `Moving ${folderIds.length} folder(s) & ${itemIds.length} file(s). Choose destination folder:`;
+      renderAfmMoveDestinationTree();
+      document.getElementById("afmMoveModal").classList.add("open");
+    }
+
+    function renderAfmMoveDestinationTree() {
+      if (!afmMoveContext) return;
+      const { kind, targetFolderId, forbiddenFolderIds } = afmMoveContext;
+      const allFolders = kind === "reels" ? (siteData.reelsFolders || []) : (siteData.folders || []);
+      const host = document.getElementById("afmMoveDestList");
+      host.innerHTML = "";
+
+      const addDestBtn = (id, label, depth, iconUrl) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `afm-dest-item ${targetFolderId === id ? "active" : ""}`;
+        btn.style.paddingLeft = `${10 + depth * 18}px`;
+        btn.innerHTML = `${renderCleanFolderIconHtml(iconUrl, 22)}<span>${escapeHtml(label)}</span>`;
+        btn.onclick = () => {
+          afmMoveContext.targetFolderId = id;
+          renderAfmMoveDestinationTree();
+        };
+        host.appendChild(btn);
+      };
+
+      addDestBtn("", "Root (Top Level)", 0, "");
+      const walkTree = (parentId, depth) => {
+        allFolders.filter(f => (f.parentId || "") === parentId).forEach(f => {
+          if (forbiddenFolderIds.has(f.id)) return;
+          addDestBtn(f.id, f.name, depth, f.iconUrl);
+          walkTree(f.id, depth + 1);
+        });
+      };
+      walkTree("", 1);
+    }
+
+    function closeAfmMoveModal() {
+      document.getElementById("afmMoveModal").classList.remove("open");
+      afmMoveContext = null;
+    }
+
+    function confirmAfmMove() {
+      if (!afmMoveContext) return;
+      const { kind, folderIds, itemIds, targetFolderId } = afmMoveContext;
+      if (kind === "reels") {
+        (siteData.reelsFolders || []).forEach(f => {
+          if (folderIds.includes(f.id)) f.parentId = targetFolderId;
+        });
+        (siteData.reelsFeed?.items || []).forEach(it => {
+          if (itemIds.includes(it.id)) it.folderId = targetFolderId;
+        });
+        syncAllReelFolderPaths();
+        selectedAdminReelFolders.clear();
+        selectedAdminReelItems.clear();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+        renderReelFolderManagerUI();
+      } else {
+        (siteData.folders || []).forEach(f => {
+          if (folderIds.includes(f.id)) f.parentId = targetFolderId;
+        });
+        (siteData.articles || []).forEach(a => {
+          if (itemIds.includes(a.id)) a.folderId = targetFolderId;
+        });
+        selectedAdminArticleFolders.clear();
+        selectedAdminArticles.clear();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+        renderAdminFileManager();
+        renderBottomFolders();
+        renderDrawerMenu();
+      }
+      renderAll();
+      closeAfmMoveModal();
+      showToast("Moved successfully!");
+    }
+
     function renderReelFolderManagerUI() {
       const folders = siteData.reelsFolders || [];
       const items = siteData.reelsFeed?.items || [];
@@ -5412,11 +6115,11 @@
       const foldersHost = document.getElementById("reelManagerFoldersList");
       const filesHost = document.getElementById("reelsFeedEditorList");
 
-      const trail = [{ id: "", name: "📁 Root" }];
+      const trail = [{ id: "", name: "📱 Root" }];
       let walk = folders.find(f => f.id === activeReelFolderId);
       const chain = [];
       while (walk) {
-        chain.unshift({ id: walk.id, name: `📂 ${walk.name}` });
+        chain.unshift({ id: walk.id, name: walk.name });
         walk = folders.find(f => f.id === walk.parentId);
       }
       trail.push(...chain);
@@ -5429,19 +6132,27 @@
       const childFolders = folders.filter(f => (f.parentId || "") === activeReelFolderId);
       foldersHost.innerHTML = "";
       childFolders.forEach(f => {
+        const isSel = selectedAdminReelFolders.has(f.id);
+        const subCount = folders.filter(x => x.parentId === f.id).length;
+        const vidCount = getOrderedReelsForFolderScope(f.id).length;
         const row = document.createElement("div");
-        row.className = "android-tile-card";
-        row.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:6px; background:#090d16; flex-wrap:wrap;";
+        row.className = `afm-row ${isSel ? "selected" : ""}`;
         row.innerHTML = `
-          <div style="cursor:pointer; flex:1; min-width:140px;" onclick="activeReelFolderId='${escapeHtml(f.id)}'; renderReelFolderManagerUI();">
-            <div style="font-size:0.84rem; font-weight:800;">📁 ${escapeHtml(f.name)}</div>
-            <div style="font-size:0.65rem; color:var(--neon-cyan);">Tap to open folder</div>
+          <input type="checkbox" class="afm-chk" ${isSel ? "checked" : ""} onchange="toggleReelFolderSelect('${escapeHtml(f.id)}', this.checked)" aria-label="Select folder ${escapeHtml(f.name)}" />
+          <div class="afm-row-main" onclick="activeReelFolderId='${escapeHtml(f.id)}'; renderReelFolderManagerUI();">
+            ${renderCleanFolderIconHtml(f.iconUrl, 34)}
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(f.name)}</div>
+              <div class="afm-sub">${subCount} subfolder • ${vidCount} short video • Tap to open</div>
+            </div>
           </div>
-          <div style="display:flex; gap:4px; align-items:center;">
-            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFolderById('${escapeHtml(f.id)}', -1)">↑</button>
-            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFolderById('${escapeHtml(f.id)}', 1)">↓</button>
-            <button type="button" class="btn" style="padding:4px 8px; font-size:0.7rem;" onclick="renameReelFolderById('${escapeHtml(f.id)}')">Rename</button>
-            <button type="button" class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteReelFolderById('${escapeHtml(f.id)}')">✕</button>
+          <div class="afm-actions">
+            <button type="button" class="btn btn-cyan" style="padding:4px 7px; font-size:0.68rem;" onclick="openAfmFolderIconModal('reels', '${escapeHtml(f.id)}')" title="Set Drive Image Icon">🖼️ Icon</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="openAfmMoveModal('reels', {type:'folder', id:'${escapeHtml(f.id)}'})">📦 Move</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveReelFolderById('${escapeHtml(f.id)}', -1)">↑</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveReelFolderById('${escapeHtml(f.id)}', 1)">↓</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="renameReelFolderById('${escapeHtml(f.id)}')">Rename</button>
+            <button type="button" class="btn btn-danger" style="padding:4px 7px; font-size:0.68rem;" onclick="deleteReelFolderById('${escapeHtml(f.id)}')">✕</button>
           </div>
         `;
         foldersHost.appendChild(row);
@@ -5451,23 +6162,33 @@
       filesHost.innerHTML = "";
       folderReels.forEach((it) => {
         const realIdx = items.indexOf(it);
+        const isSel = selectedAdminReelItems.has(it.id);
         const card = document.createElement("div");
-        card.className = "android-tile-card";
-        card.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:6px; background:#090d16; flex-wrap:wrap;";
+        card.className = `afm-row ${isSel ? "selected" : ""}`;
         card.innerHTML = `
-          <div style="min-width:150px; flex:1;">
-            <div style="font-size:0.8rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🎬 ${escapeHtml(it.caption || "Untitled Reel")}</div>
-            <div style="font-size:0.66rem; color:var(--neon-cyan); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(it.url)}</div>
+          <input type="checkbox" class="afm-chk" ${isSel ? "checked" : ""} onchange="toggleReelItemSelect('${escapeHtml(it.id)}', this.checked)" aria-label="Select video ${escapeHtml(it.caption || "Untitled")}" />
+          <div class="afm-row-main" onclick="openAfmEditReelModal(${realIdx})">
+            <span class="afm-icon-slot" style="font-size:1.3rem;">🎬</span>
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(it.caption || "Untitled Short")}</div>
+              <div class="afm-sub">${escapeHtml(it.url)}</div>
+            </div>
           </div>
-          <div style="display:flex; gap:4px; align-items:center;">
-            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFeedItem(${realIdx}, -1)">↑</button>
-            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveReelFeedItem(${realIdx}, 1)">↓</button>
-            <button type="button" class="btn btn-cyan" style="padding:4px 8px; font-size:0.7rem;" onclick="renameReelFeedItem(${realIdx})">✏️ Rename</button>
-            <button type="button" class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteReelFeedItem(${realIdx})">✕</button>
+          <div class="afm-actions">
+            <button type="button" class="btn btn-cyan" style="padding:4px 8px; font-size:0.68rem;" onclick="openAfmEditReelModal(${realIdx})">✏️ Edit</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="openAfmMoveModal('reels', {type:'item', id:'${escapeHtml(it.id)}'})">📦 Move</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveReelFeedItem(${realIdx}, -1)">↑</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveReelFeedItem(${realIdx}, 1)">↓</button>
+            <button type="button" class="btn btn-danger" style="padding:4px 7px; font-size:0.68rem;" onclick="deleteReelFeedItem(${realIdx})">✕</button>
           </div>
         `;
         filesHost.appendChild(card);
       });
+
+      if (childFolders.length === 0 && folderReels.length === 0) {
+        filesHost.innerHTML = `<div style="font-size:0.78rem; color:var(--text-secondary); padding:10px;">Empty folder. Add a Short link above or tap "+ New Folder".</div>`;
+      }
+      updateReelsManagerBatchBar();
     }
 
     function moveReelFolderById(id, delta) {
@@ -5485,16 +6206,7 @@
     }
 
     function renameReelFeedItem(idx) {
-      const items = siteData.reelsFeed?.items || [];
-      const it = items[idx];
-      if (!it) return;
-      const nextTitle = prompt("Enter new Reel Title / Caption:", it.caption || "");
-      if (nextTitle === null) return;
-      it.caption = nextTitle.trim();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
-      renderReelFolderManagerUI();
-      renderAll();
-      showToast("Reel title renamed");
+      openAfmEditReelModal(idx);
     }
 
     function moveReelFeedItem(idx, delta) {
@@ -5517,7 +6229,7 @@
       if (!name || !name.trim()) return;
       const id = `rf-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       siteData.reelsFolders = siteData.reelsFolders || [];
-      siteData.reelsFolders.push({ id, name: name.trim(), parentId: activeReelFolderId || "" });
+      siteData.reelsFolders.push({ id, name: name.trim(), parentId: activeReelFolderId || "", iconUrl: "" });
       activeReelFolderId = id;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderReelFolderManagerUI();
@@ -5530,22 +6242,27 @@
       const next = prompt("New folder name:", f.name);
       if (!next || !next.trim()) return;
       f.name = next.trim();
+      syncAllReelFolderPaths();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderReelFolderManagerUI();
+      renderAll();
       showToast("Reels folder renamed");
     }
 
     function deleteReelFolderById(id) {
-      siteData.reelsFolders = (siteData.reelsFolders || []).filter(f => f.id !== id && f.parentId !== id);
+      const removed = getDescendantReelFolderIds(id);
+      siteData.reelsFolders = (siteData.reelsFolders || []).filter(f => !removed.has(f.id));
       (siteData.reelsFeed?.items || []).forEach(it => {
-        if (it.folderId === id) {
+        if (removed.has(it.folderId || "")) {
           it.folderId = "";
           it.folderPath = "Root";
         }
       });
-      if (activeReelFolderId === id) activeReelFolderId = "";
+      if (removed.has(activeReelFolderId)) activeReelFolderId = "";
+      selectedAdminReelFolders.delete(id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderReelFolderManagerUI();
+      renderAll();
       showToast("Reels folder deleted");
     }
 
@@ -5555,7 +6272,7 @@
       const caption = (document.getElementById("reelCaptionInp").value || "").trim();
       if (!url) { showToast("Shorts / Video / Image link daalein"); return; }
 
-      siteData.reelsFeed = siteData.reelsFeed || { enabled: true, sectionTitle: "🎬 Shorts & Reels Scroll Feed", items: [] };
+      siteData.reelsFeed = siteData.reelsFeed || { enabled: true, sectionTitle: "Edu Shorts", items: [] };
       siteData.reelsFeed.items = siteData.reelsFeed.items || [];
       siteData.reelsFeed.items.push({
         id: `reel-${Date.now()}`,
@@ -5574,7 +6291,8 @@
     }
 
     function deleteReelFeedItem(idx) {
-      (siteData.reelsFeed?.items || []).splice(idx, 1);
+      const removed = (siteData.reelsFeed?.items || []).splice(idx, 1)[0];
+      if (removed) selectedAdminReelItems.delete(removed.id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderReelFolderManagerUI();
       renderAll();
@@ -5959,17 +6677,102 @@
       resetPostComposerToNew();
     }
 
+    function updateArticlesManagerBatchBar() {
+      const total = selectedAdminArticleFolders.size + selectedAdminArticles.size;
+      const bar = document.getElementById("articleManagerBatchBar");
+      const lbl = document.getElementById("articleManagerSelCount");
+      if (bar) bar.classList.toggle("visible", total > 0);
+      if (lbl) lbl.textContent = `${total} selected (${selectedAdminArticleFolders.size} folder, ${selectedAdminArticles.size} article)`;
+    }
+
+    function toggleArticleFolderSelect(id, checked) {
+      if (checked) selectedAdminArticleFolders.add(id);
+      else selectedAdminArticleFolders.delete(id);
+      renderAdminFileManager();
+    }
+
+    function toggleArticleItemSelect(id, checked) {
+      if (checked) selectedAdminArticles.add(id);
+      else selectedAdminArticles.delete(id);
+      renderAdminFileManager();
+    }
+
+    function clearArticlesManagerSelection() {
+      selectedAdminArticleFolders.clear();
+      selectedAdminArticles.clear();
+      renderAdminFileManager();
+    }
+
+    function toggleSelectAllArticlesManager() {
+      const childFolders = (siteData.folders || []).filter(f => (f.parentId || "") === managerFolderId);
+      const folderArticles = (siteData.articles || []).filter(a => (a.folderId || "") === managerFolderId);
+      const allSelected = childFolders.every(f => selectedAdminArticleFolders.has(f.id)) && folderArticles.every(a => selectedAdminArticles.has(a.id)) && (childFolders.length + folderArticles.length > 0);
+      if (allSelected) {
+        childFolders.forEach(f => selectedAdminArticleFolders.delete(f.id));
+        folderArticles.forEach(a => selectedAdminArticles.delete(a.id));
+      } else {
+        childFolders.forEach(f => selectedAdminArticleFolders.add(f.id));
+        folderArticles.forEach(a => selectedAdminArticles.add(a.id));
+      }
+      renderAdminFileManager();
+    }
+
+    function batchDeleteSelectedArticles() {
+      const fCount = selectedAdminArticleFolders.size;
+      const aCount = selectedAdminArticles.size;
+      if (fCount + aCount === 0) return;
+      if (!confirm(`Delete ${fCount} folder(s) and ${aCount} article(s)?`)) return;
+      const removedFolders = new Set();
+      selectedAdminArticleFolders.forEach(fid => {
+        getDescendantFolderIds(fid).forEach(d => removedFolders.add(d));
+      });
+      if (removedFolders.size > 0) {
+        siteData.folders = (siteData.folders || []).filter(f => !removedFolders.has(f.id));
+        (siteData.articles || []).forEach(a => {
+          if (removedFolders.has(a.folderId || "")) a.folderId = "";
+        });
+        if (removedFolders.has(managerFolderId)) managerFolderId = "";
+        if (removedFolders.has(selectedSubjectFolderId)) selectedSubjectFolderId = "";
+      }
+      if (selectedAdminArticles.size > 0) {
+        siteData.articles = (siteData.articles || []).filter(a => !selectedAdminArticles.has(a.id));
+      }
+      selectedAdminArticleFolders.clear();
+      selectedAdminArticles.clear();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderAdminFileManager();
+      renderBottomFolders();
+      renderDrawerMenu();
+      renderAll();
+      showToast("Selected items deleted");
+    }
+
+    function moveArticleFolderById(id, delta) {
+      const list = siteData.folders || [];
+      const siblings = [];
+      list.forEach((f, idx) => { if ((f.parentId || "") === managerFolderId) siblings.push(idx); });
+      const pos = siblings.findIndex(idx => list[idx].id === id);
+      const nextPos = pos + delta;
+      if (pos < 0 || nextPos < 0 || nextPos >= siblings.length) return;
+      const [moved] = list.splice(siblings[pos], 1);
+      list.splice(siblings[nextPos], 0, moved);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+      renderAdminFileManager();
+      renderBottomFolders();
+      showToast("Folder order updated");
+    }
+
     function renderAdminFileManager() {
       const folders = siteData.folders || [];
       const articles = siteData.articles || [];
       const pathEl = document.getElementById("adminFileManagerPath");
       const listEl = document.getElementById("adminFileManagerItems");
 
-      const trail = [{ id: "", name: "📁 Root" }];
+      const trail = [{ id: "", name: "📱 Root" }];
       let walk = folders.find(f => f.id === managerFolderId);
       const chain = [];
       while (walk) {
-        chain.unshift({ id: walk.id, name: `📂 ${walk.name}` });
+        chain.unshift({ id: walk.id, name: walk.name });
         walk = folders.find(f => f.id === walk.parentId);
       }
       trail.push(...chain);
@@ -5985,48 +6788,67 @@
       listEl.innerHTML = "";
       if (childFolders.length === 0 && folderArticles.length === 0) {
         listEl.innerHTML = `<div style="font-size:0.78rem; color:var(--text-secondary); padding:10px;">Empty folder. Tap "+ New Folder" to create a folder or subfolder.</div>`;
+        updateArticlesManagerBatchBar();
         return;
       }
 
       childFolders.forEach(f => {
+        const isSel = selectedAdminArticleFolders.has(f.id);
+        const subCount = folders.filter(x => x.parentId === f.id).length;
+        const scopeSet = getDescendantFolderIds(f.id);
+        const artCount = articles.filter(a => scopeSet.has(a.folderId || "")).length;
         const row = document.createElement("div");
-        row.className = "android-tile-card";
-        row.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:8px;";
+        row.className = `afm-row ${isSel ? "selected" : ""}`;
         row.innerHTML = `
-          <div style="cursor:pointer; flex:1; min-width:0;" onclick="managerFolderId='${escapeHtml(f.id)}'; renderAdminFileManager();">
-            <div style="font-size:0.84rem; font-weight:800;">📁 ${escapeHtml(f.name)}</div>
-            <div style="font-size:0.65rem; color:var(--neon-cyan);">Tap to open folder</div>
+          <input type="checkbox" class="afm-chk" ${isSel ? "checked" : ""} onchange="toggleArticleFolderSelect('${escapeHtml(f.id)}', this.checked)" aria-label="Select folder ${escapeHtml(f.name)}" />
+          <div class="afm-row-main" onclick="managerFolderId='${escapeHtml(f.id)}'; renderAdminFileManager();">
+            ${renderCleanFolderIconHtml(f.iconUrl, 34)}
+            <div class="afm-meta">
+              <div class="afm-title">${escapeHtml(f.name)}</div>
+              <div class="afm-sub">${subCount} subfolder • ${artCount} article • Tap to open</div>
+            </div>
           </div>
-          <div style="display:flex; gap:5px;">
-            <button type="button" class="btn" style="padding:4px 8px; font-size:0.7rem;" onclick="renameFolderById('${escapeHtml(f.id)}')">Rename</button>
-            <button type="button" class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteFolderById('${escapeHtml(f.id)}')">✕</button>
+          <div class="afm-actions">
+            <button type="button" class="btn btn-cyan" style="padding:4px 7px; font-size:0.68rem;" onclick="openAfmFolderIconModal('articles', '${escapeHtml(f.id)}')" title="Set Drive Image Icon">🖼️ Icon</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="openAfmMoveModal('articles', {type:'folder', id:'${escapeHtml(f.id)}'})">📦 Move</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveArticleFolderById('${escapeHtml(f.id)}', -1)">↑</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveArticleFolderById('${escapeHtml(f.id)}', 1)">↓</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="renameFolderById('${escapeHtml(f.id)}')">Rename</button>
+            <button type="button" class="btn btn-danger" style="padding:4px 7px; font-size:0.68rem;" onclick="deleteFolderById('${escapeHtml(f.id)}')">✕</button>
           </div>
         `;
         listEl.appendChild(row);
       });
 
       folderArticles.forEach((a, posInFolder) => {
+        const isSel = selectedAdminArticles.has(a.id);
         const row = document.createElement("div");
-        row.className = "android-tile-card";
-        row.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:6px; flex-wrap:wrap;";
+        row.className = `afm-row ${isSel ? "selected" : ""}`;
         row.innerHTML = `
-          <div style="min-width:160px; flex:1;">
-            <div style="font-size:0.82rem; font-weight:700;">#${posInFolder + 1} • ${a.postType === "review" ? "🎬" : "📄"} ${escapeHtml(a.title)}</div>
-            <div style="font-size:0.64rem; color:var(--text-secondary);">${a.postType === "review" ? "Movie Review" : "Article"}</div>
+          <input type="checkbox" class="afm-chk" ${isSel ? "checked" : ""} onchange="toggleArticleItemSelect('${escapeHtml(a.id)}', this.checked)" aria-label="Select article ${escapeHtml(a.title)}" />
+          <div class="afm-row-main" onclick="openPostForEditFromFolder('${escapeHtml(a.id)}')">
+            <span class="afm-icon-slot" style="font-size:1.3rem;">${a.postType === "review" ? "🎬" : "📄"}</span>
+            <div class="afm-meta">
+              <div class="afm-title">#${posInFolder + 1} • ${escapeHtml(a.title)}</div>
+              <div class="afm-sub">${a.postType === "review" ? "Movie Review" : escapeHtml(a.category || "Article")}</div>
+            </div>
           </div>
-          <div style="display:flex; gap:4px; align-items:center;">
-            <button type="button" class="btn btn-cyan" style="padding:4px 8px; font-size:0.7rem;" onclick="openPostForEditFromFolder('${escapeHtml(a.id)}')">✏️ Edit</button>
-            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveArticleInFolder('${escapeHtml(a.id)}', -1)">↑</button>
-            <button type="button" class="btn" style="padding:4px 7px; font-size:0.7rem;" onclick="moveArticleInFolder('${escapeHtml(a.id)}', 1)">↓</button>
-            <button type="button" class="btn btn-danger" style="padding:4px 7px; font-size:0.7rem;" onclick="deleteArticleFromFolder('${escapeHtml(a.id)}')">🗑️</button>
+          <div class="afm-actions">
+            <button type="button" class="btn btn-cyan" style="padding:4px 8px; font-size:0.68rem;" onclick="openPostForEditFromFolder('${escapeHtml(a.id)}')">✏️ Edit</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="openAfmMoveModal('articles', {type:'item', id:'${escapeHtml(a.id)}'})">📦 Move</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveArticleInFolder('${escapeHtml(a.id)}', -1)">↑</button>
+            <button type="button" class="btn" style="padding:4px 7px; font-size:0.68rem;" onclick="moveArticleInFolder('${escapeHtml(a.id)}', 1)">↓</button>
+            <button type="button" class="btn btn-danger" style="padding:4px 7px; font-size:0.68rem;" onclick="deleteArticleFromFolder('${escapeHtml(a.id)}')">🗑️</button>
           </div>
         `;
         listEl.appendChild(row);
       });
+      updateArticlesManagerBatchBar();
     }
 
     function deleteArticleFromFolder(artId) {
       siteData.articles = (siteData.articles || []).filter(a => a.id !== artId);
+      selectedAdminArticles.delete(artId);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderAdminFileManager();
       renderAll();
@@ -6053,7 +6875,7 @@
       if (!name || !name.trim()) return;
       const id = `fld-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       siteData.folders = siteData.folders || [];
-      siteData.folders.push({ id, name: name.trim(), parentId: managerFolderId || "" });
+      siteData.folders.push({ id, name: name.trim(), parentId: managerFolderId || "", iconUrl: "" });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderAdminFileManager();
       renderBottomFolders();
@@ -6076,9 +6898,12 @@
     }
 
     function deleteFolderById(id) {
-      siteData.folders = (siteData.folders || []).filter(f => f.id !== id && f.parentId !== id);
-      (siteData.articles || []).forEach(a => { if (a.folderId === id) a.folderId = ""; });
-      if (selectedSubjectFolderId === id) selectedSubjectFolderId = "";
+      const removed = getDescendantFolderIds(id);
+      siteData.folders = (siteData.folders || []).filter(f => !removed.has(f.id));
+      (siteData.articles || []).forEach(a => { if (removed.has(a.folderId || "")) a.folderId = ""; });
+      if (removed.has(selectedSubjectFolderId)) selectedSubjectFolderId = "";
+      if (removed.has(managerFolderId)) managerFolderId = "";
+      selectedAdminArticleFolders.delete(id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
       renderAdminFileManager();
       renderBottomFolders();
