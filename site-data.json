@@ -1,7 +1,7 @@
 {
   "brandTitle": "CRACK Cgpsc",
   "brandLogoUrl": "",
-  "brandSub": "TEST SERIES • TOPIC QUIZ • PYQs• Edu Shorts",
+  "brandSub": "TEST SERIES • TOPIC QUIZ • PYQs • EDU SHORTS",
   "searchPlaceholder": "Search History, Topics, Reviews or Articles...",
   "faviconUrl": "https://drive.google.com/file/d/1s9FfwRpIO5UlNuXLfnKtM7Qt507hzSNX/view?usp=drivesdk",
   "customFonts": [],
@@ -646,8 +646,8 @@
     },
     "brandSub": {
       "fontSize": 7,
-      "posX": -2,
-      "posY": -4
+      "posX": -4,
+      "posY": -3
     }
   },
   "socialLinks": {
