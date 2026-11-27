@@ -62,14 +62,14 @@
   },
   "reelsFolders": [
     {
-      "id": "rf-history",
-      "name": "History",
+      "id": "rf-1795746572722-190",
+      "name": "Indian GS",
       "parentId": ""
     },
     {
-      "id": "rf-topic",
-      "name": "Topic",
-      "parentId": "rf-history"
+      "id": "rf-1795746595817-487",
+      "name": "Chhattisgarh GS",
+      "parentId": ""
     },
     {
       "id": "rf-ivc",
@@ -80,6 +80,96 @@
       "id": "rf-1795498505804-294",
       "name": "Geography",
       "parentId": ""
+    },
+    {
+      "id": "rf-1795746508842-288",
+      "name": "Current Affairs",
+      "parentId": ""
+    },
+    {
+      "id": "rf-1795746459561-954",
+      "name": "Hindi",
+      "parentId": ""
+    },
+    {
+      "id": "rf-1795746471554-793",
+      "name": "English",
+      "parentId": ""
+    },
+    {
+      "id": "rf-1795746422042-112",
+      "name": "Maths",
+      "parentId": ""
+    },
+    {
+      "id": "rf-1795746448671-721",
+      "name": "Reasoning & Aptitude",
+      "parentId": ""
+    },
+    {
+      "id": "rf-1795746606942-996",
+      "name": "CG History",
+      "parentId": "rf-1795746595817-487"
+    },
+    {
+      "id": "rf-1795746617598-17",
+      "name": "CG Geography",
+      "parentId": "rf-1795746595817-487"
+    },
+    {
+      "id": "rf-1795746633197-392",
+      "name": "CG Economy",
+      "parentId": "rf-1795746595817-487"
+    },
+    {
+      "id": "rf-1795746647609-85",
+      "name": "CG Administration",
+      "parentId": "rf-1795746595817-487"
+    },
+    {
+      "id": "rf-1795746677243-113",
+      "name": "CG Art & Culture",
+      "parentId": "rf-1795746595817-487"
+    },
+    {
+      "id": "rf-1795746726194-761",
+      "name": "CG Tribes",
+      "parentId": "rf-1795746595817-487"
+    },
+    {
+      "id": "rf-1795746749212-178",
+      "name": "CG Language",
+      "parentId": "rf-1795746595817-487"
+    },
+    {
+      "id": "rf-1795746790423-139",
+      "name": "History",
+      "parentId": "rf-1795746572722-190"
+    },
+    {
+      "id": "rf-1795746800306-142",
+      "name": "Geography",
+      "parentId": "rf-1795746572722-190"
+    },
+    {
+      "id": "rf-1795746808620-766",
+      "name": "Polity",
+      "parentId": "rf-1795746572722-190"
+    },
+    {
+      "id": "rf-1795746820130-676",
+      "name": "Economics",
+      "parentId": "rf-1795746572722-190"
+    },
+    {
+      "id": "rf-1795746992253-620",
+      "name": "Indian Art & Culture",
+      "parentId": "rf-1795746572722-190"
+    },
+    {
+      "id": "rf-1795747043860-123",
+      "name": "General Knowledge",
+      "parentId": "rf-1795746572722-190"
     }
   ],
   "reelsFeed": {
