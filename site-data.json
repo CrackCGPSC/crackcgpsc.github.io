@@ -636,6 +636,93 @@
         "telegramFileUrl": "",
         "trailerYtUrl": ""
       }
+    },
+    {
+      "id": "art-1795825071983-524",
+      "postType": "article",
+      "title": "Fundamental Duties",
+      "folderId": "fld-1795752324940-860",
+      "category": "Polity",
+      "coverImage": "https://drive.google.com/file/d/1tgEoOt1Lp2W78j2GwaFGX457Qnt61KGH/view?usp=drivesdk",
+      "excerpt": "Important Revision Notes of Fundamental Duties from Polity M Laxmikant Book",
+      "body": "",
+      "relatedLinks": "",
+      "reviewData": {
+        "posterUrl": "",
+        "movieName": "",
+        "releaseYear": "",
+        "streamingPlatform": "",
+        "imdbRating": "",
+        "buffRating": "",
+        "categories": [],
+        "languages": "",
+        "parental": [
+          {
+            "name": "Kiss on Cheeks",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Lip kiss Short",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Long Lip kiss",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Nudity Male",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Nudity Female",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Bedroom Scenes",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Abusive language Hindi",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Abusive language English",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Sexual Awkward Dialogue",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          },
+          {
+            "name": "Family Friendly",
+            "checked": false,
+            "count": "",
+            "timestamp": ""
+          }
+        ],
+        "canWatchWithFamily": "Yes",
+        "detailedYtUrl": "",
+        "telegramFileUrl": "",
+        "trailerYtUrl": ""
+      }
     }
   ],
   "customElements": [],
