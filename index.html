@@ -94,54 +94,65 @@
     .fx-border-rainbow { border-color: var(--neon-pink) !important; box-shadow: 0 0 16px rgba(255, 42, 133, 0.55) !important; }
     .fx-text-glow { text-shadow: 0 0 10px var(--neon-cyan), 0 0 18px rgba(255, 42, 133, 0.45) !important; }
 
-    /* Header + Top-Left Admin Quick Button (Visible ONLY when Admin is logged in) */
+    /* Header: Top-Left Optional Logo Image/GIF + Top-Right Compact Menu & Admin Stack */
     .top-bar-wrap {
       position: relative;
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 14px 16px 4px;
+      padding: 12px 14px 4px;
+      min-height: 62px;
     }
 
-    .admin-quick-corner-btn {
+    .top-left-corner-logo-btn {
       position: absolute;
-      top: 14px;
+      top: 10px;
       left: 12px;
-      width: 36px;
-      height: 36px;
+      max-width: 54px;
+      max-height: 46px;
       padding: 0;
-      border-radius: 0;
       border: 0 !important;
       background: transparent !important;
       box-shadow: none !important;
-      color: #f8fafc;
       display: none;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 25;
-      transition: transform 0.16s ease, color 0.16s ease;
+      transition: transform 0.16s ease, filter 0.2s ease;
     }
 
-    .admin-quick-corner-btn:hover,
-    .admin-quick-corner-btn:active {
-      color: var(--neon-cyan);
-      transform: scale(1.1);
+    .top-left-corner-logo-btn:hover,
+    .top-left-corner-logo-btn:active {
+      transform: scale(1.06);
+      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.55));
     }
 
-    .admin-quick-corner-btn svg {
-      width: 22px;
-      height: 22px;
+    .top-left-corner-logo-btn img {
+      max-width: 54px;
+      max-height: 44px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       display: block;
-      filter: drop-shadow(0 1px 6px rgba(34, 211, 238, 0.45));
+      border-radius: 6px;
+    }
+
+    .header-right-icon-stack {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      z-index: 25;
     }
 
     .menu-float-btn {
-      position: absolute;
-      top: 14px;
-      right: 12px;
-      width: 36px;
-      height: 36px;
+      position: relative;
+      width: 28px;
+      height: 28px;
       padding: 0;
       border-radius: 0;
       border: 0 !important;
@@ -152,7 +163,6 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 25;
       transition: transform 0.18s ease, color 0.18s ease, filter 0.22s ease;
     }
 
@@ -164,9 +174,40 @@
     }
 
     .menu-float-btn svg {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       display: block;
+    }
+
+    .admin-quick-corner-btn {
+      position: relative;
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      border-radius: 0;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #e2e8f0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.16s ease, color 0.16s ease, filter 0.2s ease;
+    }
+
+    .admin-quick-corner-btn:hover,
+    .admin-quick-corner-btn:active {
+      color: var(--neon-cyan);
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.65));
+    }
+
+    .admin-quick-corner-btn svg {
+      width: 17px;
+      height: 17px;
+      display: block;
+      filter: drop-shadow(0 1px 5px rgba(34, 211, 238, 0.45));
     }
 
     .hero-brand-center {
@@ -1626,45 +1667,57 @@
         justify-content: space-between;
         gap: 12px;
         border-bottom: 2.5px solid #0e7490;
-        padding-bottom: 12px;
-        margin-bottom: 16px;
+        padding-bottom: 10px;
+        margin-bottom: 14px;
+        break-after: avoid;
+        page-break-after: avoid;
       }
       #bookPdfPrintSheet .pdf-brand-left { display: flex; align-items: center; gap: 11px; }
       #bookPdfPrintSheet .pdf-brand-logo { max-height: 44px; max-width: 140px; object-fit: contain; }
       #bookPdfPrintSheet .pdf-brand-title { font-size: 20px; font-weight: 900; color: #0f172a; letter-spacing: 1px; text-transform: uppercase; }
-      #bookPdfPrintSheet .pdf-meta-box {
-        background: rgba(241, 245, 249, 0.88);
+      #bookPdfPrintSheet .pdf-title-wrap {
+        margin: 0 0 14px;
+        padding: 10px 14px;
+        background: rgba(241, 245, 249, 0.9);
         border-left: 4px solid #0284c7;
         border-radius: 6px;
-        padding: 10px 14px;
-        margin-bottom: 16px;
+        break-after: avoid;
+        page-break-after: avoid;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-      #bookPdfPrintSheet .pdf-meta-row { font-size: 11px; color: #334155; font-weight: 700; margin-bottom: 4px; }
-      #bookPdfPrintSheet .pdf-topic-title { font-size: 22px; font-weight: 900; color: #0f172a; margin: 4px 0 6px; line-height: 1.25; }
-      #bookPdfPrintSheet .pdf-summary { font-size: 12.5px; color: #334155; margin-top: 6px; font-style: italic; }
-      #bookPdfPrintSheet .pdf-cover-img { max-width: 100%; height: auto; max-height: 360px; object-fit: contain; display: block; margin: 12px auto 16px; border-radius: 8px; page-break-inside: avoid; }
-      #bookPdfPrintSheet .pdf-notes-body { font-size: 13px; color: #1e293b; }
+      #bookPdfPrintSheet .pdf-topic-title { font-size: 22px; font-weight: 900; color: #0f172a; margin: 0; line-height: 1.28; }
+      #bookPdfPrintSheet .pdf-cover-img { max-width: 100%; height: auto; max-height: 360px; object-fit: contain; display: block; margin: 12px auto 16px; border-radius: 8px; break-inside: avoid; page-break-inside: avoid; }
+      #bookPdfPrintSheet .pdf-notes-body { font-size: 13px; color: #1e293b; overflow: visible; }
       #bookPdfPrintSheet .pdf-notes-body::after { content: ""; display: table; clear: both; }
       #bookPdfPrintSheet .pdf-notes-body h1,
       #bookPdfPrintSheet .pdf-notes-body h2,
-      #bookPdfPrintSheet .pdf-notes-body h3 {
+      #bookPdfPrintSheet .pdf-notes-body h3,
+      #bookPdfPrintSheet .pdf-notes-body h4 {
         color: #0e7490 !important;
         border-left: 3px solid #0e7490;
         padding-left: 8px;
         margin: 16px 0 8px;
+        break-after: avoid;
         page-break-after: avoid;
       }
       #bookPdfPrintSheet .pdf-notes-body p,
-      #bookPdfPrintSheet .pdf-notes-body li { color: #1e293b !important; }
-      #bookPdfPrintSheet .pdf-notes-body table { width: 100%; border-collapse: collapse; margin: 12px 0; page-break-inside: avoid; }
+      #bookPdfPrintSheet .pdf-notes-body li {
+        color: #1e293b !important;
+        orphans: 3;
+        widows: 3;
+        margin: 0 0 9px;
+      }
+      #bookPdfPrintSheet .pdf-notes-body blockquote { break-inside: avoid; page-break-inside: avoid; }
+      #bookPdfPrintSheet .pdf-notes-body table { width: 100%; border-collapse: collapse; margin: 12px 0; page-break-inside: auto; }
+      #bookPdfPrintSheet .pdf-notes-body thead { display: table-header-group; }
+      #bookPdfPrintSheet .pdf-notes-body tr { break-inside: avoid; page-break-inside: avoid; }
       #bookPdfPrintSheet .pdf-notes-body th,
       #bookPdfPrintSheet .pdf-notes-body td { border: 1px solid #cbd5e1; padding: 7px 9px; font-size: 12px; color: #0f172a !important; }
       #bookPdfPrintSheet .pdf-notes-body th { background: #e0f2fe !important; font-weight: 800; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      #bookPdfPrintSheet .pdf-notes-body img { max-width: 100%; height: auto; object-fit: contain; display: block; margin: 10px auto; border-radius: 6px; page-break-inside: avoid; }
-      #bookPdfPrintSheet .pdf-notes-body .gdoc-media-box { max-width: 100%; overflow: hidden; page-break-inside: avoid; }
-      #bookPdfPrintSheet .pdf-notes-body .gdoc-media-box img { width: 100%; height: 100%; margin: 0; border-radius: inherit; object-fit: cover; }
+      #bookPdfPrintSheet .pdf-notes-body img { max-width: 100%; height: auto; object-fit: contain; display: block; margin: 10px auto; border-radius: 6px; break-inside: avoid; page-break-inside: avoid; }
+      #bookPdfPrintSheet .pdf-notes-body .gdoc-media-box { max-width: 100%; overflow: hidden; break-inside: avoid; page-break-inside: avoid; }
+      #bookPdfPrintSheet .pdf-notes-body .gdoc-media-box img { width: 100%; height: 100%; margin: 0; border-radius: inherit; object-fit: fill; }
       #bookPdfPrintSheet .pdf-footer {
         margin-top: 24px;
         padding-top: 10px;
@@ -1673,7 +1726,14 @@
         justify-content: space-between;
         font-size: 10px;
         color: #64748b;
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
+    }
+
+    @page {
+      size: A4;
+      margin: 14mm 14mm 16mm 14mm;
     }
 
     .article-hero-img { width: 100%; height: auto; max-height: none; object-fit: contain; display: block; border-radius: 12px; margin: 12px 0 16px; }
@@ -1737,28 +1797,31 @@
       height: 100% !important;
       margin: 0 !important;
       display: block;
-      object-fit: cover;
+      object-fit: fill !important;
       border-radius: inherit;
     }
     .gdoc-media-box[data-custom-height="0"] .gdoc-media-inner img {
       height: auto !important;
-      object-fit: contain;
+      object-fit: fill !important;
     }
     .gdoc-media-box .gdoc-media-inner iframe,
     .gdoc-media-box .gdoc-media-inner video {
       width: 100% !important;
       height: 100% !important;
-      min-height: 160px;
+      min-height: 120px;
       border: 0;
       display: block;
+      object-fit: fill !important;
       border-radius: inherit;
       background: #000;
     }
-    .gdoc-media-box[data-custom-height="0"] .gdoc-media-inner iframe {
+    .gdoc-media-box[data-custom-height="0"] .gdoc-media-inner iframe,
+    .gdoc-media-box[data-custom-height="0"] .gdoc-media-inner video {
       aspect-ratio: 16 / 9;
       height: auto !important;
     }
-    .gdoc-media-box[data-shorts="1"][data-custom-height="0"] .gdoc-media-inner iframe {
+    .gdoc-media-box[data-shorts="1"][data-custom-height="0"] .gdoc-media-inner iframe,
+    .gdoc-media-box[data-shorts="1"][data-custom-height="0"] .gdoc-media-inner video {
       aspect-ratio: 9 / 16;
     }
     .related-articles-box { margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.12); clear: both; }
@@ -2060,8 +2123,65 @@
 
     .wysiwyg-shell { width: 100%; max-width: 100%; min-width: 0; border: 1px solid rgba(34, 211, 238, 0.35); border-radius: 10px; background: #090d16; overflow: hidden; box-sizing: border-box; }
     .wysiwyg-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 6px; background: #131a29; border-bottom: 1px solid rgba(255, 255, 255, 0.1); max-width: 100%; }
+    .wysiwyg-media-bar {
+      display: none;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 6px;
+      background: linear-gradient(90deg, rgba(14, 165, 233, 0.16), rgba(37, 99, 235, 0.14));
+      border-bottom: 1px solid rgba(56, 189, 248, 0.42);
+      max-width: 100%;
+    }
+    .wysiwyg-media-bar.visible { display: flex; }
+    .wysiwyg-media-bar .gdoc-top-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 26px;
+      padding: 0;
+      border-radius: 6px;
+      border: 1px solid rgba(125, 211, 252, 0.25);
+      background: rgba(15, 23, 42, 0.85);
+      color: #e0f2fe;
+      font-size: 0.72rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+    .wysiwyg-media-bar .gdoc-top-icon-btn:hover,
+    .wysiwyg-media-bar .gdoc-top-icon-btn.active {
+      background: rgba(14, 165, 233, 0.38);
+      border-color: #7dd3fc;
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.35);
+    }
+    .wysiwyg-media-bar .gdoc-top-icon-btn.del {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(248, 113, 113, 0.5);
+      color: #fecaca;
+    }
+    .wysiwyg-media-bar .gdoc-top-sep {
+      width: 1px;
+      height: 18px;
+      background: rgba(148, 163, 184, 0.25);
+      margin: 0 2px;
+    }
+    .wysiwyg-media-bar .gdoc-top-dim-pill {
+      margin-left: auto;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #7dd3fc;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      white-space: nowrap;
+    }
     .wysiwyg-table-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 5px 6px; background: #0e1420; border-bottom: 1px solid rgba(255, 42, 133, 0.28); max-width: 100%; }
-    .wysiwyg-btn { padding: 4px 8px; border-radius: 6px; background: #1c253a; border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; font-size: 0.72rem; font-weight: 800; cursor: pointer; }
+    .wysiwyg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 4px 8px; border-radius: 6px; background: #1c253a; border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; font-size: 0.72rem; font-weight: 800; cursor: pointer; }
+    .wysiwyg-btn.icon-only { width: 28px; height: 26px; padding: 0; }
     .wysiwyg-btn:hover { border-color: var(--neon-cyan); }
     .wysiwyg-btn.tbl-del { background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; }
     .wysiwyg-select { width: auto !important; max-width: 100% !important; padding: 4px 6px !important; font-size: 0.72rem !important; background: #1c253a !important; border-radius: 6px !important; }
@@ -2089,13 +2209,13 @@
     }
     .wysiwyg-canvas .gdoc-media-box.gdoc-media-selected {
       outline: 2px solid #38bdf8;
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18), 0 8px 24px rgba(2, 132, 199, 0.28);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18), 0 8px 20px rgba(2, 132, 199, 0.26);
       z-index: 6;
     }
     .wysiwyg-canvas .gdoc-media-box.gdoc-dragging-move {
-      opacity: 0.78;
+      opacity: 0.8;
       outline: 2px dashed #38bdf8;
-      box-shadow: 0 12px 28px rgba(14, 165, 233, 0.42);
+      box-shadow: 0 12px 26px rgba(14, 165, 233, 0.4);
     }
     .gdoc-video-shield {
       position: absolute;
@@ -2106,9 +2226,7 @@
     }
     .gdoc-move-handle,
     .gdoc-resize-handle,
-    .gdoc-resize-bottom-bar,
-    .gdoc-media-mini-bar,
-    .gdoc-size-toast {
+    .gdoc-resize-bottom-bar {
       display: none;
     }
     .gdoc-media-box.gdoc-media-selected > .gdoc-move-handle {
@@ -2116,20 +2234,20 @@
       align-items: center;
       justify-content: center;
       position: absolute;
-      top: -12px;
-      right: -12px;
-      width: 30px;
-      height: 30px;
+      top: -11px;
+      right: -11px;
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
       background: linear-gradient(135deg, #0284c7, #2563eb);
       border: 2px solid #e0f2fe;
       color: #ffffff;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       font-weight: 900;
       cursor: grab;
       z-index: 12;
       touch-action: none;
-      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.55);
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.55);
     }
     .gdoc-media-box.gdoc-media-selected > .gdoc-move-handle:active { cursor: grabbing; transform: scale(1.1); }
     .gdoc-media-box.gdoc-media-selected > .gdoc-resize-handle {
@@ -2137,29 +2255,29 @@
       align-items: center;
       justify-content: center;
       position: absolute;
-      bottom: -12px;
-      right: -12px;
-      width: 30px;
-      height: 30px;
+      bottom: -11px;
+      right: -11px;
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
       background: linear-gradient(135deg, #06b6d4, #0ea5e9);
       border: 2px solid #ffffff;
       color: #ffffff;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 900;
       cursor: nwse-resize;
       z-index: 12;
       touch-action: none;
-      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.55);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.55);
     }
     .gdoc-media-box.gdoc-media-selected > .gdoc-resize-bottom-bar {
       display: block;
       position: absolute;
       left: 50%;
-      bottom: -8px;
+      bottom: -7px;
       transform: translateX(-50%);
-      width: 44px;
-      height: 12px;
+      width: 40px;
+      height: 10px;
       border-radius: 999px;
       background: #38bdf8;
       border: 2px solid #ffffff;
@@ -2167,59 +2285,6 @@
       z-index: 11;
       touch-action: none;
       box-shadow: 0 3px 10px rgba(14, 165, 233, 0.5);
-    }
-    .gdoc-media-box.gdoc-media-selected > .gdoc-media-mini-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 4px;
-      position: absolute;
-      top: -38px;
-      left: 0;
-      max-width: max(250px, 100%);
-      padding: 4px 6px;
-      border-radius: 10px;
-      background: rgba(10, 16, 30, 0.96);
-      border: 1px solid rgba(56, 189, 248, 0.55);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
-      z-index: 14;
-    }
-    .gdoc-mini-btn {
-      padding: 3px 6px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: #162033;
-      color: #e2e8f0;
-      font-size: 0.64rem;
-      font-weight: 800;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .gdoc-mini-btn:hover,
-    .gdoc-mini-btn.active {
-      background: rgba(14, 165, 233, 0.34);
-      border-color: #7dd3fc;
-      color: #ffffff;
-    }
-    .gdoc-mini-btn.del {
-      background: rgba(239, 68, 68, 0.22);
-      border-color: rgba(248, 113, 113, 0.5);
-      color: #fecaca;
-    }
-    .gdoc-media-box.gdoc-media-selected > .gdoc-size-toast {
-      display: inline-block;
-      position: absolute;
-      left: 8px;
-      bottom: 8px;
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: rgba(2, 6, 23, 0.82);
-      border: 1px solid rgba(125, 211, 252, 0.45);
-      color: #e0f2fe;
-      font-size: 0.62rem;
-      font-weight: 800;
-      pointer-events: none;
-      z-index: 10;
     }
     .wysiwyg-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 5px 10px; background: #0c1220; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.68rem; color: #94a3b8; }
 
@@ -2452,19 +2517,22 @@
   <div class="site-viewport-shell">
     <!-- Header -->
     <div class="top-bar-wrap glass-light-surface" data-ve-id="headerWrap">
-      <button class="admin-quick-corner-btn" id="adminTopLeftQuickBtn" onclick="openAdminStudio()" aria-label="Admin Studio" title="Admin Studio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3.2"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
-      </button>
-      <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu" title="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3.5" y1="6.5" x2="20.5" y2="6.5"></line>
-          <line x1="3.5" y1="12" x2="20.5" y2="12"></line>
-          <line x1="3.5" y1="17.5" x2="15.5" y2="17.5"></line>
-        </svg>
-      </button>
+      <button type="button" class="top-left-corner-logo-btn" id="topLeftCornerLogoBtn" onclick="handleBrandClick()" aria-label="Go to Home Page" title="Home"></button>
+      <div class="header-right-icon-stack">
+        <button class="menu-float-btn" id="openDrawerBtn" aria-label="Open Menu" title="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3.5" y1="6.5" x2="20.5" y2="6.5"></line>
+            <line x1="3.5" y1="12" x2="20.5" y2="12"></line>
+            <line x1="3.5" y1="17.5" x2="15.5" y2="17.5"></line>
+          </svg>
+        </button>
+        <button class="admin-quick-corner-btn" id="adminTopLeftQuickBtn" onclick="openAdminStudio()" aria-label="Admin Studio" title="Admin Studio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3.2"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
       <div class="hero-brand-center" role="button" tabindex="0" aria-label="Go to Home Page" title="Go to Home Page" onclick="handleBrandClick()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();handleBrandClick();}">
         <div id="headerBrandLogoHost" data-ve-id="brandTitle"></div>
         <div class="neon-brand-sub" id="headerBrandSub" data-ve-id="brandSub">TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL</div>
@@ -2749,9 +2817,21 @@
             <div class="mini-gdocs-bar"></div>
           </div>
           <div class="field-group">
-            <label>Brand Logo Image / GIF URL (Fits Box Without Cropping)</label>
+            <label>Brand Logo Image / GIF URL (Center Header — Fits Box Without Cropping)</label>
             <input type="text" id="cfgBrandLogoUrl" placeholder="https://drive.google.com/file/d/..." oninput="attachLivePreviewToInput(this)" />
             <div class="live-media-preview-box"></div>
+          </div>
+          <div class="field-group" style="grid-column:1 / -1;">
+            <label>Top-Left Corner Logo Image / GIF Link (Google Drive / Direct URL)</label>
+            <input type="text" id="cfgTopLeftLogoUrl" placeholder="https://drive.google.com/file/d/... or https://.../logo.gif" oninput="attachLivePreviewToInput(this); previewTopLeftLogoLive()" />
+            <div class="live-media-preview-box"></div>
+            <label class="pdf-toggle-row" style="margin-top:6px;">
+              <input type="checkbox" id="cfgTopLeftLogoVisible" checked onchange="previewTopLeftLogoLive()" />
+              <div style="min-width:0; flex:1;">
+                <div style="font-size:0.76rem; font-weight:800; color:#f8fafc;">🖼️ Show Top-Left Corner Logo Image / GIF</div>
+                <div style="font-size:0.67rem; color:var(--text-secondary);">Turn ON/OFF anytime to show or hide the top-left corner logo on the website header.</div>
+              </div>
+            </label>
           </div>
           <div class="field-group" data-style-target="brandSub">
             <label>Single-Line Subtitle</label>
@@ -4167,15 +4247,36 @@
 
     function renderBrandLogoArea() {
       const host = document.getElementById("headerBrandLogoHost");
-      if (!host) return;
-      const logoImg = convertDriveUrl(siteData.brandLogoUrl || "");
-      if (logoImg) {
-        host.className = "brand-logo-media-box";
-        host.innerHTML = `<img src="${escapeHtml(logoImg)}" alt="${escapeHtml(siteData.brandTitle || "Logo")}" loading="lazy" />`;
-      } else {
-        host.className = "neon-brand-title";
-        host.textContent = siteData.brandTitle || "CRACK CGPSC";
+      if (host) {
+        const logoImg = convertDriveUrl(siteData.brandLogoUrl || "");
+        if (logoImg) {
+          host.className = "brand-logo-media-box";
+          host.innerHTML = `<img src="${escapeHtml(logoImg)}" alt="${escapeHtml(siteData.brandTitle || "Logo")}" loading="lazy" />`;
+        } else {
+          host.className = "neon-brand-title";
+          host.textContent = siteData.brandTitle || "CRACK CGPSC";
+        }
       }
+      const cornerBtn = document.getElementById("topLeftCornerLogoBtn");
+      if (cornerBtn) {
+        const showCorner = siteData.showTopLeftLogo !== false;
+        const cornerSrc = convertDriveUrl(siteData.topLeftLogoUrl || "");
+        if (showCorner && cornerSrc) {
+          cornerBtn.style.display = "inline-flex";
+          cornerBtn.innerHTML = `<img src="${escapeHtml(cornerSrc)}" alt="${escapeHtml(siteData.brandTitle || "Logo")}" loading="lazy" />`;
+        } else {
+          cornerBtn.style.display = "none";
+          cornerBtn.innerHTML = "";
+        }
+      }
+    }
+
+    function previewTopLeftLogoLive() {
+      const urlEl = document.getElementById("cfgTopLeftLogoUrl");
+      const visEl = document.getElementById("cfgTopLeftLogoVisible");
+      if (urlEl) siteData.topLeftLogoUrl = urlEl.value.trim();
+      if (visEl) siteData.showTopLeftLogo = visEl.checked;
+      renderBrandLogoArea();
     }
 
     function parseYouTubeEmbed(url) {
@@ -4834,6 +4935,12 @@
       wrap.className = "wysiwyg-shell";
       wrap.innerHTML = `
         <div class="wysiwyg-toolbar">
+          <button type="button" class="wysiwyg-btn icon-only" title="Undo" onmousedown="event.preventDefault()" onclick="execWysiwygUndo(this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
+          </button>
+          <button type="button" class="wysiwyg-btn icon-only" title="Redo" onmousedown="event.preventDefault()" onclick="execWysiwygRedo(this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 14 20 9 15 4"></polyline><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg>
+          </button>
           <select class="wysiwyg-select" onchange="execWysiwygBlock(this)">
             <option value="P">Normal text</option>
             <option value="H1">Title</option>
@@ -4864,6 +4971,34 @@
           <button type="button" class="wysiwyg-btn" onclick="insertWysiwygVideo(this)">+ Video</button>
           <button type="button" class="wysiwyg-btn" onmousedown="event.preventDefault()" onclick="execWysiwygCmd(this, 'insertHorizontalRule')">― Line</button>
         </div>
+        <div class="wysiwyg-media-bar" aria-label="Selected Media Controls">
+          <button type="button" class="gdoc-top-icon-btn" data-media-align="left" title="Align Left (Keep Size)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="15" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="15" y2="18"/></svg>
+          </button>
+          <button type="button" class="gdoc-top-icon-btn" data-media-align="center" title="Align Center (Keep Size)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="6" y1="18" x2="18" y2="18"/></svg>
+          </button>
+          <button type="button" class="gdoc-top-icon-btn" data-media-align="right" title="Align Right (Keep Size)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="9" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="9" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <button type="button" class="gdoc-top-icon-btn" data-media-move="up" title="Move Up (Top)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+          </button>
+          <button type="button" class="gdoc-top-icon-btn" data-media-move="down" title="Move Down (Bottom)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <span class="gdoc-top-sep"></span>
+          <button type="button" class="gdoc-top-icon-btn" data-media-shape="rect" title="Sharp Rectangle">▭</button>
+          <button type="button" class="gdoc-top-icon-btn" data-media-shape="rounded" title="Rounded">▢</button>
+          <button type="button" class="gdoc-top-icon-btn" data-media-shape="pill" title="Soft Oval / Pill">⬭</button>
+          <button type="button" class="gdoc-top-icon-btn" data-media-shape="circle" title="Circle">◯</button>
+          <span class="gdoc-top-sep"></span>
+          <button type="button" class="gdoc-top-icon-btn" data-media-action="reset" title="Reset Auto Shape &amp; Size">↺</button>
+          <button type="button" class="gdoc-top-icon-btn del" data-media-action="delete" title="Delete Media">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+          </button>
+          <span class="gdoc-top-dim-pill">72% Auto</span>
+        </div>
         <div class="wysiwyg-table-bar">
           <span style="font-size:0.66rem; font-weight:800; color:var(--neon-cyan); padding:0 4px;">Table:</span>
           <button type="button" class="wysiwyg-btn" onclick="tableAddRow(this)">+ Row</button>
@@ -4875,7 +5010,7 @@
         </div>
         <div class="wysiwyg-canvas" contenteditable="true" data-placeholder="${escapeHtml(placeholder)}">${renderRichHtmlBody(initialHtml)}</div>
         <div class="wysiwyg-footer">
-          <span style="color:var(--neon-cyan); font-weight:700;">∞ Unlimited Words • Tap image/GIF/video to Resize, Shape, Move &amp; type around any side</span>
+          <span style="color:var(--neon-cyan); font-weight:700;">∞ Unlimited Words • Tap image/GIF/video for top toolbar controls &amp; drag handles</span>
           <span class="wysiwyg-word-counter">0 words • 0 chars</span>
         </div>
       `;
@@ -4885,15 +5020,26 @@
       const updateWordStats = () => {
         if (!counterEl) return;
         const clone = canvas.cloneNode(true);
-        clone.querySelectorAll(".gdoc-move-handle, .gdoc-resize-handle, .gdoc-resize-bottom-bar, .gdoc-media-mini-bar, .gdoc-size-toast, .gdoc-video-shield").forEach(n => n.remove());
+        clone.querySelectorAll(".gdoc-move-handle, .gdoc-resize-handle, .gdoc-resize-bottom-bar, .gdoc-video-shield").forEach(n => n.remove());
         const txt = (clone.innerText || clone.textContent || "").trim();
         const words = txt ? txt.split(/\s+/).filter(Boolean).length : 0;
         counterEl.textContent = `${words.toLocaleString()} words • ${txt.length.toLocaleString()} chars`;
       };
+      canvas._gdocUpdateStats = updateWordStats;
       upgradeWysiwygMediaBoxes(canvas);
-      bindWysiwygMediaInteractions(canvas, updateWordStats);
+      initWysiwygHistory(canvas);
+      bindWysiwygMediaInteractions(canvas, () => {
+        updateWordStats();
+        pushWysiwygHistorySnapshot(canvas);
+      });
       updateWordStats();
-      canvas.addEventListener("input", updateWordStats);
+
+      let typingTimer = null;
+      canvas.addEventListener("input", () => {
+        updateWordStats();
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => pushWysiwygHistorySnapshot(canvas), 360);
+      });
       canvas.addEventListener("click", (e) => {
         const cell = e.target.closest("td, th");
         if (cell) activeTableCell = cell;
@@ -4906,20 +5052,100 @@
       return wrap;
     }
 
+    function initWysiwygHistory(canvas) {
+      if (!canvas) return;
+      const snap = serializeWysiwygCanvas(canvas);
+      canvas._gdocHistory = [snap];
+      canvas._gdocHistoryIdx = 0;
+    }
+
+    function pushWysiwygHistorySnapshot(canvas) {
+      if (!canvas) return;
+      if (!Array.isArray(canvas._gdocHistory)) initWysiwygHistory(canvas);
+      const snap = serializeWysiwygCanvas(canvas);
+      if (canvas._gdocHistory[canvas._gdocHistoryIdx] === snap) return;
+      canvas._gdocHistory = canvas._gdocHistory.slice(0, canvas._gdocHistoryIdx + 1);
+      canvas._gdocHistory.push(snap);
+      if (canvas._gdocHistory.length > 60) canvas._gdocHistory.shift();
+      canvas._gdocHistoryIdx = canvas._gdocHistory.length - 1;
+    }
+
+    function restoreWysiwygHistoryAt(canvas, nextIdx) {
+      if (!canvas || !Array.isArray(canvas._gdocHistory)) return;
+      if (nextIdx < 0 || nextIdx >= canvas._gdocHistory.length) return;
+      canvas._gdocHistoryIdx = nextIdx;
+      canvas.innerHTML = canvas._gdocHistory[nextIdx];
+      upgradeWysiwygMediaBoxes(canvas);
+      syncTopMediaToolbarState(canvas, null);
+      if (typeof canvas._gdocUpdateStats === "function") canvas._gdocUpdateStats();
+      canvas.focus();
+    }
+
+    function execWysiwygUndo(btn) {
+      const canvas = getCanvasFromTool(btn);
+      if (!canvas) return;
+      pushWysiwygHistorySnapshot(canvas);
+      if (Array.isArray(canvas._gdocHistory) && canvas._gdocHistoryIdx > 0) {
+        restoreWysiwygHistoryAt(canvas, canvas._gdocHistoryIdx - 1);
+      } else {
+        canvas.focus();
+        document.execCommand("undo", false, null);
+      }
+    }
+
+    function execWysiwygRedo(btn) {
+      const canvas = getCanvasFromTool(btn);
+      if (!canvas) return;
+      if (Array.isArray(canvas._gdocHistory) && canvas._gdocHistoryIdx < canvas._gdocHistory.length - 1) {
+        restoreWysiwygHistoryAt(canvas, canvas._gdocHistoryIdx + 1);
+      } else {
+        canvas.focus();
+        document.execCommand("redo", false, null);
+      }
+    }
+
+    function syncTopMediaToolbarState(canvas, selectedBox) {
+      const shell = canvas?.closest(".wysiwyg-shell");
+      const bar = shell?.querySelector(".wysiwyg-media-bar");
+      if (!bar) return;
+      if (!selectedBox || !canvas.contains(selectedBox)) {
+        bar.classList.remove("visible");
+        return;
+      }
+      bar.classList.add("visible");
+      const align = selectedBox.dataset.align || "center";
+      const shape = selectedBox.dataset.shape || "rounded";
+      const widthPct = Math.round(parseFloat(selectedBox.dataset.widthPct || "72"));
+      const customH = parseInt(selectedBox.dataset.heightPx || "0", 10) || 0;
+      bar.querySelectorAll("[data-media-align]").forEach(b => {
+        b.classList.toggle("active", b.dataset.mediaAlign === align);
+      });
+      bar.querySelectorAll("[data-media-shape]").forEach(b => {
+        b.classList.toggle("active", b.dataset.mediaShape === shape);
+      });
+      const pill = bar.querySelector(".gdoc-top-dim-pill");
+      if (pill) {
+        const alignLabel = align === "left" ? "Left" : align === "right" ? "Right" : "Center";
+        pill.textContent = shape === "circle"
+          ? `${alignLabel} • ${parseInt(selectedBox.style.width, 10) || 190}px Circle`
+          : (customH > 50 ? `${alignLabel} • ${widthPct}% × ${customH}px` : `${alignLabel} • ${widthPct}% Auto`);
+      }
+    }
+
     function applyGdocMediaBoxLayout(box) {
       const align = box.dataset.align || "center";
       const shape = box.dataset.shape || "rounded";
-      const widthPct = Math.max(18, Math.min(100, parseFloat(box.dataset.widthPct || "72")));
+      const widthPct = Math.max(15, Math.min(100, parseFloat(box.dataset.widthPct || "72")));
       const customH = parseInt(box.dataset.heightPx || "0", 10) || 0;
 
-      box.style.width = `${widthPct}%`;
       if (shape === "circle") {
-        const refPx = customH > 60 ? customH : 190;
+        const refPx = customH > 60 ? customH : Math.max(120, Math.round(widthPct * 2.4));
         box.style.width = `${refPx}px`;
         box.style.height = `${refPx}px`;
         box.style.borderRadius = "9999px";
         box.dataset.customHeight = "1";
       } else {
+        box.style.width = `${widthPct}%`;
         if (customH > 50) {
           box.style.height = `${customH}px`;
           box.dataset.customHeight = "1";
@@ -4943,24 +5169,17 @@
         box.style.margin = "12px auto";
       }
 
-      const toast = box.querySelector(":scope > .gdoc-size-toast");
-      if (toast) {
-        const alignLabel = align === "left" ? "Left" : align === "right" ? "Right" : "Center";
-        const sizeTxt = shape === "circle"
-          ? `${parseInt(box.style.width, 10)}px Circle`
-          : (customH > 50 ? `${Math.round(widthPct)}% × ${customH}px` : `${Math.round(widthPct)}% Auto`);
-        toast.textContent = `${alignLabel} • ${sizeTxt}`;
+      const canvas = box.closest(".wysiwyg-canvas");
+      if (canvas && box.classList.contains("gdoc-media-selected")) {
+        syncTopMediaToolbarState(canvas, box);
       }
-      box.querySelectorAll(":scope > .gdoc-media-mini-bar .gdoc-mini-btn[data-align-btn]").forEach(b => {
-        b.classList.toggle("active", b.dataset.alignBtn === align);
-      });
-      box.querySelectorAll(":scope > .gdoc-media-mini-bar .gdoc-mini-btn[data-shape-btn]").forEach(b => {
-        b.classList.toggle("active", b.dataset.shapeBtn === shape);
-      });
     }
 
     function ensureGdocMediaChrome(box) {
       box.setAttribute("contenteditable", "false");
+      // Remove any legacy floating mini-bar or size toast inside media box
+      box.querySelectorAll(":scope > .gdoc-media-mini-bar, :scope > .gdoc-size-toast").forEach(el => el.remove());
+
       if (!box.dataset.align) {
         const fl = (box.style.float || "").toLowerCase();
         box.dataset.align = fl === "left" ? "left" : fl === "right" ? "right" : "center";
@@ -4997,46 +5216,25 @@
         inner.appendChild(shield);
       }
 
-      if (!box.querySelector(":scope > .gdoc-media-mini-bar")) {
-        const bar = document.createElement("div");
-        bar.className = "gdoc-media-mini-bar";
-        bar.innerHTML = `
-          <button type="button" class="gdoc-mini-btn" data-align-btn="left" title="Place Left &amp; type on Right">⬅ Left</button>
-          <button type="button" class="gdoc-mini-btn" data-align-btn="center" title="Center">⬛ Center</button>
-          <button type="button" class="gdoc-mini-btn" data-align-btn="right" title="Place Right &amp; type on Left">➡ Right</button>
-          <button type="button" class="gdoc-mini-btn" data-shape-btn="rect" title="Sharp Rectangle">▭</button>
-          <button type="button" class="gdoc-mini-btn" data-shape-btn="rounded" title="Rounded">▢</button>
-          <button type="button" class="gdoc-mini-btn" data-shape-btn="pill" title="Soft Pill">⬭</button>
-          <button type="button" class="gdoc-mini-btn" data-shape-btn="circle" title="Circle">◯</button>
-          <button type="button" class="gdoc-mini-btn" data-action-btn="reset" title="Reset Auto Height">↺</button>
-          <button type="button" class="gdoc-mini-btn del" data-action-btn="delete" title="Remove Media">🗑</button>
-        `;
-        box.appendChild(bar);
-      }
       if (!box.querySelector(":scope > .gdoc-move-handle")) {
         const mh = document.createElement("div");
         mh.className = "gdoc-move-handle";
-        mh.title = "Drag to move placement (Left / Center / Right / Up / Down)";
+        mh.title = "Drag to move placement (keeps your size)";
         mh.textContent = "✥";
         box.appendChild(mh);
       }
       if (!box.querySelector(":scope > .gdoc-resize-bottom-bar")) {
         const rb = document.createElement("div");
         rb.className = "gdoc-resize-bottom-bar";
-        rb.title = "Drag down/up to adjust height & shape";
+        rb.title = "Drag down/up to adjust height & shape without cropping";
         box.appendChild(rb);
       }
       if (!box.querySelector(":scope > .gdoc-resize-handle")) {
         const rh = document.createElement("div");
         rh.className = "gdoc-resize-handle";
-        rh.title = "Drag to resize width & shape";
+        rh.title = "Drag to resize width & shape without cropping";
         rh.textContent = "⤡";
         box.appendChild(rh);
-      }
-      if (!box.querySelector(":scope > .gdoc-size-toast")) {
-        const toast = document.createElement("div");
-        toast.className = "gdoc-size-toast";
-        box.appendChild(toast);
       }
 
       applyGdocMediaBoxLayout(box);
@@ -5074,12 +5272,10 @@
 
     function upgradeWysiwygMediaBoxes(canvas) {
       if (!canvas) return;
-      // Upgrade existing .gdoc-media-box elements
       canvas.querySelectorAll(".gdoc-media-box").forEach(box => {
         ensureGdocMediaChrome(box);
         ensureEditableNeighborsForMedia(canvas, box);
       });
-      // Upgrade legacy .article-media-embed containers
       canvas.querySelectorAll(".article-media-embed").forEach(emb => {
         if (emb.closest(".gdoc-media-box")) return;
         const box = document.createElement("div");
@@ -5097,7 +5293,6 @@
         ensureGdocMediaChrome(box);
         ensureEditableNeighborsForMedia(canvas, box);
       });
-      // Upgrade bare images directly inside canvas
       canvas.querySelectorAll("img").forEach(img => {
         if (img.closest(".gdoc-media-box")) return;
         const box = document.createElement("div");
@@ -5131,16 +5326,28 @@
       if (!canvas || canvas.dataset.mediaBound === "1") return;
       canvas.dataset.mediaBound = "1";
 
+      const shell = canvas.closest(".wysiwyg-shell");
+      const mediaBar = shell?.querySelector(".wysiwyg-media-bar");
+
+      const getSelectedBox = () => canvas.querySelector(".gdoc-media-box.gdoc-media-selected");
+
       const deselectAll = () => {
         canvas.querySelectorAll(".gdoc-media-box.gdoc-media-selected").forEach(b => b.classList.remove("gdoc-media-selected"));
+        syncTopMediaToolbarState(canvas, null);
       };
 
       const selectBox = (box) => {
-        deselectAll();
-        if (!box) return;
+        canvas.querySelectorAll(".gdoc-media-box.gdoc-media-selected").forEach(b => {
+          if (b !== box) b.classList.remove("gdoc-media-selected");
+        });
+        if (!box) {
+          syncTopMediaToolbarState(canvas, null);
+          return;
+        }
         ensureGdocMediaChrome(box);
         ensureEditableNeighborsForMedia(canvas, box);
         box.classList.add("gdoc-media-selected");
+        syncTopMediaToolbarState(canvas, box);
       };
 
       const getClientXY = (ev) => {
@@ -5149,41 +5356,57 @@
         return { x: ev.clientX, y: ev.clientY };
       };
 
-      // Mini-bar buttons (Align, Shape, Reset, Delete)
-      canvas.addEventListener("click", (e) => {
-        const miniBtn = e.target.closest(".gdoc-mini-btn");
-        if (miniBtn) {
+      // Top-docked media toolbar controls (does NOT overlap or hide image!)
+      if (mediaBar && mediaBar.dataset.bound !== "1") {
+        mediaBar.dataset.bound = "1";
+        mediaBar.addEventListener("click", (e) => {
+          const btn = e.target.closest(".gdoc-top-icon-btn");
+          if (!btn) return;
           e.preventDefault();
           e.stopPropagation();
-          const box = miniBtn.closest(".gdoc-media-box");
+          const box = getSelectedBox();
           if (!box) return;
-          if (miniBtn.dataset.alignBtn) {
-            box.dataset.align = miniBtn.dataset.alignBtn;
-            if ((box.dataset.align === "left" || box.dataset.align === "right") && parseFloat(box.dataset.widthPct || "72") > 68) {
-              box.dataset.widthPct = "48";
-            }
+          pushWysiwygHistorySnapshot(canvas);
+
+          if (btn.dataset.mediaAlign) {
+            // Preserve exact user-selected size when changing alignment
+            box.dataset.align = btn.dataset.mediaAlign;
             applyGdocMediaBoxLayout(box);
             ensureEditableNeighborsForMedia(canvas, box);
-            if (box.dataset.align === "left" || box.dataset.align === "right") {
-              const nextP = box.nextElementSibling;
-              if (nextP) placeCaretInEditableBlock(canvas, nextP, true);
+          } else if (btn.dataset.mediaMove === "up") {
+            const prev = box.previousElementSibling;
+            if (prev && prev.previousElementSibling) {
+              canvas.insertBefore(box, prev.previousElementSibling);
+            } else if (prev) {
+              canvas.insertBefore(box, prev);
             }
-          } else if (miniBtn.dataset.shapeBtn) {
-            box.dataset.shape = miniBtn.dataset.shapeBtn;
+            ensureEditableNeighborsForMedia(canvas, box);
+          } else if (btn.dataset.mediaMove === "down") {
+            const next = box.nextElementSibling;
+            if (next && next.nextElementSibling) {
+              canvas.insertBefore(box, next.nextElementSibling.nextSibling);
+            } else if (next) {
+              canvas.appendChild(box);
+            }
+            ensureEditableNeighborsForMedia(canvas, box);
+          } else if (btn.dataset.mediaShape) {
+            box.dataset.shape = btn.dataset.mediaShape;
             applyGdocMediaBoxLayout(box);
-          } else if (miniBtn.dataset.actionBtn === "reset") {
+          } else if (btn.dataset.mediaAction === "reset") {
             box.dataset.shape = "rounded";
             box.dataset.heightPx = "0";
             box.dataset.widthPct = "72";
             box.dataset.align = "center";
             applyGdocMediaBoxLayout(box);
-          } else if (miniBtn.dataset.actionBtn === "delete") {
+          } else if (btn.dataset.mediaAction === "delete") {
             box.remove();
+            syncTopMediaToolbarState(canvas, null);
           }
           if (typeof onMutate === "function") onMutate();
-          return;
-        }
+        });
+      }
 
+      canvas.addEventListener("click", (e) => {
         const box = e.target.closest(".gdoc-media-box");
         if (box) {
           e.preventDefault();
@@ -5192,7 +5415,7 @@
           return;
         }
 
-        // Tapping outside media box: check if user tapped Left, Right, Top, or Bottom side of a media box to continue typing around it!
+        // Tapping outside media box: detect Left, Right, Top, or Bottom side tap to type text around media (preserving media size!)
         const clickX = e.clientX;
         const clickY = e.clientY;
         let handledSideTap = false;
@@ -5201,10 +5424,8 @@
           const rect = mb.getBoundingClientRect();
           const withinVerticalBand = clickY >= rect.top - 10 && clickY <= rect.bottom + 10;
           if (withinVerticalBand) {
-            // Tapped on RIGHT side of media
             if (clickX > rect.right + 4) {
               mb.dataset.align = "left";
-              if (parseFloat(mb.dataset.widthPct || "72") > 66) mb.dataset.widthPct = "48";
               applyGdocMediaBoxLayout(mb);
               ensureEditableNeighborsForMedia(canvas, mb);
               deselectAll();
@@ -5212,10 +5433,8 @@
               handledSideTap = true;
               break;
             }
-            // Tapped on LEFT side of media
             if (clickX < rect.left - 4) {
               mb.dataset.align = "right";
-              if (parseFloat(mb.dataset.widthPct || "72") > 66) mb.dataset.widthPct = "48";
               applyGdocMediaBoxLayout(mb);
               ensureEditableNeighborsForMedia(canvas, mb);
               deselectAll();
@@ -5224,7 +5443,6 @@
               break;
             }
           }
-          // Tapped directly in Top edge gap (0..22px above)
           if (clickY >= rect.top - 24 && clickY < rect.top && clickX >= rect.left - 20 && clickX <= rect.right + 20) {
             ensureEditableNeighborsForMedia(canvas, mb);
             deselectAll();
@@ -5232,7 +5450,6 @@
             handledSideTap = true;
             break;
           }
-          // Tapped directly in Bottom edge gap (0..22px below)
           if (clickY > rect.bottom && clickY <= rect.bottom + 24 && clickX >= rect.left - 20 && clickX <= rect.right + 20) {
             ensureEditableNeighborsForMedia(canvas, mb);
             deselectAll();
@@ -5244,7 +5461,7 @@
         if (!handledSideTap) deselectAll();
       });
 
-      // Press-and-hold on media box selects it immediately on touchscreens too
+      // Press-and-hold on media selects it; dragging handles resizes/moves while preserving size on move
       let holdTimer = null;
       const startDragOp = (ev) => {
         const moveHandle = ev.target.closest(".gdoc-move-handle");
@@ -5254,15 +5471,15 @@
         if (!box) return;
 
         if (!moveHandle && !resizeCorner && !resizeBottom) {
-          if (ev.target.closest(".gdoc-media-mini-bar")) return;
           clearTimeout(holdTimer);
-          holdTimer = setTimeout(() => { selectBox(box); }, 260);
+          holdTimer = setTimeout(() => { selectBox(box); }, 240);
           return;
         }
 
         ev.preventDefault();
         ev.stopPropagation();
         selectBox(box);
+        pushWysiwygHistorySnapshot(canvas);
         const startPt = getClientXY(ev);
         const canvasRect = canvas.getBoundingClientRect();
         const boxRect = box.getBoundingClientRect();
@@ -5278,11 +5495,11 @@
             const dy = pt.y - startPt.y;
             const availW = Math.max(160, canvasRect.width - 28);
             if (!isBottomOnly) {
-              const newW = Math.max(84, Math.min(availW, startW + dx));
+              const newW = Math.max(72, Math.min(availW, startW + dx));
               box.dataset.widthPct = String(Math.round((newW / availW) * 100));
             }
-            const newH = Math.max(64, Math.min(620, Math.round(startH + dy)));
-            if (isBottomOnly || Math.abs(dy) > 10 || box.dataset.shape === "circle") {
+            const newH = Math.max(56, Math.min(640, Math.round(startH + dy)));
+            if (isBottomOnly || Math.abs(dy) > 8 || box.dataset.shape === "circle") {
               box.dataset.heightPx = String(newH);
             }
             applyGdocMediaBoxLayout(box);
@@ -5307,18 +5524,16 @@
             mev.preventDefault();
             const pt = getClientXY(mev);
             const relX = (pt.x - canvasRect.left) / Math.max(1, canvasRect.width);
+            // Only update placement alignment — NEVER alter widthPct or heightPx!
             if (relX < 0.34) {
               box.dataset.align = "left";
-              if (parseFloat(box.dataset.widthPct || "72") > 68) box.dataset.widthPct = "48";
             } else if (relX > 0.66) {
               box.dataset.align = "right";
-              if (parseFloat(box.dataset.widthPct || "72") > 68) box.dataset.widthPct = "48";
             } else {
               box.dataset.align = "center";
             }
             applyGdocMediaBoxLayout(box);
 
-            // Reorder vertically among top-level blocks in canvas as user drags up/down
             const children = Array.from(canvas.children).filter(el => el !== box);
             for (const ch of children) {
               const r = ch.getBoundingClientRect();
@@ -5471,6 +5686,7 @@
       if (!canvas) return;
       canvas.focus();
       document.execCommand(cmd, false, null);
+      pushWysiwygHistorySnapshot(canvas);
     }
 
     function execWysiwygBlock(sel) {
@@ -5478,6 +5694,7 @@
       if (!canvas) return;
       canvas.focus();
       document.execCommand("formatBlock", false, sel.value);
+      pushWysiwygHistorySnapshot(canvas);
     }
 
     function execWysiwygFont(sel) {
@@ -5485,6 +5702,7 @@
       if (!canvas || !sel.value) return;
       canvas.focus();
       document.execCommand("fontName", false, sel.value);
+      pushWysiwygHistorySnapshot(canvas);
     }
 
     function applyWysiwygFontSizePx(canvas, pxSize) {
@@ -5597,8 +5815,10 @@
         ensureEditableNeighborsForMedia(canvas, inserted);
         canvas.querySelectorAll(".gdoc-media-box.gdoc-media-selected").forEach(b => b.classList.remove("gdoc-media-selected"));
         inserted.classList.add("gdoc-media-selected");
+        syncTopMediaToolbarState(canvas, inserted);
       }
-      showToast("Image/GIF added — drag bottom handle to resize/shape & top-right ✥ to move");
+      pushWysiwygHistorySnapshot(canvas);
+      showToast("Image/GIF added — use top toolbar icons to align/shape, bottom handle to resize, ✥ to move");
     }
 
     function insertWysiwygTable(btn) {
@@ -5616,6 +5836,7 @@
       }
       canvas.focus();
       document.execCommand("insertHTML", false, `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table><p><br></p>`);
+      pushWysiwygHistorySnapshot(canvas);
     }
 
     function insertWysiwygVideo(btn) {
@@ -5644,8 +5865,10 @@
         ensureEditableNeighborsForMedia(canvas, inserted);
         canvas.querySelectorAll(".gdoc-media-box.gdoc-media-selected").forEach(b => b.classList.remove("gdoc-media-selected"));
         inserted.classList.add("gdoc-media-selected");
+        syncTopMediaToolbarState(canvas, inserted);
       }
-      showToast("Video added — drag bottom handle to resize & top-right ✥ to move");
+      pushWysiwygHistorySnapshot(canvas);
+      showToast("Video added — use top toolbar icons to align/shape, bottom handle to resize, ✥ to move");
     }
 
     function extractMovieFilterOptionsFromPosts() {
@@ -6979,31 +7202,44 @@
       return { words, mins };
     }
 
+    function resolvePdfWatermarkHtml(art) {
+      if (art.enablePdfWatermark === false) return "";
+      const brandTitle = siteData.brandTitle || "CRACK CGPSC";
+      const wmType = art.pdfWatermarkType || "site_logo";
+      const siteLogoUrl = convertDriveUrl(siteData.brandLogoUrl || siteData.topLeftLogoUrl || "");
+      const faviconUrl = convertDriveUrl(siteData.faviconUrl || "");
+
+      let inner = "";
+      if (wmType === "text_logo") {
+        inner = `<div class="pdf-watermark-text">${escapeHtml(brandTitle)}</div>`;
+      } else if (wmType === "favicon") {
+        const src = faviconUrl || siteLogoUrl;
+        inner = src
+          ? `<img class="pdf-watermark-img" src="${escapeHtml(src)}" alt="" />`
+          : `<div class="pdf-watermark-text">${escapeHtml(brandTitle)}</div>`;
+      } else {
+        const src = siteLogoUrl || faviconUrl;
+        inner = src
+          ? `<img class="pdf-watermark-img" src="${escapeHtml(src)}" alt="" />`
+          : `<div class="pdf-watermark-text">${escapeHtml(brandTitle)}</div>`;
+      }
+      return `<div class="pdf-watermark-layer" aria-hidden="true">${inner}</div>`;
+    }
+
     function buildBookNotesPdfInnerHtml(art) {
       const brandTitle = siteData.brandTitle || "CRACK CGPSC";
-      const brandLogo = convertDriveUrl(siteData.brandLogoUrl || "");
-      const subjectPath = getArticleSubjectPath(art.folderId);
-      const category = art.category || "STUDY NOTES";
+      const headerLogo = convertDriveUrl(siteData.brandLogoUrl || siteData.topLeftLogoUrl || siteData.faviconUrl || "");
       const cover = convertDriveUrl(art.postType === "review" ? (art.reviewData?.posterUrl || art.coverImage) : art.coverImage);
-      const stats = computeArticleReadStats(art.body || "");
       const dateStr = new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
       const portalUrl = buildArticleShareUrl(art);
-      const showWatermark = art.enablePdfWatermark !== false;
-
-      const watermarkHtml = showWatermark ? `
-        <div class="pdf-watermark-layer" aria-hidden="true">
-          ${brandLogo
-            ? `<img class="pdf-watermark-img" src="${escapeHtml(brandLogo)}" alt="" />`
-            : `<div class="pdf-watermark-text">${escapeHtml(brandTitle)}</div>`}
-        </div>
-      ` : "";
+      const watermarkHtml = resolvePdfWatermarkHtml(art);
 
       return `
         ${watermarkHtml}
         <div class="pdf-page-content">
           <div class="pdf-masthead">
             <div class="pdf-brand-left">
-              ${brandLogo ? `<img class="pdf-brand-logo" src="${escapeHtml(brandLogo)}" alt="${escapeHtml(brandTitle)}" />` : ""}
+              ${headerLogo ? `<img class="pdf-brand-logo" src="${escapeHtml(headerLogo)}" alt="${escapeHtml(brandTitle)}" />` : ""}
               <div class="pdf-brand-title">${escapeHtml(brandTitle)}</div>
             </div>
             <div style="text-align:right; font-size:10px; color:#475569;">
@@ -7011,15 +7247,13 @@
               <div>${escapeHtml(dateStr)}</div>
             </div>
           </div>
-          <div class="pdf-meta-box">
-            <div class="pdf-meta-row">SUBJECT: ${escapeHtml(subjectPath)} &nbsp;|&nbsp; CATEGORY: ${escapeHtml(category)} &nbsp;|&nbsp; ~${stats.mins} MIN READ</div>
-            <div class="pdf-topic-title">${escapeHtml(art.title || "Study Notes")}</div>
-            ${art.excerpt ? `<div class="pdf-summary">${escapeHtml(art.excerpt)}</div>` : ""}
+          <div class="pdf-title-wrap">
+            <h1 class="pdf-topic-title">${escapeHtml(art.title || "Study Notes")}</h1>
           </div>
           ${cover ? `<img class="pdf-cover-img" src="${escapeHtml(cover)}" alt="${escapeHtml(art.title || "Cover")}" />` : ""}
           <div class="pdf-notes-body">${renderRichHtmlBody(art.body || "")}</div>
           <div class="pdf-footer">
-            <span>© ${escapeHtml(brandTitle)} • ${escapeHtml(subjectPath)}</span>
+            <span>© ${escapeHtml(brandTitle)}</span>
             <span>${escapeHtml(portalUrl)}</span>
           </div>
         </div>
@@ -7036,8 +7270,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${safeTitle}</title>
   <style>
+    @page { size: A4; margin: 14mm 14mm 16mm 14mm; }
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 20px 24px; background: #ffffff; color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.68; position: relative; }
+    html, body { margin: 0; padding: 0; background: #ffffff; color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.68; overflow: visible; }
+    body { padding: 14px 18px; position: relative; }
     .pdf-watermark-layer {
       position: fixed;
       top: 50%;
@@ -7058,26 +7294,28 @@
     .pdf-watermark-img { width: 100%; max-height: 420px; object-fit: contain; display: block; }
     .pdf-watermark-text { font-size: 54px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; color: #0f172a; transform: rotate(-28deg); white-space: nowrap; }
     .pdf-page-content { position: relative; z-index: 1; }
-    .pdf-masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 2.5px solid #0e7490; padding-bottom: 12px; margin-bottom: 16px; }
+    .pdf-masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 2.5px solid #0e7490; padding-bottom: 10px; margin-bottom: 14px; break-after: avoid; page-break-after: avoid; }
     .pdf-brand-left { display: flex; align-items: center; gap: 11px; }
     .pdf-brand-logo { max-height: 44px; max-width: 140px; object-fit: contain; }
     .pdf-brand-title { font-size: 20px; font-weight: 900; color: #0f172a; letter-spacing: 1px; text-transform: uppercase; }
-    .pdf-meta-box { background: rgba(241, 245, 249, 0.88); border-left: 4px solid #0284c7; border-radius: 6px; padding: 10px 14px; margin-bottom: 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .pdf-meta-row { font-size: 11px; color: #334155; font-weight: 700; margin-bottom: 4px; }
-    .pdf-topic-title { font-size: 22px; font-weight: 900; color: #0f172a; margin: 4px 0 6px; line-height: 1.25; }
-    .pdf-summary { font-size: 12.5px; color: #334155; margin-top: 6px; font-style: italic; }
-    .pdf-cover-img { max-width: 100%; height: auto; max-height: 360px; object-fit: contain; display: block; margin: 12px auto 16px; border-radius: 8px; page-break-inside: avoid; }
-    .pdf-notes-body { font-size: 13px; color: #1e293b; }
+    .pdf-title-wrap { margin: 0 0 14px; padding: 10px 14px; background: rgba(241, 245, 249, 0.9); border-left: 4px solid #0284c7; border-radius: 6px; break-after: avoid; page-break-after: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pdf-topic-title { font-size: 22px; font-weight: 900; color: #0f172a; margin: 0; line-height: 1.28; }
+    .pdf-cover-img { max-width: 100%; height: auto; max-height: 360px; object-fit: contain; display: block; margin: 12px auto 16px; border-radius: 8px; break-inside: avoid; page-break-inside: avoid; }
+    .pdf-notes-body { font-size: 13px; color: #1e293b; overflow: visible; }
     .pdf-notes-body::after { content: ""; display: table; clear: both; }
-    .pdf-notes-body h1, .pdf-notes-body h2, .pdf-notes-body h3 { color: #0e7490; border-left: 3px solid #0e7490; padding-left: 8px; margin: 16px 0 8px; page-break-after: avoid; }
-    .pdf-notes-body ul, .pdf-notes-body ol { padding-left: 20px; }
-    .pdf-notes-body table { width: 100%; border-collapse: collapse; margin: 12px 0; page-break-inside: avoid; }
+    .pdf-notes-body h1, .pdf-notes-body h2, .pdf-notes-body h3, .pdf-notes-body h4 { color: #0e7490; border-left: 3px solid #0e7490; padding-left: 8px; margin: 16px 0 8px; break-after: avoid; page-break-after: avoid; }
+    .pdf-notes-body p, .pdf-notes-body li { orphans: 3; widows: 3; margin: 0 0 9px; }
+    .pdf-notes-body ul, .pdf-notes-body ol { padding-left: 20px; margin: 0 0 10px; }
+    .pdf-notes-body blockquote { break-inside: avoid; page-break-inside: avoid; }
+    .pdf-notes-body table { width: 100%; border-collapse: collapse; margin: 12px 0; page-break-inside: auto; }
+    .pdf-notes-body thead { display: table-header-group; }
+    .pdf-notes-body tr { break-inside: avoid; page-break-inside: avoid; }
     .pdf-notes-body th, .pdf-notes-body td { border: 1px solid #cbd5e1; padding: 7px 9px; font-size: 12px; color: #0f172a; text-align: left; }
-    .pdf-notes-body th { background: #e0f2fe; font-weight: 800; }
-    .pdf-notes-body img { max-width: 100%; height: auto; object-fit: contain; display: block; margin: 10px auto; border-radius: 6px; page-break-inside: avoid; }
-    .pdf-notes-body .gdoc-media-box { max-width: 100%; overflow: hidden; page-break-inside: avoid; }
-    .pdf-notes-body .gdoc-media-box img { width: 100%; height: 100%; margin: 0; border-radius: inherit; object-fit: cover; }
-    .pdf-footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid #cbd5e1; display: flex; justify-content: space-between; font-size: 10px; color: #64748b; }
+    .pdf-notes-body th { background: #e0f2fe; font-weight: 800; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pdf-notes-body img { max-width: 100%; height: auto; object-fit: contain; display: block; margin: 10px auto; border-radius: 6px; break-inside: avoid; page-break-inside: avoid; }
+    .pdf-notes-body .gdoc-media-box { max-width: 100%; overflow: hidden; break-inside: avoid; page-break-inside: avoid; }
+    .pdf-notes-body .gdoc-media-box img { width: 100%; height: 100%; margin: 0; border-radius: inherit; object-fit: fill; }
+    .pdf-footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid #cbd5e1; display: flex; justify-content: space-between; font-size: 10px; color: #64748b; break-inside: avoid; page-break-inside: avoid; }
   </style>
 </head>
 <body>${inner}</body>
@@ -8232,13 +8470,23 @@
             </div>
           </label>
 
-          <label class="pdf-toggle-row">
-            <input type="checkbox" class="art-pdf-watermark-chk" ${data.enablePdfWatermark !== false ? "checked" : ""} />
-            <div style="min-width:0; flex:1;">
-              <div style="font-size:0.78rem; font-weight:800; color:#f8fafc;">💧 Enable Website Logo Watermark in PDF</div>
-              <div style="font-size:0.68rem; color:var(--text-secondary);">Show/hide large low-opacity centered website logo watermark across downloaded PDF pages.</div>
+          <div class="pdf-toggle-row" style="flex-direction:column; align-items:stretch; gap:8px; cursor:default;">
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+              <input type="checkbox" class="art-pdf-watermark-chk" ${data.enablePdfWatermark !== false ? "checked" : ""} />
+              <div style="min-width:0; flex:1;">
+                <div style="font-size:0.78rem; font-weight:800; color:#f8fafc;">💧 Enable PDF Watermark (ON / OFF)</div>
+                <div style="font-size:0.68rem; color:var(--text-secondary);">Show/hide large centered low-opacity watermark across every downloaded PDF page.</div>
+              </div>
+            </label>
+            <div class="field-group" style="margin:0;">
+              <label style="font-size:0.7rem; color:#7dd3fc;">Select PDF Watermark Style</label>
+              <select class="art-pdf-watermark-type">
+                <option value="site_logo" ${(data.pdfWatermarkType || "site_logo") === "site_logo" ? "selected" : ""}>🖼️ Website Image Logo (Brand / Top-Left Logo)</option>
+                <option value="favicon" ${data.pdfWatermarkType === "favicon" ? "selected" : ""}>🌐 Favicon Logo Image</option>
+                <option value="text_logo" ${data.pdfWatermarkType === "text_logo" ? "selected" : ""}>🔤 Website Text Logo (Brand Title)</option>
+              </select>
             </div>
-          </label>
+          </div>
 
           <div style="display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;">
             <button type="button" class="btn btn-success" onclick="saveComposerPostToSite()">✅ ${editingPostId ? "Update Post" : "Save Post Locally"}</button>
@@ -8425,6 +8673,7 @@
         relatedLinks: collectRelatedLinksFromComposer(card),
         allowPdfDownload: card.querySelector(".art-allow-pdf-chk") ? card.querySelector(".art-allow-pdf-chk").checked : true,
         enablePdfWatermark: card.querySelector(".art-pdf-watermark-chk") ? card.querySelector(".art-pdf-watermark-chk").checked : true,
+        pdfWatermarkType: card.querySelector(".art-pdf-watermark-type") ? card.querySelector(".art-pdf-watermark-type").value : "site_logo",
         reviewData: {
           posterUrl,
           movieName: card.querySelector(".rev-movie-name").value.trim(),
@@ -8769,6 +9018,10 @@
     function populateAdminEditors() {
       document.getElementById("cfgBrandTitle").value = siteData.brandTitle || "";
       document.getElementById("cfgBrandLogoUrl").value = siteData.brandLogoUrl || "";
+      const tlLogoInp = document.getElementById("cfgTopLeftLogoUrl");
+      if (tlLogoInp) tlLogoInp.value = siteData.topLeftLogoUrl || "";
+      const tlLogoVis = document.getElementById("cfgTopLeftLogoVisible");
+      if (tlLogoVis) tlLogoVis.checked = siteData.showTopLeftLogo !== false;
       document.getElementById("cfgBrandSub").value = siteData.brandSub || "";
       document.getElementById("cfgSearchPlaceholder").value = siteData.searchPlaceholder || DEFAULT_DATA.searchPlaceholder;
       document.getElementById("cfgFaviconUrl").value = siteData.faviconUrl || "";
@@ -9022,6 +9275,8 @@
       return {
         brandTitle: document.getElementById("cfgBrandTitle").value.trim() || "CRACK CGPSC",
         brandLogoUrl: document.getElementById("cfgBrandLogoUrl").value.trim(),
+        topLeftLogoUrl: document.getElementById("cfgTopLeftLogoUrl") ? document.getElementById("cfgTopLeftLogoUrl").value.trim() : (siteData.topLeftLogoUrl || ""),
+        showTopLeftLogo: document.getElementById("cfgTopLeftLogoVisible") ? document.getElementById("cfgTopLeftLogoVisible").checked : (siteData.showTopLeftLogo !== false),
         brandSub: document.getElementById("cfgBrandSub").value.trim() || "TEST SERIES • TOPIC QUIZ • PYQ PAPERS • CBT PORTAL",
         searchPlaceholder: document.getElementById("cfgSearchPlaceholder").value.trim() || DEFAULT_DATA.searchPlaceholder,
         faviconUrl: document.getElementById("cfgFaviconUrl").value.trim(),
