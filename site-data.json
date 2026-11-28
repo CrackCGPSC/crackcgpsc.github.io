@@ -1,6 +1,8 @@
 {
   "brandTitle": "CRACK Cgpsc",
   "brandLogoUrl": "",
+  "topLeftLogoUrl": "",
+  "showTopLeftLogo": true,
   "brandSub": "TEST SERIES • TOPIC QUIZ • PYQs • EDU SHORTS",
   "searchPlaceholder": "Search History, Topics, Reviews or Articles...",
   "faviconUrl": "https://drive.google.com/file/d/1s9FfwRpIO5UlNuXLfnKtM7Qt507hzSNX/view?usp=drivesdk",
@@ -311,24 +313,24 @@
   },
   "navButtons": [
     {
-      "label": "Free Test Series",
+      "label": "PYQ Quiz",
       "actionType": "link",
       "target": "https://crackcgpsc.github.io/FreeTestSeries/"
     },
     {
-      "label": "PYQ Papers",
+      "label": "Study Material",
       "actionType": "link",
       "target": "https://crackcgpsc.github.io/PYQPapers/"
     },
     {
-      "label": "History Folder",
+      "label": "Revision Notes",
       "actionType": "folder",
-      "target": "fld-history"
+      "target": ""
     },
     {
-      "label": "Official Hub",
+      "label": "Up Coming Exams",
       "actionType": "anchor",
-      "target": "dest-portal-hub"
+      "target": "dest-notice-board"
     }
   ],
   "portalCards": [
@@ -735,6 +737,15 @@
       "fontSize": 7,
       "posX": -4,
       "posY": -3
+    },
+    "quickPill-0": {
+      "fontFamily": "Roboto"
+    },
+    "quickPill-1": {
+      "fontFamily": "Roboto"
+    },
+    "quickPill-2": {
+      "fontFamily": "Roboto"
     }
   },
   "socialLinks": {
